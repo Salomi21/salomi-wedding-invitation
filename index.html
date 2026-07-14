@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lahiru ❤️ Salomi - Wedding</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
+
+    <!-- ප්‍රධාන Card එක -->
+    <div class="container">
+
+        <div class="decorative-line">✦ ✦ ✦</div>
+
+        <h1 class="title">Lahiru <span class="amp">&</span> Salomi</h1>
+
+        <p class="subtitle">We Are Getting Married</p>
+
+        <hr class="divider" />
+
+        <h2 class="date">📅 14 September 2026</h2>
+        <p class="venue">📍 Hotel Thisunya, Anamaduwa</p>
+
+        <div id="countdown"></div>
+
+        <!-- View Invitation Button -->
+        <button onclick="openInvitation()">💌 View Invitation</button>
+
+        <!-- Share on WhatsApp Button -->
+        <button onclick="shareInvitation()" style="background: linear-gradient(145deg, #25D366, #128C7E); margin-top: 10px; padding: 12px 30px; font-size: 14px;">
+            📤 Share on WhatsApp
+        </button>
+
+        <p class="footer-quote">"Forever starts today..."</p>
+
+        <audio id="music" loop>
+            <source src="music.mp3" type="audio/mp3" />
+        </audio>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- INVITATION MODAL - සම්පූර්ණ ආරාධනා පත්‍රිකාව -->
+    <!-- ============================================== -->
+    <div id="invitationModal" class="modal">
+        <div class="modal-content">
+
+            <!-- Close Button -->
+            <span class="close-btn" onclick="closeInvitation()">&times;</span>
+
+            <!-- Wedding Header -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #c44569; margin-bottom: 5px;">Lahiru & Salomi</h1>
+                <p style="font-family: 'Playfair Display', serif; font-size: 16px; color: #6b4c5a; letter-spacing: 4px; text-transform: uppercase;">We Are Getting Married</p>
+                <hr style="width: 60px; border: 0; height: 2px; background: linear-gradient(90deg, transparent, #c44569, transparent); margin: 10px auto;" />
+            </div>
+
+            <!-- Invitation Message -->
+            <div style="background: #fcf8f7; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #c44569;">
+                <p style="font-family: 'Great Vibes', cursive; font-size: 22px; color: #2c1a24; text-align: center; margin-bottom: 10px;">
+                    💞 With hearts full of love and joy, we invite you to celebrate our wedding!
+                </p>
+                <p style="text-align: center; color: #555; font-size: 15px; line-height: 1.6;">
+                    Your presence will make our day even more special. Please join us as we begin our journey together.
+                </p>
+            </div>
+
+            <!-- 1. Traditional Rituals -->
+            <div class="ritual-section">
+                <h3>⏰ උත්සව කාලසටහන / Schedule</h3>
+                <ul class="ritual-list">
+                    <li><span class="time">08:30 AM</span> - පොරුව උත්සවය (Poruwa Ceremony)</li>
+                    <li><span class="time">10:00 AM</span> - මංගල උදෑසන ආහාරය (Wedding Breakfast)</li>
+                    <li><span class="time">11:30 AM</span> - ඡායාරූප සැසිය (Photo Session)</li>
+                    <li><span class="time">06:00 PM</span> - සාදය (Grand Reception)</li>
+                </ul>
+            </div>
+
+            <!-- 2. Location -->
+            <div class="location-section">
+                <h3>📍 ස්ථානය / Location</h3>
+                <p><strong>Hotel Thisunya, Anamaduwa</strong></p>
+                <p style="font-size: 14px; color: #555; margin-top: 4px;">
+                    අනමදුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
+                </p>
+                <a href="https://maps.google.com/maps?q=Anamaduwa" target="_blank" class="map-btn">
+                    🗺️ ගූගල් මැප් එකෙන් බලන්න
+                </a>
+            </div>
+
+            <!-- 3. RSVP Form -->
+            <div class="rsvp-section">
+                <h3>💌 RSVP (එන්න කියලා දන්වන්න)</h3>
+                <p style="font-size: 13px; color: #888; margin-bottom: 12px; text-align: center;">
+                    කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න
+                </p>
+                <form id="rsvpForm">
+                    <input type="text" id="rsvpName" placeholder="ඔබගේ නම / Your Name" required />
+                    <input type="tel" id="rsvpPhone" placeholder="දුරකථන අංකය / Phone Number" required />
+                    <select id="rsvpAttendance" required>
+                        <option value="">පැමිණීම / Attendance</option>
+                        <option value="Coming">එනවා (Coming)</option>
+                        <option value="Not Coming">එන්නේ නැහැ (Not Coming)</option>
+                    </select>
+                    <textarea id="rsvpNotes" rows="2" placeholder="අමතර සටහන්... / Special Notes..."></textarea>
+                    
+                    <!-- WhatsApp & Email Buttons -->
+                    <div class="form-buttons">
+                        <button type="button" onclick="sendWhatsApp()" style="background: linear-gradient(145deg, #25D366, #128C7E);">
+                            💬 WhatsApp
+                        </button>
+                        <button type="button" onclick="sendEmail()" style="background: linear-gradient(145deg, #EA4335, #C5221F);">
+                            📧 Email
+                        </button>
+                    </div>
+                    
+                    <p style="font-size: 11px; color: #aaa; margin-top: 10px; text-align: center;">
+                        ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න / Choose your preferred method
+                    </p>
+                </form>
+            </div>
+
+            <!-- Footer Message -->
+            <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #f0e0e4;">
+                <p style="font-family: 'Great Vibes', cursive; font-size: 20px; color: #b08a93;">
+                    "Forever starts today..."
+                </p>
+                <p style="font-size: 12px; color: #999; margin-top: 5px;">
+                    We can't wait to celebrate with you! 💖
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- ============================================== -->
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
