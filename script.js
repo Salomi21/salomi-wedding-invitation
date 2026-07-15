@@ -1,11 +1,26 @@
-// ----- 1. FLOATING HEARTS -----
+// ----- 1. FLOATING HEARTS - WHITE & PURPLE ONLY -----
 function createHeart() {
     const container = document.getElementById('hearts-container');
     if (!container) return;
 
     const heart = document.createElement('div');
     heart.classList.add('heart');
-    heart.innerHTML = '❤️'; 
+    
+    // Randomly select between Purple and White hearts
+    const isPurple = Math.random() > 0.5;
+    
+    if (isPurple) {
+        heart.classList.add('purple');
+        heart.innerHTML = '💜'; // Purple heart
+        heart.style.color = '#c084fc';
+        heart.style.textShadow = '0 0 30px rgba(192, 132, 252, 0.7), 0 0 60px rgba(139, 92, 246, 0.3)';
+    } else {
+        heart.classList.add('white');
+        heart.innerHTML = '🤍'; // White heart
+        heart.style.color = '#ffffff';
+        heart.style.textShadow = '0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.2)';
+    }
+    
     heart.style.left = Math.random() * 100 + '%';
     heart.style.fontSize = (Math.random() * 14 + 12) + 'px'; 
     heart.style.animationDuration = (Math.random() * 8 + 6) + 's'; 
@@ -28,7 +43,38 @@ window.addEventListener('load', () => {
     }
 });
 
-// ----- 2. OPEN INVITATION MODAL -----
+// ----- 2. SPARKLE PARTICLES -----
+function createSparkle() {
+    const container = document.getElementById('sparkle-container');
+    if (!container) return;
+
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.classList.add(Math.random() > 0.5 ? 'purple' : 'white');
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.width = (Math.random() * 6 + 3) + 'px';
+    sparkle.style.height = sparkle.style.width;
+    sparkle.style.animationDuration = (Math.random() * 10 + 6) + 's';
+    sparkle.style.animationDelay = (Math.random() * 5) + 's';
+
+    container.appendChild(sparkle);
+
+    setTimeout(() => {
+        if (sparkle.parentNode) {
+            sparkle.remove();
+        }
+    }, 16000);
+}
+
+setInterval(createSparkle, 300);
+
+window.addEventListener('load', () => {
+    for (let i = 0; i < 8; i++) {
+        setTimeout(createSparkle, i * 150);
+    }
+});
+
+// ----- 3. OPEN INVITATION MODAL -----
 function openInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -37,7 +83,7 @@ function openInvitation() {
     }
 }
 
-// ----- 3. CLOSE INVITATION MODAL -----
+// ----- 4. CLOSE INVITATION MODAL -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -61,7 +107,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// ----- 4. GET FORM DATA -----
+// ----- 5. GET FORM DATA -----
 function getFormData() {
     const name = document.getElementById('rsvpName').value.trim();
     const phone = document.getElementById('rsvpPhone').value.trim();
@@ -92,7 +138,7 @@ function validateForm() {
     return true;
 }
 
-// ----- 5. SEND VIA WHATSAPP -----
+// ----- 6. SEND VIA WHATSAPP -----
 function sendWhatsApp() {
     if (!validateForm()) return;
     
@@ -121,7 +167,7 @@ function sendWhatsApp() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 6. SEND VIA EMAIL (GMAIL WEB VERSION) -----
+// ----- 7. SEND VIA EMAIL (GMAIL WEB VERSION) -----
 function sendEmail() {
     if (!validateForm()) return;
     
@@ -160,7 +206,7 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 7. SHARE INVITATION ON WHATSAPP -----
+// ----- 8. SHARE INVITATION ON WHATSAPP -----
 function shareInvitation() {
     const url = window.location.href;
     const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
@@ -170,7 +216,7 @@ function shareInvitation() {
     window.open(whatsappURL, '_blank');
 }
 
-// ----- 8. COUNTDOWN TIMER -----
+// ----- 9. COUNTDOWN TIMER -----
 var weddingDate = new Date("Sep 14, 2026 00:00:00").getTime();
 
 var countdownInterval = setInterval(function() {
@@ -196,7 +242,7 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 9. MUSIC AUTOPLAY -----
+// ----- 10. MUSIC AUTOPLAY -----
 document.addEventListener("click", function playMusic() {
     var audio = document.getElementById("music");
     if (audio && audio.paused) {
