@@ -812,4 +812,408 @@ body::after {
 
 .btn-rsvp-email:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(234, 67, 
+    box-shadow: 0 8px 25px rgba(234, 67, 53, 0.35);
+}
+
+.form-buttons button:active {
+    transform: scale(0.96);
+}
+
+.form-footer {
+    font-size: 11px;
+    color: #8a6a8a;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Modal Footer */
+.modal-footer {
+    text-align: center;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(192, 132, 252, 0.08);
+}
+
+.modal-footer-quote {
+    font-family: 'Great Vibes', cursive;
+    font-size: 18px;
+    color: #a78bba;
+}
+
+.modal-footer-love {
+    font-size: 12px;
+    color: #8a6a8a;
+    margin-top: 4px;
+}
+
+/* ----- TRADITIONAL OVERLAY ----- */
+.traditional-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, 
+        rgba(139, 92, 246, 0.04) 0%, 
+        rgba(192, 132, 252, 0.03) 50%, 
+        transparent 100%);
+}
+
+/* ----- PHOTO FRAME - Purple Theme ----- */
+.photo-frame {
+    width: 130px;
+    height: 130px;
+    margin: -45px auto 12px auto;
+    border-radius: 50%;
+    border: 4px solid #8b5cf6;
+    box-shadow: 
+        0 0 0 6px rgba(139, 92, 246, 0.12),
+        0 0 40px rgba(139, 92, 246, 0.15),
+        0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(145deg, rgba(40, 10, 50, 0.8), rgba(60, 15, 70, 0.6));
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-frame .frame-ring {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    border-radius: 50%;
+    border: 1.5px dashed rgba(192, 132, 252, 0.2);
+    animation: spin 20s linear infinite;
+    pointer-events: none;
+}
+
+.photo-frame .frame-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(139, 92, 246, 0.08), 
+        transparent 70%);
+    animation: glowPulse 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ----- TRADITIONAL ICONS ----- */
+.traditional-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 5px 0 10px 0;
+    flex-wrap: wrap;
+}
+
+.icon-item {
+    font-size: 22px;
+    animation: floatIcon 3s ease-in-out infinite;
+    display: inline-block;
+    opacity: 0.6;
+}
+
+.icon-item:nth-child(1) { animation-delay: 0s; }
+.icon-item:nth-child(2) { animation-delay: 0.7s; }
+.icon-item:nth-child(3) { animation-delay: 1.4s; }
+.icon-item:nth-child(4) { animation-delay: 2.1s; }
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+    25% { transform: translateY(-8px) scale(1.1) rotate(5deg); }
+    50% { transform: translateY(-4px) scale(1.05) rotate(-5deg); }
+    75% { transform: translateY(-6px) scale(1.08) rotate(3deg); }
+}
+
+/* ================================================================ */
+/* 📱 MOBILE RESPONSIVE */
+/* ================================================================ */
+
+/* Small Phones (320px - 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 30px 18px 40px 18px;
+        border-radius: 18px;
+        margin: 20px auto;
+    }
+    
+    .title {
+        font-size: 34px;
+    }
+    
+    .title .amp {
+        font-size: 26px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+        letter-spacing: 4px;
+    }
+    
+    #countdown {
+        font-size: 20px;
+        padding: 8px 14px;
+        min-width: 170px;
+    }
+    
+    .date {
+        font-size: 19px;
+    }
+    
+    .venue {
+        font-size: 14px;
+    }
+    
+    .btn-primary,
+    .btn-whatsapp {
+        font-size: 13px;
+        padding: 12px 20px;
+        max-width: 100%;
+    }
+    
+    .footer-quote {
+        font-size: 16px;
+    }
+    
+    .rings {
+        font-size: 26px;
+    }
+    
+    .photo-frame {
+        width: 100px;
+        height: 100px;
+        margin: -35px auto 10px auto;
+        border-width: 3px;
+    }
+    
+    .traditional-icons {
+        gap: 10px;
+    }
+    
+    .icon-item {
+        font-size: 16px;
+    }
+    
+    .sinhala-text {
+        font-size: 10px;
+    }
+    
+    .top-decoration {
+        font-size: 14px;
+        letter-spacing: 8px;
+        top: 5px;
+    }
+    
+    /* Modal Mobile */
+    .modal-content {
+        padding: 20px 16px 20px 16px;
+        border-radius: 16px;
+        max-height: 85vh;
+    }
+    
+    .modal-title {
+        font-size: 28px;
+    }
+    
+    .modal-title .modal-amp {
+        font-size: 22px;
+    }
+    
+    .modal-subtitle {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+    
+    .invitation-text {
+        font-size: 17px;
+    }
+    
+    .invitation-subtext {
+        font-size: 13px;
+    }
+    
+    .modal-content h3 {
+        font-size: 14px;
+    }
+    
+    .ritual-list li {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+    
+    .ritual-list li .time {
+        font-size: 11px;
+        min-width: 65px;
+        padding: 2px 10px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-buttons button {
+        font-size: 13px;
+        padding: 12px;
+    }
+    
+    .close-btn {
+        font-size: 28px;
+    }
+    
+    .modal-rings {
+        font-size: 22px;
+    }
+    
+    .map-btn {
+        font-size: 12px;
+        padding: 6px 16px;
+    }
+    
+    .modal-footer-quote {
+        font-size: 16px;
+    }
+}
+
+/* Medium Phones (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 35px 22px 45px 22px;
+        max-width: 400px;
+    }
+    
+    .title {
+        font-size: 38px;
+    }
+    
+    #countdown {
+        font-size: 22px;
+        min-width: 180px;
+    }
+    
+    .modal-content {
+        padding: 25px 20px 22px 20px;
+        max-width: 420px;
+    }
+    
+    .form-buttons {
+        flex-direction: row;
+    }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 460px;
+        padding: 45px 30px 55px 30px;
+    }
+    
+    .title {
+        font-size: 44px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1025px) {
+    .container {
+        max-width: 500px;
+        padding: 50px 35px 60px 35px;
+    }
+    
+    .title {
+        font-size: 48px;
+    }
+    
+    #countdown {
+        font-size: 26px;
+        min-width: 220px;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .container {
+        padding: 20px 15px 25px 15px;
+        margin: 10px auto;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 5px;
+    }
+    
+    #countdown {
+        font-size: 16px;
+        padding: 5px 12px;
+        min-width: 150px;
+    }
+    
+    .date {
+        font-size: 16px;
+    }
+    
+    .venue {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .btn-primary,
+    .btn-whatsapp {
+        font-size: 11px;
+        padding: 8px 16px;
+        margin-top: 8px;
+    }
+    
+    .footer-quote {
+        font-size: 14px;
+        margin-top: 15px;
+        padding-top: 10px;
+    }
+    
+    .rings {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+    
+    .photo-frame {
+        width: 80px;
+        height: 80px;
+        margin: -30px auto 8px auto;
+    }
+    
+    .divider {
+        margin: 6px auto 10px auto;
+    }
+    
+    .modal-content {
+        max-height: 80vh;
+        padding: 15px 12px 15px 12px;
+    }
+}
