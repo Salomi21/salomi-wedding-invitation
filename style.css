@@ -12,27 +12,18 @@ body {
     justify-content: center;
     font-family: 'Lato', sans-serif;
     padding: 15px;
-    background: url("bg.jpg") center/cover fixed no-repeat;
-    background-color: #0a0a12;
+    background: linear-gradient(135deg, 
+        #1a0a2e 0%,
+        #2d1b4e 25%,
+        #4a2c6a 50%,
+        #2d1b4e 75%,
+        #1a0a2e 100%
+    );
     position: relative;
+    overflow-x: hidden;
 }
 
-/* ----- WHITE GLOW OVERLAY ----- */
-.glow-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    background: 
-        radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(192, 132, 252, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
-}
-
-/* Background Overlay - Purple & White */
+/* ----- PURPLE & WHITE BACKGROUND OVERLAY ----- */
 body::before {
     content: "";
     position: fixed;
@@ -40,15 +31,15 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, 
-        rgba(106, 13, 173, 0.2), 
-        rgba(139, 92, 246, 0.1),
-        rgba(255, 255, 255, 0.03));
+    background: 
+        radial-gradient(ellipse at 10% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(192, 132, 252, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
     z-index: 1;
     pointer-events: none;
 }
 
-/* Background Image Blur Layer */
+/* ----- ANIMATED BACKGROUND PATTERN ----- */
 body::after {
     content: "";
     position: fixed;
@@ -56,11 +47,20 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("bg.jpg") center/cover fixed no-repeat;
-    filter: blur(8px) brightness(0.45);
-    transform: scale(1.05);
-    z-index: -1;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 1%),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 1%),
+        radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 2%),
+        radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 2%);
+    background-size: 200px 200px;
+    z-index: 0;
     pointer-events: none;
+    animation: bgPattern 20s linear infinite;
+}
+
+@keyframes bgPattern {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(100px, 100px) rotate(360deg); }
 }
 
 /* ----- SPARKLE PARTICLES ----- */
@@ -82,7 +82,16 @@ body::after {
     border-radius: 50%;
     animation: sparkleFloat linear infinite;
     opacity: 0;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.sparkle.purple {
+    background: radial-gradient(circle, #c084fc, #8b5cf6);
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
+}
+
+.sparkle.white {
+    background: radial-gradient(circle, #ffffff, rgba(255, 255, 255, 0.5));
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 @keyframes sparkleFloat {
@@ -129,12 +138,12 @@ body::after {
     will-change: transform, filter, opacity;
 }
 
-.heart:nth-child(odd) {
+.heart.purple {
     color: #c084fc;
     text-shadow: 0 0 30px rgba(192, 132, 252, 0.7), 0 0 60px rgba(139, 92, 246, 0.3);
 }
 
-.heart:nth-child(even) {
+.heart.white {
     color: #ffffff;
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.2);
 }
@@ -157,7 +166,7 @@ body::after {
     font-size: 14px;
     letter-spacing: 15px;
     z-index: 10;
-    opacity: 0.3;
+    opacity: 0.2;
     pointer-events: none;
     color: #c084fc;
     animation: breatheText 3s ease-in-out infinite;
@@ -174,17 +183,18 @@ body::after {
     margin: 30px auto;
     padding: 40px 25px 50px 25px;
     background: linear-gradient(145deg, 
-        rgba(20, 10, 30, 0.92), 
-        rgba(40, 15, 55, 0.88));
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+        rgba(255, 255, 255, 0.06),
+        rgba(139, 92, 246, 0.04)
+    );
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     border-radius: 28px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 30px 80px rgba(0, 0, 0, 0.5),
         0 0 60px rgba(139, 92, 246, 0.06),
-        0 0 120px rgba(192, 132, 252, 0.04),
+        0 0 120px rgba(192, 132, 252, 0.03),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
     animation: floatIn 1.2s cubic-bezier(0.23, 1, 0.32, 1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -193,9 +203,9 @@ body::after {
 .container:hover {
     transform: translateY(-5px) scale(1.008);
     box-shadow: 
-        0 40px 90px rgba(0, 0, 0, 0.6),
+        0 40px 90px rgba(0, 0, 0, 0.5),
         0 0 80px rgba(139, 92, 246, 0.08),
-        0 0 150px rgba(192, 132, 252, 0.06);
+        0 0 150px rgba(192, 132, 252, 0.05);
 }
 
 /* Card Border - Purple & White Gradient */
@@ -213,17 +223,35 @@ body::after {
         #a855f7,
         #ffffff,
         #c084fc,
-        #8b5cf6);
+        #8b5cf6
+    );
     background-size: 400% 400%;
     border-radius: 30px;
     z-index: -1;
     animation: borderGlow 6s ease-in-out infinite;
-    opacity: 0.35;
+    opacity: 0.3;
 }
 
 @keyframes borderGlow {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
+}
+
+/* Card Inner Glow */
+.container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 28px;
+    background: radial-gradient(ellipse at 50% 0%, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        transparent 50%
+    );
+    pointer-events: none;
+    z-index: -0.5;
 }
 
 /* ----- RINGS ----- */
@@ -249,7 +277,7 @@ body::after {
     color: #c084fc;
     margin-bottom: 5px;
     font-weight: 300;
-    opacity: 0.5;
+    opacity: 0.4;
     animation: breatheText 3s ease-in-out infinite;
 }
 
@@ -262,7 +290,8 @@ body::after {
         #c084fc 25%,
         #8b5cf6 50%,
         #c084fc 75%,
-        #ffffff 100%);
+        #ffffff 100%
+    );
     background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -367,7 +396,7 @@ body::after {
     margin-bottom: 20px;
 }
 
-/* ----- COUNTDOWN - Purple & White Theme ----- */
+/* ----- COUNTDOWN ----- */
 #countdown {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -375,7 +404,8 @@ body::after {
     background: linear-gradient(145deg, 
         rgba(139, 92, 246, 0.12), 
         rgba(192, 132, 252, 0.06),
-        rgba(255, 255, 255, 0.03));
+        rgba(255, 255, 255, 0.03)
+    );
     padding: 10px 20px;
     border-radius: 50px;
     display: inline-block;
@@ -441,7 +471,8 @@ body::after {
     background: linear-gradient(45deg, 
         transparent, 
         rgba(255, 255, 255, 0.06), 
-        transparent);
+        transparent
+    );
     animation: shimmer 4s ease-in-out infinite;
 }
 
@@ -497,7 +528,8 @@ body::after {
     background: linear-gradient(45deg, 
         transparent, 
         rgba(255, 255, 255, 0.06), 
-        transparent);
+        transparent
+    );
     animation: shimmer 4.5s ease-in-out infinite;
 }
 
@@ -569,7 +601,8 @@ body::after {
 .modal-content {
     background: linear-gradient(145deg, 
         rgba(20, 10, 30, 0.96), 
-        rgba(40, 15, 55, 0.92));
+        rgba(40, 15, 55, 0.92)
+    );
     max-width: 480px;
     width: 100%;
     max-height: 88vh;
@@ -667,7 +700,8 @@ body::after {
     background: linear-gradient(145deg, 
         rgba(139, 92, 246, 0.06), 
         rgba(192, 132, 252, 0.03),
-        rgba(255, 255, 255, 0.02));
+        rgba(255, 255, 255, 0.02)
+    );
     padding: 18px;
     border-radius: 16px;
     margin-bottom: 18px;
@@ -884,14 +918,17 @@ body::after {
     margin-top: 4px;
 }
 
-/* ----- PHOTO FRAME - Purple & White Theme ----- */
+/* ----- PHOTO FRAME ----- */
 .photo-frame {
     width: 130px;
     height: 130px;
     margin: -45px auto 12px auto;
     border-radius: 50%;
     border: 4px solid transparent;
-    background-image: linear-gradient(145deg, rgba(20, 10, 30, 0.92), rgba(40, 15, 55, 0.88));
+    background-image: linear-gradient(145deg, 
+        rgba(20, 10, 30, 0.92), 
+        rgba(40, 15, 55, 0.88)
+    );
     background-origin: border-box;
     background-clip: padding-box, border-box;
     border-image: linear-gradient(135deg, #8b5cf6, #c084fc, #ffffff, #a855f7) 1;
@@ -933,7 +970,8 @@ body::after {
     border-radius: 50%;
     background: radial-gradient(circle, 
         rgba(192, 132, 252, 0.08), 
-        transparent 70%);
+        transparent 70%
+    );
     animation: glowPulse 4s ease-in-out infinite;
     pointer-events: none;
 }
@@ -980,7 +1018,6 @@ body::after {
 /* 📱 MOBILE RESPONSIVE */
 /* ================================================================ */
 
-/* Small Phones (320px - 480px) */
 @media (max-width: 480px) {
     body {
         padding: 10px;
@@ -1058,7 +1095,6 @@ body::after {
         top: 5px;
     }
     
-    /* Modal Mobile */
     .modal-content {
         padding: 20px 16px 20px 16px;
         border-radius: 18px;
@@ -1129,7 +1165,6 @@ body::after {
     }
 }
 
-/* Medium Phones (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
     .container {
         padding: 35px 22px 45px 22px;
@@ -1155,7 +1190,6 @@ body::after {
     }
 }
 
-/* Tablets (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
     .container {
         max-width: 460px;
@@ -1167,7 +1201,6 @@ body::after {
     }
 }
 
-/* Large Screens */
 @media (min-width: 1025px) {
     .container {
         max-width: 500px;
