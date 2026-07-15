@@ -560,6 +560,184 @@ body::after {
 }
 
 /* ================================================================ */
+/* 🎯 PHOTO FRAME WITH STICKER - NEW */
+/* ================================================================ */
+.photo-frame {
+    width: 130px;
+    height: 130px;
+    margin: -45px auto 12px auto;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    background-image: linear-gradient(145deg, 
+        rgba(20, 10, 30, 0.92), 
+        rgba(40, 15, 55, 0.88)
+    );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-image: linear-gradient(135deg, #8b5cf6, #c084fc, #ffffff, #a855f7) 1;
+    box-shadow: 
+        0 0 0 6px rgba(139, 92, 246, 0.1),
+        0 0 0 12px rgba(255, 255, 255, 0.03),
+        0 0 50px rgba(139, 92, 246, 0.12),
+        0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: visible;
+    position: relative;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.photo-frame .frame-ring {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.1);
+    animation: spin 25s linear infinite;
+    pointer-events: none;
+}
+
+.photo-frame .frame-glow {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(192, 132, 252, 0.08), 
+        transparent 70%
+    );
+    animation: glowPulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.06); }
+}
+
+/* ================================================================ */
+/* 🎯 STICKER OVERLAY - NEW */
+/* ================================================================ */
+.sticker-overlay {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 60px;
+    height: 60px;
+    z-index: 5;
+    animation: stickerFloat 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 25px rgba(139, 92, 246, 0.4));
+}
+
+.sticker-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+}
+
+/* If sticker image fails, show emoji */
+.sticker-overlay:has(img[style*="display: none"])::after {
+    content: "💜";
+    font-size: 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: heartPulse 2s ease-in-out infinite;
+}
+
+@keyframes stickerFloat {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+    }
+    25% { 
+        transform: translateY(-10px) rotate(5deg) scale(1.05); 
+    }
+    50% { 
+        transform: translateY(-5px) rotate(-5deg) scale(1.02); 
+    }
+    75% { 
+        transform: translateY(-8px) rotate(3deg) scale(1.08); 
+    }
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* Sticker Positions */
+.sticker-top-right {
+    top: -8px;
+    right: -8px;
+    bottom: auto;
+    left: auto;
+}
+
+.sticker-top-left {
+    top: -8px;
+    left: -8px;
+    bottom: auto;
+    right: auto;
+}
+
+.sticker-bottom-left {
+    bottom: -8px;
+    left: -8px;
+    top: auto;
+    right: auto;
+}
+
+/* ----- TRADITIONAL ICONS ----- */
+.traditional-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 5px 0 10px 0;
+    flex-wrap: wrap;
+}
+
+.icon-item {
+    font-size: 20px;
+    animation: floatIcon 3.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
+.icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
+.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
+.icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
+.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+    25% { transform: translateY(-10px) scale(1.1) rotate(5deg); }
+    50% { transform: translateY(-5px) scale(1.05) rotate(-5deg); }
+    75% { transform: translateY(-8px) scale(1.08) rotate(3deg); }
+}
+
+/* ================================================================ */
 /* 🎯 MODAL - Purple & White Theme */
 /* ================================================================ */
 .modal {
@@ -942,102 +1120,6 @@ body::after {
     margin-top: 4px;
 }
 
-/* ----- PHOTO FRAME ----- */
-.photo-frame {
-    width: 130px;
-    height: 130px;
-    margin: -45px auto 12px auto;
-    border-radius: 50%;
-    border: 4px solid transparent;
-    background-image: linear-gradient(145deg, 
-        rgba(20, 10, 30, 0.92), 
-        rgba(40, 15, 55, 0.88)
-    );
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    border-image: linear-gradient(135deg, #8b5cf6, #c084fc, #ffffff, #a855f7) 1;
-    box-shadow: 
-        0 0 0 6px rgba(139, 92, 246, 0.1),
-        0 0 0 12px rgba(255, 255, 255, 0.03),
-        0 0 50px rgba(139, 92, 246, 0.12),
-        0 10px 40px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    position: relative;
-}
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 50%;
-}
-
-.photo-frame .frame-ring {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    width: calc(100% + 12px);
-    height: calc(100% + 12px);
-    border-radius: 50%;
-    border: 1.5px dashed rgba(255, 255, 255, 0.1);
-    animation: spin 25s linear infinite;
-    pointer-events: none;
-}
-
-.photo-frame .frame-glow {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: calc(100% + 30px);
-    height: calc(100% + 30px);
-    border-radius: 50%;
-    background: radial-gradient(circle, 
-        rgba(192, 132, 252, 0.08), 
-        transparent 70%
-    );
-    animation: glowPulse 4s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes glowPulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.06); }
-}
-
-/* ----- TRADITIONAL ICONS ----- */
-.traditional-icons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 5px 0 10px 0;
-    flex-wrap: wrap;
-}
-
-.icon-item {
-    font-size: 20px;
-    animation: floatIcon 3.5s ease-in-out infinite;
-    display: inline-block;
-}
-
-.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
-.icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
-.icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
-
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
-    25% { transform: translateY(-10px) scale(1.1) rotate(5deg); }
-    50% { transform: translateY(-5px) scale(1.05) rotate(-5deg); }
-    75% { transform: translateY(-8px) scale(1.08) rotate(3deg); }
-}
-
 /* ================================================================ */
 /* 📱 MOBILE RESPONSIVE */
 /* ================================================================ */
@@ -1100,6 +1182,17 @@ body::after {
         width: 100px;
         height: 100px;
         margin: -35px auto 10px auto;
+    }
+    
+    .sticker-overlay {
+        width: 45px;
+        height: 45px;
+        bottom: -5px;
+        right: -5px;
+    }
+    
+    .sticker-image {
+        padding: 3px;
     }
     
     .traditional-icons {
@@ -1300,6 +1393,13 @@ body::after {
         width: 80px;
         height: 80px;
         margin: -30px auto 8px auto;
+    }
+    
+    .sticker-overlay {
+        width: 35px;
+        height: 35px;
+        bottom: -4px;
+        right: -4px;
     }
     
     .divider {
