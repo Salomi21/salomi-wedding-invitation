@@ -12,30 +12,14 @@ body {
     justify-content: center;
     font-family: 'Lato', sans-serif;
     padding: 15px;
-    background: url("bg.jpg") center/cover fixed no-repeat;
-    background-color: #1a0a2e;
+    background: #1a0a2e;
     position: relative;
     overflow-x: hidden;
 }
 
-/* ----- BACKGROUND OVERLAY - Purple & White ----- */
+/* ----- BACKGROUND IMAGE - TRANSPARENT VERSION ----- */
+/* Layer 1: Background Image with Transparency */
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.25) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(192, 132, 252, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Background Image Blur Layer */
-body::after {
     content: "";
     position: fixed;
     top: 0;
@@ -45,7 +29,26 @@ body::after {
     background: url("bg.jpg") center/cover fixed no-repeat;
     filter: blur(4px) brightness(0.55);
     transform: scale(1.05);
-    z-index: -1;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    /* 🎯 Transparency Control - මෙය වෙනස් කරන්න */
+    /* 0.1 = ඉතාමත් පාරදෘශ්ය, 0.5 = මධ්‍යම, 1.0 = සම්පූර්ණ */
+}
+
+/* Layer 2: Purple & White Gradient Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.2) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(192, 132, 252, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -267,6 +270,11 @@ body::after {
     animation: breatheText 3s ease-in-out infinite;
 }
 
+@keyframes breatheText {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+}
+
 /* ----- TITLE - Purple & White Gradient ----- */
 .title {
     font-family: 'Great Vibes', cursive;
@@ -314,11 +322,6 @@ body::after {
     margin-bottom: 12px;
     opacity: 0.7;
     animation: breatheText 4s ease-in-out infinite;
-}
-
-@keyframes breatheText {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.02); }
 }
 
 /* ----- DIVIDER ----- */
@@ -1028,6 +1031,7 @@ body::after {
 /* 📱 MOBILE RESPONSIVE */
 /* ================================================================ */
 
+/* Small Phones (320px - 480px) */
 @media (max-width: 480px) {
     body {
         padding: 10px;
@@ -1105,6 +1109,7 @@ body::after {
         top: 5px;
     }
     
+    /* Modal Mobile */
     .modal-content {
         padding: 20px 16px 20px 16px;
         border-radius: 18px;
@@ -1175,6 +1180,7 @@ body::after {
     }
 }
 
+/* Medium Phones (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
     .container {
         padding: 35px 22px 45px 22px;
@@ -1200,6 +1206,7 @@ body::after {
     }
 }
 
+/* Tablets (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
     .container {
         max-width: 460px;
@@ -1211,6 +1218,7 @@ body::after {
     }
 }
 
+/* Large Screens (1025px and above) */
 @media (min-width: 1025px) {
     .container {
         max-width: 500px;
@@ -1290,5 +1298,22 @@ body::after {
     .modal-content {
         max-height: 80vh;
         padding: 15px 12px 15px 12px;
+    }
+}
+
+/* ----- DARK MODE SUPPORT ----- */
+@media (prefers-color-scheme: dark) {
+    .container {
+        background: linear-gradient(145deg, 
+            rgba(10, 5, 20, 0.92), 
+            rgba(30, 10, 45, 0.88)
+        );
+    }
+    
+    .modal-content {
+        background: linear-gradient(145deg, 
+            rgba(10, 5, 20, 0.96), 
+            rgba(30, 10, 45, 0.92)
+        );
     }
 }
