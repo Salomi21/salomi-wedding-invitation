@@ -156,7 +156,7 @@ body::after {
     font-size: 14px;
     letter-spacing: 15px;
     z-index: 10;
-    opacity: 0.3;
+    opacity: 0.4;
     pointer-events: none;
     color: #c084fc;
     animation: breatheText 3s ease-in-out infinite;
@@ -260,39 +260,39 @@ body::after {
     75% { transform: scale(1.08) rotate(-3deg); }
 }
 
-/* ----- DECORATIVE LINE ----- */
+/* ----- DECORATIVE LINE - More Clear ----- */
 .decorative-line {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 10px;
     color: #c084fc;
     margin-bottom: 5px;
     font-weight: 300;
-    opacity: 0.5;
+    opacity: 0.7;
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.1);
     animation: breatheText 3s ease-in-out infinite;
 }
 
 @keyframes breatheText {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
+    0%, 100% { opacity: 0.8; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.02); }
 }
 
-/* ----- TITLE - Purple & White Gradient ----- */
+/* ----- TITLE - More Clear ----- */
 .title {
     font-family: 'Great Vibes', cursive;
     font-size: 44px;
     background: linear-gradient(135deg, 
         #ffffff 0%,
-        #c084fc 25%,
-        #8b5cf6 50%,
-        #c084fc 75%,
-        #ffffff 100%
+        #e8d5ff 30%,
+        #c084fc 60%,
+        #a855f7 100%
     );
     background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 2px;
-    filter: drop-shadow(0 4px 25px rgba(139, 92, 246, 0.2));
+    filter: drop-shadow(0 4px 30px rgba(192, 132, 252, 0.3));
     line-height: 1.2;
     animation: gradientShift 5s ease-in-out infinite;
 }
@@ -312,16 +312,17 @@ body::after {
     margin: 0 4px;
 }
 
-/* ----- SUBTITLE ----- */
+/* ----- SUBTITLE - More Clear ----- */
 .subtitle {
     font-family: 'Playfair Display', serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 14px;
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: #d8b4fe;
+    color: #e8d5ff;
     margin-bottom: 12px;
-    opacity: 0.8;
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.1);
     animation: breatheText 4s ease-in-out infinite;
 }
 
@@ -367,59 +368,63 @@ body::after {
     50% { transform: scale(1.4); opacity: 1; }
 }
 
-/* ----- DATE & VENUE ----- */
+/* ----- DATE & VENUE - More Clear ----- */
 .date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 22px;
-    color: #f0e6f6;
+    font-size: 24px;
+    color: #f5edff;
     margin-bottom: 4px;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
     animation: breatheText 3.5s ease-in-out infinite;
 }
 
 .venue {
-    font-size: 16px;
-    font-weight: 400;
-    color: #d8b4fe;
+    font-size: 17px;
+    font-weight: 500;
+    color: #e8d5ff;
     letter-spacing: 1px;
     margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(139, 92, 246, 0.05);
 }
 
-/* ----- COUNTDOWN ----- */
+/* ----- COUNTDOWN - More Clear ----- */
 #countdown {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 26px;
     background: linear-gradient(145deg, 
-        rgba(139, 92, 246, 0.12), 
-        rgba(192, 132, 252, 0.06),
-        rgba(255, 255, 255, 0.03)
+        rgba(139, 92, 246, 0.15), 
+        rgba(192, 132, 252, 0.08),
+        rgba(255, 255, 255, 0.05)
     );
     padding: 10px 20px;
     border-radius: 50px;
     display: inline-block;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
-        0 4px 30px rgba(139, 92, 246, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 4px 30px rgba(139, 92, 246, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     margin: 8px 0 12px 0;
     letter-spacing: 2px;
-    color: #c084fc;
+    color: #f5edff;
     width: auto;
     min-width: 200px;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.1);
     animation: breatheText 3s ease-in-out infinite;
 }
 
-/* ----- SINHALA TEXT ----- */
+/* ----- SINHALA TEXT - More Clear ----- */
 .sinhala-text {
     font-family: 'Lato', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 2px;
-    color: #d8b4fe;
-    opacity: 0.5;
+    color: #e8d5ff;
+    opacity: 0.7;
     margin: 8px 0 5px 0;
     text-transform: uppercase;
+    font-weight: 600;
     animation: breatheText 4s ease-in-out infinite;
 }
 
@@ -535,15 +540,16 @@ body::after {
     font-size: 18px;
 }
 
-/* ----- FOOTER QUOTE ----- */
+/* ----- FOOTER QUOTE - More Clear ----- */
 .footer-quote {
     margin-top: 25px;
     font-family: 'Great Vibes', cursive;
-    font-size: 18px;
-    color: #a78bba;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 20px;
+    color: #d8b4fe;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding-top: 15px;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.05);
     animation: breatheText 4s ease-in-out infinite;
 }
 
@@ -607,7 +613,11 @@ body::after {
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Modal Border - Purple & White */
+.modal-content::-webkit-scrollbar { width: 4px; }
+.modal-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
+.modal-content::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
+
+/* Modal Border */
 .modal-content::before {
     content: "";
     position: absolute;
@@ -630,10 +640,6 @@ body::after {
     animation: borderGlow 6s ease-in-out infinite;
     opacity: 0.2;
 }
-
-.modal-content::-webkit-scrollbar { width: 4px; }
-.modal-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
-.modal-content::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
 
 /* Close Button */
 .close-btn {
@@ -674,11 +680,12 @@ body::after {
 .modal-title {
     font-family: 'Great Vibes', cursive;
     font-size: 36px;
-    background: linear-gradient(135deg, #ffffff, #c084fc, #8b5cf6);
+    background: linear-gradient(135deg, #ffffff, #e8d5ff, #c084fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 2px;
+    filter: drop-shadow(0 4px 30px rgba(192, 132, 252, 0.2));
 }
 
 .modal-title .modal-amp {
@@ -691,11 +698,12 @@ body::after {
 
 .modal-subtitle {
     font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    color: #d8b4fe;
+    font-size: 14px;
+    color: #e8d5ff;
     letter-spacing: 4px;
     text-transform: uppercase;
-    opacity: 0.7;
+    opacity: 0.9;
+    font-weight: 700;
 }
 
 .modal-divider {
@@ -709,7 +717,7 @@ body::after {
     opacity: 0.5;
 }
 
-/* Invitation Message - Purple & White */
+/* Invitation Message */
 .invitation-message {
     background: linear-gradient(145deg, 
         rgba(139, 92, 246, 0.08), 
@@ -724,17 +732,19 @@ body::after {
 
 .invitation-text {
     font-family: 'Great Vibes', cursive;
-    font-size: 20px;
-    color: #f0e6f6;
+    font-size: 22px;
+    color: #f5edff;
     text-align: center;
     margin-bottom: 6px;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.05);
 }
 
 .invitation-subtext {
     text-align: center;
-    color: #d8b4fe;
-    font-size: 14px;
+    color: #e8d5ff;
+    font-size: 15px;
     line-height: 1.6;
+    font-weight: 400;
 }
 
 /* Section Headings */
