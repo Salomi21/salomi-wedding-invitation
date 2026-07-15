@@ -1,174 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Lahiru ❤️ Salomi - Wedding</title>
+<!-- ============================================== -->
+<!-- INVITATION MODAL - Purple & White Attractive -->
+<!-- ============================================== -->
+<div id="invitationModal" class="modal">
+    <div class="modal-content">
 
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+        <span class="close-btn" onclick="closeInvitation()">&times;</span>
 
-    <!-- Floating Hearts Container -->
-    <div id="hearts-container"></div>
-
-    <!-- Sparkle Particles -->
-    <div id="sparkle-container"></div>
-
-    <!-- Top Decoration -->
-    <div class="top-decoration">✦ ✦ ✦</div>
-
-    <!-- ප්‍රධාන Card එක -->
-    <div class="container">
-
-        <!-- Traditional Icons -->
-        <div class="traditional-icons">
-            <span class="icon-item">💜</span>
-            <span class="icon-item">✨</span>
-            <span class="icon-item">🤍</span>
-            <span class="icon-item">✨</span>
-            <span class="icon-item">💜</span>
+        <!-- Decorative Top -->
+        <div class="modal-top-deco">
+            <span class="deco-icon">✦</span>
+            <span class="deco-icon">💜</span>
+            <span class="deco-icon">✦</span>
+            <span class="deco-icon">🤍</span>
+            <span class="deco-icon">✦</span>
         </div>
 
-        <div class="decorative-line">✦ ✦ ✦</div>
-
-        <!-- Wedding Photo Frame with Sticker -->
-        <div class="photo-frame">
-            <img src="wedding-photo.jpg" alt="Lahiru & Salomi" onerror="this.style.display='none'; this.parentElement.innerHTML='💍'" />
-            <div class="frame-ring"></div>
-            <div class="frame-glow"></div>
-            
-            <!-- 💜 Sticker Overlay -->
-            <div class="sticker-overlay">
-                <img src="sticker.png" alt="Wedding Sticker" class="sticker-image" onerror="this.style.display='none'; this.parentElement.innerHTML='💜'" />
+        <div class="modal-header">
+            <div class="modal-rings">💍</div>
+            <h1 class="modal-title">Lahiru <span class="modal-amp">&</span> Salomi</h1>
+            <p class="modal-subtitle">We Are Getting Married</p>
+            <div class="modal-divider">
+                <span>✦</span> <span>🤍</span> <span>💜</span> <span>🤍</span> <span>✦</span>
             </div>
         </div>
 
-        <!-- Rings Icon -->
-        <div class="rings">💍</div>
-
-        <h1 class="title">Lahiru <span class="amp">&</span> Salomi</h1>
-
-        <p class="subtitle">We Are Getting Married</p>
-
-        <div class="divider">
-            <span class="divider-icon">🤍</span>
-            <span class="divider-icon">💜</span>
-            <span class="divider-icon">🤍</span>
+        <!-- Invitation Message -->
+        <div class="invitation-message">
+            <div class="msg-icon">💜</div>
+            <p class="invitation-text">
+                With hearts full of love and joy, we invite you to celebrate our wedding!
+            </p>
+            <p class="invitation-subtext">
+                Your presence will make our day even more special. Please join us as we begin our journey together.
+            </p>
         </div>
 
-        <h2 class="date">📅 14 September 2026</h2>
-        <p class="venue">📍 Hotel Thisunya, Anamaduwa</p>
+        <div class="ritual-section">
+            <h3>⏰ උත්සව කාලසටහන / Schedule</h3>
+            <ul class="ritual-list">
+                <li><span class="time">08:30 AM</span> පොරුව උත්සවය (Poruwa Ceremony)</li>
+                <li><span class="time">10:00 AM</span> මංගල උදෑසන ආහාරය (Wedding Breakfast)</li>
+                <li><span class="time">11:30 AM</span> ඡායාරූප සැසිය (Photo Session)</li>
+                <li><span class="time">06:00 PM</span> සාදය (Grand Reception)</li>
+            </ul>
+        </div>
 
-        <div id="countdown"></div>
+        <div class="location-section">
+            <h3>📍 ස්ථානය / Location</h3>
+            <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
+            <p class="location-desc">
+                අනමදුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
+            </p>
+            <a href="https://maps.google.com/maps?q=Anamaduwa" target="_blank" class="map-btn">
+                🗺️ ගූගල් මැප් එකෙන් බලන්න
+            </a>
+        </div>
 
-        <!-- Sinhala Text -->
-        <p class="sinhala-text">💜 සුභ විවාහයක් වේවා! 🤍</p>
-
-        <!-- View Invitation Button -->
-        <button onclick="openInvitation()" class="btn-primary">
-            <span>💜</span> View Invitation
-        </button>
-
-        <!-- Share on WhatsApp Button -->
-        <button onclick="shareInvitation()" class="btn-whatsapp">
-            <span>📤</span> Share on WhatsApp
-        </button>
-
-        <p class="footer-quote">"Forever starts today..."</p>
-
-        <audio id="music" loop>
-            <source src="music.mp3" type="audio/mp3" />
-        </audio>
-    </div>
-
-    <!-- ============================================== -->
-    <!-- INVITATION MODAL - Purple & White -->
-    <!-- ============================================== -->
-    <div id="invitationModal" class="modal">
-        <div class="modal-content">
-
-            <span class="close-btn" onclick="closeInvitation()">&times;</span>
-
-            <div class="modal-header">
-                <div class="modal-rings">💍</div>
-                <h1 class="modal-title">Lahiru <span class="modal-amp">&</span> Salomi</h1>
-                <p class="modal-subtitle">We Are Getting Married</p>
-                <div class="modal-divider">
-                    <span>✦</span> <span>🤍</span> <span>💜</span> <span>🤍</span> <span>✦</span>
+        <div class="rsvp-section">
+            <h3>💌 RSVP</h3>
+            <p class="rsvp-sub">
+                කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න
+            </p>
+            <form id="rsvpForm">
+                <input type="text" id="rsvpName" placeholder="ඔබගේ නම / Your Name" required />
+                <input type="tel" id="rsvpPhone" placeholder="දුරකථන අංකය / Phone Number" required />
+                <select id="rsvpAttendance" required>
+                    <option value="">පැමිණීම / Attendance</option>
+                    <option value="Coming">එනවා (Coming)</option>
+                    <option value="Not Coming">එන්නේ නැහැ (Not Coming)</option>
+                </select>
+                <textarea id="rsvpNotes" rows="2" placeholder="අමතර සටහන්... / Special Notes..."></textarea>
+                
+                <div class="form-buttons">
+                    <button type="button" onclick="sendWhatsApp()" class="btn-rsvp-whatsapp">
+                        💬 WhatsApp
+                    </button>
+                    <button type="button" onclick="sendEmail()" class="btn-rsvp-email">
+                        📧 Email
+                    </button>
                 </div>
-            </div>
-
-            <div class="invitation-message">
-                <p class="invitation-text">
-                    🤍💜 With hearts full of love and joy, we invite you to celebrate our wedding!
+                
+                <p class="form-footer">
+                    ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න
                 </p>
-                <p class="invitation-subtext">
-                    Your presence will make our day even more special. Please join us as we begin our journey together.
-                </p>
-            </div>
-
-            <div class="ritual-section">
-                <h3>⏰ උත්සව කාලසටහන / Schedule</h3>
-                <ul class="ritual-list">
-                    <li><span class="time">08:30 AM</span> පොරුව උත්සවය (Poruwa Ceremony)</li>
-                    <li><span class="time">10:00 AM</span> මංගල උදෑසන ආහාරය (Wedding Breakfast)</li>
-                    <li><span class="time">11:30 AM</span> ඡායාරූප සැසිය (Photo Session)</li>
-                    <li><span class="time">06:00 PM</span> සාදය (Grand Reception)</li>
-                </ul>
-            </div>
-
-            <div class="location-section">
-                <h3>📍 ස්ථානය / Location</h3>
-                <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
-                <p class="location-desc">
-                    අනමදුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
-                </p>
-                <a href="https://maps.google.com/maps?q=Anamaduwa" target="_blank" class="map-btn">
-                    🗺️ ගූගල් මැප් එකෙන් බලන්න
-                </a>
-            </div>
-
-            <div class="rsvp-section">
-                <h3>💌 RSVP</h3>
-                <p class="rsvp-sub">
-                    කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න
-                </p>
-                <form id="rsvpForm">
-                    <input type="text" id="rsvpName" placeholder="ඔබගේ නම / Your Name" required />
-                    <input type="tel" id="rsvpPhone" placeholder="දුරකථන අංකය / Phone Number" required />
-                    <select id="rsvpAttendance" required>
-                        <option value="">පැමිණීම / Attendance</option>
-                        <option value="Coming">එනවා (Coming)</option>
-                        <option value="Not Coming">එන්නේ නැහැ (Not Coming)</option>
-                    </select>
-                    <textarea id="rsvpNotes" rows="2" placeholder="අමතර සටහන්... / Special Notes..."></textarea>
-                    
-                    <div class="form-buttons">
-                        <button type="button" onclick="sendWhatsApp()" class="btn-rsvp-whatsapp">
-                            💬 WhatsApp
-                        </button>
-                        <button type="button" onclick="sendEmail()" class="btn-rsvp-email">
-                            📧 Email
-                        </button>
-                    </div>
-                    
-                    <p class="form-footer">
-                        ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න
-                    </p>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <p class="modal-footer-quote">"Forever starts today..."</p>
-                <p class="modal-footer-love">We can't wait to celebrate with you! 🤍💜</p>
-            </div>
-
+            </form>
         </div>
-    </div>
-    <!-- ============================================== -->
 
-    <script src="script.js"></script>
-</body>
-</html>
+        <div class="modal-footer">
+            <div class="footer-deco">
+                <span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span>
+            </div>
+            <p class="modal-footer-quote">"Forever starts today..."</p>
+            <p class="modal-footer-love">We can't wait to celebrate with you! 💜🤍</p>
+        </div>
+
+    </div>
+</div>
+<!-- ============================================== -->
