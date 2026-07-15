@@ -5,6 +5,7 @@ function createHeart() {
 
     const heart = document.createElement('div');
     heart.classList.add('heart');
+    heart.classList.add(Math.random() > 0.5 ? 'purple' : 'white');
     heart.innerHTML = Math.random() > 0.5 ? '❤️' : '🤍';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.fontSize = (Math.random() * 14 + 12) + 'px';
@@ -35,15 +36,12 @@ function createSparkle() {
 
     const sparkle = document.createElement('div');
     sparkle.classList.add('sparkle');
+    sparkle.classList.add(Math.random() > 0.5 ? 'purple' : 'white');
     sparkle.style.left = Math.random() * 100 + '%';
     sparkle.style.width = (Math.random() * 6 + 3) + 'px';
     sparkle.style.height = sparkle.style.width;
     sparkle.style.animationDuration = (Math.random() * 10 + 6) + 's';
     sparkle.style.animationDelay = (Math.random() * 5) + 's';
-
-    const colors = ['#c084fc', '#a855f7', '#8b5cf6', '#ffffff', '#f0e6f6'];
-    sparkle.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
-    sparkle.style.boxShadow = `0 0 25px ${colors[Math.floor(Math.random() * colors.length)]}40`;
 
     container.appendChild(sparkle);
 
