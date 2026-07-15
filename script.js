@@ -6,17 +6,18 @@ function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     
-    // Randomly select between Purple and White hearts
     const isPurple = Math.random() > 0.5;
     
     if (isPurple) {
+        heart.classList.add('purple');
         heart.innerHTML = '💜';
         heart.style.color = '#c084fc';
-        heart.style.textShadow = '0 0 20px rgba(192, 132, 252, 0.5)';
+        heart.style.textShadow = '0 0 30px rgba(192, 132, 252, 0.7), 0 0 60px rgba(139, 92, 246, 0.3)';
     } else {
+        heart.classList.add('white');
         heart.innerHTML = '🤍';
         heart.style.color = '#ffffff';
-        heart.style.textShadow = '0 0 20px rgba(255, 255, 255, 0.3)';
+        heart.style.textShadow = '0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.2)';
     }
     
     heart.style.left = Math.random() * 100 + '%';
@@ -33,15 +34,46 @@ function createHeart() {
     }, 14000);
 }
 
-setInterval(createHeart, 400);
+setInterval(createHeart, 350);
 
 window.addEventListener('load', () => {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 6; i++) {
         setTimeout(createHeart, i * 200);
     }
 });
 
-// ----- 2. OPEN INVITATION MODAL -----
+// ----- 2. SPARKLE PARTICLES -----
+function createSparkle() {
+    const container = document.getElementById('sparkle-container');
+    if (!container) return;
+
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.classList.add(Math.random() > 0.5 ? 'purple' : 'white');
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.width = (Math.random() * 6 + 3) + 'px';
+    sparkle.style.height = sparkle.style.width;
+    sparkle.style.animationDuration = (Math.random() * 10 + 6) + 's';
+    sparkle.style.animationDelay = (Math.random() * 5) + 's';
+
+    container.appendChild(sparkle);
+
+    setTimeout(() => {
+        if (sparkle.parentNode) {
+            sparkle.remove();
+        }
+    }, 16000);
+}
+
+setInterval(createSparkle, 300);
+
+window.addEventListener('load', () => {
+    for (let i = 0; i < 8; i++) {
+        setTimeout(createSparkle, i * 150);
+    }
+});
+
+// ----- 3. OPEN INVITATION MODAL -----
 function openInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -50,7 +82,7 @@ function openInvitation() {
     }
 }
 
-// ----- 3. CLOSE INVITATION MODAL -----
+// ----- 4. CLOSE INVITATION MODAL -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -59,7 +91,6 @@ function closeInvitation() {
     }
 }
 
-// Click outside modal to close
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('invitationModal');
     if (event.target === modal) {
@@ -67,14 +98,13 @@ window.addEventListener('click', function(event) {
     }
 });
 
-// Escape key to close
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeInvitation();
     }
 });
 
-// ----- 4. GET FORM DATA -----
+// ----- 5. GET FORM DATA -----
 function getFormData() {
     const name = document.getElementById('rsvpName').value.trim();
     const phone = document.getElementById('rsvpPhone').value.trim();
@@ -105,13 +135,11 @@ function validateForm() {
     return true;
 }
 
-// ----- 5. SEND VIA WHATSAPP -----
+// ----- 6. SEND VIA WHATSAPP -----
 function sendWhatsApp() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
-    
-    // WhatsApp Number - ඔබගේ WhatsApp අංකය
     const whatsappNumber = '94716516444';
     
     let message = `🎉 *Wedding RSVP Confirmation* 🎉\n\n`;
@@ -132,12 +160,11 @@ function sendWhatsApp() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 6. SEND VIA EMAIL (GMAIL WEB VERSION) -----
+// ----- 7. SEND VIA EMAIL -----
 function sendEmail() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
-    
     const emailAddress = 'lahirusujith9999@gmail.com';
     const subject = `Wedding RSVP - ${name}`;
     
@@ -161,7 +188,7 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 7. SHARE INVITATION ON WHATSAPP -----
+// ----- 8. SHARE INVITATION -----
 function shareInvitation() {
     const url = window.location.href;
     const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
@@ -171,7 +198,7 @@ function shareInvitation() {
     window.open(whatsappURL, '_blank');
 }
 
-// ----- 8. COUNTDOWN TIMER -----
+// ----- 9. COUNTDOWN TIMER -----
 var weddingDate = new Date("Sep 14, 2026 00:00:00").getTime();
 
 var countdownInterval = setInterval(function() {
@@ -197,7 +224,7 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 9. MUSIC AUTOPLAY -----
+// ----- 10. MUSIC AUTOPLAY -----
 document.addEventListener("click", function playMusic() {
     var audio = document.getElementById("music");
     if (audio && audio.paused) {
