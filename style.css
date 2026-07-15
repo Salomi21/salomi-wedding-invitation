@@ -560,8 +560,389 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 PHOTO FRAME WITH STICKER */
+/* 🎯 MODAL - Purple & White Theme */
 /* ================================================================ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.modal.show {
+    display: flex;
+    animation: fadeInModal 0.5s ease;
+}
+
+@keyframes fadeInModal {
+    from { 
+        opacity: 0; 
+        transform: scale(0.92) translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
+.modal-content {
+    background: linear-gradient(145deg, 
+        rgba(20, 10, 30, 0.96), 
+        rgba(40, 15, 55, 0.92)
+    );
+    max-width: 480px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 30px 22px 25px 22px;
+    border-radius: 24px;
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(139, 92, 246, 0.05);
+    position: relative;
+    color: #f0e6f6;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.modal-content::-webkit-scrollbar { width: 4px; }
+.modal-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
+.modal-content::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
+
+/* Modal Border */
+.modal-content::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        #8b5cf6, 
+        #c084fc, 
+        #ffffff,
+        #a855f7,
+        #ffffff,
+        #c084fc,
+        #8b5cf6
+    );
+    background-size: 400% 400%;
+    border-radius: 26px;
+    z-index: -1;
+    animation: borderGlow 6s ease-in-out infinite;
+    opacity: 0.2;
+}
+
+/* Close Button */
+.close-btn {
+    position: sticky;
+    top: 0;
+    float: right;
+    font-size: 32px;
+    font-weight: 300;
+    color: #a78bba;
+    cursor: pointer;
+    transition: 0.4s;
+    line-height: 1;
+    background: rgba(20, 10, 30, 0.9);
+    padding: 0 8px;
+    border-radius: 50%;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+.close-btn:hover {
+    color: #c084fc;
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Modal Header */
+.modal-header {
+    text-align: center;
+    margin-bottom: 16px;
+    clear: both;
+}
+
+.modal-rings {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.modal-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    background: linear-gradient(135deg, #ffffff, #e8d5ff, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 4px 30px rgba(192, 132, 252, 0.2));
+}
+
+.modal-title .modal-amp {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #f472b6;
+    -webkit-text-fill-color: #f472b6;
+    margin: 0 4px;
+}
+
+.modal-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: #e8d5ff;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    font-weight: 700;
+}
+
+.modal-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px auto;
+    font-size: 12px;
+    color: #c084fc;
+    opacity: 0.5;
+}
+
+/* Invitation Message */
+.invitation-message {
+    background: linear-gradient(145deg, 
+        rgba(139, 92, 246, 0.08), 
+        rgba(192, 132, 252, 0.04),
+        rgba(255, 255, 255, 0.02)
+    );
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    border-left: 4px solid #8b5cf6;
+}
+
+.invitation-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    color: #f5edff;
+    text-align: center;
+    margin-bottom: 6px;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.05);
+}
+
+.invitation-subtext {
+    text-align: center;
+    color: #e8d5ff;
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Section Headings */
+.modal-content h3 {
+    font-size: 16px;
+    color: #c084fc;
+    border-bottom: 2px solid rgba(192, 132, 252, 0.12);
+    padding-bottom: 8px;
+    margin: 18px 0 12px 0;
+    font-weight: 700;
+}
+
+/* Rituals List */
+.ritual-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ritual-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+    font-size: 14px;
+    color: #e8dcec;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ritual-list li .time {
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+    padding: 3px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    white-space: nowrap;
+    min-width: 75px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+}
+
+/* Location */
+.location-section p {
+    margin: 4px 0;
+}
+
+.location-name {
+    font-size: 15px;
+    color: #f0e6f6;
+}
+
+.location-desc {
+    font-size: 13px;
+    color: #a78bba;
+}
+
+.map-btn {
+    display: inline-block;
+    margin-top: 8px;
+    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+    color: #fff;
+    padding: 8px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+}
+
+.map-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 30px rgba(139, 92, 246, 0.3);
+}
+
+/* RSVP Form */
+.rsvp-sub {
+    font-size: 12px;
+    color: #a78bba;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.rsvp-section input,
+.rsvp-section select,
+.rsvp-section textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    transition: 0.3s;
+    box-sizing: border-box;
+    color: #f0e6f6;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.rsvp-section input::placeholder,
+.rsvp-section select::placeholder,
+.rsvp-section textarea::placeholder {
+    color: #6a4a6a;
+}
+
+.rsvp-section input:focus,
+.rsvp-section select:focus,
+.rsvp-section textarea:focus {
+    border-color: #8b5cf6;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.06);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rsvp-section select option {
+    background: #1a0a2e;
+    color: #f0e6f6;
+}
+
+.rsvp-section textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* RSVP Form Buttons */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.form-buttons button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-rsvp-whatsapp {
+    background: linear-gradient(145deg, #25D366, #128C7E);
+}
+
+.btn-rsvp-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+}
+
+.btn-rsvp-email {
+    background: linear-gradient(145deg, #EA4335, #C5221F);
+}
+
+.btn-rsvp-email:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(234, 67, 53, 0.35);
+}
+
+.form-buttons button:active {
+    transform: scale(0.96);
+}
+
+.form-footer {
+    font-size: 11px;
+    color: #6a4a6a;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Modal Footer */
+.modal-footer {
+    text-align: center;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.modal-footer-quote {
+    font-family: 'Great Vibes', cursive;
+    font-size: 18px;
+    color: #a78bba;
+}
+
+.modal-footer-love {
+    font-size: 12px;
+    color: #6a4a6a;
+    margin-top: 4px;
+}
+
+/* ----- PHOTO FRAME ----- */
 .photo-frame {
     width: 130px;
     height: 130px;
@@ -580,7 +961,7 @@ body::after {
         0 0 0 12px rgba(255, 255, 255, 0.03),
         0 0 50px rgba(139, 92, 246, 0.12),
         0 10px 40px rgba(0, 0, 0, 0.3);
-    overflow: visible;
+    overflow: hidden;
     position: relative;
 }
 
@@ -629,53 +1010,6 @@ body::after {
     50% { opacity: 0.8; transform: scale(1.06); }
 }
 
-/* ================================================================ */
-/* 🎯 STICKER OVERLAY */
-/* ================================================================ */
-.sticker-overlay {
-    position: absolute;
-    bottom: -8px;
-    right: -8px;
-    width: 55px;
-    height: 55px;
-    z-index: 5;
-    animation: stickerFloat 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 4px 25px rgba(139, 92, 246, 0.4));
-}
-
-.sticker-emoji {
-    font-size: 45px;
-    display: block;
-    animation: heartPulse 2s ease-in-out infinite;
-    text-align: center;
-    line-height: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    padding: 5px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-}
-
-@keyframes stickerFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg) scale(1); 
-    }
-    25% { 
-        transform: translateY(-10px) rotate(5deg) scale(1.05); 
-    }
-    50% { 
-        transform: translateY(-5px) rotate(-5deg) scale(1.02); 
-    }
-    75% { 
-        transform: translateY(-8px) rotate(3deg) scale(1.08); 
-    }
-}
-
-@keyframes heartPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-}
-
 /* ----- TRADITIONAL ICONS ----- */
 .traditional-icons {
     display: flex;
@@ -702,536 +1036,6 @@ body::after {
     25% { transform: translateY(-10px) scale(1.1) rotate(5deg); }
     50% { transform: translateY(-5px) scale(1.05) rotate(-5deg); }
     75% { transform: translateY(-8px) scale(1.08) rotate(3deg); }
-}
-
-/* ================================================================ */
-/* 🎯 MODAL - PURPLE & WHITE ATTRACTIVE DESIGN                     */
-/* ================================================================ */
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.modal.show {
-    display: flex;
-    animation: fadeInModal 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-@keyframes fadeInModal {
-    from { 
-        opacity: 0; 
-        transform: scale(0.9) translateY(40px) rotate(-2deg);
-    }
-    to { 
-        opacity: 1; 
-        transform: scale(1) translateY(0) rotate(0deg);
-    }
-}
-
-.modal-content {
-    background: linear-gradient(145deg, 
-        rgba(255, 255, 255, 0.06),
-        rgba(139, 92, 246, 0.04)
-    );
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    max-width: 500px;
-    width: 100%;
-    max-height: 88vh;
-    overflow-y: auto;
-    padding: 35px 28px 30px 28px;
-    border-radius: 28px;
-    box-shadow: 
-        0 40px 100px rgba(0, 0, 0, 0.6),
-        0 0 80px rgba(139, 92, 246, 0.06),
-        0 0 150px rgba(192, 132, 252, 0.04);
-    position: relative;
-    color: #f0e6f6;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: modalFloat 4s ease-in-out infinite;
-}
-
-@keyframes modalFloat {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
-}
-
-/* Modal Border - Purple & White Glow */
-.modal-content::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        #8b5cf6, 
-        #c084fc, 
-        #ffffff,
-        #a855f7,
-        #ffffff,
-        #c084fc,
-        #8b5cf6
-    );
-    background-size: 400% 400%;
-    border-radius: 30px;
-    z-index: -1;
-    animation: borderGlow 8s ease-in-out infinite;
-    opacity: 0.25;
-}
-
-@keyframes borderGlow {
-    0%, 100% { background-position: 0% 50%; }
-    25% { background-position: 100% 0%; }
-    50% { background-position: 100% 50%; }
-    75% { background-position: 0% 100%; }
-}
-
-/* Modal Scrollbar */
-.modal-content::-webkit-scrollbar { width: 4px; }
-.modal-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
-.modal-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8b5cf6, #c084fc); border-radius: 10px; }
-
-/* ----- MODAL TOP DECORATION ----- */
-.modal-top-deco {
-    text-align: center;
-    margin-bottom: 5px;
-    letter-spacing: 12px;
-}
-
-.modal-top-deco .deco-icon {
-    font-size: 12px;
-    color: #c084fc;
-    opacity: 0.4;
-    animation: decoPulse 3s ease-in-out infinite;
-}
-
-.modal-top-deco .deco-icon:nth-child(2) { animation-delay: 0.5s; color: #c084fc; }
-.modal-top-deco .deco-icon:nth-child(4) { animation-delay: 1.5s; color: #ffffff; }
-
-@keyframes decoPulse {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.2); }
-}
-
-/* ----- CLOSE BUTTON ----- */
-.close-btn {
-    position: sticky;
-    top: 0;
-    float: right;
-    font-size: 32px;
-    font-weight: 300;
-    color: #a78bba;
-    cursor: pointer;
-    transition: 0.5s;
-    line-height: 1;
-    background: rgba(20, 10, 30, 0.8);
-    padding: 0 10px;
-    border-radius: 50%;
-    z-index: 10;
-    margin-bottom: 5px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.close-btn:hover {
-    color: #c084fc;
-    transform: rotate(180deg) scale(1.1);
-    background: rgba(139, 92, 246, 0.15);
-}
-
-/* ----- MODAL HEADER ----- */
-.modal-header {
-    text-align: center;
-    margin-bottom: 15px;
-    clear: both;
-}
-
-.modal-rings {
-    font-size: 30px;
-    display: block;
-    margin-bottom: 2px;
-    animation: ringPulse 3s ease-in-out infinite;
-}
-
-@keyframes ringPulse {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(5deg); }
-    50% { transform: scale(1.05) rotate(0deg); }
-    75% { transform: scale(1.1) rotate(-5deg); }
-}
-
-.modal-title {
-    font-family: 'Great Vibes', cursive;
-    font-size: 38px;
-    background: linear-gradient(135deg, 
-        #ffffff 0%,
-        #e8d5ff 30%,
-        #c084fc 60%,
-        #a855f7 100%
-    );
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 2px;
-    filter: drop-shadow(0 4px 30px rgba(192, 132, 252, 0.2));
-    animation: gradientShift 6s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-.modal-title .modal-amp {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    color: #f472b6;
-    -webkit-text-fill-color: #f472b6;
-    margin: 0 4px;
-}
-
-.modal-subtitle {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    color: #d8b4fe;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    opacity: 0.8;
-    font-weight: 400;
-}
-
-.modal-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px auto 8px auto;
-    font-size: 12px;
-    color: #c084fc;
-    opacity: 0.5;
-}
-
-.modal-divider span {
-    animation: dividerPulse 3s ease-in-out infinite;
-}
-
-.modal-divider span:nth-child(2) { animation-delay: 0.5s; color: #ffffff; }
-.modal-divider span:nth-child(4) { animation-delay: 1.5s; color: #ffffff; }
-
-@keyframes dividerPulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.3); }
-}
-
-/* ----- INVITATION MESSAGE - Enhanced ----- */
-.invitation-message {
-    background: linear-gradient(145deg, 
-        rgba(139, 92, 246, 0.08), 
-        rgba(192, 132, 252, 0.04),
-        rgba(255, 255, 255, 0.02)
-    );
-    padding: 20px 22px;
-    border-radius: 18px;
-    margin-bottom: 20px;
-    border-left: 4px solid #8b5cf6;
-    position: relative;
-    overflow: hidden;
-}
-
-.invitation-message::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.03), transparent 70%);
-    pointer-events: none;
-}
-
-.msg-icon {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 6px;
-    animation: iconPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes iconPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-.invitation-text {
-    font-family: 'Great Vibes', cursive;
-    font-size: 22px;
-    color: #f5edff;
-    text-align: center;
-    margin-bottom: 6px;
-    text-shadow: 0 0 30px rgba(192, 132, 252, 0.05);
-    line-height: 1.3;
-}
-
-.invitation-subtext {
-    text-align: center;
-    color: #d8b4fe;
-    font-size: 15px;
-    line-height: 1.7;
-    font-weight: 400;
-}
-
-/* ----- SECTION HEADINGS - Purple & White ----- */
-.modal-content h3 {
-    font-size: 17px;
-    color: #c084fc;
-    border-bottom: 2px solid rgba(192, 132, 252, 0.1);
-    padding-bottom: 10px;
-    margin: 20px 0 14px 0;
-    font-weight: 700;
-    letter-spacing: 1px;
-    position: relative;
-}
-
-.modal-content h3::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, #8b5cf6, #c084fc);
-    border-radius: 10px;
-}
-
-/* ----- RITUALS LIST - Enhanced ----- */
-.ritual-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.ritual-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    font-size: 14px;
-    color: #e8dcec;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    transition: all 0.3s ease;
-}
-
-.ritual-list li:hover {
-    background: rgba(139, 92, 246, 0.03);
-    padding-left: 10px;
-    border-radius: 8px;
-}
-
-.ritual-list li .time {
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
-    padding: 4px 14px;
-    border-radius: 30px;
-    font-size: 12px;
-    white-space: nowrap;
-    min-width: 75px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
-}
-
-/* ----- LOCATION - Enhanced ----- */
-.location-section p {
-    margin: 5px 0;
-}
-
-.location-name {
-    font-size: 16px;
-    color: #f5edff;
-    font-weight: 600;
-}
-
-.location-desc {
-    font-size: 13px;
-    color: #a78bba;
-    line-height: 1.5;
-}
-
-.map-btn {
-    display: inline-block;
-    margin-top: 10px;
-    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
-    color: #fff;
-    padding: 10px 25px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.map-btn:hover {
-    transform: scale(1.05) translateY(-2px);
-    box-shadow: 0 8px 35px rgba(139, 92, 246, 0.3);
-    background: linear-gradient(145deg, #7c3aed, #5b21b6);
-}
-
-/* ----- RSVP FORM - Enhanced ----- */
-.rsvp-sub {
-    font-size: 13px;
-    color: #a78bba;
-    margin-bottom: 14px;
-    text-align: center;
-}
-
-.rsvp-section input,
-.rsvp-section select,
-.rsvp-section textarea {
-    width: 100%;
-    padding: 13px 16px;
-    margin-bottom: 12px;
-    border: 1.5px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
-    transition: all 0.4s ease;
-    box-sizing: border-box;
-    color: #f0e6f6;
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.rsvp-section input::placeholder,
-.rsvp-section select::placeholder,
-.rsvp-section textarea::placeholder {
-    color: #6a4a6a;
-}
-
-.rsvp-section input:focus,
-.rsvp-section select:focus,
-.rsvp-section textarea:focus {
-    border-color: #8b5cf6;
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.06);
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateY(-1px);
-}
-
-.rsvp-section select option {
-    background: #1a0a2e;
-    color: #f0e6f6;
-}
-
-.rsvp-section textarea {
-    resize: vertical;
-    min-height: 65px;
-}
-
-/* ----- RSVP FORM BUTTONS - Enhanced ----- */
-.form-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 6px;
-}
-
-.form-buttons button {
-    flex: 1;
-    padding: 14px;
-    border: none;
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.form-buttons button::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
-    animation: shimmer 4s ease-in-out infinite;
-}
-
-.btn-rsvp-whatsapp {
-    background: linear-gradient(145deg, #25D366, #128C7E);
-}
-
-.btn-rsvp-whatsapp:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-}
-
-.btn-rsvp-email {
-    background: linear-gradient(145deg, #EA4335, #C5221F);
-}
-
-.btn-rsvp-email:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 30px rgba(234, 67, 53, 0.4);
-}
-
-.form-buttons button:active {
-    transform: scale(0.96);
-}
-
-.form-footer {
-    font-size: 11px;
-    color: #6a4a6a;
-    margin-top: 12px;
-    text-align: center;
-}
-
-/* ----- MODAL FOOTER - Enhanced ----- */
-.modal-footer {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.footer-deco {
-    font-size: 11px;
-    letter-spacing: 10px;
-    color: #c084fc;
-    opacity: 0.3;
-    margin-bottom: 8px;
-}
-
-.modal-footer-quote {
-    font-family: 'Great Vibes', cursive;
-    font-size: 20px;
-    color: #a78bba;
-}
-
-.modal-footer-love {
-    font-size: 13px;
-    color: #6a4a6a;
-    margin-top: 4px;
 }
 
 /* ================================================================ */
@@ -1298,17 +1102,6 @@ body::after {
         margin: -35px auto 10px auto;
     }
     
-    .sticker-overlay {
-        width: 45px;
-        height: 45px;
-        bottom: -5px;
-        right: -5px;
-    }
-    
-    .sticker-emoji {
-        font-size: 35px;
-    }
-    
     .traditional-icons {
         gap: 8px;
     }
@@ -1329,26 +1122,26 @@ body::after {
     
     /* Modal Mobile */
     .modal-content {
-        padding: 22px 16px 22px 16px;
-        border-radius: 20px;
+        padding: 20px 16px 20px 16px;
+        border-radius: 18px;
         max-height: 85vh;
     }
     
     .modal-title {
-        font-size: 30px;
+        font-size: 28px;
     }
     
     .modal-title .modal-amp {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .modal-subtitle {
-        font-size: 12px;
+        font-size: 11px;
         letter-spacing: 3px;
     }
     
     .invitation-text {
-        font-size: 18px;
+        font-size: 17px;
     }
     
     .invitation-subtext {
@@ -1356,18 +1149,18 @@ body::after {
     }
     
     .modal-content h3 {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .ritual-list li {
         font-size: 13px;
-        padding: 10px 0;
+        padding: 8px 0;
     }
     
     .ritual-list li .time {
         font-size: 11px;
         min-width: 65px;
-        padding: 3px 10px;
+        padding: 2px 10px;
     }
     
     .form-buttons {
@@ -1377,7 +1170,7 @@ body::after {
     
     .form-buttons button {
         font-size: 13px;
-        padding: 13px;
+        padding: 12px;
     }
     
     .close-btn {
@@ -1385,21 +1178,16 @@ body::after {
     }
     
     .modal-rings {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .map-btn {
         font-size: 12px;
-        padding: 8px 18px;
+        padding: 6px 16px;
     }
     
     .modal-footer-quote {
-        font-size: 17px;
-    }
-    
-    .modal-top-deco .deco-icon {
-        font-size: 10px;
-        letter-spacing: 8px;
+        font-size: 16px;
     }
 }
 
@@ -1420,7 +1208,7 @@ body::after {
     }
     
     .modal-content {
-        padding: 28px 22px 24px 22px;
+        padding: 25px 20px 22px 20px;
         max-width: 420px;
     }
     
@@ -1512,17 +1300,6 @@ body::after {
         width: 80px;
         height: 80px;
         margin: -30px auto 8px auto;
-    }
-    
-    .sticker-overlay {
-        width: 35px;
-        height: 35px;
-        bottom: -4px;
-        right: -4px;
-    }
-    
-    .sticker-emoji {
-        font-size: 28px;
     }
     
     .divider {
