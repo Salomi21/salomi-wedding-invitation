@@ -1,4 +1,4 @@
-// ----- 1. FLOATING HEARTS -----
+// ----- 1. FLOATING HEARTS - WHITE & PURPLE ONLY -----
 function createHeart() {
     const container = document.getElementById('hearts-container');
     if (!container) return;
@@ -6,23 +6,24 @@ function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     
+    // Randomly select between Purple and White hearts
     const isPurple = Math.random() > 0.5;
     
     if (isPurple) {
         heart.classList.add('purple');
-        heart.innerHTML = '💜';
+        heart.innerHTML = '💜'; // Purple heart
         heart.style.color = '#c084fc';
         heart.style.textShadow = '0 0 30px rgba(192, 132, 252, 0.7), 0 0 60px rgba(139, 92, 246, 0.3)';
     } else {
         heart.classList.add('white');
-        heart.innerHTML = '🤍';
+        heart.innerHTML = '🤍'; // White heart
         heart.style.color = '#ffffff';
         heart.style.textShadow = '0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.2)';
     }
     
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.fontSize = (Math.random() * 14 + 12) + 'px';
-    heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
+    heart.style.fontSize = (Math.random() * 14 + 12) + 'px'; 
+    heart.style.animationDuration = (Math.random() * 8 + 6) + 's'; 
     heart.style.opacity = Math.random() * 0.6 + 0.4;
 
     container.appendChild(heart);
@@ -91,6 +92,7 @@ function closeInvitation() {
     }
 }
 
+// Click outside modal to close
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('invitationModal');
     if (event.target === modal) {
@@ -98,6 +100,7 @@ window.addEventListener('click', function(event) {
     }
 });
 
+// Escape key to close
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeInvitation();
@@ -140,8 +143,11 @@ function sendWhatsApp() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
+    
+    // WhatsApp Number - ඔබගේ WhatsApp අංකය
     const whatsappNumber = '94716516444';
     
+    // පණිවිඩය හදමු
     let message = `🎉 *Wedding RSVP Confirmation* 🎉\n\n`;
     message += `👤 *Name:* ${name}\n`;
     message += `📱 *Phone:* ${phone}\n`;
@@ -153,6 +159,7 @@ function sendWhatsApp() {
     
     message += `\n💒 *Lahiru & Salomi - 14 Sep 2026*`;
     
+    // WhatsApp URL
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
@@ -160,14 +167,19 @@ function sendWhatsApp() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 7. SEND VIA EMAIL -----
+// ----- 7. SEND VIA EMAIL (GMAIL WEB VERSION) -----
 function sendEmail() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
+    
+    // Email Address - ඔබගේ Email
     const emailAddress = 'lahirusujith9999@gmail.com';
+    
+    // Email Subject
     const subject = `Wedding RSVP - ${name}`;
     
+    // Email Body
     let body = `Wedding RSVP Confirmation\n`;
     body += `==========================\n\n`;
     body += `Name: ${name}\n`;
@@ -180,15 +192,21 @@ function sendEmail() {
     
     body += `\n\n--\nLahiru & Salomi Wedding\n14 September 2026`;
     
+    // Gmail Web URL එක හදමු
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
+    
+    // Gmail Web එකට කෙලින්ම open කරන්න
     const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodedSubject}&body=${encodedBody}`;
     
+    // Gmail එක විවෘත කරමු
     window.open(gmailURL, '_blank');
+    
+    // Form එක Reset කරමු
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION -----
+// ----- 8. SHARE INVITATION ON WHATSAPP -----
 function shareInvitation() {
     const url = window.location.href;
     const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
