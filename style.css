@@ -530,61 +530,61 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 TRANSPARENCY CARD - මංගල කාලසටහනට අදාළ නැහැ              */
+/* 🎯 SCHEDULE CARD - වෙනම Card එකක්                             */
 /* ================================================================ */
-.transparency-card {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 16px;
-    padding: 18px 16px 14px 16px;
-    margin: 8px 0 14px 0;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-}
 
-.transparency-card .card-icon {
-    font-size: 24px;
-    display: block;
-    margin-bottom: 4px;
-    text-align: center;
-}
-
-.transparency-card .card-title {
-    color: #c084fc;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 2px;
-}
-
-.transparency-card .card-text {
-    color: #d8b4fe;
-    font-size: 13px;
-    line-height: 1.5;
-    text-align: center;
-}
-
-/* ================================================================ */
-/* 🎯 SCHEDULE CARD - මංගල කාලසටහන (Simple - No Effects)        */
-/* ================================================================ */
 .schedule-card {
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 16px;
-    padding: 16px 16px 14px 16px;
-    margin: 8px 0 14px 0;
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.04),
+        rgba(139, 92, 246, 0.06)
+    );
+    border-radius: 20px;
+    padding: 20px 18px 18px 18px;
+    margin: 10px 0 18px 0;
     border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Glow Effect */
+.schedule-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.05), transparent 70%);
+    pointer-events: none;
 }
 
 /* Schedule Card Header */
 .schedule-card-header {
     text-align: center;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+.schedule-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 2px;
+}
+
 .schedule-title {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     color: #c084fc;
     margin-bottom: 2px;
@@ -592,7 +592,7 @@ body::after {
 }
 
 .schedule-sub {
-    font-size: 11px;
+    font-size: 12px;
     color: #a78bba;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -610,10 +610,14 @@ body::after {
     content: '';
     position: absolute;
     left: 82px;
-    top: 5px;
-    bottom: 5px;
+    top: 10px;
+    bottom: 10px;
     width: 2px;
-    background: rgba(139, 92, 246, 0.15);
+    background: linear-gradient(180deg, 
+        rgba(139, 92, 246, 0.2),
+        rgba(192, 132, 252, 0.2),
+        rgba(139, 92, 246, 0.2)
+    );
     border-radius: 10px;
 }
 
@@ -622,9 +626,9 @@ body::after {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     position: relative;
-    padding: 3px 0;
+    padding: 4px 0;
 }
 
 .schedule-item:last-child {
@@ -639,6 +643,7 @@ body::after {
     color: #c084fc;
     min-width: 68px;
     padding-top: 2px;
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.1);
 }
 
 /* Dot */
@@ -648,8 +653,9 @@ body::after {
     min-width: 10px;
     margin-top: 4px;
     border-radius: 50%;
-    background: #8b5cf6;
+    background: linear-gradient(135deg, #8b5cf6, #c084fc);
     border: 2px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
     position: relative;
     z-index: 2;
 }
@@ -890,6 +896,182 @@ body::after {
     line-height: 1.7;
 }
 
+/* ----- SECTION HEADINGS ----- */
+.modal-content h3 {
+    font-size: 17px;
+    color: #c084fc;
+    border-bottom: 2px solid rgba(192, 132, 252, 0.08);
+    padding-bottom: 10px;
+    margin: 20px 0 14px 0;
+    font-weight: 700;
+}
+
+/* ----- LOCATION ----- */
+.location-section p {
+    margin: 5px 0;
+}
+
+.location-name {
+    font-size: 16px;
+    color: #f5edff;
+    font-weight: 600;
+}
+
+.location-desc {
+    font-size: 13px;
+    color: #a78bba;
+}
+
+.map-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+}
+
+.map-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.25);
+    background: linear-gradient(145deg, #7c3aed, #5b21b6);
+}
+
+/* ----- RSVP FORM ----- */
+.rsvp-sub {
+    font-size: 13px;
+    color: #a78bba;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.rsvp-section input,
+.rsvp-section select,
+.rsvp-section textarea {
+    width: 100%;
+    padding: 13px 16px;
+    margin-bottom: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    color: #f0e6f6;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.rsvp-section input::placeholder,
+.rsvp-section select::placeholder,
+.rsvp-section textarea::placeholder {
+    color: #6a4a6a;
+}
+
+.rsvp-section input:focus,
+.rsvp-section select:focus,
+.rsvp-section textarea:focus {
+    border-color: #8b5cf6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rsvp-section select option {
+    background: #1a0a2e;
+    color: #f0e6f6;
+}
+
+.rsvp-section textarea {
+    resize: vertical;
+    min-height: 65px;
+}
+
+/* ----- RSVP FORM BUTTONS ----- */
+.form-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.form-buttons button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-rsvp-whatsapp {
+    background: #25D366;
+}
+
+.btn-rsvp-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.3);
+    background: #128C7E;
+}
+
+.btn-rsvp-email {
+    background: #EA4335;
+}
+
+.btn-rsvp-email:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(234, 67, 53, 0.3);
+    background: #C5221F;
+}
+
+.form-buttons button:active {
+    transform: scale(0.96);
+}
+
+.form-footer {
+    font-size: 11px;
+    color: #6a4a6a;
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* ----- MODAL FOOTER ----- */
+.modal-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footer-deco {
+    font-size: 11px;
+    letter-spacing: 10px;
+    color: #c084fc;
+    opacity: 0.3;
+    margin-bottom: 8px;
+}
+
+.modal-footer-quote {
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    color: #a78bba;
+}
+
+.modal-footer-love {
+    font-size: 13px;
+    color: #6a4a6a;
+    margin-top: 4px;
+}
+
 /* ================================================================ */
 /* 📱 MOBILE RESPONSIVE */
 /* ================================================================ */
@@ -930,31 +1112,22 @@ body::after {
     .modal-subtitle { font-size: 12px; letter-spacing: 3px; }
     .invitation-text { font-size: 18px; }
     .invitation-subtext { font-size: 13px; }
-    
-    /* Transparency Card Mobile */
-    .transparency-card {
-        padding: 14px 12px 12px 12px;
-        border-radius: 14px;
-        margin: 6px 0 12px 0;
-    }
-    .transparency-card .card-title {
-        font-size: 14px;
-    }
-    .transparency-card .card-text {
-        font-size: 12px;
-    }
-    .transparency-card .card-icon {
-        font-size: 20px;
-    }
+    .modal-content h3 { font-size: 15px; }
+    .form-buttons { flex-direction: column; gap: 8px; }
+    .form-buttons button { font-size: 13px; padding: 13px; }
+    .close-btn { font-size: 28px; }
+    .modal-rings { font-size: 24px; }
+    .map-btn { font-size: 12px; padding: 8px 18px; }
+    .modal-footer-quote { font-size: 17px; }
     
     /* Schedule Card Mobile */
     .schedule-card {
-        padding: 14px 12px 12px 12px;
-        border-radius: 14px;
-        margin: 6px 0 12px 0;
+        padding: 16px 12px 14px 12px;
+        border-radius: 16px;
+        margin: 8px 0 14px 0;
     }
     .schedule-title {
-        font-size: 15px;
+        font-size: 16px;
     }
     .schedule-sub {
         font-size: 10px;
@@ -982,6 +1155,9 @@ body::after {
         gap: 10px;
         margin-bottom: 10px;
     }
+    .schedule-icon {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 380px) {
@@ -995,10 +1171,6 @@ body::after {
     .schedule-event {
         font-size: 12px;
     }
-    
-    .transparency-card .card-text {
-        font-size: 11px;
-    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1006,6 +1178,7 @@ body::after {
     .title { font-size: 38px; }
     #countdown { font-size: 22px; min-width: 180px; }
     .modal-content { padding: 28px 22px 24px 22px; max-width: 420px; }
+    .form-buttons { flex-direction: row; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -1038,26 +1211,9 @@ body::after {
     .divider { margin: 6px auto 10px auto; }
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
     
-    .transparency-card {
-        padding: 10px 8px 8px 8px;
-        margin: 4px 0 8px 0;
-    }
-    .transparency-card .card-title {
-        font-size: 13px;
-    }
-    .transparency-card .card-text {
-        font-size: 11px;
-    }
-    .transparency-card .card-icon {
-        font-size: 18px;
-    }
-    
     .schedule-card {
-        padding: 10px 8px 8px 8px;
-        margin: 4px 0 8px 0;
-    }
-    .schedule-title {
-        font-size: 14px;
+        padding: 12px 10px 10px 10px;
+        margin: 6px 0 10px 0;
     }
     .schedule-timeline::before {
         left: 55px;
@@ -1081,5 +1237,8 @@ body::after {
         height: 7px;
         min-width: 7px;
         margin-top: 2px;
+    }
+    .schedule-title {
+        font-size: 14px;
     }
 }
