@@ -530,7 +530,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 SCHEDULE CARD - වෙනම Card එකක්                             */
+/* 🎯 SCHEDULE CARD - Header නැතුව Schedule පමණක්                */
 /* ================================================================ */
 
 .schedule-card {
@@ -539,7 +539,7 @@ body::after {
         rgba(139, 92, 246, 0.06)
     );
     border-radius: 20px;
-    padding: 20px 18px 18px 18px;
+    padding: 18px 18px 16px 18px;
     margin: 10px 0 18px 0;
     border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 
@@ -569,36 +569,6 @@ body::after {
     pointer-events: none;
 }
 
-/* Schedule Card Header */
-.schedule-card-header {
-    text-align: center;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.schedule-icon {
-    font-size: 28px;
-    display: block;
-    margin-bottom: 2px;
-}
-
-.schedule-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #c084fc;
-    margin-bottom: 2px;
-    letter-spacing: 1px;
-}
-
-.schedule-sub {
-    font-size: 12px;
-    color: #a78bba;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 300;
-}
-
 /* Timeline */
 .schedule-timeline {
     position: relative;
@@ -610,8 +580,8 @@ body::after {
     content: '';
     position: absolute;
     left: 82px;
-    top: 10px;
-    bottom: 10px;
+    top: 5px;
+    bottom: 5px;
     width: 2px;
     background: linear-gradient(180deg, 
         rgba(139, 92, 246, 0.2),
@@ -1122,15 +1092,9 @@ body::after {
     
     /* Schedule Card Mobile */
     .schedule-card {
-        padding: 16px 12px 14px 12px;
+        padding: 14px 12px 12px 12px;
         border-radius: 16px;
         margin: 8px 0 14px 0;
-    }
-    .schedule-title {
-        font-size: 16px;
-    }
-    .schedule-sub {
-        font-size: 10px;
     }
     .schedule-timeline::before {
         left: 60px;
@@ -1154,9 +1118,6 @@ body::after {
     .schedule-item {
         gap: 10px;
         margin-bottom: 10px;
-    }
-    .schedule-icon {
-        font-size: 22px;
     }
 }
 
@@ -1237,8 +1198,5 @@ body::after {
         height: 7px;
         min-width: 7px;
         margin-top: 2px;
-    }
-    .schedule-title {
-        font-size: 14px;
     }
 }
