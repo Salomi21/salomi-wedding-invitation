@@ -165,7 +165,7 @@ function sendEmail() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
-    const emailAddress = 'lahirusujith9999@gmail.com';
+    const emailAddress = 'salomirechali9999@gmail.com';
     const subject = `Wedding RSVP - ${name}`;
     
     let body = `Wedding RSVP Confirmation\n`;
