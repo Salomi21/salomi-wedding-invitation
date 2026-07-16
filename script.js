@@ -140,7 +140,7 @@ function sendWhatsApp() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
-    const whatsappNumber = '94716516444';
+    const whatsappNumber = '94716521119';
     
     let message = `🎉 *Wedding RSVP Confirmation* 🎉\n\n`;
     message += `👤 *Name:* ${name}\n`;
