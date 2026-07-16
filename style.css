@@ -530,7 +530,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 SCHEDULE CARD - Header නැතුව Schedule පමණක්                */
+/* 🎯 SCHEDULE CARD - මංගල කාලසටහන (ඉහළට ගෙනාපු)               */
 /* ================================================================ */
 
 .schedule-card {
@@ -569,7 +569,31 @@ body::after {
     pointer-events: none;
 }
 
-/* Timeline */
+/* ----- SCHEDULE CARD HEADER ----- */
+.schedule-card-header {
+    text-align: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.schedule-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c084fc;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+
+.schedule-sub {
+    font-size: 11px;
+    color: #a78bba;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* ----- TIMELINE ----- */
 .schedule-timeline {
     position: relative;
     padding-left: 10px;
@@ -1096,6 +1120,12 @@ body::after {
         border-radius: 16px;
         margin: 8px 0 14px 0;
     }
+    .schedule-title {
+        font-size: 16px;
+    }
+    .schedule-sub {
+        font-size: 10px;
+    }
     .schedule-timeline::before {
         left: 60px;
     }
@@ -1175,6 +1205,9 @@ body::after {
     .schedule-card {
         padding: 12px 10px 10px 10px;
         margin: 6px 0 10px 0;
+    }
+    .schedule-title {
+        font-size: 14px;
     }
     .schedule-timeline::before {
         left: 55px;
