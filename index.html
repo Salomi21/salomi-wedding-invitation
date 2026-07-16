@@ -86,7 +86,7 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- INVITATION MODAL - Schedule Card Pamanak      -->
+    <!-- INVITATION MODAL - Attractive Effects         -->
     <!-- ============================================== -->
     <div id="invitationModal" class="modal">
         <div class="modal-content">
@@ -123,25 +123,12 @@
             </div>
 
             <!-- ============================================================ -->
-            <!-- 🎯 TRANSPARENCY CARD - මංගල කාලසටහනට අදාළ නැහැ          -->
-            <!-- ============================================================ -->
-            <div class="transparency-card">
-                <div style="text-align: center;">
-                    <div class="card-icon">💜</div>
-                    <h3 class="card-title">ඔබට ආරාධනා කරනවා!</h3>
-                    <p class="card-text">
-                        අපගේ සුබ දිනයට එක්වන්න.
-                    </p>
-                </div>
-            </div>
-            <!-- ============================================================ -->
-
-            <!-- ============================================================ -->
-            <!-- 🎯 SCHEDULE CARD - මංගල කාලසටහන (Simple - No Effects)    -->
+            <!-- 🎯 SCHEDULE CARD - වෙනම Card එකක්                          -->
             <!-- ============================================================ -->
             <div class="schedule-card">
                 <div class="schedule-card-header">
-                    <h3 class="schedule-title">📋 මංගල කාලසටහන</h3>
+                    <div class="schedule-icon">⏰</div>
+                    <h3 class="schedule-title">උත්සව කාලසටහන</h3>
                     <p class="schedule-sub">Wedding Schedule</p>
                 </div>
                 
@@ -193,6 +180,55 @@
                 </div>
             </div>
             <!-- ============================================================ -->
+
+            <div class="location-section">
+                <h3>📍 ස්ථානය / Location</h3>
+                <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
+                <p class="location-desc">
+                    ආණමඩුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
+                </p>
+                <a href="https://maps.google.com/maps?q=Anamaduwa" target="_blank" class="map-btn">
+                    🗺️ ගූගල් මැප් එකෙන් බලන්න
+                </a>
+            </div>
+
+            <div class="rsvp-section">
+                <h3>💌 RSVP</h3>
+                <p class="rsvp-sub">
+                    කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න
+                </p>
+                <form id="rsvpForm">
+                    <input type="text" id="rsvpName" placeholder="ඔබගේ නම / Your Name" required />
+                    <input type="tel" id="rsvpPhone" placeholder="දුරකථන අංකය / Phone Number" required />
+                    <select id="rsvpAttendance" required>
+                        <option value="">පැමිණීම / Attendance</option>
+                        <option value="Coming">එනවා (Coming)</option>
+                        <option value="Not Coming">එන්නේ නැහැ (Not Coming)</option>
+                    </select>
+                    <textarea id="rsvpNotes" rows="2" placeholder="අමතර සටහන්... / Special Notes..."></textarea>
+                    
+                    <div class="form-buttons">
+                        <button type="button" onclick="sendWhatsApp()" class="btn-rsvp-whatsapp">
+                            💬 WhatsApp
+                        </button>
+                        <button type="button" onclick="sendEmail()" class="btn-rsvp-email">
+                            📧 Email
+                        </button>
+                    </div>
+                    
+                    <p class="form-footer">
+                        ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න
+                    </p>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="footer-deco">
+                    <span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span>
+                </div>
+                <p class="modal-footer-quote">"Forever starts today..."</p>
+                <p class="modal-footer-love">We can't wait to celebrate with you! 💜🤍</p>
+            </div>
 
         </div>
     </div>
