@@ -191,4 +191,83 @@ function sendEmail() {
 // ----- 8. SHARE INVITATION -----
 function shareInvitation() {
     const url = window.location.href;
-    const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\
+    const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+}
+
+// ----- 9. COUNTDOWN TIMER -----
+var weddingDate = new Date("Sep 14, 2026 00:00:00").getTime();
+
+var countdownInterval = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = weddingDate - now;
+
+    if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "🎉 අදම විවාහය! 🎉";
+        clearInterval(countdownInterval);
+        return;
+    }
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + "d " + 
+        String(hours).padStart(2, '0') + "h " + 
+        String(minutes).padStart(2, '0') + "m " + 
+        String(seconds).padStart(2, '0') + "s";
+
+}, 1000);
+
+// ----- 10. MUSIC AUTOPLAY -----
+document.addEventListener("click", function playMusic() {
+    var audio = document.getElementById("music");
+    if (audio && audio.paused) {
+        audio.play().catch(function() {});
+    }
+    document.removeEventListener("click", playMusic);
+});
+
+window.addEventListener("load", function() {
+    var audio = document.getElementById("music");
+    if (audio) {
+        audio.play().catch(function() {});
+    }
+});
+
+// ================================================================
+// 🎯 LIGHTBOX FUNCTIONS
+// ================================================================
+
+function openLightbox(element) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+    
+    // Get image source from clicked element
+    const imgSrc = element.querySelector('img').src;
+    const imgAlt = element.querySelector('img').alt || 'Memory';
+    
+    img.src = imgSrc;
+    caption.textContent = imgAlt;
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// Close lightbox with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeLightbox();
+    }
+});
