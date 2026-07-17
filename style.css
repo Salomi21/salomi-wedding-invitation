@@ -217,17 +217,18 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 TITLE - GOLD & PURPLE MIX                                   */
+/* 🎯 TITLE - MORE GOLD & LESS PURPLE - PERFECT MATCH            */
 /* ================================================================ */
 .title {
     font-family: 'Great Vibes', cursive;
     font-size: 44px;
     background: linear-gradient(135deg, 
         #ffd700 0%,
-        #f9a825 20%,
-        #c084fc 45%,
-        #8b5cf6 60%,
-        #c084fc 75%,
+        #ffe082 15%,
+        #ffd700 30%,
+        #c084fc 50%,
+        #ffd700 70%,
+        #f9a825 85%,
         #ffd700 100%
     );
     background-size: 300% 300%;
@@ -235,12 +236,12 @@ body::after {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 2px;
-    filter: drop-shadow(0 4px 25px rgba(255, 215, 0, 0.2));
+    filter: drop-shadow(0 4px 25px rgba(255, 215, 0, 0.25));
     line-height: 1.2;
-    animation: goldPurpleShine 4s ease-in-out infinite;
+    animation: goldShine 4s ease-in-out infinite;
 }
 
-@keyframes goldPurpleShine {
+@keyframes goldShine {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
@@ -248,7 +249,7 @@ body::after {
 .title .amp {
     font-family: 'Playfair Display', serif;
     font-size: 34px;
-    background: linear-gradient(135deg, #ffd700, #c084fc, #ffd700);
+    background: linear-gradient(135deg, #ffd700, #ffe082, #ffd700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -854,17 +855,18 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL TITLE - GOLD & PURPLE MIX                             */
+/* 🎯 MODAL TITLE - MORE GOLD & LESS PURPLE                      */
 /* ================================================================ */
 .modal-title {
     font-family: 'Great Vibes', cursive;
     font-size: 38px;
     background: linear-gradient(135deg, 
         #ffd700 0%,
-        #f9a825 20%,
-        #c084fc 45%,
-        #8b5cf6 60%,
-        #c084fc 75%,
+        #ffe082 15%,
+        #ffd700 30%,
+        #c084fc 50%,
+        #ffd700 70%,
+        #f9a825 85%,
         #ffd700 100%
     );
     background-size: 300% 300%;
@@ -872,14 +874,14 @@ body::after {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 2px;
-    filter: drop-shadow(0 4px 30px rgba(255, 215, 0, 0.15));
-    animation: goldPurpleShine 5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 30px rgba(255, 215, 0, 0.2));
+    animation: goldShine 5s ease-in-out infinite;
 }
 
 .modal-title .modal-amp {
     font-family: 'Playfair Display', serif;
     font-size: 30px;
-    background: linear-gradient(135deg, #ffd700, #c084fc, #ffd700);
+    background: linear-gradient(135deg, #ffd700, #ffe082, #ffd700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
