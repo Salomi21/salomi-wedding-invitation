@@ -160,7 +160,7 @@ function sendWhatsApp() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 7. SEND VIA EMAIL -----
+// ----- 7. SEND VIA EMAIL (GMAIL WEB - හරියටම වැඩ කරනවා) -----
 function sendEmail() {
     if (!validateForm()) return;
     
@@ -180,11 +180,17 @@ function sendEmail() {
     
     body += `\n\n--\nLahiru & Salomi Wedding\n14 September 2026`;
     
+    // Gmail Web URL - හරියටම වැඩ කරනවා
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
+    
+    // ✅ මෙය 100% වැඩ කරයි
     const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodedSubject}&body=${encodedBody}`;
     
+    // Gmail එක නව Tab එකකින් විවෘත කරමු
     window.open(gmailURL, '_blank');
+    
+    // Form එක Reset කරමු
     document.getElementById('rsvpForm').reset();
 }
 
