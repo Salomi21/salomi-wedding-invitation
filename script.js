@@ -79,8 +79,6 @@ function openInvitation() {
     if (modal) {
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
-        // Play music when modal opens
-        playMusic();
     }
 }
 
@@ -227,27 +225,17 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 10. MUSIC FUNCTIONS -----
-function playMusic() {
-    var audio = document.getElementById("music");
-    if (audio) {
-        audio.play().catch(function(error) {
-            console.log("Audio play failed:", error);
-        });
-    }
-}
-
-// Auto-play music when page loads
+// ----- 10. MUSIC - Auto play when page loads -----
 window.addEventListener("load", function() {
     var audio = document.getElementById("music");
     if (audio) {
         audio.play().catch(function(error) {
-            console.log("Auto-play failed:", error);
+            console.log("Auto-play blocked by browser:", error);
         });
     }
 });
 
-// Also play on any click (for browsers that block auto-play)
+// Also play on any user click (for browsers that block auto-play)
 document.addEventListener("click", function() {
     var audio = document.getElementById("music");
     if (audio && audio.paused) {
