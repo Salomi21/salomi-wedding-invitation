@@ -295,7 +295,7 @@ body::after {
 .divider-icon:nth-child(2) { color: #c084fc; }
 .divider-icon:nth-child(3) { color: #ffffff; }
 
-/* ----- DATE & VENUE ----- */
+/* ----- DATE & VENUE with Icons ----- */
 .date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -305,12 +305,31 @@ body::after {
     letter-spacing: 0.5px;
 }
 
+.date-icon {
+    display: inline-block;
+    font-size: 28px;
+    margin-right: 8px;
+    animation: iconBounce 2s ease-in-out infinite;
+}
+
 .venue {
     font-size: 17px;
     font-weight: 500;
     color: #e8d5ff;
     letter-spacing: 1px;
     margin-bottom: 20px;
+}
+
+.venue-icon {
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 8px;
+    animation: iconBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.1); }
 }
 
 /* ----- COUNTDOWN ----- */
@@ -1118,6 +1137,12 @@ body::after {
     font-weight: 700;
 }
 
+.location-icon {
+    display: inline-block;
+    margin-right: 6px;
+    animation: iconBounce 2.5s ease-in-out infinite;
+}
+
 .location-section p {
     margin: 5px 0;
 }
@@ -1302,7 +1327,9 @@ body::after {
     .subtitle { font-size: 11px; letter-spacing: 4px; }
     #countdown { font-size: 20px; padding: 8px 14px; min-width: 170px; }
     .date { font-size: 19px; }
+    .date-icon { font-size: 22px; margin-right: 6px; }
     .venue { font-size: 14px; }
+    .venue-icon { font-size: 16px; margin-right: 6px; }
     .btn-primary, .btn-whatsapp { font-size: 13px; padding: 12px 20px; max-width: 100%; }
     .footer-quote { font-size: 16px; }
     .rings { font-size: 26px; }
@@ -1332,7 +1359,6 @@ body::after {
     .map-btn { font-size: 12px; padding: 8px 18px; }
     .modal-footer-quote { font-size: 17px; }
     
-    /* Gallery Mobile */
     .gallery-grid {
         gap: 6px;
     }
@@ -1346,7 +1372,6 @@ body::after {
         font-size: 18px;
     }
     
-    /* Lightbox Mobile */
     .lightbox-content {
         max-width: 95%;
         max-height: 70%;
@@ -1362,7 +1387,6 @@ body::after {
         bottom: 20px;
     }
     
-    /* Schedule Card Mobile */
     .schedule-card {
         padding: 14px 12px 12px 12px;
         border-radius: 14px;
@@ -1446,7 +1470,9 @@ body::after {
     .subtitle { font-size: 10px; letter-spacing: 3px; margin-bottom: 5px; }
     #countdown { font-size: 16px; padding: 5px 12px; min-width: 150px; }
     .date { font-size: 16px; }
+    .date-icon { font-size: 18px; margin-right: 4px; }
     .venue { font-size: 12px; margin-bottom: 10px; }
+    .venue-icon { font-size: 14px; margin-right: 4px; }
     .btn-primary, .btn-whatsapp { font-size: 11px; padding: 8px 16px; margin-top: 8px; }
     .footer-quote { font-size: 14px; margin-top: 15px; padding-top: 10px; }
     .rings { font-size: 20px; margin-bottom: 2px; }
