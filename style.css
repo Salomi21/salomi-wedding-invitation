@@ -296,12 +296,12 @@ body::after {
 .divider-icon:nth-child(3) { color: #ffffff; }
 
 /* ================================================================ */
-/* 🎯 DATE - LARGER SIZE WITH GOLD GRADIENT HIGHLIGHT             */
+/* 🎯 DATE - GOLD GRADIENT HIGHLIGHT (Reduced size)              */
 /* ================================================================ */
 .highlight-date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 28px;
     background: linear-gradient(135deg, 
         #ffd700 0%, 
         #f9a825 25%, 
@@ -1341,7 +1341,7 @@ body::after {
     .subtitle { font-size: 11px; letter-spacing: 4px; }
     #countdown { font-size: 20px; padding: 8px 14px; min-width: 170px; }
     
-    .highlight-date { font-size: 28px; }
+    .highlight-date { font-size: 22px; }
     .highlight-venue { font-size: 17px; }
     
     .venue { font-size: 14px; }
@@ -1442,7 +1442,7 @@ body::after {
 }
 
 @media (max-width: 380px) {
-    .highlight-date { font-size: 24px; }
+    .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
     .schedule-time {
         font-size: 10px;
@@ -1465,21 +1465,21 @@ body::after {
     #countdown { font-size: 22px; min-width: 180px; }
     .modal-content { padding: 28px 22px 24px 22px; max-width: 420px; }
     .form-buttons { flex-direction: row; }
-    .highlight-date { font-size: 32px; }
+    .highlight-date { font-size: 26px; }
     .highlight-venue { font-size: 18px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .container { max-width: 460px; padding: 45px 30px 55px 30px; }
     .title { font-size: 44px; }
-    .highlight-date { font-size: 34px; }
+    .highlight-date { font-size: 27px; }
 }
 
 @media (min-width: 1025px) {
     .container { max-width: 500px; padding: 50px 35px 60px 35px; }
     .title { font-size: 48px; }
     #countdown { font-size: 26px; min-width: 220px; }
-    .highlight-date { font-size: 36px; }
+    .highlight-date { font-size: 28px; }
     .highlight-venue { font-size: 20px; }
 }
 
@@ -1491,7 +1491,7 @@ body::after {
     .title { font-size: 28px; }
     .subtitle { font-size: 10px; letter-spacing: 3px; margin-bottom: 5px; }
     #countdown { font-size: 16px; padding: 5px 12px; min-width: 150px; }
-    .highlight-date { font-size: 22px; }
+    .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
     .venue { font-size: 12px; margin-bottom: 10px; }
     .btn-primary, .btn-whatsapp { font-size: 11px; padding: 8px 16px; margin-top: 8px; }
