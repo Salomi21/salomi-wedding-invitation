@@ -301,7 +301,7 @@ body::after {
 .highlight-date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 30px;
     background: linear-gradient(135deg, 
         #ffd700 0%, 
         #f9a825 25%, 
