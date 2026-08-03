@@ -1018,7 +1018,6 @@ body::after {
     50% { transform: scale(1.1); }
 }
 
-/* Main invitation text - NO ITALIC, beautiful and elegant */
 .invitation-text {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
@@ -1032,7 +1031,6 @@ body::after {
     font-weight: 400;
 }
 
-/* Subtext - normal style */
 .invitation-subtext {
     text-align: center;
     color: #a78bba;
@@ -1151,14 +1149,17 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 LOCATION, RSVP, MODAL FOOTER - With Effects                 */
+/* 🎯 LOCATION SECTION - With Effects                              */
 /* ================================================================ */
 .location-section {
     margin: 5px 0 15px 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 12px 16px 16px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.location-section h3,
-.rsvp-section h3 {
+.location-section h3 {
     font-size: 17px;
     color: #c084fc;
     border-bottom: 2px solid rgba(192, 132, 252, 0.08);
@@ -1202,8 +1203,25 @@ body::after {
     background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
+/* ================================================================ */
+/* 🎯 RSVP SECTION - WITH COLORS MATCHING THEME                    */
+/* ================================================================ */
 .rsvp-section {
     margin: 5px 0 15px 0;
+    background: rgba(139, 92, 246, 0.04);
+    border-radius: 16px;
+    padding: 18px 18px 20px 18px;
+    border: 1px solid rgba(139, 92, 246, 0.08);
+}
+
+.rsvp-section h3 {
+    font-size: 17px;
+    color: #c084fc;
+    border-bottom: 2px solid rgba(192, 132, 252, 0.15);
+    padding-bottom: 10px;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.1);
 }
 
 .rsvp-sub {
@@ -1211,6 +1229,8 @@ body::after {
     color: #a78bba;
     margin-bottom: 14px;
     text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
 .rsvp-section input,
@@ -1240,7 +1260,7 @@ body::after {
 .rsvp-section textarea:focus {
     border-color: #8b5cf6;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.05);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
     background: rgba(255, 255, 255, 0.05);
 }
 
@@ -1254,6 +1274,7 @@ body::after {
     min-height: 65px;
 }
 
+/* Form Buttons - With Theme Colors */
 .form-buttons {
     display: flex;
     gap: 12px;
@@ -1275,24 +1296,30 @@ body::after {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+/* WhatsApp Button - Purple Theme */
 .btn-rsvp-whatsapp {
-    background: #25D366;
+    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
 }
 
 .btn-rsvp-whatsapp:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.3);
-    background: #128C7E;
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.35);
+    background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
+/* Email Button - Gold Theme */
 .btn-rsvp-email {
-    background: #EA4335;
+    background: linear-gradient(145deg, #ffd700, #f9a825);
+    color: #1a0a2e;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
 }
 
 .btn-rsvp-email:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(234, 67, 53, 0.3);
-    background: #C5221F;
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.35);
+    background: linear-gradient(145deg, #f9a825, #f57f17);
+    color: #1a0a2e;
 }
 
 .form-buttons button:active {
@@ -1304,8 +1331,12 @@ body::after {
     color: #6a4a6a;
     margin-top: 12px;
     text-align: center;
+    letter-spacing: 0.5px;
 }
 
+/* ================================================================ */
+/* 🎯 MODAL FOOTER - With Effects                                  */
+/* ================================================================ */
 .modal-footer {
     text-align: center;
     margin-top: 20px;
@@ -1377,6 +1408,10 @@ body::after {
     .invitation-text { font-size: 17px; }
     .invitation-subtext { font-size: 12px; }
     .modal-content h3 { font-size: 15px; }
+    
+    .rsvp-section {
+        padding: 14px 12px 16px 12px;
+    }
     .form-buttons { flex-direction: column; gap: 8px; }
     .form-buttons button { font-size: 13px; padding: 13px; }
     .close-btn { font-size: 28px; }
@@ -1468,6 +1503,9 @@ body::after {
         gap: 4px;
     }
     .invitation-text { font-size: 15px; }
+    .rsvp-section {
+        padding: 10px 8px 12px 8px;
+    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1515,6 +1553,12 @@ body::after {
     .divider { margin: 6px auto 10px auto; }
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
     .invitation-text { font-size: 16px; }
+    
+    .rsvp-section {
+        padding: 10px 8px 12px 8px;
+    }
+    .form-buttons { flex-direction: row; }
+    .form-buttons button { font-size: 11px; padding: 10px; }
     
     .gallery-grid {
         gap: 4px;
