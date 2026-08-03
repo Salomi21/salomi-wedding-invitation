@@ -296,12 +296,12 @@ body::after {
 .divider-icon:nth-child(3) { color: #ffffff; }
 
 /* ================================================================ */
-/* 🎯 DATE - LARGER SIZE WITH GOLD HIGHLIGHT                      */
+/* 🎯 DATE - LARGER SIZE WITH GOLD GRADIENT HIGHLIGHT             */
 /* ================================================================ */
 .highlight-date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 36px;
     background: linear-gradient(135deg, 
         #ffd700 0%, 
         #f9a825 25%, 
