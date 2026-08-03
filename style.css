@@ -296,14 +296,12 @@ body::after {
 .divider-icon:nth-child(3) { color: #ffffff; }
 
 /* ================================================================ */
-/* 🎯 DATE & VENUE - HIGHLIGHTED WITH SPECIAL COLOR               */
+/* 🎯 DATE - LARGER SIZE WITH GOLD HIGHLIGHT                      */
 /* ================================================================ */
-
-/* Date - highlighted with gold gradient */
 .highlight-date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 36px;
     background: linear-gradient(135deg, 
         #ffd700 0%, 
         #f9a825 25%, 
@@ -318,7 +316,8 @@ body::after {
     display: inline-block;
     animation: highlightShine 3s ease-in-out infinite;
     text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    line-height: 1.2;
 }
 
 @keyframes highlightShine {
@@ -326,31 +325,17 @@ body::after {
     50% { background-position: 100% 50%; }
 }
 
-/* Venue - highlighted with purple gradient */
+/* ================================================================ */
+/* 🎯 VENUE - WHITE BOLD HIGHLIGHT                                */
+/* ================================================================ */
 .highlight-venue {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 20px;
-    background: linear-gradient(135deg, 
-        #c084fc 0%, 
-        #a855f7 25%, 
-        #c084fc 50%, 
-        #d8b4fe 75%, 
-        #c084fc 100%
-    );
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
     display: inline-block;
-    animation: venueShine 3.5s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(192, 132, 252, 0.15);
-    letter-spacing: 0.5px;
-}
-
-@keyframes venueShine {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    letter-spacing: 1px;
 }
 
 /* ----- DATE & VENUE containers ----- */
@@ -1356,8 +1341,8 @@ body::after {
     .subtitle { font-size: 11px; letter-spacing: 4px; }
     #countdown { font-size: 20px; padding: 8px 14px; min-width: 170px; }
     
-    .highlight-date { font-size: 22px; }
-    .highlight-venue { font-size: 16px; }
+    .highlight-date { font-size: 28px; }
+    .highlight-venue { font-size: 17px; }
     
     .venue { font-size: 14px; }
     .btn-primary, .btn-whatsapp { font-size: 13px; padding: 12px 20px; max-width: 100%; }
@@ -1457,8 +1442,8 @@ body::after {
 }
 
 @media (max-width: 380px) {
-    .highlight-date { font-size: 19px; }
-    .highlight-venue { font-size: 14px; }
+    .highlight-date { font-size: 24px; }
+    .highlight-venue { font-size: 15px; }
     .schedule-time {
         font-size: 10px;
         min-width: 45px;
@@ -1480,21 +1465,21 @@ body::after {
     #countdown { font-size: 22px; min-width: 180px; }
     .modal-content { padding: 28px 22px 24px 22px; max-width: 420px; }
     .form-buttons { flex-direction: row; }
-    .highlight-date { font-size: 25px; }
+    .highlight-date { font-size: 32px; }
     .highlight-venue { font-size: 18px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .container { max-width: 460px; padding: 45px 30px 55px 30px; }
     .title { font-size: 44px; }
-    .highlight-date { font-size: 26px; }
+    .highlight-date { font-size: 34px; }
 }
 
 @media (min-width: 1025px) {
     .container { max-width: 500px; padding: 50px 35px 60px 35px; }
     .title { font-size: 48px; }
     #countdown { font-size: 26px; min-width: 220px; }
-    .highlight-date { font-size: 28px; }
+    .highlight-date { font-size: 36px; }
     .highlight-venue { font-size: 20px; }
 }
 
@@ -1506,8 +1491,8 @@ body::after {
     .title { font-size: 28px; }
     .subtitle { font-size: 10px; letter-spacing: 3px; margin-bottom: 5px; }
     #countdown { font-size: 16px; padding: 5px 12px; min-width: 150px; }
-    .highlight-date { font-size: 18px; }
-    .highlight-venue { font-size: 14px; }
+    .highlight-date { font-size: 22px; }
+    .highlight-venue { font-size: 15px; }
     .venue { font-size: 12px; margin-bottom: 10px; }
     .btn-primary, .btn-whatsapp { font-size: 11px; padding: 8px 16px; margin-top: 8px; }
     .footer-quote { font-size: 14px; margin-top: 15px; padding-top: 10px; }
