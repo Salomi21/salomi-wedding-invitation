@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Lahiru ❤️ Salomi - Wedding</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -37,7 +36,7 @@
 
         <!-- Wedding Photo Frame with Sticker -->
         <div class="photo-frame">
-            <img src="wedding-photo.jpg" alt="Lahiru & Salomi" onerror="this.style.display='none'; this.parentElement.innerHTML='💍'" />
+            <img src="wedding-photo.webp" alt="Lahiru & Salomi" onerror="this.style.display='none'; this.parentElement.innerHTML='💍'" />
             <div class="frame-ring"></div>
             <div class="frame-glow"></div>
             
@@ -60,8 +59,10 @@
             <span class="divider-icon">🤍</span>
         </div>
 
-        <h2 class="date">📅 14 September 2026</h2>
-        <p class="venue">📍 Hotel Thisunya, Anamaduwa</p>
+        <!-- Date with gold gradient - 36px -->
+        <h2 class="date"><span class="highlight-date">14 September 2026</span></h2>
+        <!-- Venue with white bold -->
+        <p class="venue"><span class="highlight-venue">📍 Hotel Thisunya, Anamaduwa</span></p>
 
         <div id="countdown"></div>
 
@@ -86,14 +87,14 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- INVITATION MODAL - Attractive Effects         -->
+    <!-- INVITATION MODAL - WITH PHOTO GALLERY         -->
     <!-- ============================================== -->
     <div id="invitationModal" class="modal">
         <div class="modal-content">
 
             <span class="close-btn" onclick="closeInvitation()">&times;</span>
 
-            <!-- Decorative Top -->
+            <!-- Decorative Top - With Effects -->
             <div class="modal-top-deco">
                 <span class="deco-icon">✦</span>
                 <span class="deco-icon">💜</span>
@@ -102,6 +103,7 @@
                 <span class="deco-icon">✦</span>
             </div>
 
+            <!-- Modal Header - With Effects -->
             <div class="modal-header">
                 <div class="modal-rings">💍</div>
                 <h1 class="modal-title">Lahiru <span class="modal-amp">&</span> Salomi</h1>
@@ -111,7 +113,7 @@
                 </div>
             </div>
 
-            <!-- Invitation Message -->
+            <!-- Invitation Message - With Effects -->
             <div class="invitation-message">
                 <div class="msg-icon">💜</div>
                 <p class="invitation-text">
@@ -122,27 +124,135 @@
                 </p>
             </div>
 
-            <div class="ritual-section">
-                <h3>⏰ උත්සව කාලසටහන / Schedule</h3>
-                <ul class="ritual-list">
-                    <li><span class="time">08:30 AM</span> පොරුව උත්සවය (Poruwa Ceremony)</li>
-                    <li><span class="time">10:00 AM</span> මංගල උදෑසන ආහාරය (Wedding Breakfast)</li>
-                    <li><span class="time">11:30 AM</span> ඡායාරූප සැසිය (Photo Session)</li>
-                    <li><span class="time">06:00 PM</span> සාදය (Grand Reception)</li>
-                </ul>
+            <!-- ============================================================ -->
+            <!-- 🎯 BIG HERO PHOTO (inside modal)                             -->
+            <!-- ============================================================ -->
+            <div class="hero-photo-section">
+                <img src="wedding-photo.webp" alt="Lahiru & Salomi - Together" onerror="this.src='https://via.placeholder.com/800x400/8b5cf6/ffffff?text=💜+Lahiru+%26+Salomi'" />
             </div>
 
+            <!-- ============================================================ -->
+            <!-- 🎯 PHOTO GALLERY - Pre-wedding Photos                       -->
+            <!-- ============================================================ -->
+            <div class="gallery-section">
+                <h3 class="gallery-title">📸 අපගේ ඡායාරූප</h3>
+                <p class="gallery-sub">Our Memories</p>
+                
+                <div class="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="wedding-photo.webp" alt="Lahiru & Salomi" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🔍</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="sticker.webp" alt="Memory 1" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🔍</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="sticker.webp" alt="Memory 2" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🔍</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="sticker.webp" alt="Memory 3" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🔍</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="sticker.webp" alt="Memory 4" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🔍</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="sticker.webp" alt="Memory 5" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🔍</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================ -->
+
+            <!-- ============================================================ -->
+            <!-- 🎯 SCHEDULE CARD - NO EFFECTS (Simple)                      -->
+            <!-- ============================================================ -->
+            <div class="schedule-card">
+                <div class="schedule-card-header">
+                    <div class="schedule-icon">⏰</div>
+                    <h3 class="schedule-title">උත්සව කාලසටහන</h3>
+                    <p class="schedule-sub">Wedding Schedule</p>
+                </div>
+                
+                <div class="schedule-timeline">
+                    <div class="schedule-item">
+                        <div class="schedule-time">06:28 AM</div>
+                        <div class="schedule-dot"></div>
+                        <div class="schedule-content">
+                            <div class="schedule-event">🌺 පෝරුව චාරිත්‍ර</div>
+                            <div class="schedule-desc">Poruwa Ceremony</div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">11:00 AM</div>
+                        <div class="schedule-dot"></div>
+                        <div class="schedule-content">
+                            <div class="schedule-event">📝 විවාහ ගිවිස ගැනීම</div>
+                            <div class="schedule-desc">Registration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:00 PM</div>
+                        <div class="schedule-dot"></div>
+                        <div class="schedule-content">
+                            <div class="schedule-event">🍛 මංගල දිවා ආහාරය</div>
+                            <div class="schedule-desc">Wedding Lunch</div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">03:15 PM</div>
+                        <div class="schedule-dot"></div>
+                        <div class="schedule-content">
+                            <div class="schedule-event">🚗 මංගල යුවල පිටත්වීම</div>
+                            <div class="schedule-desc">Couple's Departure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================ -->
+
+            <!-- Location Section - With Effects -->
             <div class="location-section">
                 <h3>📍 ස්ථානය / Location</h3>
                 <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
                 <p class="location-desc">
-                    ආණ්මඩුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
+                    ආණමඩුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
                 </p>
-                <a href="https://maps.google.com/maps?q=Anamaduwa" target="_blank" class="map-btn">
-                    🗺️ ගූගල් මැප් එකෙන් බලන්න
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Thisunya+Anamaduwa" target="_blank" class="map-btn">
+                    🗺️ මාර්ගය බලන්න (View on Map)
                 </a>
             </div>
 
+            <!-- RSVP Section - With Effects -->
             <div class="rsvp-section">
                 <h3>💌 RSVP</h3>
                 <p class="rsvp-sub">
@@ -173,6 +283,7 @@
                 </form>
             </div>
 
+            <!-- Modal Footer - With Effects -->
             <div class="modal-footer">
                 <div class="footer-deco">
                     <span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span>
@@ -182,6 +293,16 @@
             </div>
 
         </div>
+    </div>
+    <!-- ============================================== -->
+
+    <!-- ============================================== -->
+    <!-- 🎯 LIGHTBOX - Full Screen Image Viewer        -->
+    <!-- ============================================== -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Memory" />
+        <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
     <!-- ============================================== -->
 

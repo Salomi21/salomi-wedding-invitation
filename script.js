@@ -151,7 +151,7 @@ function sendWhatsApp() {
         message += `📝 *Notes:* ${notes}\n`;
     }
     
-    message += `\n💒 *Lahiru & Salomi - 14 Sep 2026*`;
+    message += `\n💒 *Lahiru & Salomi - 14 September 2026*`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
@@ -160,7 +160,7 @@ function sendWhatsApp() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 7. SEND VIA EMAIL -----
+// ----- 7. SEND VIA EMAIL (GMAIL WEB) -----
 function sendEmail() {
     if (!validateForm()) return;
     
@@ -182,6 +182,7 @@ function sendEmail() {
     
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
+    
     const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodedSubject}&body=${encodedBody}`;
     
     window.open(gmailURL, '_blank');
@@ -191,7 +192,7 @@ function sendEmail() {
 // ----- 8. SHARE INVITATION -----
 function shareInvitation() {
     const url = window.location.href;
-    const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
+    const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
@@ -237,5 +238,35 @@ window.addEventListener("load", function() {
     var audio = document.getElementById("music");
     if (audio) {
         audio.play().catch(function() {});
+    }
+});
+
+// ================================================================
+// 🎯 LIGHTBOX FUNCTIONS
+// ================================================================
+
+function openLightbox(element) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+    
+    const imgSrc = element.querySelector('img').src;
+    const imgAlt = element.querySelector('img').alt || 'Memory';
+    
+    img.src = imgSrc;
+    caption.textContent = imgAlt;
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeLightbox();
     }
 });

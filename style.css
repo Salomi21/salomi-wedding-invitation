@@ -216,26 +216,40 @@ body::after {
     opacity: 0.5;
 }
 
-/* ----- TITLE ----- */
+/* ================================================================ */
+/* 🎯 TITLE - MORE GOLD & LESS PURPLE - PERFECT MATCH            */
+/* ================================================================ */
 .title {
     font-family: 'Great Vibes', cursive;
     font-size: 44px;
     background: linear-gradient(135deg, 
-        #ffffff,
-        #c084fc,
-        #8b5cf6
+        #ffd700 0%,
+        #ffe082 15%,
+        #ffd700 30%,
+        #c084fc 50%,
+        #ffd700 70%,
+        #f9a825 85%,
+        #ffd700 100%
     );
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 2px;
+    filter: drop-shadow(0 4px 25px rgba(255, 215, 0, 0.25));
     line-height: 1.2;
+    animation: goldShine 4s ease-in-out infinite;
+}
+
+@keyframes goldShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .title .amp {
     font-family: 'Playfair Display', serif;
     font-size: 34px;
-    background: linear-gradient(135deg, #f472b6, #c084fc, #ffffff);
+    background: linear-gradient(135deg, #ffd700, #ffe082, #ffd700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -281,12 +295,52 @@ body::after {
 .divider-icon:nth-child(2) { color: #c084fc; }
 .divider-icon:nth-child(3) { color: #ffffff; }
 
-/* ----- DATE & VENUE ----- */
-.date {
+/* ================================================================ */
+/* 🎯 DATE - GOLD GRADIENT HIGHLIGHT (Reduced size)              */
+/* ================================================================ */
+.highlight-date {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 24px;
-    color: #f5edff;
+    font-size: 28px;
+    background: linear-gradient(135deg, 
+        #ffd700 0%, 
+        #f9a825 25%, 
+        #ffd700 50%, 
+        #ffe082 75%, 
+        #ffd700 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    animation: highlightShine 3s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+@keyframes highlightShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ================================================================ */
+/* 🎯 VENUE - WHITE BOLD HIGHLIGHT                                */
+/* ================================================================ */
+.highlight-venue {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #ffffff;
+    display: inline-block;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    letter-spacing: 1px;
+}
+
+/* ----- DATE & VENUE containers ----- */
+.date {
+    font-family: 'Playfair Display', serif;
     margin-bottom: 4px;
     letter-spacing: 0.5px;
 }
@@ -294,9 +348,8 @@ body::after {
 .venue {
     font-size: 17px;
     font-weight: 500;
-    color: #e8d5ff;
-    letter-spacing: 1px;
     margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
 /* ----- COUNTDOWN ----- */
@@ -530,7 +583,180 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL - Attractive Effects                                   */
+/* 🎯 BIG HERO PHOTO (inside modal)                                */
+/* ================================================================ */
+.hero-photo-section {
+    margin: 6px 0 12px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-photo-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    transition: transform 0.3s ease;
+}
+
+.hero-photo-section img:hover {
+    transform: scale(1.01);
+}
+
+/* ================================================================ */
+/* 🎯 PHOTO GALLERY                                               */
+/* ================================================================ */
+.gallery-section {
+    margin: 10px 0 15px 0;
+}
+
+.gallery-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c084fc;
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+
+.gallery-sub {
+    font-size: 11px;
+    color: #a78bba;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-icon {
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================================ */
+/* 🎯 LIGHTBOX - Full Screen Image Viewer                         */
+/* ================================================================ */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    animation: lightboxFade 0.3s ease;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+@keyframes lightboxFade {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 300;
+    z-index: 10;
+}
+
+.lightbox-close:hover {
+    color: #c084fc;
+    transform: rotate(90deg);
+}
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d8b4fe;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ================================================================ */
+/* 🎯 MODAL - EFFECTS FOR TOP SECTION ONLY                         */
 /* ================================================================ */
 .modal {
     display: none;
@@ -635,6 +861,15 @@ body::after {
     font-size: 12px;
     color: #c084fc;
     opacity: 0.3;
+    animation: decoPulse 3s ease-in-out infinite;
+}
+
+.modal-top-deco .deco-icon:nth-child(2) { animation-delay: 0.5s; color: #c084fc; }
+.modal-top-deco .deco-icon:nth-child(4) { animation-delay: 1.5s; color: #ffffff; }
+
+@keyframes decoPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
 }
 
 /* ----- CLOSE BUTTON ----- */
@@ -671,27 +906,47 @@ body::after {
     font-size: 30px;
     display: block;
     margin-bottom: 2px;
+    animation: ringPulse 3s ease-in-out infinite;
 }
 
+@keyframes ringPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.05) rotate(0deg); }
+    75% { transform: scale(1.1) rotate(-5deg); }
+}
+
+/* ================================================================ */
+/* 🎯 MODAL TITLE - MORE GOLD & LESS PURPLE                      */
+/* ================================================================ */
 .modal-title {
     font-family: 'Great Vibes', cursive;
     font-size: 38px;
     background: linear-gradient(135deg, 
-        #ffffff,
-        #c084fc,
-        #8b5cf6
+        #ffd700 0%,
+        #ffe082 15%,
+        #ffd700 30%,
+        #c084fc 50%,
+        #ffd700 70%,
+        #f9a825 85%,
+        #ffd700 100%
     );
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 2px;
+    filter: drop-shadow(0 4px 30px rgba(255, 215, 0, 0.2));
+    animation: goldShine 5s ease-in-out infinite;
 }
 
 .modal-title .modal-amp {
     font-family: 'Playfair Display', serif;
     font-size: 30px;
-    color: #f472b6;
-    -webkit-text-fill-color: #f472b6;
+    background: linear-gradient(135deg, #ffd700, #ffe082, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0 4px;
 }
 
@@ -715,6 +970,18 @@ body::after {
     opacity: 0.4;
 }
 
+.modal-divider span {
+    animation: dividerPulse 3s ease-in-out infinite;
+}
+
+.modal-divider span:nth-child(2) { animation-delay: 0.5s; color: #ffffff; }
+.modal-divider span:nth-child(4) { animation-delay: 1.5s; color: #ffffff; }
+
+@keyframes dividerPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.3); }
+}
+
 /* ----- INVITATION MESSAGE ----- */
 .invitation-message {
     background: rgba(139, 92, 246, 0.06);
@@ -722,12 +989,31 @@ body::after {
     border-radius: 16px;
     margin-bottom: 20px;
     border-left: 3px solid #8b5cf6;
+    position: relative;
+    overflow: hidden;
+}
+
+.invitation-message::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.03), transparent 70%);
+    pointer-events: none;
 }
 
 .msg-icon {
     text-align: center;
     font-size: 28px;
     margin-bottom: 6px;
+    animation: iconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .invitation-text {
@@ -746,48 +1032,131 @@ body::after {
     line-height: 1.7;
 }
 
-/* ----- SECTION HEADINGS ----- */
-.modal-content h3 {
+/* ================================================================ */
+/* 🎯 SCHEDULE CARD - NO EFFECTS (Simple)                         */
+/* ================================================================ */
+.schedule-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 16px 16px 14px 16px;
+    margin: 8px 0 14px 0;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.schedule-card-header {
+    text-align: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.schedule-icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.schedule-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c084fc;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+
+.schedule-sub {
+    font-size: 11px;
+    color: #a78bba;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.schedule-timeline {
+    position: relative;
+    padding-left: 10px;
+}
+
+.schedule-timeline::before {
+    content: '';
+    position: absolute;
+    left: 82px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 10px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+    position: relative;
+    padding: 3px 0;
+}
+
+.schedule-item:last-child {
+    margin-bottom: 0;
+}
+
+.schedule-time {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #c084fc;
+    min-width: 68px;
+    padding-top: 2px;
+}
+
+.schedule-dot {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    margin-top: 4px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    z-index: 2;
+}
+
+.schedule-content {
+    flex: 1;
+    padding-top: 1px;
+}
+
+.schedule-event {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f5edff;
+    line-height: 1.3;
+}
+
+.schedule-desc {
+    font-size: 11px;
+    color: #a78bba;
+    letter-spacing: 0.5px;
+}
+
+/* ================================================================ */
+/* 🎯 LOCATION, RSVP, MODAL FOOTER - With Effects                 */
+/* ================================================================ */
+.location-section {
+    margin: 5px 0 15px 0;
+}
+
+.location-section h3,
+.rsvp-section h3 {
     font-size: 17px;
     color: #c084fc;
     border-bottom: 2px solid rgba(192, 132, 252, 0.08);
     padding-bottom: 10px;
-    margin: 20px 0 14px 0;
+    margin: 0 0 12px 0;
     font-weight: 700;
 }
 
-/* ----- RITUALS LIST ----- */
-.ritual-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.ritual-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    font-size: 14px;
-    color: #e8dcec;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.ritual-list li .time {
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
-    padding: 4px 14px;
-    border-radius: 30px;
-    font-size: 12px;
-    white-space: nowrap;
-    min-width: 75px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.15);
-}
-
-/* ----- LOCATION ----- */
 .location-section p {
     margin: 5px 0;
 }
@@ -823,7 +1192,10 @@ body::after {
     background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
-/* ----- RSVP FORM ----- */
+.rsvp-section {
+    margin: 5px 0 15px 0;
+}
+
 .rsvp-sub {
     font-size: 13px;
     color: #a78bba;
@@ -872,7 +1244,6 @@ body::after {
     min-height: 65px;
 }
 
-/* ----- RSVP FORM BUTTONS ----- */
 .form-buttons {
     display: flex;
     gap: 12px;
@@ -925,7 +1296,6 @@ body::after {
     text-align: center;
 }
 
-/* ----- MODAL FOOTER ----- */
 .modal-footer {
     text-align: center;
     margin-top: 20px;
@@ -970,7 +1340,10 @@ body::after {
     .title .amp { font-size: 26px; }
     .subtitle { font-size: 11px; letter-spacing: 4px; }
     #countdown { font-size: 20px; padding: 8px 14px; min-width: 170px; }
-    .date { font-size: 19px; }
+    
+    .highlight-date { font-size: 22px; }
+    .highlight-venue { font-size: 17px; }
+    
     .venue { font-size: 14px; }
     .btn-primary, .btn-whatsapp { font-size: 13px; padding: 12px 20px; max-width: 100%; }
     .footer-quote { font-size: 16px; }
@@ -994,14 +1367,96 @@ body::after {
     .invitation-text { font-size: 18px; }
     .invitation-subtext { font-size: 13px; }
     .modal-content h3 { font-size: 15px; }
-    .ritual-list li { font-size: 13px; padding: 10px 0; }
-    .ritual-list li .time { font-size: 11px; min-width: 65px; padding: 3px 10px; }
     .form-buttons { flex-direction: column; gap: 8px; }
     .form-buttons button { font-size: 13px; padding: 13px; }
     .close-btn { font-size: 28px; }
     .modal-rings { font-size: 24px; }
     .map-btn { font-size: 12px; padding: 8px 18px; }
     .modal-footer-quote { font-size: 17px; }
+    
+    .gallery-grid {
+        gap: 6px;
+    }
+    .gallery-title {
+        font-size: 15px;
+    }
+    .gallery-item {
+        border-radius: 8px;
+    }
+    .gallery-icon {
+        font-size: 18px;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 70%;
+    }
+    .lightbox-close {
+        font-size: 30px;
+        top: 15px;
+        right: 20px;
+    }
+    .lightbox-caption {
+        font-size: 12px;
+        padding: 6px 16px;
+        bottom: 20px;
+    }
+    
+    .schedule-card {
+        padding: 14px 12px 12px 12px;
+        border-radius: 14px;
+        margin: 6px 0 12px 0;
+    }
+    .schedule-title {
+        font-size: 15px;
+    }
+    .schedule-sub {
+        font-size: 10px;
+    }
+    .schedule-icon {
+        font-size: 20px;
+    }
+    .schedule-timeline::before {
+        left: 60px;
+    }
+    .schedule-time {
+        font-size: 11px;
+        min-width: 52px;
+    }
+    .schedule-dot {
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        margin-top: 3px;
+    }
+    .schedule-event {
+        font-size: 13px;
+    }
+    .schedule-desc {
+        font-size: 10px;
+    }
+    .schedule-item {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .highlight-date { font-size: 20px; }
+    .highlight-venue { font-size: 15px; }
+    .schedule-time {
+        font-size: 10px;
+        min-width: 45px;
+    }
+    .schedule-timeline::before {
+        left: 50px;
+    }
+    .schedule-event {
+        font-size: 12px;
+    }
+    .gallery-grid {
+        gap: 4px;
+    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1010,17 +1465,22 @@ body::after {
     #countdown { font-size: 22px; min-width: 180px; }
     .modal-content { padding: 28px 22px 24px 22px; max-width: 420px; }
     .form-buttons { flex-direction: row; }
+    .highlight-date { font-size: 26px; }
+    .highlight-venue { font-size: 18px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .container { max-width: 460px; padding: 45px 30px 55px 30px; }
     .title { font-size: 44px; }
+    .highlight-date { font-size: 27px; }
 }
 
 @media (min-width: 1025px) {
     .container { max-width: 500px; padding: 50px 35px 60px 35px; }
     .title { font-size: 48px; }
     #countdown { font-size: 26px; min-width: 220px; }
+    .highlight-date { font-size: 28px; }
+    .highlight-venue { font-size: 20px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -1031,7 +1491,8 @@ body::after {
     .title { font-size: 28px; }
     .subtitle { font-size: 10px; letter-spacing: 3px; margin-bottom: 5px; }
     #countdown { font-size: 16px; padding: 5px 12px; min-width: 150px; }
-    .date { font-size: 16px; }
+    .highlight-date { font-size: 20px; }
+    .highlight-venue { font-size: 15px; }
     .venue { font-size: 12px; margin-bottom: 10px; }
     .btn-primary, .btn-whatsapp { font-size: 11px; padding: 8px 16px; margin-top: 8px; }
     .footer-quote { font-size: 14px; margin-top: 15px; padding-top: 10px; }
@@ -1041,4 +1502,54 @@ body::after {
     .sticker-emoji { font-size: 28px; }
     .divider { margin: 6px auto 10px auto; }
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
+    
+    .gallery-grid {
+        gap: 4px;
+    }
+    .gallery-title {
+        font-size: 13px;
+    }
+    .gallery-sub {
+        font-size: 9px;
+    }
+    .gallery-item {
+        border-radius: 6px;
+    }
+    .gallery-icon {
+        font-size: 14px;
+    }
+    
+    .schedule-card {
+        padding: 10px 8px 8px 8px;
+        margin: 4px 0 8px 0;
+    }
+    .schedule-title {
+        font-size: 13px;
+    }
+    .schedule-icon {
+        font-size: 16px;
+    }
+    .schedule-timeline::before {
+        left: 55px;
+    }
+    .schedule-time {
+        font-size: 10px;
+        min-width: 48px;
+    }
+    .schedule-event {
+        font-size: 12px;
+    }
+    .schedule-desc {
+        font-size: 9px;
+    }
+    .schedule-item {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .schedule-dot {
+        width: 7px;
+        height: 7px;
+        min-width: 7px;
+        margin-top: 2px;
+    }
 }
