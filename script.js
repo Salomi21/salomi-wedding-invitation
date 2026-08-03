@@ -151,7 +151,7 @@ function sendWhatsApp() {
         message += `📝 *Notes:* ${notes}\n`;
     }
     
-    message += `\n💒 *Lahiru & Salomi - 14 Sep 2026*`;
+    message += `\n💒 *Lahiru & Salomi - 14 September 2026*`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
@@ -189,7 +189,7 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION -----
+// ----- 8. SHARE INVITATION - CORRECTED WITH SEPTEMBER 14 -----
 function shareInvitation() {
     const url = window.location.href;
     const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
