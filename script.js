@@ -225,17 +225,25 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 10. MUSIC - Auto play when page loads -----
+// ----- 10. MUSIC - Auto play when page loads (for Vercel) -----
 window.addEventListener("load", function() {
     var audio = document.getElementById("music");
     if (audio) {
+        // Try to play with autoplay
         audio.play().catch(function(error) {
             console.log("Auto-play blocked by browser:", error);
+            // If autoplay is blocked, play on user click
+            document.addEventListener("click", function playOnClick() {
+                if (audio.paused) {
+                    audio.play().catch(function() {});
+                }
+                document.removeEventListener("click", playOnClick);
+            });
         });
     }
 });
 
-// Also play on any user click (for browsers that block auto-play)
+// Also play on any user click (backup for browsers that block auto-play)
 document.addEventListener("click", function() {
     var audio = document.getElementById("music");
     if (audio && audio.paused) {
