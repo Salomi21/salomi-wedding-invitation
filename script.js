@@ -225,26 +225,43 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 10. MUSIC - Auto play when page loads (for Vercel) -----
+// ----- 10. MUSIC - Auto play when page loads (for WhatsApp link) -----
+// This ensures music plays immediately when opening from WhatsApp
 window.addEventListener("load", function() {
     var audio = document.getElementById("music");
     if (audio) {
-        // Try to play with autoplay
-        audio.play().catch(function(error) {
-            console.log("Auto-play blocked by browser:", error);
-            // If autoplay is blocked, play on user click
-            document.addEventListener("click", function playOnClick() {
-                if (audio.paused) {
-                    audio.play().catch(function() {});
-                }
-                document.removeEventListener("click", playOnClick);
+        // Force play with high priority
+        var playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                console.log("Auto-play blocked, will try on user interaction");
+                // If autoplay is blocked, play on any user interaction
+                document.addEventListener("click", function playOnClick() {
+                    if (audio.paused) {
+                        audio.play().catch(function() {});
+                    }
+                    document.removeEventListener("click", playOnClick);
+                });
+                document.addEventListener("touchstart", function playOnTouch() {
+                    if (audio.paused) {
+                        audio.play().catch(function() {});
+                    }
+                    document.removeEventListener("touchstart", playOnTouch);
+                });
             });
-        });
+        }
     }
 });
 
-// Also play on any user click (backup for browsers that block auto-play)
+// Also play on any user click/touch (backup for browsers that block auto-play)
 document.addEventListener("click", function() {
+    var audio = document.getElementById("music");
+    if (audio && audio.paused) {
+        audio.play().catch(function() {});
+    }
+});
+
+document.addEventListener("touchstart", function() {
     var audio = document.getElementById("music");
     if (audio && audio.paused) {
         audio.play().catch(function() {});
