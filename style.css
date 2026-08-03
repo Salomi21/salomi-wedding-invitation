@@ -1204,7 +1204,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 RSVP SECTION - WITH COLORS MATCHING THEME                    */
+/* 🎯 RSVP SECTION - WITH BRIGHTNESS/GLOW EFFECT                   */
 /* ================================================================ */
 .rsvp-section {
     margin: 5px 0 15px 0;
@@ -1212,6 +1212,73 @@ body::after {
     border-radius: 16px;
     padding: 18px 18px 20px 18px;
     border: 1px solid rgba(139, 92, 246, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 20px rgba(139, 92, 246, 0.03),
+        inset 0 0 30px rgba(139, 92, 246, 0.02);
+}
+
+/* Brightness/Glow effect - animated */
+.rsvp-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, 
+        rgba(192, 132, 252, 0.04) 0%, 
+        transparent 60%
+    );
+    animation: rsvpGlow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes rsvpGlow {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(1) rotate(0deg);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Second glow effect - subtle border glow */
+.rsvp-section::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(192, 132, 252, 0.05), 
+        rgba(255, 215, 0, 0.05),
+        rgba(192, 132, 252, 0.05),
+        transparent
+    );
+    border-radius: 18px;
+    z-index: -1;
+    animation: borderGlowPulse 5s ease-in-out infinite;
+}
+
+@keyframes borderGlowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+.rsvp-section:hover {
+    box-shadow: 
+        0 0 30px rgba(139, 92, 246, 0.08),
+        0 0 60px rgba(139, 92, 246, 0.04),
+        inset 0 0 40px rgba(139, 92, 246, 0.03);
+    border-color: rgba(192, 132, 252, 0.15);
+    transform: translateY(-1px);
 }
 
 .rsvp-section h3 {
@@ -1221,7 +1288,9 @@ body::after {
     padding-bottom: 10px;
     margin: 0 0 12px 0;
     font-weight: 700;
-    text-shadow: 0 0 20px rgba(192, 132, 252, 0.1);
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.15);
+    position: relative;
+    z-index: 1;
 }
 
 .rsvp-sub {
@@ -1231,6 +1300,8 @@ body::after {
     text-align: center;
     font-weight: 300;
     letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
 }
 
 .rsvp-section input,
@@ -1247,6 +1318,8 @@ body::after {
     box-sizing: border-box;
     color: #f0e6f6;
     background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    z-index: 1;
 }
 
 .rsvp-section input::placeholder,
@@ -1260,7 +1333,7 @@ body::after {
 .rsvp-section textarea:focus {
     border-color: #8b5cf6;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08), 0 0 20px rgba(139, 92, 246, 0.05);
     background: rgba(255, 255, 255, 0.05);
 }
 
@@ -1274,11 +1347,13 @@ body::after {
     min-height: 65px;
 }
 
-/* Form Buttons - With Theme Colors */
+/* Form Buttons - With Theme Colors and Glow */
 .form-buttons {
     display: flex;
     gap: 12px;
     margin-top: 6px;
+    position: relative;
+    z-index: 1;
 }
 
 .form-buttons button {
@@ -1294,30 +1369,59 @@ body::after {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
 }
 
-/* WhatsApp Button - Purple Theme */
+/* WhatsApp Button - Purple Theme with Glow */
 .btn-rsvp-whatsapp {
     background: linear-gradient(145deg, #8b5cf6, #6d28d9);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.25);
+}
+
+.btn-rsvp-whatsapp::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
+    animation: buttonShine 3s ease-in-out infinite;
+}
+
+@keyframes buttonShine {
+    0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+    50% { transform: scale(1.2) rotate(10deg); opacity: 0.8; }
 }
 
 .btn-rsvp-whatsapp:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 6px 30px rgba(139, 92, 246, 0.4);
     background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
-/* Email Button - Gold Theme */
+/* Email Button - Gold Theme with Glow */
 .btn-rsvp-email {
     background: linear-gradient(145deg, #ffd700, #f9a825);
     color: #1a0a2e;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+.btn-rsvp-email::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 70%);
+    animation: buttonShine 3.5s ease-in-out infinite;
 }
 
 .btn-rsvp-email:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.35);
+    box-shadow: 0 6px 30px rgba(255, 215, 0, 0.35);
     background: linear-gradient(145deg, #f9a825, #f57f17);
     color: #1a0a2e;
 }
@@ -1332,6 +1436,8 @@ body::after {
     margin-top: 12px;
     text-align: center;
     letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
 }
 
 /* ================================================================ */
