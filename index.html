@@ -93,10 +93,18 @@
 
         <p class="footer-quote">"Forever starts today..."</p>
 
-        <!-- Audio - Autoplay when page loads -->
-        <audio id="music" loop autoplay>
+        <!-- ============================================ -->
+        <!-- 🎵 AUDIO - Auto plays when page loads       -->
+        <!-- ============================================ -->
+        <audio id="bgMusic" loop preload="auto">
             <source src="music.mp3" type="audio/mp3" />
         </audio>
+
+        <!-- Music Control Button -->
+        <button id="musicToggle" class="music-toggle" onclick="toggleMusic()">
+            <span id="musicIcon">🔊</span>
+        </button>
+
     </div>
 
     <!-- ============================================== -->
