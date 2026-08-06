@@ -189,7 +189,7 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION - WITH STICKER PHOTO -----
+// ----- 8. SHARE INVITATION - WITH IMAGE (NO LINK PREVIEW) -----
 function shareInvitation() {
     // Get the current page URL
     const url = window.location.href;
@@ -203,6 +203,7 @@ function shareInvitation() {
     const venue = "Hotel Thisunya, Anamaduwa";
     
     // Create message with photo URL first
+    // WhatsApp will show the image and then the text
     let message = `${photoUrl}\n\n`;
     message += `💜 *${couple} - Wedding Invitation* 💜\n\n`;
     message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
