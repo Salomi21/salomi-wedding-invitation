@@ -241,7 +241,7 @@ var countdownInterval = setInterval(function() {
 }, 1000);
 
 // ================================================================
-// 🎵 MUSIC - FORCE AUTO-PLAY WHEN PAGE OPENS
+// 🎵 MUSIC - AUTO-PLAY & BUTTON SHOWS 🔊 (ON) BY DEFAULT
 // ================================================================
 
 var audio = document.getElementById('bgMusic');
@@ -249,35 +249,32 @@ var musicIcon = document.getElementById('musicIcon');
 var isMusicPlaying = false;
 var musicStarted = false;
 
-// Function to play music (tries multiple times)
+// Function to play music
 function playMusic() {
     if (audio && !musicStarted) {
         audio.play().then(function() {
             isMusicPlaying = true;
             musicStarted = true;
+            // 🔊 Show ON icon
             if (musicIcon) {
                 musicIcon.textContent = '🔊';
             }
             console.log('🎵 Music started playing!');
         }).catch(function(error) {
             console.log('🔇 Auto-play blocked:', error);
+            // Still show 🔊 icon even if blocked - user can click to play
             if (musicIcon) {
-                musicIcon.textContent = '🔇';
+                musicIcon.textContent = '🔊';
             }
-            // Try again after 1 second
-            setTimeout(function() {
-                if (!musicStarted) {
-                    audio.play().catch(function() {});
-                }
-            }, 1000);
         });
     }
 }
 
-// Function to toggle music
+// Function to toggle music ON/OFF
 function toggleMusic() {
     if (audio) {
         if (isMusicPlaying) {
+            // Turn OFF
             audio.pause();
             isMusicPlaying = false;
             if (musicIcon) {
@@ -285,6 +282,7 @@ function toggleMusic() {
             }
             console.log('🔇 Music paused');
         } else {
+            // Turn ON
             audio.play().then(function() {
                 isMusicPlaying = true;
                 musicStarted = true;
@@ -300,10 +298,11 @@ function toggleMusic() {
 }
 
 // ================================================================
-// 🎯 FORCE MUSIC TO PLAY - MULTIPLE METHODS
+// 🎯 FORCE MUSIC TO PLAY ON PAGE LOAD
 // ================================================================
 
-// Method 1: Try to play as soon as page loads
+// Show 🔊 icon by default (already set in HTML)
+// Try to play music as soon as page loads
 window.addEventListener('load', function() {
     // Try immediately
     playMusic();
@@ -315,18 +314,10 @@ window.addEventListener('load', function() {
     setTimeout(playMusic, 1500);
 });
 
-// Method 2: Play on any user interaction (click, touch, scroll)
+// Play on any user interaction if not started
 function playOnInteraction() {
     if (!musicStarted) {
         playMusic();
-    }
-    // Keep listeners active until music starts
-    if (!musicStarted) {
-        document.addEventListener('click', playOnInteraction);
-        document.addEventListener('touchstart', playOnInteraction);
-    } else {
-        document.removeEventListener('click', playOnInteraction);
-        document.removeEventListener('touchstart', playOnInteraction);
     }
 }
 
@@ -338,7 +329,7 @@ document.addEventListener('scroll', function() {
     }
 });
 
-// Method 3: Try to play when the page becomes visible (user switches tabs)
+// Try when user returns to tab
 document.addEventListener('visibilitychange', function() {
     if (!document.hidden && !musicStarted) {
         playMusic();
