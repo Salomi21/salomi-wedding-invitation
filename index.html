@@ -11,7 +11,7 @@
     <meta property="og:image" content="https://i.ibb.co/Q78bqW2y/sticker.webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="https://your-site.netlify.app/" /> <!-- ⚠️ Change this to your actual site URL -->
+    <meta property="og:url" content="https://your-site.netlify.app/" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <!-- =================================================== -->
@@ -21,21 +21,12 @@
 </head>
 <body>
 
-    <!-- Floating Hearts Container -->
     <div id="hearts-container"></div>
-
-    <!-- Sparkle Particles -->
     <div id="sparkle-container"></div>
-
-    <!-- Top Decoration -->
     <div class="top-decoration">✦ ✦ ✦</div>
 
-    <!-- ============================================ -->
-    <!-- MAIN CARD - Light Attractive Effects         -->
-    <!-- ============================================ -->
     <div class="container">
 
-        <!-- Traditional Icons -->
         <div class="traditional-icons">
             <span class="icon-item">💜</span>
             <span class="icon-item">✨</span>
@@ -46,23 +37,17 @@
 
         <div class="decorative-line">✦ ✦ ✦</div>
 
-        <!-- Wedding Photo Frame with Sticker -->
         <div class="photo-frame">
             <img src="wedding-photo.webp" alt="Lahiru & Salomi" onerror="this.style.display='none'; this.parentElement.innerHTML='💍'" />
             <div class="frame-ring"></div>
             <div class="frame-glow"></div>
-            
-            <!-- 💜 Sticker Overlay -->
             <div class="sticker-overlay">
                 <span class="sticker-emoji">💜</span>
             </div>
         </div>
 
-        <!-- Rings Icon -->
         <div class="rings">💍</div>
-
         <h1 class="title">Lahiru <span class="amp">&</span> Salomi</h1>
-
         <p class="subtitle">We Are Getting Married</p>
 
         <div class="divider">
@@ -71,22 +56,17 @@
             <span class="divider-icon">🤍</span>
         </div>
 
-        <!-- Date with gold gradient -->
         <h2 class="date"><span class="highlight-date">14 September 2026</span></h2>
-        <!-- Venue with white bold -->
         <p class="venue"><span class="highlight-venue">📍 Hotel Thisunya, Anamaduwa</span></p>
 
         <div id="countdown"></div>
 
-        <!-- Sinhala Text -->
         <p class="sinhala-text">💜 සුභ විවාහයක් වේවා! 🤍</p>
 
-        <!-- View Invitation Button -->
         <button onclick="openInvitation()" class="btn-primary">
             <span>💜</span> View Invitation
         </button>
 
-        <!-- Share on WhatsApp Button -->
         <button onclick="shareInvitation()" class="btn-whatsapp">
             <span>📤</span> Share on WhatsApp
         </button>
@@ -94,15 +74,13 @@
         <p class="footer-quote">"Forever starts today..."</p>
 
         <!-- ============================================ -->
-        <!-- 🎵 AUDIO - Auto plays when page loads       -->
+        <!-- 🎵 AUDIO - WITH FORCE AUTO-PLAY              -->
         <!-- ============================================ -->
-        <audio id="bgMusic" loop preload="auto" autoplay muted>
+        <audio id="bgMusic" loop preload="auto">
             <source src="music.mp3" type="audio/mp3" />
         </audio>
 
-        <!-- ============================================ -->
-        <!-- 🎵 SOUND ICON - Click to toggle music       -->
-        <!-- ============================================ -->
+        <!-- 🎵 SOUND ICON -->
         <div id="soundIcon" class="sound-icon" onclick="toggleMusic()">
             <span id="musicIcon">🔊</span>
         </div>
@@ -110,14 +88,12 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- INVITATION MODAL - WITH PHOTO GALLERY         -->
+    <!-- INVITATION MODAL -->
     <!-- ============================================== -->
     <div id="invitationModal" class="modal">
         <div class="modal-content">
-
             <span class="close-btn" onclick="closeInvitation()">&times;</span>
 
-            <!-- Decorative Top - With Effects -->
             <div class="modal-top-deco">
                 <span class="deco-icon">✦</span>
                 <span class="deco-icon">💜</span>
@@ -126,7 +102,6 @@
                 <span class="deco-icon">✦</span>
             </div>
 
-            <!-- Modal Header - With Effects -->
             <div class="modal-header">
                 <div class="modal-rings">💍</div>
                 <h1 class="modal-title">Lahiru <span class="modal-amp">&</span> Salomi</h1>
@@ -136,7 +111,6 @@
                 </div>
             </div>
 
-            <!-- Invitation Message - With Effects -->
             <div class="invitation-message">
                 <div class="msg-icon">💜</div>
                 <p class="invitation-text">
@@ -147,68 +121,47 @@
                 </p>
             </div>
 
-            <!-- ============================================================ -->
-            <!-- 🎯 BIG HERO PHOTO (inside modal)                             -->
-            <!-- ============================================================ -->
             <div class="hero-photo-section">
                 <img src="wedding-photo.webp" alt="Lahiru & Salomi - Together" onerror="this.src='https://via.placeholder.com/800x400/8b5cf6/ffffff?text=💜+Lahiru+%26+Salomi'" />
             </div>
 
-            <!-- ============================================================ -->
-            <!-- 🎯 PHOTO GALLERY - Pre-wedding Photos                       -->
-            <!-- ============================================================ -->
             <div class="gallery-section">
                 <h3 class="gallery-title">📸 අපගේ ඡායාරූප</h3>
                 <p class="gallery-sub">Our Memories</p>
-                
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="wedding-photo.webp" alt="Lahiru & Salomi" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
-                        <div class="gallery-overlay">
-                            <span class="gallery-icon">🔍</span>
-                        </div>
+                        <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 1" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
-                        <div class="gallery-overlay">
-                            <span class="gallery-icon">🔍</span>
-                        </div>
+                        <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 2" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
-                        <div class="gallery-overlay">
-                            <span class="gallery-icon">🔍</span>
-                        </div>
+                        <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 3" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
-                        <div class="gallery-overlay">
-                            <span class="gallery-icon">🔍</span>
-                        </div>
+                        <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 4" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
-                        <div class="gallery-overlay">
-                            <span class="gallery-icon">🔍</span>
-                        </div>
+                        <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 5" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
-                        <div class="gallery-overlay">
-                            <span class="gallery-icon">🔍</span>
-                        </div>
+                        <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
                     </div>
                 </div>
             </div>
 
-            <!-- SCHEDULE CARD -->
             <div class="schedule-card">
                 <div class="schedule-card-header">
                     <div class="schedule-icon">⏰</div>
                     <h3 class="schedule-title">උත්සව කාලසටහන</h3>
                     <p class="schedule-sub">Wedding Schedule</p>
                 </div>
-                
                 <div class="schedule-timeline">
                     <div class="schedule-item">
                         <div class="schedule-time">06:28 AM</div>
@@ -245,24 +198,16 @@
                 </div>
             </div>
 
-            <!-- Location Section -->
             <div class="location-section">
                 <h3>📍 ස්ථානය / Location</h3>
                 <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
-                <p class="location-desc">
-                    ආණමඩුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.
-                </p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Thisunya+Anamaduwa" target="_blank" class="map-btn">
-                    🗺️ මාර්ගය බලන්න (View on Map)
-                </a>
+                <p class="location-desc">ආණමඩුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Thisunya+Anamaduwa" target="_blank" class="map-btn">🗺️ මාර්ගය බලන්න (View on Map)</a>
             </div>
 
-            <!-- RSVP Section -->
             <div class="rsvp-section">
                 <h3>💌 RSVP</h3>
-                <p class="rsvp-sub">
-                    කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න
-                </p>
+                <p class="rsvp-sub">කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න</p>
                 <form id="rsvpForm">
                     <input type="text" id="rsvpName" placeholder="ඔබගේ නම / Your Name" required />
                     <input type="tel" id="rsvpPhone" placeholder="දුරකථන අංකය / Phone Number" required />
@@ -272,35 +217,22 @@
                         <option value="Not Coming">එන්නේ නැහැ (Not Coming)</option>
                     </select>
                     <textarea id="rsvpNotes" rows="2" placeholder="අමතර සටහන්... / Special Notes..."></textarea>
-                    
                     <div class="form-buttons">
-                        <button type="button" onclick="sendWhatsApp()" class="btn-rsvp-whatsapp">
-                            💬 WhatsApp
-                        </button>
-                        <button type="button" onclick="sendEmail()" class="btn-rsvp-email">
-                            📧 Email
-                        </button>
+                        <button type="button" onclick="sendWhatsApp()" class="btn-rsvp-whatsapp">💬 WhatsApp</button>
+                        <button type="button" onclick="sendEmail()" class="btn-rsvp-email">📧 Email</button>
                     </div>
-                    
-                    <p class="form-footer">
-                        ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න
-                    </p>
+                    <p class="form-footer">ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න</p>
                 </form>
             </div>
 
-            <!-- Modal Footer -->
             <div class="modal-footer">
-                <div class="footer-deco">
-                    <span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span>
-                </div>
+                <div class="footer-deco"><span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span></div>
                 <p class="modal-footer-quote">"Forever starts today..."</p>
                 <p class="modal-footer-love">We can't wait to celebrate with you! 💜🤍</p>
             </div>
-
         </div>
     </div>
 
-    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img class="lightbox-content" id="lightbox-img" src="" alt="Memory" />
