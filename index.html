@@ -96,11 +96,11 @@
         <!-- ============================================ -->
         <!-- 🎵 AUDIO - Auto plays when page loads       -->
         <!-- ============================================ -->
-        <audio id="bgMusic" loop preload="auto" autoplay>
+        <audio id="bgMusic" loop preload="auto" autoplay muted>
             <source src="music.mp3" type="audio/mp3" />
         </audio>
 
-        <!-- Music Control Button - Shows 🔊 (ON) by default -->
+        <!-- Music Control Button -->
         <button id="musicToggle" class="music-toggle" onclick="toggleMusic()">
             <span id="musicIcon">🔊</span>
         </button>
@@ -160,47 +160,36 @@
                 <p class="gallery-sub">Our Memories</p>
                 
                 <div class="gallery-grid">
-                    <!-- Gallery Item 1 -->
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="wedding-photo.webp" alt="Lahiru & Salomi" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
                         <div class="gallery-overlay">
                             <span class="gallery-icon">🔍</span>
                         </div>
                     </div>
-                    
-                    <!-- Gallery Item 2 -->
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 1" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
                         <div class="gallery-overlay">
                             <span class="gallery-icon">🔍</span>
                         </div>
                     </div>
-                    
-                    <!-- Gallery Item 3 -->
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 2" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
                         <div class="gallery-overlay">
                             <span class="gallery-icon">🔍</span>
                         </div>
                     </div>
-                    
-                    <!-- Gallery Item 4 -->
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 3" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
                         <div class="gallery-overlay">
                             <span class="gallery-icon">🔍</span>
                         </div>
                     </div>
-                    
-                    <!-- Gallery Item 5 -->
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 4" onerror="this.src='https://via.placeholder.com/300x300/8b5cf6/ffffff?text=💜'" />
                         <div class="gallery-overlay">
                             <span class="gallery-icon">🔍</span>
                         </div>
                     </div>
-                    
-                    <!-- Gallery Item 6 -->
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <img src="sticker.webp" alt="Memory 5" onerror="this.src='https://via.placeholder.com/300x300/c084fc/ffffff?text=💜'" />
                         <div class="gallery-overlay">
@@ -209,11 +198,8 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================ -->
 
-            <!-- ============================================================ -->
-            <!-- 🎯 SCHEDULE CARD - NO EFFECTS (Simple)                      -->
-            <!-- ============================================================ -->
+            <!-- SCHEDULE CARD -->
             <div class="schedule-card">
                 <div class="schedule-card-header">
                     <div class="schedule-icon">⏰</div>
@@ -230,7 +216,6 @@
                             <div class="schedule-desc">Poruwa Ceremony</div>
                         </div>
                     </div>
-                    
                     <div class="schedule-item">
                         <div class="schedule-time">11:00 AM</div>
                         <div class="schedule-dot"></div>
@@ -239,7 +224,6 @@
                             <div class="schedule-desc">Registration</div>
                         </div>
                     </div>
-                    
                     <div class="schedule-item">
                         <div class="schedule-time">12:00 PM</div>
                         <div class="schedule-dot"></div>
@@ -248,7 +232,6 @@
                             <div class="schedule-desc">Wedding Lunch</div>
                         </div>
                     </div>
-                    
                     <div class="schedule-item">
                         <div class="schedule-time">03:15 PM</div>
                         <div class="schedule-dot"></div>
@@ -259,9 +242,8 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================ -->
 
-            <!-- Location Section - With Effects -->
+            <!-- Location Section -->
             <div class="location-section">
                 <h3>📍 ස්ථානය / Location</h3>
                 <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
@@ -273,7 +255,7 @@
                 </a>
             </div>
 
-            <!-- RSVP Section - With Effects -->
+            <!-- RSVP Section -->
             <div class="rsvp-section">
                 <h3>💌 RSVP</h3>
                 <p class="rsvp-sub">
@@ -304,7 +286,7 @@
                 </form>
             </div>
 
-            <!-- Modal Footer - With Effects -->
+            <!-- Modal Footer -->
             <div class="modal-footer">
                 <div class="footer-deco">
                     <span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span>
@@ -315,17 +297,13 @@
 
         </div>
     </div>
-    <!-- ============================================== -->
 
-    <!-- ============================================== -->
-    <!-- 🎯 LIGHTBOX - Full Screen Image Viewer        -->
-    <!-- ============================================== -->
+    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img class="lightbox-content" id="lightbox-img" src="" alt="Memory" />
         <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
-    <!-- ============================================== -->
 
     <script src="script.js"></script>
 </body>
