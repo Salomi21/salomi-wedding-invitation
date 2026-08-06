@@ -189,18 +189,29 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION - FIXED WITH STICKER IMAGE -----
+// ----- 8. SHARE INVITATION - WITH PHOTO IN WHATSAPP -----
 function shareInvitation() {
     // Get the current page URL
     const url = window.location.href;
+    
+    // Get the photo URL (use your hosted photo URL or the current page's photo)
+    // For the photo to appear in WhatsApp, you need to host the image online
+    // Option 1: Use a hosted image URL (recommended)
+    const photoUrl = "https://your-domain.com/wedding-photo.webp"; // Change this to your hosted URL
+    
+    // Option 2: Use the current page URL with a parameter (if your server supports it)
+    // const photoUrl = url + "?image=wedding-photo.webp";
     
     // Wedding details
     const couple = "Lahiru & Salomi";
     const date = "14 September 2026";
     const venue = "Hotel Thisunya, Anamaduwa";
     
-    // Create a beautiful invitation message
-    let message = `💜 *${couple} - Wedding Invitation* 💜\n\n`;
+    // Create a beautiful invitation message with the photo
+    // Note: WhatsApp will show the photo preview if you put the image URL first
+    let message = `${photoUrl}\n\n`;  // Photo URL first for preview
+    
+    message += `💜 *${couple} - Wedding Invitation* 💜\n\n`;
     message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
     message += `📅 *Date:* ${date}\n`;
     message += `📍 *Venue:* ${venue}\n\n`;
