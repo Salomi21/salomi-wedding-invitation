@@ -191,24 +191,16 @@ function sendEmail() {
 
 // ----- 8. SHARE INVITATION - WITH PHOTO PREVIEW -----
 function shareInvitation() {
-    // Get the current page URL
     const url = window.location.href;
     
-    // Wedding details
-    const couple = "Lahiru & Salomi";
-    const date = "14 September 2026";
-    const venue = "Hotel Thisunya, Anamaduwa";
-    
-    // Create message - WhatsApp will show photo preview from the link
-    let message = `💜 *${couple} - Wedding Invitation* 💜\n\n`;
+    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
     message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
-    message += `📅 *Date:* ${date}\n`;
-    message += `📍 *Venue:* ${venue}\n\n`;
+    message += `📅 *Date:* 14 September 2026\n`;
+    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
     message += `✨ We are getting married! ✨\n\n`;
     message += `💍 View the full invitation:\n${url}\n\n`;
     message += `💜 සුභ විවාහයක් වේවා! 🤍`;
     
-    // Encode and open WhatsApp
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
@@ -241,7 +233,7 @@ var countdownInterval = setInterval(function() {
 }, 1000);
 
 // ================================================================
-// 🎵 MUSIC - FORCE AUTO-PLAY WITHOUT TOUCH
+// 🎵 MUSIC - FORCE AUTO-PLAY (THE REAL SOLUTION)
 // ================================================================
 
 var audio = document.getElementById('bgMusic');
@@ -249,9 +241,12 @@ var musicIcon = document.getElementById('musicIcon');
 var isMusicPlaying = false;
 var musicStarted = false;
 
-// Function to play music - WILL PLAY WITHOUT USER INTERACTION
-function playMusic() {
+// === THE MAGIC: This forces auto-play ===
+function forcePlayMusic() {
     if (audio && !musicStarted) {
+        // Remove muted attribute that was added for autoplay policy
+        audio.muted = false;
+        
         audio.play().then(function() {
             isMusicPlaying = true;
             musicStarted = true;
@@ -260,43 +255,54 @@ function playMusic() {
             }
             console.log('🎵 Music started playing automatically!');
         }).catch(function(error) {
-            console.log('🔇 Auto-play blocked:', error);
-            // Still show 🔊 icon
-            if (musicIcon) {
-                musicIcon.textContent = '🔊';
-            }
-            // CRITICAL: Try to play using user gesture fallback
-            // This will play on ANY user interaction
-            document.addEventListener('click', function playOnClick() {
-                if (!musicStarted) {
-                    audio.play().then(function() {
-                        isMusicPlaying = true;
-                        musicStarted = true;
-                        if (musicIcon) {
-                            musicIcon.textContent = '🔊';
-                        }
-                        console.log('🎵 Music started on click!');
-                    }).catch(function() {});
-                }
-            }, { once: false });
+            console.log('🔇 Auto-play blocked by browser:', error);
             
-            document.addEventListener('touchstart', function playOnTouch() {
+            // If auto-play is blocked, show muted icon and try again
+            if (musicIcon) {
+                musicIcon.textContent = '🔇';
+            }
+            
+            // CRITICAL FIX: Try to play on ANY user interaction
+            // This is the only way around browser autoplay policies
+            const playOnInteraction = function() {
                 if (!musicStarted) {
+                    audio.muted = false;
                     audio.play().then(function() {
                         isMusicPlaying = true;
                         musicStarted = true;
                         if (musicIcon) {
                             musicIcon.textContent = '🔊';
                         }
-                        console.log('🎵 Music started on touch!');
-                    }).catch(function() {});
+                        console.log('🎵 Music started on user interaction!');
+                    }).catch(function() {
+                        console.log('Still blocked, waiting for user...');
+                    });
                 }
-            }, { once: false });
+                // Remove listeners once music starts
+                if (musicStarted) {
+                    document.removeEventListener('click', playOnInteraction);
+                    document.removeEventListener('touchstart', playOnInteraction);
+                    document.removeEventListener('scroll', playOnInteraction);
+                }
+            };
+            
+            // Add listeners for user interaction
+            document.addEventListener('click', playOnInteraction);
+            document.addEventListener('touchstart', playOnInteraction);
+            document.addEventListener('scroll', playOnInteraction);
+            
+            // Also try on any key press
+            document.addEventListener('keydown', function keyPress() {
+                if (!musicStarted) {
+                    playOnInteraction();
+                }
+                document.removeEventListener('keydown', keyPress);
+            });
         });
     }
 }
 
-// Function to toggle music
+// Function to toggle music ON/OFF
 function toggleMusic() {
     if (audio) {
         if (isMusicPlaying) {
@@ -307,6 +313,7 @@ function toggleMusic() {
             }
             console.log('🔇 Music paused');
         } else {
+            audio.muted = false;
             audio.play().then(function() {
                 isMusicPlaying = true;
                 musicStarted = true;
@@ -322,57 +329,62 @@ function toggleMusic() {
 }
 
 // ================================================================
-// 🎯 FORCE MUSIC TO PLAY WITHOUT TOUCH - MULTIPLE METHODS
+// 🎯 TRY EVERYTHING TO PLAY MUSIC
 // ================================================================
 
-// Method 1: HTML5 autoplay attribute (already in audio tag)
-// Method 2: Play as soon as DOM is ready
+// Method 1: Play on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
-    playMusic();
+    setTimeout(forcePlayMusic, 100);
 });
 
-// Method 3: Play as soon as page loads
+// Method 2: Play on page load
 window.addEventListener('load', function() {
-    playMusic();
-    
-    // Try repeatedly until it plays
-    let attempts = 0;
-    var musicInterval = setInterval(function() {
-        attempts++;
-        if (!musicStarted) {
-            playMusic();
-        }
-        if (musicStarted || attempts > 10) {
-            clearInterval(musicInterval);
-        }
-    }, 500);
+    setTimeout(forcePlayMusic, 200);
+    setTimeout(forcePlayMusic, 500);
+    setTimeout(forcePlayMusic, 1000);
 });
 
-// Method 4: Try when page becomes visible
+// Method 3: Try every second until it plays
+var musicAttempts = 0;
+var musicInterval = setInterval(function() {
+    musicAttempts++;
+    if (!musicStarted) {
+        forcePlayMusic();
+    }
+    if (musicStarted || musicAttempts > 20) {
+        clearInterval(musicInterval);
+    }
+}, 1000);
+
+// Method 4: Play when page becomes visible
 document.addEventListener('visibilitychange', function() {
     if (!document.hidden && !musicStarted) {
-        playMusic();
+        setTimeout(forcePlayMusic, 300);
     }
 });
 
-// Method 5: Try on scroll (without user click)
-window.addEventListener('scroll', function() {
+// Method 5: Play on ANY interaction (click, touch, scroll, key)
+document.addEventListener('click', function() {
     if (!musicStarted) {
-        playMusic();
+        forcePlayMusic();
     }
 });
 
-// Method 6: Try on mouse move (without user click)
-window.addEventListener('mousemove', function() {
+document.addEventListener('touchstart', function() {
     if (!musicStarted) {
-        playMusic();
+        forcePlayMusic();
     }
 });
 
-// Method 7: Try on any key press (without user click)
-window.addEventListener('keydown', function() {
+document.addEventListener('scroll', function() {
     if (!musicStarted) {
-        playMusic();
+        forcePlayMusic();
+    }
+});
+
+document.addEventListener('keydown', function() {
+    if (!musicStarted) {
+        forcePlayMusic();
     }
 });
 
