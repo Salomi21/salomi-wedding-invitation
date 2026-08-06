@@ -241,7 +241,7 @@ var countdownInterval = setInterval(function() {
 }, 1000);
 
 // ================================================================
-// 🎵 MUSIC - AUTO PLAY
+// 🎵 MUSIC - FORCE AUTO-PLAY WHEN PAGE OPENS
 // ================================================================
 
 var audio = document.getElementById('bgMusic');
@@ -249,7 +249,7 @@ var musicIcon = document.getElementById('musicIcon');
 var isMusicPlaying = false;
 var musicStarted = false;
 
-// Function to play music
+// Function to play music (tries multiple times)
 function playMusic() {
     if (audio && !musicStarted) {
         audio.play().then(function() {
@@ -264,6 +264,12 @@ function playMusic() {
             if (musicIcon) {
                 musicIcon.textContent = '🔇';
             }
+            // Try again after 1 second
+            setTimeout(function() {
+                if (!musicStarted) {
+                    audio.play().catch(function() {});
+                }
+            }, 1000);
         });
     }
 }
@@ -293,34 +299,48 @@ function toggleMusic() {
     }
 }
 
-// ----- AUTO-PLAY MUSIC ON PAGE LOAD -----
+// ================================================================
+// 🎯 FORCE MUSIC TO PLAY - MULTIPLE METHODS
+// ================================================================
+
+// Method 1: Try to play as soon as page loads
 window.addEventListener('load', function() {
-    // Try to play immediately
+    // Try immediately
     playMusic();
     
-    // If auto-play is blocked, try on user interaction
-    const tryPlayOnInteraction = function() {
-        if (!musicStarted) {
-            playMusic();
-        }
-        // Remove listeners once music starts
-        document.removeEventListener('click', tryPlayOnInteraction);
-        document.removeEventListener('touchstart', tryPlayOnInteraction);
-    };
+    // Try again after 500ms
+    setTimeout(playMusic, 500);
     
-    document.addEventListener('click', tryPlayOnInteraction);
-    document.addEventListener('touchstart', tryPlayOnInteraction);
+    // Try again after 1.5 seconds
+    setTimeout(playMusic, 1500);
 });
 
-// Backup: Try to play on any user interaction
-document.addEventListener('click', function() {
-    if (audio && !musicStarted) {
+// Method 2: Play on any user interaction (click, touch, scroll)
+function playOnInteraction() {
+    if (!musicStarted) {
+        playMusic();
+    }
+    // Keep listeners active until music starts
+    if (!musicStarted) {
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+    } else {
+        document.removeEventListener('click', playOnInteraction);
+        document.removeEventListener('touchstart', playOnInteraction);
+    }
+}
+
+document.addEventListener('click', playOnInteraction);
+document.addEventListener('touchstart', playOnInteraction);
+document.addEventListener('scroll', function() {
+    if (!musicStarted) {
         playMusic();
     }
 });
 
-document.addEventListener('touchstart', function() {
-    if (audio && !musicStarted) {
+// Method 3: Try to play when the page becomes visible (user switches tabs)
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && !musicStarted) {
         playMusic();
     }
 });
