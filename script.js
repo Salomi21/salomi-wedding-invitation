@@ -233,7 +233,7 @@ var countdownInterval = setInterval(function() {
 }, 1000);
 
 // ================================================================
-// 🎵 MUSIC - FORCE AUTO-PLAY (THE REAL SOLUTION)
+// 🎵 MUSIC - AUTO-PLAY WITH SOUND ICON
 // ================================================================
 
 var audio = document.getElementById('bgMusic');
@@ -241,10 +241,10 @@ var musicIcon = document.getElementById('musicIcon');
 var isMusicPlaying = false;
 var musicStarted = false;
 
-// === THE MAGIC: This forces auto-play ===
-function forcePlayMusic() {
+// Function to play music - FORCES AUTO-PLAY
+function playMusic() {
     if (audio && !musicStarted) {
-        // Remove muted attribute that was added for autoplay policy
+        // Remove muted attribute
         audio.muted = false;
         
         audio.play().then(function() {
@@ -253,18 +253,14 @@ function forcePlayMusic() {
             if (musicIcon) {
                 musicIcon.textContent = '🔊';
             }
-            console.log('🎵 Music started playing automatically!');
+            console.log('🎵 Music started automatically!');
         }).catch(function(error) {
-            console.log('🔇 Auto-play blocked by browser:', error);
-            
-            // If auto-play is blocked, show muted icon and try again
+            console.log('🔇 Auto-play blocked:', error);
             if (musicIcon) {
-                musicIcon.textContent = '🔇';
+                musicIcon.textContent = '🔊';
             }
-            
-            // CRITICAL FIX: Try to play on ANY user interaction
-            // This is the only way around browser autoplay policies
-            const playOnInteraction = function() {
+            // Try again on user interaction
+            document.addEventListener('click', function playOnClick() {
                 if (!musicStarted) {
                     audio.muted = false;
                     audio.play().then(function() {
@@ -273,31 +269,11 @@ function forcePlayMusic() {
                         if (musicIcon) {
                             musicIcon.textContent = '🔊';
                         }
-                        console.log('🎵 Music started on user interaction!');
-                    }).catch(function() {
-                        console.log('Still blocked, waiting for user...');
-                    });
+                        console.log('🎵 Music started on click!');
+                    }).catch(function() {});
                 }
-                // Remove listeners once music starts
-                if (musicStarted) {
-                    document.removeEventListener('click', playOnInteraction);
-                    document.removeEventListener('touchstart', playOnInteraction);
-                    document.removeEventListener('scroll', playOnInteraction);
-                }
-            };
-            
-            // Add listeners for user interaction
-            document.addEventListener('click', playOnInteraction);
-            document.addEventListener('touchstart', playOnInteraction);
-            document.addEventListener('scroll', playOnInteraction);
-            
-            // Also try on any key press
-            document.addEventListener('keydown', function keyPress() {
-                if (!musicStarted) {
-                    playOnInteraction();
-                }
-                document.removeEventListener('keydown', keyPress);
-            });
+                document.removeEventListener('click', playOnClick);
+            }, { once: true });
         });
     }
 }
@@ -306,13 +282,15 @@ function forcePlayMusic() {
 function toggleMusic() {
     if (audio) {
         if (isMusicPlaying) {
+            // Turn OFF
             audio.pause();
             isMusicPlaying = false;
             if (musicIcon) {
                 musicIcon.textContent = '🔇';
             }
-            console.log('🔇 Music paused');
+            console.log('🔇 Music turned OFF');
         } else {
+            // Turn ON
             audio.muted = false;
             audio.play().then(function() {
                 isMusicPlaying = true;
@@ -320,71 +298,40 @@ function toggleMusic() {
                 if (musicIcon) {
                     musicIcon.textContent = '🔊';
                 }
-                console.log('🎵 Music resumed');
+                console.log('🎵 Music turned ON');
             }).catch(function(error) {
                 console.log('Play failed:', error);
+                // If play fails, try again
+                setTimeout(function() {
+                    audio.play().then(function() {
+                        isMusicPlaying = true;
+                        musicStarted = true;
+                        if (musicIcon) {
+                            musicIcon.textContent = '🔊';
+                        }
+                    }).catch(function() {});
+                }, 500);
             });
         }
     }
 }
 
 // ================================================================
-// 🎯 TRY EVERYTHING TO PLAY MUSIC
+// 🎯 FORCE AUTO-PLAY ON PAGE LOAD
 // ================================================================
 
-// Method 1: Play on DOM ready
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(forcePlayMusic, 100);
-});
-
-// Method 2: Play on page load
+// Try to play immediately
 window.addEventListener('load', function() {
-    setTimeout(forcePlayMusic, 200);
-    setTimeout(forcePlayMusic, 500);
-    setTimeout(forcePlayMusic, 1000);
+    setTimeout(playMusic, 100);
+    setTimeout(playMusic, 300);
+    setTimeout(playMusic, 600);
+    setTimeout(playMusic, 1000);
 });
 
-// Method 3: Try every second until it plays
-var musicAttempts = 0;
-var musicInterval = setInterval(function() {
-    musicAttempts++;
-    if (!musicStarted) {
-        forcePlayMusic();
-    }
-    if (musicStarted || musicAttempts > 20) {
-        clearInterval(musicInterval);
-    }
-}, 1000);
-
-// Method 4: Play when page becomes visible
+// Try when page becomes visible
 document.addEventListener('visibilitychange', function() {
     if (!document.hidden && !musicStarted) {
-        setTimeout(forcePlayMusic, 300);
-    }
-});
-
-// Method 5: Play on ANY interaction (click, touch, scroll, key)
-document.addEventListener('click', function() {
-    if (!musicStarted) {
-        forcePlayMusic();
-    }
-});
-
-document.addEventListener('touchstart', function() {
-    if (!musicStarted) {
-        forcePlayMusic();
-    }
-});
-
-document.addEventListener('scroll', function() {
-    if (!musicStarted) {
-        forcePlayMusic();
-    }
-});
-
-document.addEventListener('keydown', function() {
-    if (!musicStarted) {
-        forcePlayMusic();
+        setTimeout(playMusic, 200);
     }
 });
 
