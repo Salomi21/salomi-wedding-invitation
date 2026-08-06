@@ -240,42 +240,88 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 10. MUSIC - Auto play when page loads -----
-window.addEventListener("load", function() {
-    var audio = document.getElementById("music");
+// ================================================================
+// 🎵 MUSIC - AUTO PLAY
+// ================================================================
+
+var audio = document.getElementById('bgMusic');
+var musicIcon = document.getElementById('musicIcon');
+var isMusicPlaying = false;
+var musicStarted = false;
+
+// Function to play music
+function playMusic() {
+    if (audio && !musicStarted) {
+        audio.play().then(function() {
+            isMusicPlaying = true;
+            musicStarted = true;
+            if (musicIcon) {
+                musicIcon.textContent = '🔊';
+            }
+            console.log('🎵 Music started playing!');
+        }).catch(function(error) {
+            console.log('🔇 Auto-play blocked:', error);
+            if (musicIcon) {
+                musicIcon.textContent = '🔇';
+            }
+        });
+    }
+}
+
+// Function to toggle music
+function toggleMusic() {
     if (audio) {
-        var playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(function(error) {
-                console.log("Auto-play blocked, will try on user interaction");
-                document.addEventListener("click", function playOnClick() {
-                    if (audio.paused) {
-                        audio.play().catch(function() {});
-                    }
-                    document.removeEventListener("click", playOnClick);
-                });
-                document.addEventListener("touchstart", function playOnTouch() {
-                    if (audio.paused) {
-                        audio.play().catch(function() {});
-                    }
-                    document.removeEventListener("touchstart", playOnTouch);
-                });
+        if (isMusicPlaying) {
+            audio.pause();
+            isMusicPlaying = false;
+            if (musicIcon) {
+                musicIcon.textContent = '🔇';
+            }
+            console.log('🔇 Music paused');
+        } else {
+            audio.play().then(function() {
+                isMusicPlaying = true;
+                musicStarted = true;
+                if (musicIcon) {
+                    musicIcon.textContent = '🔊';
+                }
+                console.log('🎵 Music resumed');
+            }).catch(function(error) {
+                console.log('Play failed:', error);
             });
         }
     }
+}
+
+// ----- AUTO-PLAY MUSIC ON PAGE LOAD -----
+window.addEventListener('load', function() {
+    // Try to play immediately
+    playMusic();
+    
+    // If auto-play is blocked, try on user interaction
+    const tryPlayOnInteraction = function() {
+        if (!musicStarted) {
+            playMusic();
+        }
+        // Remove listeners once music starts
+        document.removeEventListener('click', tryPlayOnInteraction);
+        document.removeEventListener('touchstart', tryPlayOnInteraction);
+    };
+    
+    document.addEventListener('click', tryPlayOnInteraction);
+    document.addEventListener('touchstart', tryPlayOnInteraction);
 });
 
-document.addEventListener("click", function() {
-    var audio = document.getElementById("music");
-    if (audio && audio.paused) {
-        audio.play().catch(function() {});
+// Backup: Try to play on any user interaction
+document.addEventListener('click', function() {
+    if (audio && !musicStarted) {
+        playMusic();
     }
 });
 
-document.addEventListener("touchstart", function() {
-    var audio = document.getElementById("music");
-    if (audio && audio.paused) {
-        audio.play().catch(function() {});
+document.addEventListener('touchstart', function() {
+    if (audio && !musicStarted) {
+        playMusic();
     }
 });
 
