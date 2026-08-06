@@ -189,12 +189,29 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION -----
+// ----- 8. SHARE INVITATION - FIXED WITH STICKER IMAGE -----
 function shareInvitation() {
+    // Get the current page URL
     const url = window.location.href;
-    const message = `💒 *Lahiru & Salomi Wedding Invitation* 💒\n\nඅපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView Invitation: ${url}`;
     
+    // Wedding details
+    const couple = "Lahiru & Salomi";
+    const date = "14 September 2026";
+    const venue = "Hotel Thisunya, Anamaduwa";
+    
+    // Create a beautiful invitation message
+    let message = `💜 *${couple} - Wedding Invitation* 💜\n\n`;
+    message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
+    message += `📅 *Date:* ${date}\n`;
+    message += `📍 *Venue:* ${venue}\n\n`;
+    message += `✨ We are getting married! ✨\n\n`;
+    message += `💍 View the full invitation:\n${url}\n\n`;
+    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
+    
+    // Encode the message for WhatsApp
     const encodedMessage = encodeURIComponent(message);
+    
+    // Open WhatsApp with the message
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 }
@@ -225,17 +242,14 @@ var countdownInterval = setInterval(function() {
 
 }, 1000);
 
-// ----- 10. MUSIC - Auto play when page loads (for WhatsApp link) -----
-// This ensures music plays immediately when opening from WhatsApp
+// ----- 10. MUSIC - Auto play when page loads -----
 window.addEventListener("load", function() {
     var audio = document.getElementById("music");
     if (audio) {
-        // Force play with high priority
         var playPromise = audio.play();
         if (playPromise !== undefined) {
             playPromise.catch(function(error) {
                 console.log("Auto-play blocked, will try on user interaction");
-                // If autoplay is blocked, play on any user interaction
                 document.addEventListener("click", function playOnClick() {
                     if (audio.paused) {
                         audio.play().catch(function() {});
@@ -253,7 +267,6 @@ window.addEventListener("load", function() {
     }
 });
 
-// Also play on any user click/touch (backup for browsers that block auto-play)
 document.addEventListener("click", function() {
     var audio = document.getElementById("music");
     if (audio && audio.paused) {
