@@ -241,7 +241,7 @@ var countdownInterval = setInterval(function() {
 }, 1000);
 
 // ================================================================
-// 🎵 MUSIC - AUTO-PLAY & BUTTON SHOWS 🔊 (ON) BY DEFAULT
+// 🎵 MUSIC - FORCE AUTO-PLAY WITHOUT TOUCH
 // ================================================================
 
 var audio = document.getElementById('bgMusic');
@@ -249,32 +249,57 @@ var musicIcon = document.getElementById('musicIcon');
 var isMusicPlaying = false;
 var musicStarted = false;
 
-// Function to play music
+// Function to play music - WILL PLAY WITHOUT USER INTERACTION
 function playMusic() {
     if (audio && !musicStarted) {
         audio.play().then(function() {
             isMusicPlaying = true;
             musicStarted = true;
-            // 🔊 Show ON icon
             if (musicIcon) {
                 musicIcon.textContent = '🔊';
             }
-            console.log('🎵 Music started playing!');
+            console.log('🎵 Music started playing automatically!');
         }).catch(function(error) {
             console.log('🔇 Auto-play blocked:', error);
-            // Still show 🔊 icon even if blocked - user can click to play
+            // Still show 🔊 icon
             if (musicIcon) {
                 musicIcon.textContent = '🔊';
             }
+            // CRITICAL: Try to play using user gesture fallback
+            // This will play on ANY user interaction
+            document.addEventListener('click', function playOnClick() {
+                if (!musicStarted) {
+                    audio.play().then(function() {
+                        isMusicPlaying = true;
+                        musicStarted = true;
+                        if (musicIcon) {
+                            musicIcon.textContent = '🔊';
+                        }
+                        console.log('🎵 Music started on click!');
+                    }).catch(function() {});
+                }
+            }, { once: false });
+            
+            document.addEventListener('touchstart', function playOnTouch() {
+                if (!musicStarted) {
+                    audio.play().then(function() {
+                        isMusicPlaying = true;
+                        musicStarted = true;
+                        if (musicIcon) {
+                            musicIcon.textContent = '🔊';
+                        }
+                        console.log('🎵 Music started on touch!');
+                    }).catch(function() {});
+                }
+            }, { once: false });
         });
     }
 }
 
-// Function to toggle music ON/OFF
+// Function to toggle music
 function toggleMusic() {
     if (audio) {
         if (isMusicPlaying) {
-            // Turn OFF
             audio.pause();
             isMusicPlaying = false;
             if (musicIcon) {
@@ -282,7 +307,6 @@ function toggleMusic() {
             }
             console.log('🔇 Music paused');
         } else {
-            // Turn ON
             audio.play().then(function() {
                 isMusicPlaying = true;
                 musicStarted = true;
@@ -298,40 +322,56 @@ function toggleMusic() {
 }
 
 // ================================================================
-// 🎯 FORCE MUSIC TO PLAY ON PAGE LOAD
+// 🎯 FORCE MUSIC TO PLAY WITHOUT TOUCH - MULTIPLE METHODS
 // ================================================================
 
-// Show 🔊 icon by default (already set in HTML)
-// Try to play music as soon as page loads
+// Method 1: HTML5 autoplay attribute (already in audio tag)
+// Method 2: Play as soon as DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    playMusic();
+});
+
+// Method 3: Play as soon as page loads
 window.addEventListener('load', function() {
-    // Try immediately
     playMusic();
     
-    // Try again after 500ms
-    setTimeout(playMusic, 500);
-    
-    // Try again after 1.5 seconds
-    setTimeout(playMusic, 1500);
+    // Try repeatedly until it plays
+    let attempts = 0;
+    var musicInterval = setInterval(function() {
+        attempts++;
+        if (!musicStarted) {
+            playMusic();
+        }
+        if (musicStarted || attempts > 10) {
+            clearInterval(musicInterval);
+        }
+    }, 500);
 });
 
-// Play on any user interaction if not started
-function playOnInteraction() {
-    if (!musicStarted) {
-        playMusic();
-    }
-}
-
-document.addEventListener('click', playOnInteraction);
-document.addEventListener('touchstart', playOnInteraction);
-document.addEventListener('scroll', function() {
-    if (!musicStarted) {
-        playMusic();
-    }
-});
-
-// Try when user returns to tab
+// Method 4: Try when page becomes visible
 document.addEventListener('visibilitychange', function() {
     if (!document.hidden && !musicStarted) {
+        playMusic();
+    }
+});
+
+// Method 5: Try on scroll (without user click)
+window.addEventListener('scroll', function() {
+    if (!musicStarted) {
+        playMusic();
+    }
+});
+
+// Method 6: Try on mouse move (without user click)
+window.addEventListener('mousemove', function() {
+    if (!musicStarted) {
+        playMusic();
+    }
+});
+
+// Method 7: Try on any key press (without user click)
+window.addEventListener('keydown', function() {
+    if (!musicStarted) {
         playMusic();
     }
 });
