@@ -135,7 +135,7 @@ function validateForm() {
     return true;
 }
 
-// ----- 6. SEND VIA WHATSAPP -----
+// ----- 6. SEND VIA WHATSAPP (RSVP) -----
 function sendWhatsApp() {
     if (!validateForm()) return;
     
@@ -189,28 +189,21 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION - WITH PHOTO IN WHATSAPP -----
+// ----- 8. SHARE INVITATION - WITH STICKER PHOTO -----
 function shareInvitation() {
     // Get the current page URL
     const url = window.location.href;
     
-    // Get the photo URL (use your hosted photo URL or the current page's photo)
-    // For the photo to appear in WhatsApp, you need to host the image online
-    // Option 1: Use a hosted image URL (recommended)
-    const photoUrl = "https://your-domain.com/wedding-photo.webp"; // Change this to your hosted URL
-    
-    // Option 2: Use the current page URL with a parameter (if your server supports it)
-    // const photoUrl = url + "?image=wedding-photo.webp";
+    // ✅ Your sticker.webp Direct Link from ImgBB
+    const photoUrl = "https://i.ibb.co/Q78bqW2y/sticker.webp";
     
     // Wedding details
     const couple = "Lahiru & Salomi";
     const date = "14 September 2026";
     const venue = "Hotel Thisunya, Anamaduwa";
     
-    // Create a beautiful invitation message with the photo
-    // Note: WhatsApp will show the photo preview if you put the image URL first
-    let message = `${photoUrl}\n\n`;  // Photo URL first for preview
-    
+    // Create message with photo URL first
+    let message = `${photoUrl}\n\n`;
     message += `💜 *${couple} - Wedding Invitation* 💜\n\n`;
     message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
     message += `📅 *Date:* ${date}\n`;
@@ -219,10 +212,8 @@ function shareInvitation() {
     message += `💍 View the full invitation:\n${url}\n\n`;
     message += `💜 සුභ විවාහයක් වේවා! 🤍`;
     
-    // Encode the message for WhatsApp
+    // Encode and open WhatsApp
     const encodedMessage = encodeURIComponent(message);
-    
-    // Open WhatsApp with the message
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 }
