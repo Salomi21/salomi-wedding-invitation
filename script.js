@@ -189,23 +189,18 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION - WITH IMAGE (NO LINK PREVIEW) -----
+// ----- 8. SHARE INVITATION - WITH PHOTO PREVIEW -----
 function shareInvitation() {
     // Get the current page URL
     const url = window.location.href;
-    
-    // ✅ Your sticker.webp Direct Link from ImgBB
-    const photoUrl = "https://i.ibb.co/Q78bqW2y/sticker.webp";
     
     // Wedding details
     const couple = "Lahiru & Salomi";
     const date = "14 September 2026";
     const venue = "Hotel Thisunya, Anamaduwa";
     
-    // Create message with photo URL first
-    // WhatsApp will show the image and then the text
-    let message = `${photoUrl}\n\n`;
-    message += `💜 *${couple} - Wedding Invitation* 💜\n\n`;
+    // Create message - WhatsApp will show photo preview from the link
+    let message = `💜 *${couple} - Wedding Invitation* 💜\n\n`;
     message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
     message += `📅 *Date:* ${date}\n`;
     message += `📍 *Venue:* ${venue}\n\n`;
