@@ -1471,6 +1471,52 @@ body::after {
 }
 
 /* ================================================================ */
+/* 🎵 MUSIC TOGGLE BUTTON                                          */
+/* ================================================================ */
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(139, 92, 246, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(139, 92, 246, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.2);
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
+
+.music-toggle #musicIcon {
+    line-height: 1;
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ================================================================ */
 /* 📱 MOBILE RESPONSIVE */
 /* ================================================================ */
 
@@ -1589,6 +1635,14 @@ body::after {
     .schedule-item {
         gap: 10px;
         margin-bottom: 10px;
+    }
+    
+    .music-toggle {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        bottom: 15px;
+        right: 15px;
     }
 }
 
@@ -1714,5 +1768,13 @@ body::after {
         height: 7px;
         min-width: 7px;
         margin-top: 2px;
+    }
+    
+    .music-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        bottom: 10px;
+        right: 10px;
     }
 }
