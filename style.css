@@ -162,7 +162,7 @@ body::after {
         0 20px 60px rgba(0, 0, 0, 0.35),
         0 0 40px rgba(139, 92, 246, 0.04),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
 }
 
 .container:hover {
@@ -472,7 +472,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🚪 FULL PAGE DOOR - HIDDEN INITIALLY                          */
+/* 🚪 FULL PAGE DOOR                                              */
 /* ================================================================ */
 
 .door-overlay {
@@ -490,7 +490,7 @@ body::after {
     overflow: hidden;
     cursor: default;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.6s ease;
 }
 
 .door-overlay.open {
@@ -498,7 +498,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🖼️ BACKGROUND IMAGE - HIDDEN UNTIL DOOR OPENS                 */
+/* 🖼️ BACKGROUND IMAGE - SLOW APPEAR                             */
 /* ================================================================ */
 
 .door-bg-image {
@@ -510,11 +510,11 @@ body::after {
     background: url("bg.jpg") center/cover no-repeat;
     opacity: 0;
     z-index: 0;
-    filter: blur(8px) brightness(0.3);
-    transition: opacity 3.5s ease, filter 3.5s ease, transform 3.5s ease;
+    filter: blur(10px) brightness(0.3);
+    transition: opacity 4s ease, filter 4s ease, transform 4s ease;
 }
 
-/* 🎯 DOOR OPEN වෙද්දී විතරක් BG IMAGE පෙනෙන්නේ */
+/* 🐌 SLOW BG IMAGE - Door open වෙද්දී විතරක් පෙනෙන්නේ */
 .door-overlay.open .door-bg-image {
     opacity: 0.85;
     filter: blur(0px) brightness(1);
@@ -525,7 +525,7 @@ body::after {
 .door-overlay.hidden {
     opacity: 0 !important;
     pointer-events: none;
-    transition: opacity 0.5s ease 0.3s;
+    transition: opacity 0.6s ease 0.4s;
 }
 
 /* ================================================================ */
@@ -581,7 +581,7 @@ body::after {
     top: 0;
     width: 50%;
     height: 100%;
-    transition: transform 3.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
     overflow: hidden;
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.4);
@@ -620,7 +620,7 @@ body::after {
     50% { background-position: 100% 50%; }
 }
 
-/* Door Open State */
+/* 🐌 SLOW DOOR OPEN - 4 seconds */
 .door-overlay.open .door-left {
     transform: rotateY(-150deg);
     box-shadow: -50px 0 100px rgba(0, 0, 0, 0.6);
@@ -1044,7 +1044,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL - SLOW FADE IN                                        */
+/* 🎯 MODAL - VERY SLOW FADE IN (2.5s)                           */
 /* ================================================================ */
 
 .modal {
@@ -1067,10 +1067,23 @@ body::after {
     display: flex;
 }
 
+/* 🐌 VERY SLOW FADE IN - 2.5 seconds */
+@keyframes modalVerySlowFadeIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.92) translateY(50px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
+/* Slow fade in - 2 seconds */
 @keyframes modalSlowFadeIn {
     0% { 
         opacity: 0; 
-        transform: scale(0.92) translateY(40px); 
+        transform: scale(0.95) translateY(40px); 
     }
     100% { 
         opacity: 1; 
