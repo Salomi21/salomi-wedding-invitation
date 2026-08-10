@@ -484,6 +484,338 @@ body::after {
 }
 
 /* ================================================================ */
+/* 🚪 DOOR OPENING ANIMATION                                      */
+/* ================================================================ */
+
+.door-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 10, 46, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: doorFadeIn 0.5s ease;
+}
+
+.door-overlay.show {
+    display: flex;
+}
+
+@keyframes doorFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.door-container {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    perspective: 800px;
+    margin-bottom: 20px;
+}
+
+.door-left,
+.door-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(145deg, #5b21b6, #7c3aed);
+    border: 3px solid #c084fc;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+}
+
+.door-left {
+    left: 0;
+    border-radius: 20px 0 0 20px;
+    transform-origin: left center;
+}
+
+.door-right {
+    right: 0;
+    border-radius: 0 20px 20px 0;
+    transform-origin: right center;
+}
+
+/* Door patterns */
+.door-left::before,
+.door-right::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd700, #f9a825);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.door-left::after {
+    content: '✦';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffd700;
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+.door-right::after {
+    content: '✦';
+    position: absolute;
+    top: 15px;
+    right: 50%;
+    transform: translateX(50%);
+    color: #ffd700;
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+/* Door handle */
+.door-left::before {
+    left: 70%;
+}
+
+.door-right::before {
+    left: 30%;
+}
+
+/* Door open state */
+.door-overlay.open .door-left {
+    transform: rotateY(-120deg);
+}
+
+.door-overlay.open .door-right {
+    transform: rotateY(120deg);
+}
+
+.door-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    z-index: 10;
+    opacity: 0;
+    transition: all 0.8s ease;
+    animation: heartReveal 0.8s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.door-overlay.open .door-heart {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+@keyframes heartReveal {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-20deg); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.4) rotate(10deg); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+.door-text {
+    color: #d8b4fe;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: textFadeIn 1s ease forwards;
+    animation-delay: 0.8s;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.2);
+}
+
+@keyframes textFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Door sparkles */
+.door-overlay::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+        rgba(192, 132, 252, 0.05) 0%, 
+        transparent 60%
+    );
+    animation: sparkleRotate 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes sparkleRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ================================================================ */
+/* 💜 HEART MERGE ANIMATION                                       */
+/* ================================================================ */
+
+.merge-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 10, 46, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.merge-overlay.show {
+    display: flex;
+    animation: mergeFadeIn 0.5s ease;
+}
+
+@keyframes mergeFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.merge-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 60px;
+    padding: 40px;
+}
+
+.merge-left,
+.merge-right {
+    font-size: 60px;
+    animation: heartFloat 1.5s ease-in-out infinite;
+}
+
+.merge-left {
+    animation-delay: 0s;
+    color: #c084fc;
+}
+
+.merge-right {
+    animation-delay: 0.3s;
+    color: #c084fc;
+}
+
+@keyframes heartFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.1); }
+}
+
+.merge-center {
+    font-size: 30px;
+    color: #ffd700;
+    animation: plusPulse 1s ease-in-out infinite;
+}
+
+@keyframes plusPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+.merge-result {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0;
+    transform: scale(0) rotate(-30deg);
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #ffd700;
+    text-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+}
+
+.merge-overlay.merge .merge-result {
+    opacity: 1;
+    transform: scale(1.2) rotate(0deg);
+}
+
+.merge-overlay.merge .merge-left,
+.merge-overlay.merge .merge-right,
+.merge-overlay.merge .merge-center {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.8s ease;
+}
+
+.merge-sparkles {
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+    opacity: 0;
+    transition: all 0.8s ease;
+    top: -40px;
+}
+
+.merge-overlay.merge .merge-sparkles {
+    opacity: 1;
+    animation: sparklesSpin 2s linear infinite;
+}
+
+@keyframes sparklesSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.merge-text {
+    color: #d8b4fe;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.2);
+}
+
+.merge-overlay.merge .merge-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Merge overlay background glow */
+.merge-overlay::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+        rgba(192, 132, 252, 0.03) 0%, 
+        transparent 60%
+    );
+    animation: mergeGlow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes mergeGlow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ================================================================ */
 /* 🎯 PHOTO FRAME WITH STICKER - Light Effects                    */
 /* ================================================================ */
 .photo-frame {
@@ -1575,6 +1907,42 @@ body::after {
         padding: 0 5px;
     }
     
+    /* Door responsive */
+    .door-container {
+        width: 150px;
+        height: 225px;
+    }
+    .door-heart {
+        font-size: 35px;
+    }
+    .door-text {
+        font-size: 14px;
+    }
+    
+    /* Merge responsive */
+    .merge-container {
+        font-size: 40px;
+        gap: 15px;
+        padding: 20px;
+    }
+    .merge-left, .merge-right {
+        font-size: 40px;
+    }
+    .merge-result {
+        font-size: 55px;
+    }
+    .merge-center {
+        font-size: 22px;
+    }
+    .merge-text {
+        font-size: 20px;
+    }
+    .merge-sparkles {
+        font-size: 16px;
+        gap: 12px;
+        top: -25px;
+    }
+    
     .modal-content {
         padding: 22px 16px 22px 16px;
         border-radius: 20px;
@@ -1692,6 +2060,20 @@ body::after {
     .rsvp-section {
         padding: 10px 8px 12px 8px;
     }
+    .door-container {
+        width: 120px;
+        height: 180px;
+    }
+    .merge-container {
+        font-size: 30px;
+        gap: 10px;
+    }
+    .merge-left, .merge-right {
+        font-size: 30px;
+    }
+    .merge-result {
+        font-size: 40px;
+    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1743,6 +2125,40 @@ body::after {
     #shareButtonContainer, #viewInvitationContainer {
         max-width: 100%;
         margin-top: 6px;
+    }
+    
+    .door-container {
+        width: 120px;
+        height: 180px;
+    }
+    .door-heart {
+        font-size: 30px;
+    }
+    .door-text {
+        font-size: 12px;
+    }
+    
+    .merge-container {
+        font-size: 30px;
+        gap: 10px;
+        padding: 15px;
+    }
+    .merge-left, .merge-right {
+        font-size: 30px;
+    }
+    .merge-result {
+        font-size: 40px;
+    }
+    .merge-center {
+        font-size: 18px;
+    }
+    .merge-text {
+        font-size: 16px;
+    }
+    .merge-sparkles {
+        font-size: 14px;
+        gap: 10px;
+        top: -20px;
     }
     
     .rsvp-section {
