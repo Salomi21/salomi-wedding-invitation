@@ -128,25 +128,29 @@ function openDoorAnimation() {
     const doorOverlay = document.getElementById('doorOverlay');
     const mainCard = document.getElementById('mainCard');
     
-    // Hide main card
-    mainCard.style.display = 'none';
+    // Hide main card with smooth transition
+    mainCard.style.transition = 'opacity 0.5s ease';
+    mainCard.style.opacity = '0';
     
-    // Show door overlay
+    setTimeout(() => {
+        mainCard.style.display = 'none';
+    }, 500);
+    
+    // Show door overlay with fade in
     doorOverlay.style.display = 'flex';
     doorOverlay.style.opacity = '0';
     doorOverlay.style.transition = 'opacity 0.8s ease';
     
-    // Fade in door
     setTimeout(() => {
         doorOverlay.style.opacity = '1';
     }, 100);
     
-    // Start opening animation
+    // Start opening animation after door is visible
     setTimeout(() => {
         doorOverlay.classList.add('open');
-    }, 800);
+    }, 900);
     
-    // Show invitation after door opens
+    // Show invitation after door fully opens
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
