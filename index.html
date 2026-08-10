@@ -26,7 +26,76 @@
     <div class="top-decoration">✦ ✦ ✦</div>
 
     <!-- ============================================== -->
-    <!-- 🚪 FULL PAGE DOOR - ENTIRE SCREEN            -->
+    <!-- 🏠 MAIN WEDDING CARD - 1st VIEW               -->
+    <!-- ============================================== -->
+    <div class="container" id="mainCard">
+
+        <div class="traditional-icons">
+            <span class="icon-item">💜</span>
+            <span class="icon-item">✨</span>
+            <span class="icon-item">🤍</span>
+            <span class="icon-item">✨</span>
+            <span class="icon-item">💜</span>
+        </div>
+
+        <div class="decorative-line">✦ ✦ ✦</div>
+
+        <div class="photo-frame">
+            <img src="wedding-photo.webp" alt="Lahiru & Salomi" onerror="this.style.display='none'; this.parentElement.innerHTML='💍'" />
+            <div class="frame-ring"></div>
+            <div class="frame-glow"></div>
+            <div class="sticker-overlay">
+                <span class="sticker-emoji">💜</span>
+            </div>
+        </div>
+
+        <div class="rings">💍</div>
+        <h1 class="title">Lahiru <span class="amp">&</span> Salomi</h1>
+        <p class="subtitle" id="mainSubtitle">We Are Getting Married</p>
+
+        <div class="divider">
+            <span class="divider-icon">🤍</span>
+            <span class="divider-icon">💜</span>
+            <span class="divider-icon">🤍</span>
+        </div>
+
+        <h2 class="date"><span class="highlight-date">14 September 2026</span></h2>
+        <p class="venue"><span class="highlight-venue">📍 Hotel Thisunya, Anamaduwa</span></p>
+
+        <div id="countdown"></div>
+
+        <p class="sinhala-text">💜 සුභ විවාහයක් වේවා! 🤍</p>
+
+        <!-- ===== VIEW INVITATION BUTTON ===== -->
+        <button onclick="openDoorAnimation()" class="btn-primary">
+            <span>💜</span> View Invitation
+        </button>
+
+        <!-- ===== SHARE BUTTON - VISIBLE ONLY FOR SENDER ===== -->
+        <div id="shareButtonContainer" style="display: none;">
+            <button onclick="shareInvitation()" class="btn-whatsapp">
+                <span>📤</span> Share on WhatsApp
+            </button>
+        </div>
+
+        <p class="footer-quote">"Forever starts today..."</p>
+
+        <!-- ============================================ -->
+        <!-- 🎵 AUDIO - WITH FORCE AUTO-PLAY              -->
+        <!-- ============================================ -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="music.mp3" type="audio/mp3" />
+        </audio>
+
+        <!-- 🎵 SOUND ICON -->
+        <div id="soundIcon" class="sound-icon" onclick="toggleMusic()">
+            <span id="musicIcon">🔊</span>
+        </div>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 🚪 FULL PAGE DOOR - HIDDEN INITIALLY          -->
     <!-- ============================================== -->
     <div id="doorOverlay" class="door-overlay">
         <!-- Background Image -->
@@ -81,7 +150,7 @@
         <!-- Bottom Text -->
         <div class="door-bottom-text">
             <span class="bottom-line">"The Beginning of Forever"</span>
-            <span class="bottom-sub">✨ Click to Open ✨</span>
+            <span class="bottom-sub">✨ Opening Invitation ✨</span>
         </div>
         
         <!-- Floating particles -->
@@ -99,9 +168,6 @@
             <span>✦</span>
             <span>🤍</span>
         </div>
-        
-        <!-- Click hint -->
-        <div class="click-hint">👆 Click anywhere to open</div>
     </div>
 
     <!-- ============================================== -->
@@ -254,18 +320,6 @@
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img class="lightbox-content" id="lightbox-img" src="" alt="Memory" />
         <div class="lightbox-caption" id="lightbox-caption"></div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- 🎵 AUDIO - WITH FORCE AUTO-PLAY              -->
-    <!-- ============================================ -->
-    <audio id="bgMusic" loop preload="auto">
-        <source src="music.mp3" type="audio/mp3" />
-    </audio>
-
-    <!-- 🎵 SOUND ICON -->
-    <div id="soundIcon" class="sound-icon" onclick="toggleMusic()">
-        <span id="musicIcon">🔊</span>
     </div>
 
     <script src="script.js"></script>
