@@ -497,7 +497,10 @@ body::after {
     cursor: pointer;
 }
 
-/* 🖼️ BACKGROUND IMAGE INSIDE DOOR */
+/* ================================================================ */
+/* 🖼️ BACKGROUND IMAGE - HIDDEN UNTIL DOOR OPENS                 */
+/* ================================================================ */
+
 .door-bg-image {
     position: absolute;
     top: 0;
@@ -505,13 +508,13 @@ body::after {
     width: 100%;
     height: 100%;
     background: url("bg.jpg") center/cover no-repeat;
-    opacity: 0.1;
+    opacity: 0;
     z-index: 0;
-    filter: blur(10px) brightness(0.3);
-    transition: all 3.5s ease;
+    filter: blur(8px) brightness(0.3);
+    transition: opacity 3.5s ease, filter 3.5s ease, transform 3.5s ease;
 }
 
-/* 🎯 BG IMAGE පෙනෙන්නේ DOOR OPEN වෙද්දී */
+/* 🎯 DOOR OPEN වෙද්දී විතරක් BG IMAGE පෙනෙන්නේ */
 .door-overlay.open .door-bg-image {
     opacity: 0.85;
     filter: blur(0px) brightness(1);
@@ -2106,26 +2109,22 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📱 MOBILE RESPONSIVE */
+/* 📱 MOBILE RESPONSIVE - (පෙර පැවති responsive code එකම තියෙන්න) */
 /* ================================================================ */
 
 @media (max-width: 480px) {
     body { padding: 10px; }
-    
     .container {
         padding: 30px 18px 40px 18px;
         border-radius: 20px;
         margin: 20px auto;
     }
-    
     .title { font-size: 34px; }
     .title .amp { font-size: 26px; }
     .subtitle { font-size: 11px; letter-spacing: 4px; }
     #countdown { font-size: 20px; padding: 8px 14px; min-width: 170px; }
-    
     .highlight-date { font-size: 22px; }
     .highlight-venue { font-size: 17px; }
-    
     .venue { font-size: 14px; }
     .btn-primary, .btn-whatsapp { font-size: 13px; padding: 12px 20px; max-width: 100%; }
     .footer-quote { font-size: 16px; }
@@ -2137,67 +2136,28 @@ body::after {
     .icon-item { font-size: 16px; }
     .sinhala-text { font-size: 10px; }
     .top-decoration { font-size: 12px; letter-spacing: 10px; top: 5px; }
-    
-    #shareButtonContainer {
-        max-width: 100%;
-        padding: 0 5px;
-    }
+    #shareButtonContainer { max-width: 100%; padding: 0 5px; }
     
     .door-container {
         width: 85vw;
         height: 55vh;
         max-height: 380px;
     }
-    .door-heart {
-        font-size: 50px;
-    }
-    .center-title {
-        font-size: 20px;
-    }
-    .center-sub {
-        font-size: 12px;
-    }
-    .bottom-line {
-        font-size: 18px;
-    }
-    .bottom-sub {
-        font-size: 11px;
-    }
-    .door-top-deco {
-        font-size: 14px;
-        letter-spacing: 10px;
-        top: 10px;
-    }
-    .door-particles span {
-        font-size: 14px;
-    }
-    .door-handle {
-        width: 12px;
-        height: 40px;
-    }
-    .door-left .door-handle {
-        right: 12px;
-    }
-    .door-right .door-handle {
-        left: 12px;
-    }
-    .door-ornament {
-        font-size: 10px;
-        letter-spacing: 6px;
-    }
-    .door-left {
-        border-radius: 20px 0 0 20px;
-    }
-    .door-right {
-        border-radius: 0 20px 20px 0;
-    }
-    .door-lock {
-        width: 30px;
-        height: 30px;
-    }
-    .door-lock::before {
-        font-size: 12px;
-    }
+    .door-heart { font-size: 50px; }
+    .center-title { font-size: 20px; }
+    .center-sub { font-size: 12px; }
+    .bottom-line { font-size: 18px; }
+    .bottom-sub { font-size: 11px; }
+    .door-top-deco { font-size: 14px; letter-spacing: 10px; top: 10px; }
+    .door-particles span { font-size: 14px; }
+    .door-handle { width: 12px; height: 40px; }
+    .door-left .door-handle { right: 12px; }
+    .door-right .door-handle { left: 12px; }
+    .door-ornament { font-size: 10px; letter-spacing: 6px; }
+    .door-left { border-radius: 20px 0 0 20px; }
+    .door-right { border-radius: 0 20px 20px 0; }
+    .door-lock { width: 30px; height: 30px; }
+    .door-lock::before { font-size: 12px; }
     
     .modal-content {
         padding: 22px 16px 22px 16px;
@@ -2210,90 +2170,31 @@ body::after {
     .invitation-text { font-size: 17px; }
     .invitation-subtext { font-size: 12px; }
     .modal-content h3 { font-size: 15px; }
-    
-    .rsvp-section {
-        padding: 14px 12px 16px 12px;
-    }
+    .rsvp-section { padding: 14px 12px 16px 12px; }
     .form-buttons { flex-direction: column; gap: 8px; }
     .form-buttons button { font-size: 13px; padding: 13px; }
     .close-btn { font-size: 28px; }
     .modal-rings { font-size: 24px; }
     .map-btn { font-size: 12px; padding: 8px 18px; }
     .modal-footer-quote { font-size: 17px; }
-    
-    .gallery-grid {
-        gap: 6px;
-    }
-    .gallery-title {
-        font-size: 15px;
-    }
-    .gallery-item {
-        border-radius: 8px;
-    }
-    .gallery-icon {
-        font-size: 18px;
-    }
-    
-    .lightbox-content {
-        max-width: 95%;
-        max-height: 70%;
-    }
-    .lightbox-close {
-        font-size: 30px;
-        top: 15px;
-        right: 20px;
-    }
-    .lightbox-caption {
-        font-size: 12px;
-        padding: 6px 16px;
-        bottom: 20px;
-    }
-    
-    .schedule-card {
-        padding: 14px 12px 12px 12px;
-        border-radius: 14px;
-        margin: 6px 0 12px 0;
-    }
-    .schedule-title {
-        font-size: 15px;
-    }
-    .schedule-sub {
-        font-size: 10px;
-    }
-    .schedule-icon {
-        font-size: 20px;
-    }
-    .schedule-timeline::before {
-        left: 60px;
-    }
-    .schedule-time {
-        font-size: 11px;
-        min-width: 52px;
-    }
-    .schedule-dot {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        margin-top: 3px;
-    }
-    .schedule-event {
-        font-size: 13px;
-    }
-    .schedule-desc {
-        font-size: 10px;
-    }
-    .schedule-item {
-        gap: 10px;
-        margin-bottom: 10px;
-    }
-    
-    .sound-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
-        bottom: 15px;
-        right: 15px;
-    }
+    .gallery-grid { gap: 6px; }
+    .gallery-title { font-size: 15px; }
+    .gallery-item { border-radius: 8px; }
+    .gallery-icon { font-size: 18px; }
+    .lightbox-content { max-width: 95%; max-height: 70%; }
+    .lightbox-close { font-size: 30px; top: 15px; right: 20px; }
+    .lightbox-caption { font-size: 12px; padding: 6px 16px; bottom: 20px; }
+    .schedule-card { padding: 14px 12px 12px 12px; border-radius: 14px; margin: 6px 0 12px 0; }
+    .schedule-title { font-size: 15px; }
+    .schedule-sub { font-size: 10px; }
+    .schedule-icon { font-size: 20px; }
+    .schedule-timeline::before { left: 60px; }
+    .schedule-time { font-size: 11px; min-width: 52px; }
+    .schedule-dot { width: 8px; height: 8px; min-width: 8px; margin-top: 3px; }
+    .schedule-event { font-size: 13px; }
+    .schedule-desc { font-size: 10px; }
+    .schedule-item { gap: 10px; margin-bottom: 10px; }
+    .sound-icon { width: 42px; height: 42px; font-size: 18px; bottom: 15px; right: 15px; }
 }
 
 @media (max-width: 380px) {
@@ -2302,53 +2203,23 @@ body::after {
         height: 45vh;
         max-height: 300px;
     }
-    .door-heart {
-        font-size: 35px;
-    }
-    .center-title {
-        font-size: 16px;
-    }
-    .center-sub {
-        font-size: 10px;
-    }
-    .bottom-line {
-        font-size: 14px;
-    }
-    .bottom-sub {
-        font-size: 9px;
-    }
-    .door-particles span {
-        font-size: 12px;
-    }
-    .door-handle {
-        width: 10px;
-        height: 30px;
-    }
-    .door-left .door-handle {
-        right: 8px;
-    }
-    .door-right .door-handle {
-        left: 8px;
-    }
+    .door-heart { font-size: 35px; }
+    .center-title { font-size: 16px; }
+    .center-sub { font-size: 10px; }
+    .bottom-line { font-size: 14px; }
+    .bottom-sub { font-size: 9px; }
+    .door-particles span { font-size: 12px; }
+    .door-handle { width: 10px; height: 30px; }
+    .door-left .door-handle { right: 8px; }
+    .door-right .door-handle { left: 8px; }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
-    .schedule-time {
-        font-size: 10px;
-        min-width: 45px;
-    }
-    .schedule-timeline::before {
-        left: 50px;
-    }
-    .schedule-event {
-        font-size: 12px;
-    }
-    .gallery-grid {
-        gap: 4px;
-    }
+    .schedule-time { font-size: 10px; min-width: 45px; }
+    .schedule-timeline::before { left: 50px; }
+    .schedule-event { font-size: 12px; }
+    .gallery-grid { gap: 4px; }
     .invitation-text { font-size: 15px; }
-    .rsvp-section {
-        padding: 10px 8px 12px 8px;
-    }
+    .rsvp-section { padding: 10px 8px 12px 8px; }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -2360,25 +2231,15 @@ body::after {
     .highlight-date { font-size: 26px; }
     .highlight-venue { font-size: 18px; }
     .invitation-text { font-size: 18px; }
-    .door-container {
-        width: 75vw;
-        height: 60vh;
-        max-height: 420px;
-    }
-    .center-title {
-        font-size: 26px;
-    }
+    .door-container { width: 75vw; height: 60vh; max-height: 420px; }
+    .center-title { font-size: 26px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .container { max-width: 460px; padding: 45px 30px 55px 30px; }
     .title { font-size: 44px; }
     .highlight-date { font-size: 27px; }
-    .door-container {
-        width: 65vw;
-        height: 65vh;
-        max-height: 500px;
-    }
+    .door-container { width: 65vw; height: 65vh; max-height: 500px; }
 }
 
 @media (min-width: 1025px) {
@@ -2387,12 +2248,7 @@ body::after {
     #countdown { font-size: 26px; min-width: 220px; }
     .highlight-date { font-size: 28px; }
     .highlight-venue { font-size: 20px; }
-    .door-container {
-        width: 70vw;
-        max-width: 750px;
-        height: 70vh;
-        max-height: 600px;
-    }
+    .door-container { width: 70vw; max-width: 750px; height: 70vh; max-height: 600px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -2415,106 +2271,32 @@ body::after {
     .divider { margin: 6px auto 10px auto; }
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
     .invitation-text { font-size: 16px; }
-    
-    #shareButtonContainer {
-        max-width: 100%;
-        margin-top: 6px;
-    }
-    
-    .door-container {
-        width: 60vw;
-        height: 70vh;
-        max-height: 350px;
-    }
-    .door-heart {
-        font-size: 40px;
-    }
-    .center-title {
-        font-size: 18px;
-    }
-    .center-sub {
-        font-size: 11px;
-    }
-    .bottom-line {
-        font-size: 16px;
-    }
-    .bottom-sub {
-        font-size: 10px;
-    }
-    .door-top-deco {
-        font-size: 12px;
-        letter-spacing: 8px;
-        top: 5px;
-    }
-    .door-particles span {
-        font-size: 12px;
-    }
-    .door-handle {
-        width: 10px;
-        height: 32px;
-    }
-    
-    .rsvp-section {
-        padding: 10px 8px 12px 8px;
-    }
+    #shareButtonContainer { max-width: 100%; margin-top: 6px; }
+    .door-container { width: 60vw; height: 70vh; max-height: 350px; }
+    .door-heart { font-size: 40px; }
+    .center-title { font-size: 18px; }
+    .center-sub { font-size: 11px; }
+    .bottom-line { font-size: 16px; }
+    .bottom-sub { font-size: 10px; }
+    .door-top-deco { font-size: 12px; letter-spacing: 8px; top: 5px; }
+    .door-particles span { font-size: 12px; }
+    .door-handle { width: 10px; height: 32px; }
+    .rsvp-section { padding: 10px 8px 12px 8px; }
     .form-buttons { flex-direction: row; }
     .form-buttons button { font-size: 11px; padding: 10px; }
-    
-    .gallery-grid {
-        gap: 4px;
-    }
-    .gallery-title {
-        font-size: 13px;
-    }
-    .gallery-sub {
-        font-size: 9px;
-    }
-    .gallery-item {
-        border-radius: 6px;
-    }
-    .gallery-icon {
-        font-size: 14px;
-    }
-    
-    .schedule-card {
-        padding: 10px 8px 8px 8px;
-        margin: 4px 0 8px 0;
-    }
-    .schedule-title {
-        font-size: 13px;
-    }
-    .schedule-icon {
-        font-size: 16px;
-    }
-    .schedule-timeline::before {
-        left: 55px;
-    }
-    .schedule-time {
-        font-size: 10px;
-        min-width: 48px;
-    }
-    .schedule-event {
-        font-size: 12px;
-    }
-    .schedule-desc {
-        font-size: 9px;
-    }
-    .schedule-item {
-        gap: 8px;
-        margin-bottom: 8px;
-    }
-    .schedule-dot {
-        width: 7px;
-        height: 7px;
-        min-width: 7px;
-        margin-top: 2px;
-    }
-    
-    .sound-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-        bottom: 10px;
-        right: 10px;
-    }
+    .gallery-grid { gap: 4px; }
+    .gallery-title { font-size: 13px; }
+    .gallery-sub { font-size: 9px; }
+    .gallery-item { border-radius: 6px; }
+    .gallery-icon { font-size: 14px; }
+    .schedule-card { padding: 10px 8px 8px 8px; margin: 4px 0 8px 0; }
+    .schedule-title { font-size: 13px; }
+    .schedule-icon { font-size: 16px; }
+    .schedule-timeline::before { left: 55px; }
+    .schedule-time { font-size: 10px; min-width: 48px; }
+    .schedule-event { font-size: 12px; }
+    .schedule-desc { font-size: 9px; }
+    .schedule-item { gap: 8px; margin-bottom: 8px; }
+    .schedule-dot { width: 7px; height: 7px; min-width: 7px; margin-top: 2px; }
+    .sound-icon { width: 36px; height: 36px; font-size: 16px; bottom: 10px; right: 10px; }
 }
