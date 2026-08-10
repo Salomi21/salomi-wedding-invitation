@@ -102,10 +102,7 @@ function displayGuestName() {
             invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
         }
         
-        // Auto open invitation modal if name is present
-        setTimeout(() => {
-            openInvitation();
-        }, 1000);
+        // ✅ AUTO OPEN එක ඉවත් කරලා - දැන් view invitation click කරනකම් modal එක නොපෙනේ
     }
 }
 
