@@ -73,6 +73,42 @@ window.addEventListener('load', () => {
     }
 });
 
+// ================================================================
+// 🎯 GET NAME FROM URL AND DISPLAY PERSONALIZED MESSAGE
+// ================================================================
+
+function getGuestNameFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('name') || '';
+}
+
+function displayGuestName() {
+    const name = getGuestNameFromURL();
+    if (name) {
+        const decodedName = decodeURIComponent(name);
+        
+        // Update main subtitle
+        const subtitle = document.getElementById('mainSubtitle');
+        if (subtitle) {
+            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
+            subtitle.style.color = '#f5edff';
+            subtitle.style.fontSize = '16px';
+            subtitle.style.letterSpacing = '2px';
+        }
+        
+        // Update invitation text in modal
+        const invText = document.getElementById('invitationText');
+        if (invText) {
+            invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
+        }
+        
+        // Auto open invitation modal if name is present
+        setTimeout(() => {
+            openInvitation();
+        }, 1000);
+    }
+}
+
 // ----- 3. OPEN INVITATION MODAL -----
 function openInvitation() {
     const modal = document.getElementById('invitationModal');
@@ -189,21 +225,66 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. SHARE INVITATION - WITH PHOTO PREVIEW -----
-function shareInvitation() {
-    const url = window.location.href;
+// ================================================================
+// 🎯 SHARE WITH CUSTOM NAME (NEW - WITH NAME INPUT)
+// ================================================================
+
+function shareWithCustomName() {
+    const nameInput = document.getElementById('guestNameInput');
+    const guestName = nameInput.value.trim();
+    
+    if (guestName === '') {
+        alert('🙏 කරුණාකර ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න!');
+        nameInput.focus();
+        return;
+    }
+    
+    // Get base URL without parameters
+    const url = window.location.href.split('?')[0];
+    const encodedName = encodeURIComponent(guestName);
+    const shareUrl = `${url}?name=${encodedName}`;
     
     let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
-    message += `🤍 අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!\n\n`;
+    message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
-    message += `✨ We are getting married! ✨\n\n`;
-    message += `💍 View the full invitation:\n${url}\n\n`;
+    message += `✨ View your invitation:\n${shareUrl}\n\n`;
     message += `💜 සුභ විවාහයක් වේවා! 🤍`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
+    
+    // Reset input after sharing
+    nameInput.value = '';
+}
+
+// ================================================================
+// 🎯 SHARE WITHOUT NAME (Simple Share)
+// ================================================================
+
+function shareInvitationSimple() {
+    const url = window.location.href.split('?')[0];
+    
+    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
+    message += `🤍 We are getting married! 🎉\n\n`;
+    message += `📅 *Date:* 14 September 2026\n`;
+    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
+    message += `✨ View the full invitation:\n${url}\n\n`;
+    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+}
+
+// ================================================================
+// 🎯 OLD SHARE FUNCTION - Keep for backward compatibility
+// ================================================================
+
+function shareInvitation() {
+    // This now redirects to the new simple share
+    shareInvitationSimple();
 }
 
 // ----- 9. COUNTDOWN TIMER -----
@@ -233,7 +314,7 @@ var countdownInterval = setInterval(function() {
 }, 1000);
 
 // ================================================================
-// 🎵 MUSIC - FORCE AUTO-PLAY (FINAL SOLUTION)
+// 🎵 MUSIC - FORCE AUTO-PLAY
 // ================================================================
 
 var audio = document.getElementById('bgMusic');
@@ -241,18 +322,14 @@ var musicIcon = document.getElementById('musicIcon');
 var isMusicPlaying = false;
 var musicStarted = false;
 
-// 🔥 THE MAGIC - FORCE PLAY WITHOUT CLICK
 function forceAutoPlay() {
     if (audio && !musicStarted) {
-        // Create a hidden user gesture
         var hiddenButton = document.createElement('button');
         hiddenButton.style.display = 'none';
         document.body.appendChild(hiddenButton);
         
-        // Simulate a click on the hidden button
         hiddenButton.click();
         
-        // Now try to play
         audio.play().then(function() {
             isMusicPlaying = true;
             musicStarted = true;
@@ -262,11 +339,9 @@ function forceAutoPlay() {
             console.log('🎵 Music playing automatically!');
         }).catch(function(error) {
             console.log('Auto-play blocked:', error);
-            // Show 🔊 icon anyway
             if (musicIcon) {
                 musicIcon.textContent = '🔊';
             }
-            // Try again with another method
             setTimeout(function() {
                 if (!musicStarted) {
                     forceAutoPlay();
@@ -274,7 +349,6 @@ function forceAutoPlay() {
             }, 1000);
         });
         
-        // Remove the hidden button
         setTimeout(function() {
             if (hiddenButton.parentNode) {
                 hiddenButton.parentNode.removeChild(hiddenButton);
@@ -283,8 +357,11 @@ function forceAutoPlay() {
     }
 }
 
-// 🔥 Force play on load
 document.addEventListener('DOMContentLoaded', function() {
+    // Display guest name from URL
+    displayGuestName();
+    
+    // Start music
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
     setTimeout(forceAutoPlay, 500);
@@ -292,26 +369,22 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(forceAutoPlay, 2000);
 });
 
-// 🔥 Force play on visibility change
 document.addEventListener('visibilitychange', function() {
     if (!document.hidden && !musicStarted) {
         setTimeout(forceAutoPlay, 200);
     }
 });
 
-// 🔥 Final backup - try on any interaction (but hidden)
 function backupPlay() {
     if (!musicStarted) {
         forceAutoPlay();
     }
 }
 
-// Add listeners but they will be triggered by hidden button
 document.addEventListener('click', backupPlay);
 document.addEventListener('touchstart', backupPlay);
 document.addEventListener('scroll', backupPlay);
 
-// ----- TOGGLE MUSIC (On/Off) -----
 function toggleMusic() {
     if (audio) {
         if (isMusicPlaying) {
@@ -320,7 +393,6 @@ function toggleMusic() {
             if (musicIcon) {
                 musicIcon.textContent = '🔇';
             }
-            console.log('🔇 Music paused');
         } else {
             audio.play().then(function() {
                 isMusicPlaying = true;
@@ -328,7 +400,6 @@ function toggleMusic() {
                 if (musicIcon) {
                     musicIcon.textContent = '🔊';
                 }
-                console.log('🎵 Music resumed');
             }).catch(function(error) {
                 console.log('Play failed:', error);
             });
