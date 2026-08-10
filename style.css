@@ -162,7 +162,7 @@ body::after {
         0 20px 60px rgba(0, 0, 0, 0.35),
         0 0 40px rgba(139, 92, 246, 0.04),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
 .container:hover {
@@ -490,7 +490,7 @@ body::after {
     overflow: hidden;
     cursor: default;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 0.3s ease;
 }
 
 .door-overlay.open {
@@ -525,7 +525,7 @@ body::after {
 .door-overlay.hidden {
     opacity: 0 !important;
     pointer-events: none;
-    transition: opacity 1s ease 0.5s;
+    transition: opacity 0.5s ease 0.3s;
 }
 
 /* ================================================================ */
@@ -2109,7 +2109,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📱 MOBILE RESPONSIVE - (පෙර පැවති responsive code එකම තියෙන්න) */
+/* 📱 MOBILE RESPONSIVE */
 /* ================================================================ */
 
 @media (max-width: 480px) {
