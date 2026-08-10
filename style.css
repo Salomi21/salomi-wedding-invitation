@@ -381,13 +381,11 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 SHARE WITH NAME INPUT - NEW STYLING                        */
+/* 🎯 BUTTON CONTAINERS - Hide/Show Control                       */
 /* ================================================================ */
 
-.share-name-input {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+#shareButtonContainer {
+    display: none;
     margin-top: 12px;
     max-width: 320px;
     margin-left: auto;
@@ -395,37 +393,25 @@ body::after {
     width: 100%;
 }
 
-.share-name-input input {
-    padding: 12px 18px;
-    border-radius: 50px;
-    border: 1.5px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.04);
-    color: #f0e6f6;
-    font-size: 14px;
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    transition: all 0.3s ease;
+#shareButtonContainer .btn-whatsapp {
+    margin-top: 0;
+}
+
+#viewInvitationContainer {
+    display: block;
+    margin-top: 18px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
 }
 
-.share-name-input input::placeholder {
-    color: #6a4a6a;
-}
-
-.share-name-input input:focus {
-    outline: none;
-    border-color: #8b5cf6;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.share-name-input .btn-whatsapp {
+#viewInvitationContainer .btn-primary {
     margin-top: 0;
 }
 
 /* ----- BUTTONS ----- */
 .btn-primary {
-    margin-top: 18px;
     padding: 14px 35px;
     border: none;
     background: linear-gradient(145deg, #8b5cf6, #6d28d9);
@@ -439,7 +425,6 @@ body::after {
     transition: all 0.3s ease;
     text-transform: uppercase;
     width: 100%;
-    max-width: 320px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -458,7 +443,6 @@ body::after {
 .btn-primary span { font-size: 18px; }
 
 .btn-whatsapp {
-    margin-top: 10px;
     padding: 12px 30px;
     border: none;
     background: linear-gradient(145deg, #25D366, #128C7E);
@@ -472,7 +456,6 @@ body::after {
     transition: all 0.3s ease;
     text-transform: uppercase;
     width: 100%;
-    max-width: 320px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1587,14 +1570,9 @@ body::after {
     .sinhala-text { font-size: 10px; }
     .top-decoration { font-size: 12px; letter-spacing: 10px; top: 5px; }
     
-    /* Share input responsive */
-    .share-name-input {
+    #shareButtonContainer, #viewInvitationContainer {
         max-width: 100%;
         padding: 0 5px;
-    }
-    .share-name-input input {
-        font-size: 13px;
-        padding: 11px 14px;
     }
     
     .modal-content {
@@ -1714,10 +1692,6 @@ body::after {
     .rsvp-section {
         padding: 10px 8px 12px 8px;
     }
-    .share-name-input input {
-        font-size: 12px;
-        padding: 10px 12px;
-    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1729,14 +1703,12 @@ body::after {
     .highlight-date { font-size: 26px; }
     .highlight-venue { font-size: 18px; }
     .invitation-text { font-size: 18px; }
-    .share-name-input { max-width: 280px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .container { max-width: 460px; padding: 45px 30px 55px 30px; }
     .title { font-size: 44px; }
     .highlight-date { font-size: 27px; }
-    .share-name-input { max-width: 300px; }
 }
 
 @media (min-width: 1025px) {
@@ -1745,7 +1717,6 @@ body::after {
     #countdown { font-size: 26px; min-width: 220px; }
     .highlight-date { font-size: 28px; }
     .highlight-venue { font-size: 20px; }
-    .share-name-input { max-width: 320px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -1769,13 +1740,9 @@ body::after {
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
     .invitation-text { font-size: 16px; }
     
-    .share-name-input {
-        gap: 5px;
-        margin-top: 8px;
-    }
-    .share-name-input input {
-        padding: 8px 12px;
-        font-size: 12px;
+    #shareButtonContainer, #viewInvitationContainer {
+        max-width: 100%;
+        margin-top: 6px;
     }
     
     .rsvp-section {
