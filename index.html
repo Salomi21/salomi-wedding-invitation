@@ -65,7 +65,7 @@
 
         <!-- ===== VIEW INVITATION BUTTON - VISIBLE FOR EVERYONE ===== -->
         <div id="viewInvitationContainer">
-            <button onclick="openInvitation()" class="btn-primary">
+            <button onclick="openInvitationWithMerge()" class="btn-primary">
                 <span>💜</span> View Invitation
             </button>
         </div>
@@ -94,7 +94,39 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- INVITATION MODAL -->
+    <!-- 🚪 DOOR ANIMATION OVERLAY                      -->
+    <!-- ============================================== -->
+    <div id="doorOverlay" class="door-overlay">
+        <div class="door-container">
+            <div class="door-left"></div>
+            <div class="door-right"></div>
+            <div class="door-heart">💜</div>
+        </div>
+        <p class="door-text">Opening Invitation...</p>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 💜 HEART MERGE ANIMATION OVERLAY               -->
+    <!-- ============================================== -->
+    <div id="mergeOverlay" class="merge-overlay">
+        <div class="merge-container">
+            <div class="merge-left">💜</div>
+            <div class="merge-center">+</div>
+            <div class="merge-right">💜</div>
+            <div class="merge-result">💜</div>
+            <div class="merge-sparkles">
+                <span>✨</span>
+                <span>💜</span>
+                <span>✨</span>
+                <span>🤍</span>
+                <span>✨</span>
+            </div>
+        </div>
+        <p class="merge-text">"Two Hearts Become One..."</p>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- INVITATION MODAL                               -->
     <!-- ============================================== -->
     <div id="invitationModal" class="modal">
         <div class="modal-content">
