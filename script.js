@@ -141,6 +141,13 @@ function openDoorAnimation() {
     doorOverlay.style.opacity = '0';
     doorOverlay.style.transition = 'opacity 0.8s ease';
     
+    // Reset BG image opacity - hidden at start
+    const bgImage = document.querySelector('.door-bg-image');
+    if (bgImage) {
+        bgImage.style.opacity = '0';
+        bgImage.style.transition = 'opacity 3.5s ease';
+    }
+    
     setTimeout(() => {
         doorOverlay.style.opacity = '1';
     }, 100);
@@ -148,6 +155,14 @@ function openDoorAnimation() {
     // Start opening animation after door is visible
     setTimeout(() => {
         doorOverlay.classList.add('open');
+        
+        // 🎯 BG IMAGE පෙනෙන්නේ DOOR OPEN වෙද්දී විතරයි
+        setTimeout(() => {
+            if (bgImage) {
+                bgImage.style.opacity = '0.85';
+            }
+        }, 300);
+        
     }, 900);
     
     // Show invitation after door fully opens
@@ -157,7 +172,7 @@ function openDoorAnimation() {
             doorOverlay.style.display = 'none';
             openInvitationSlow();
         }, 500);
-    }, 4500);
+    }, 4800);
 }
 
 // ================================================================
@@ -188,7 +203,33 @@ function openInvitation() {
     }
 }
 
-// ----- CLOSE INVITATION MODAL -----
+// ================================================================
+// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE
+// ================================================================
+
+function closeInvitationAndGoBack() {
+    const modal = document.getElementById('invitationModal');
+    const mainCard = document.getElementById('mainCard');
+    
+    // Close modal
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Show main card
+    setTimeout(() => {
+        mainCard.style.display = 'block';
+        mainCard.style.opacity = '0';
+        mainCard.style.transition = 'opacity 0.8s ease';
+        
+        setTimeout(() => {
+            mainCard.style.opacity = '1';
+        }, 100);
+    }, 300);
+}
+
+// ----- CLOSE INVITATION MODAL (Normal close) -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
