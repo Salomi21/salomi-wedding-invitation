@@ -121,58 +121,54 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 OPEN DOOR ANIMATION - TRIGGERED BY BUTTON
+// 🚪 OPEN DOOR ANIMATION - NO DELAY - CLICK KARAPU GAMAN
 // ================================================================
 
 function openDoorAnimation() {
     const doorOverlay = document.getElementById('doorOverlay');
     const mainCard = document.getElementById('mainCard');
     
-    // Hide main card with smooth transition
-    mainCard.style.transition = 'opacity 0.5s ease';
+    // 🎯 1. Main Card එක Hide කරන්න (එක පාරට)
+    mainCard.style.transition = 'opacity 0.3s ease';
     mainCard.style.opacity = '0';
     
     setTimeout(() => {
         mainCard.style.display = 'none';
-    }, 500);
+    }, 300);
     
-    // Show door overlay with fade in
+    // 🎯 2. Door Overlay එක Show කරන්න (එක පාරට)
     doorOverlay.style.display = 'flex';
-    doorOverlay.style.opacity = '0';
-    doorOverlay.style.transition = 'opacity 0.8s ease';
+    doorOverlay.style.opacity = '1';
+    doorOverlay.style.transition = 'opacity 0.3s ease';
     
-    // Reset BG image opacity - hidden at start
+    // 🎯 3. BG Image එක reset කරන්න
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
         bgImage.style.transition = 'opacity 3.5s ease';
     }
     
-    setTimeout(() => {
-        doorOverlay.style.opacity = '1';
-    }, 100);
-    
-    // Start opening animation after door is visible
+    // 🎯 4. DOOR OPEN වෙන්න පටන් ගන්න - කිසිම delay එකක් නැතුව
     setTimeout(() => {
         doorOverlay.classList.add('open');
         
-        // 🎯 BG IMAGE පෙනෙන්නේ DOOR OPEN වෙද්දී විතරයි
+        // 🎯 5. BG Image පෙන්වන්න (Door open වෙන කොට)
         setTimeout(() => {
             if (bgImage) {
                 bgImage.style.opacity = '0.85';
             }
-        }, 300);
+        }, 100);
         
-    }, 900);
+    }, 100); // පොඩි delay එකක් (door overlay show වෙන්න)
     
-    // Show invitation after door fully opens
+    // 🎯 6. Door සම්පූර්ණයෙන් open වෙලා ඉවර වෙනකොට Invitation පෙන්වන්න
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
             openInvitationSlow();
-        }, 500);
-    }, 4800);
+        }, 300);
+    }, 4000);
 }
 
 // ================================================================
