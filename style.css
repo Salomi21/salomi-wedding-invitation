@@ -484,7 +484,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🚪 PROFESSIONAL LARGE DOOR ANIMATION                           */
+/* 🚪 PROFESSIONAL LARGE DOOR ANIMATION - EXTRA SLOW              */
 /* ================================================================ */
 
 .door-overlay {
@@ -505,7 +505,7 @@ body::after {
 
 .door-overlay.show {
     display: flex;
-    animation: doorOverlayFadeIn 0.6s ease;
+    animation: doorOverlayFadeIn 0.8s ease;
 }
 
 @keyframes doorOverlayFadeIn {
@@ -514,7 +514,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🖼️ BACKGROUND IMAGE INSIDE DOOR - PROFESSIONAL                */
+/* 🖼️ BACKGROUND IMAGE INSIDE DOOR                                */
 /* ================================================================ */
 
 .door-bg-image {
@@ -524,20 +524,20 @@ body::after {
     width: 100%;
     height: 100%;
     background: url("bg.jpg") center/cover no-repeat;
-    opacity: 0.3;
+    opacity: 0.2;
     z-index: 0;
-    filter: blur(4px) brightness(0.6);
-    transition: all 1.8s ease;
+    filter: blur(6px) brightness(0.5);
+    transition: all 2.5s ease;
 }
 
 .door-overlay.open .door-bg-image {
-    opacity: 0.8;
+    opacity: 0.85;
     filter: blur(0px) brightness(1);
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 
 /* ================================================================ */
-/* 🚪 DOOR CONTAINER - LARGE                                     */
+/* 🚪 DOOR CONTAINER - EXTRA LARGE                                */
 /* ================================================================ */
 
 .door-container {
@@ -558,7 +558,7 @@ body::after {
     top: 0;
     width: 50%;
     height: 100%;
-    transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 3.5s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
     overflow: hidden;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.3);
@@ -589,7 +589,7 @@ body::after {
         inset 20px 0 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Door Open State */
+/* Door Open State - EXTRA SLOW */
 .door-overlay.open .door-left {
     transform: rotateY(-140deg);
     box-shadow: -40px 0 80px rgba(0, 0, 0, 0.5);
@@ -708,14 +708,14 @@ body::after {
     font-size: 80px;
     z-index: 10;
     opacity: 0;
-    transition: all 1s ease;
+    transition: all 1.5s ease;
     text-shadow: 0 0 80px rgba(255, 215, 0, 0.2);
 }
 
 .door-overlay.open .door-heart {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.3);
-    animation: heartReveal 1.2s ease forwards;
+    animation: heartReveal 1.5s ease forwards;
 }
 
 @keyframes heartReveal {
@@ -743,15 +743,15 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📝 DOOR TEXT - PROFESSIONAL                                    */
+/* 📝 DOOR TEXT - SLOW FADE IN                                    */
 /* ================================================================ */
 
 .door-text {
     text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    transition: all 1.2s ease;
-    transition-delay: 1s;
+    transition: all 1.5s ease;
+    transition-delay: 1.2s;
     z-index: 1;
     position: relative;
 }
@@ -873,305 +873,9 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 PHOTO FRAME WITH STICKER - Light Effects                    */
+/* 🎯 MODAL - SLOW FADE IN                                        */
 /* ================================================================ */
-.photo-frame {
-    width: 130px;
-    height: 130px;
-    margin: -45px auto 12px auto;
-    border-radius: 50%;
-    border: 3px solid #c084fc;
-    box-shadow: 
-        0 0 0 5px rgba(139, 92, 246, 0.08),
-        0 10px 30px rgba(0, 0, 0, 0.2);
-    overflow: visible;
-    position: relative;
-    background: rgba(20, 10, 30, 0.8);
-}
 
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 50%;
-}
-
-.photo-frame .frame-ring {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    border-radius: 50%;
-    border: 1.5px dashed rgba(255, 255, 255, 0.1);
-    animation: spin 20s linear infinite;
-    pointer-events: none;
-}
-
-.photo-frame .frame-glow {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    border-radius: 50%;
-    background: radial-gradient(circle, 
-        rgba(192, 132, 252, 0.05), 
-        transparent 70%
-    );
-    animation: glowPulse 4s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes glowPulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.04); }
-}
-
-/* ----- STICKER OVERLAY ----- */
-.sticker-overlay {
-    position: absolute;
-    bottom: -8px;
-    right: -8px;
-    width: 55px;
-    height: 55px;
-    z-index: 5;
-    animation: stickerFloat 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 4px 15px rgba(192, 132, 252, 0.3));
-}
-
-.sticker-emoji {
-    font-size: 42px;
-    display: block;
-    animation: heartPulse 2s ease-in-out infinite;
-    text-align: center;
-    line-height: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    padding: 4px;
-    border: 2px solid rgba(255, 255, 255, 0.08);
-}
-
-@keyframes stickerFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-    25% { transform: translateY(-8px) rotate(3deg) scale(1.03); }
-    50% { transform: translateY(-4px) rotate(-3deg) scale(1.01); }
-    75% { transform: translateY(-6px) rotate(2deg) scale(1.05); }
-}
-
-@keyframes heartPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-/* ----- TRADITIONAL ICONS ----- */
-.traditional-icons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 5px 0 10px 0;
-    flex-wrap: wrap;
-}
-
-.icon-item {
-    font-size: 20px;
-    animation: lightFloat 3.5s ease-in-out infinite;
-    display: inline-block;
-}
-
-.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
-.icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
-.icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
-
-@keyframes lightFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-5px) scale(1.05); }
-}
-
-/* ================================================================ */
-/* 🎯 BIG HERO PHOTO (inside modal)                                */
-/* ================================================================ */
-.hero-photo-section {
-    margin: 6px 0 12px 0;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.hero-photo-section img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 18px;
-    transition: transform 0.3s ease;
-}
-
-.hero-photo-section img:hover {
-    transform: scale(1.01);
-}
-
-/* ================================================================ */
-/* 🎯 PHOTO GALLERY                                               */
-/* ================================================================ */
-.gallery-section {
-    margin: 10px 0 15px 0;
-}
-
-.gallery-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #c084fc;
-    text-align: center;
-    margin-bottom: 2px;
-    letter-spacing: 1px;
-}
-
-.gallery-sub {
-    font-size: 11px;
-    color: #a78bba;
-    text-align: center;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.gallery-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 1;
-    border: 2px solid rgba(255, 255, 255, 0.04);
-    transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.03);
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-.gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(2px);
-}
-
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
-}
-
-.gallery-icon {
-    font-size: 24px;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* ================================================================ */
-/* 🎯 LIGHTBOX - Full Screen Image Viewer                         */
-/* ================================================================ */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.92);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    animation: lightboxFade 0.3s ease;
-}
-
-.lightbox.show {
-    display: flex;
-}
-
-@keyframes lightboxFade {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: 300;
-    z-index: 10;
-}
-
-.lightbox-close:hover {
-    color: #c084fc;
-    transform: rotate(90deg);
-}
-
-.lightbox-content {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.06);
-}
-
-.lightbox-caption {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #d8b4fe;
-    font-size: 14px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 8px 20px;
-    border-radius: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* ================================================================ */
-/* 🎯 MODAL - EFFECTS FOR TOP SECTION ONLY                         */
-/* ================================================================ */
 .modal {
     display: none;
     position: fixed;
@@ -1190,9 +894,21 @@ body::after {
 
 .modal.show {
     display: flex;
-    animation: fadeInModal 0.5s ease;
 }
 
+/* 🐌 SLOW FADE IN - 2 seconds */
+@keyframes modalSlowFadeIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.92) translateY(40px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
+/* Normal fade in - for reopen */
 @keyframes fadeInModal {
     from { 
         opacity: 0; 
@@ -1964,7 +1680,6 @@ body::after {
         padding: 0 5px;
     }
     
-    /* Door responsive - Large but fits screen */
     .door-container {
         width: 85vw;
         height: 60vh;
@@ -1994,7 +1709,7 @@ body::after {
         left: 12px;
     }
     .door-bg-image {
-        opacity: 0.3;
+        opacity: 0.2;
     }
     .door-overlay.open .door-bg-image {
         opacity: 0.7;
@@ -2218,7 +1933,6 @@ body::after {
         margin-top: 6px;
     }
     
-    /* Door landscape */
     .door-container {
         width: 60vw;
         height: 70vh;
@@ -2316,4 +2030,301 @@ body::after {
         bottom: 10px;
         right: 10px;
     }
+}
+
+/* ================================================================ */
+/* 🎯 PHOTO FRAME WITH STICKER - Light Effects                    */
+/* ================================================================ */
+.photo-frame {
+    width: 130px;
+    height: 130px;
+    margin: -45px auto 12px auto;
+    border-radius: 50%;
+    border: 3px solid #c084fc;
+    box-shadow: 
+        0 0 0 5px rgba(139, 92, 246, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: visible;
+    position: relative;
+    background: rgba(20, 10, 30, 0.8);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.photo-frame .frame-ring {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.1);
+    animation: spin 20s linear infinite;
+    pointer-events: none;
+}
+
+.photo-frame .frame-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(192, 132, 252, 0.05), 
+        transparent 70%
+    );
+    animation: glowPulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+/* ----- STICKER OVERLAY ----- */
+.sticker-overlay {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 55px;
+    height: 55px;
+    z-index: 5;
+    animation: stickerFloat 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 15px rgba(192, 132, 252, 0.3));
+}
+
+.sticker-emoji {
+    font-size: 42px;
+    display: block;
+    animation: heartPulse 2s ease-in-out infinite;
+    text-align: center;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    padding: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes stickerFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateY(-8px) rotate(3deg) scale(1.03); }
+    50% { transform: translateY(-4px) rotate(-3deg) scale(1.01); }
+    75% { transform: translateY(-6px) rotate(2deg) scale(1.05); }
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ----- TRADITIONAL ICONS ----- */
+.traditional-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 5px 0 10px 0;
+    flex-wrap: wrap;
+}
+
+.icon-item {
+    font-size: 20px;
+    animation: lightFloat 3.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
+.icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
+.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
+.icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
+.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
+
+@keyframes lightFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.05); }
+}
+
+/* ================================================================ */
+/* 🎯 BIG HERO PHOTO (inside modal)                                */
+/* ================================================================ */
+.hero-photo-section {
+    margin: 6px 0 12px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-photo-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    transition: transform 0.3s ease;
+}
+
+.hero-photo-section img:hover {
+    transform: scale(1.01);
+}
+
+/* ================================================================ */
+/* 🎯 PHOTO GALLERY                                               */
+/* ================================================================ */
+.gallery-section {
+    margin: 10px 0 15px 0;
+}
+
+.gallery-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c084fc;
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+
+.gallery-sub {
+    font-size: 11px;
+    color: #a78bba;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-icon {
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================================ */
+/* 🎯 LIGHTBOX - Full Screen Image Viewer                         */
+/* ================================================================ */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    animation: lightboxFade 0.3s ease;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+@keyframes lightboxFade {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 300;
+    z-index: 10;
+}
+
+.lightbox-close:hover {
+    color: #c084fc;
+    transform: rotate(90deg);
+}
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d8b4fe;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
