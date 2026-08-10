@@ -87,7 +87,6 @@ function displayGuestName() {
     if (name) {
         const decodedName = decodeURIComponent(name);
         
-        // Update main subtitle - PERSONALIZED
         const subtitle = document.getElementById('mainSubtitle');
         if (subtitle) {
             subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
@@ -96,7 +95,6 @@ function displayGuestName() {
             subtitle.style.letterSpacing = '2px';
         }
         
-        // Update invitation text in modal - PERSONALIZED
         const invText = document.getElementById('invitationText');
         if (invText) {
             invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
@@ -112,7 +110,6 @@ function checkAndHideButtons() {
     const params = new URLSearchParams(window.location.search);
     const hasName = params.get('name') || '';
     
-    // 🔥 SHARE BUTTON - Hide if name exists (recipient)
     const shareContainer = document.getElementById('shareButtonContainer');
     if (shareContainer) {
         if (hasName) {
@@ -122,7 +119,6 @@ function checkAndHideButtons() {
         }
     }
     
-    // 🔥 VIEW INVITATION BUTTON - Show for EVERYONE
     const viewContainer = document.getElementById('viewInvitationContainer');
     if (viewContainer) {
         viewContainer.style.display = 'block';
@@ -130,51 +126,35 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 DOOR OPENING ANIMATION
+// 🚪 ATTRACTIVE DOOR OPENING ANIMATION
 // ================================================================
 
 function openInvitationWithDoor() {
     const doorOverlay = document.getElementById('doorOverlay');
     
-    // Show door overlay
+    // Show door overlay with fade in
     doorOverlay.classList.add('show');
+    doorOverlay.classList.remove('open');
     
-    // Open the door after a moment
+    // After a moment, start opening animation
     setTimeout(() => {
         doorOverlay.classList.add('open');
-    }, 400);
-    
-    // Open invitation modal after animation completes
-    setTimeout(() => {
-        // Close door overlay
-        doorOverlay.classList.remove('show', 'open');
-        // Open the modal
-        openInvitation();
-    }, 2200);
-}
-
-// ================================================================
-// 💜 HEART MERGE ANIMATION
-// ================================================================
-
-function openInvitationWithMerge() {
-    const mergeOverlay = document.getElementById('mergeOverlay');
-    
-    // Show merge overlay
-    mergeOverlay.classList.add('show');
-    
-    // Start merge animation after a moment
-    setTimeout(() => {
-        mergeOverlay.classList.add('merge');
     }, 500);
     
+    // Play door opening sound effect (simulated with heart pulse)
+    const doorHeart = document.querySelector('.door-heart');
+    if (doorHeart) {
+        doorHeart.style.animation = 'none';
+        setTimeout(() => {
+            doorHeart.style.animation = 'heartReveal 1s ease forwards';
+        }, 50);
+    }
+    
     // Open invitation modal after animation completes
     setTimeout(() => {
-        // Close merge overlay
-        mergeOverlay.classList.remove('show', 'merge');
-        // Open the modal
+        doorOverlay.classList.remove('show', 'open');
         openInvitation();
-    }, 2800);
+    }, 3200);
 }
 
 // ================================================================
@@ -189,7 +169,7 @@ function openInvitation() {
     }
 }
 
-// ----- 4. CLOSE INVITATION MODAL -----
+// ----- CLOSE INVITATION MODAL -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -211,15 +191,11 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Close overlays if clicked on background
+// Close door overlay if clicked on background
 document.addEventListener('click', function(event) {
     const doorOverlay = document.getElementById('doorOverlay');
     if (event.target === doorOverlay) {
         doorOverlay.classList.remove('show', 'open');
-    }
-    const mergeOverlay = document.getElementById('mergeOverlay');
-    if (event.target === mergeOverlay) {
-        mergeOverlay.classList.remove('show', 'merge');
     }
 });
 
@@ -253,7 +229,7 @@ function shareInvitation() {
     window.open(whatsappURL, '_blank');
 }
 
-// ----- 5. GET FORM DATA -----
+// ----- GET FORM DATA -----
 function getFormData() {
     const name = document.getElementById('rsvpName').value.trim();
     const phone = document.getElementById('rsvpPhone').value.trim();
@@ -284,7 +260,7 @@ function validateForm() {
     return true;
 }
 
-// ----- 6. SEND VIA WHATSAPP (RSVP) -----
+// ----- SEND VIA WHATSAPP (RSVP) -----
 function sendWhatsApp() {
     if (!validateForm()) return;
     
@@ -309,7 +285,7 @@ function sendWhatsApp() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 7. SEND VIA EMAIL (GMAIL WEB) -----
+// ----- SEND VIA EMAIL (GMAIL WEB) -----
 function sendEmail() {
     if (!validateForm()) return;
     
@@ -338,7 +314,7 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ----- 8. COUNTDOWN TIMER -----
+// ----- COUNTDOWN TIMER -----
 var weddingDate = new Date("Sep 14, 2026 00:00:00").getTime();
 
 var countdownInterval = setInterval(function() {
