@@ -162,7 +162,7 @@ body::after {
         0 20px 60px rgba(0, 0, 0, 0.35),
         0 0 40px rgba(139, 92, 246, 0.04),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
 }
 
 .container:hover {
@@ -497,7 +497,7 @@ body::after {
     cursor: pointer;
 }
 
-/* Door Background Image */
+/* 🖼️ BACKGROUND IMAGE INSIDE DOOR */
 .door-bg-image {
     position: absolute;
     top: 0;
@@ -505,14 +505,15 @@ body::after {
     width: 100%;
     height: 100%;
     background: url("bg.jpg") center/cover no-repeat;
-    opacity: 0.15;
+    opacity: 0.1;
     z-index: 0;
-    filter: blur(8px) brightness(0.4);
-    transition: all 3s ease;
+    filter: blur(10px) brightness(0.3);
+    transition: all 3.5s ease;
 }
 
+/* 🎯 BG IMAGE පෙනෙන්නේ DOOR OPEN වෙද්දී */
 .door-overlay.open .door-bg-image {
-    opacity: 0.9;
+    opacity: 0.85;
     filter: blur(0px) brightness(1);
     transform: scale(1.05);
 }
