@@ -87,6 +87,14 @@ function displayGuestName() {
     if (name) {
         const decodedName = decodeURIComponent(name);
         
+        const subtitle = document.getElementById('mainSubtitle');
+        if (subtitle) {
+            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
+            subtitle.style.color = '#f5edff';
+            subtitle.style.fontSize = '16px';
+            subtitle.style.letterSpacing = '2px';
+        }
+        
         const invText = document.getElementById('invitationText');
         if (invText) {
             invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
@@ -95,39 +103,58 @@ function displayGuestName() {
 }
 
 // ================================================================
-// 🚪 FULL PAGE DOOR - CLICK TO OPEN
+// 🎯 SHOW/HIDE SHARE BUTTON BASED ON URL PARAMETER
 // ================================================================
 
-// Auto-open door when page loads (with delay)
-document.addEventListener('DOMContentLoaded', function() {
-    displayGuestName();
+function checkAndHideButtons() {
+    const params = new URLSearchParams(window.location.search);
+    const hasName = params.get('name') || '';
     
-    // Auto open door after 1.5 seconds
-    setTimeout(() => {
-        openDoor();
-    }, 1500);
-});
+    const shareContainer = document.getElementById('shareButtonContainer');
+    if (shareContainer) {
+        if (hasName) {
+            shareContainer.style.display = 'none';
+        } else {
+            shareContainer.style.display = 'block';
+        }
+    }
+}
 
-function openDoor() {
+// ================================================================
+// 🚪 OPEN DOOR ANIMATION - TRIGGERED BY BUTTON
+// ================================================================
+
+function openDoorAnimation() {
     const doorOverlay = document.getElementById('doorOverlay');
+    const mainCard = document.getElementById('mainCard');
+    
+    // Hide main card
+    mainCard.style.display = 'none';
+    
+    // Show door overlay
+    doorOverlay.style.display = 'flex';
+    doorOverlay.style.opacity = '0';
+    doorOverlay.style.transition = 'opacity 0.8s ease';
+    
+    // Fade in door
+    setTimeout(() => {
+        doorOverlay.style.opacity = '1';
+    }, 100);
     
     // Start opening animation
-    doorOverlay.classList.add('open');
+    setTimeout(() => {
+        doorOverlay.classList.add('open');
+    }, 800);
     
     // Show invitation after door opens
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
-        openInvitationSlow();
+        setTimeout(() => {
+            doorOverlay.style.display = 'none';
+            openInvitationSlow();
+        }, 500);
     }, 4500);
 }
-
-// Click anywhere on door to open (if not already opened)
-document.addEventListener('click', function(event) {
-    const doorOverlay = document.getElementById('doorOverlay');
-    if (doorOverlay && !doorOverlay.classList.contains('open') && !doorOverlay.classList.contains('hidden')) {
-        openDoor();
-    }
-});
 
 // ================================================================
 // 🎯 OPEN INVITATION WITH SLOW FADE IN
@@ -365,6 +392,9 @@ function forceAutoPlay() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    displayGuestName();
+    checkAndHideButtons();
+    
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
     setTimeout(forceAutoPlay, 500);
