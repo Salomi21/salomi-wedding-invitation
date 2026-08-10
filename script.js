@@ -121,14 +121,14 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 OPEN DOOR ANIMATION - RESET AND PLAY EACH TIME
+// 🚪 SLOW DOOR OPEN ANIMATION - 5 SECONDS TOTAL
 // ================================================================
 
 function openDoorAnimation() {
     const doorOverlay = document.getElementById('doorOverlay');
     const mainCard = document.getElementById('mainCard');
     
-    // 🎯 Reset door to initial state before playing
+    // Reset door
     doorOverlay.classList.remove('open', 'hidden');
     doorOverlay.style.display = 'none';
     doorOverlay.style.opacity = '0';
@@ -137,49 +137,63 @@ function openDoorAnimation() {
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
+        bgImage.style.transition = 'opacity 3.5s ease';
     }
     
     // Hide main card
-    mainCard.style.transition = 'opacity 0.3s ease';
+    mainCard.style.transition = 'opacity 0.5s ease';
     mainCard.style.opacity = '0';
     
     setTimeout(() => {
         mainCard.style.display = 'none';
-    }, 300);
+    }, 500);
     
-    // Show door overlay
+    // Show door overlay with fade in
     setTimeout(() => {
         doorOverlay.style.display = 'flex';
         doorOverlay.style.opacity = '1';
-        doorOverlay.style.transition = 'opacity 0.3s ease';
+        doorOverlay.style.transition = 'opacity 0.6s ease';
     }, 50);
     
-    // 🎯 DOOR OPEN - Start immediately
+    // 🐌 SLOW DOOR OPEN - starts after 0.5s, takes 3.5s
     setTimeout(() => {
         doorOverlay.classList.add('open');
         
-        // BG image appears when door opens
+        // 🐌 SLOW BG IMAGE - appears slowly over 3.5s
         setTimeout(() => {
             if (bgImage) {
                 bgImage.style.opacity = '0.85';
             }
         }, 100);
         
-    }, 200);
+    }, 500);
     
-    // 🎯 Show invitation after door fully opens
+    // 🐌 SLOW INVITATION - shown after door fully opens (5s total)
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
-            openInvitationSlow();
-        }, 300);
-    }, 4000);
+            // 🐌 SLOW INVITATION FADE IN - 2.5 seconds
+            openInvitationVerySlow();
+        }, 400);
+    }, 5000);
 }
 
 // ================================================================
-// 🎯 OPEN INVITATION WITH SLOW FADE IN
+// 🎯 OPEN INVITATION WITH VERY SLOW FADE IN (2.5s)
 // ================================================================
+
+function openInvitationVerySlow() {
+    const modal = document.getElementById('invitationModal');
+    if (modal) {
+        modal.classList.add('show');
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+            content.style.animation = 'modalVerySlowFadeIn 2.5s ease forwards';
+        }
+        document.body.style.overflow = 'hidden';
+    }
+}
 
 function openInvitationSlow() {
     const modal = document.getElementById('invitationModal');
@@ -219,7 +233,7 @@ function closeInvitationAndGoBack() {
         document.body.style.overflow = 'auto';
     }
     
-    // 🎯 Reset door for next time
+    // Reset door for next time
     const doorOverlay = document.getElementById('doorOverlay');
     doorOverlay.classList.remove('open', 'hidden');
     doorOverlay.style.display = 'none';
@@ -231,7 +245,7 @@ function closeInvitationAndGoBack() {
         bgImage.style.opacity = '0';
     }
     
-    // Show main card
+    // Show main card with fade in
     setTimeout(() => {
         mainCard.style.display = 'block';
         mainCard.style.opacity = '0';
