@@ -126,7 +126,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 ATTRACTIVE DOOR OPENING ANIMATION
+// 🚪 DOOR OPENING ANIMATION - SLOWLY OPEN
 // ================================================================
 
 function openInvitationWithDoor() {
@@ -136,25 +136,16 @@ function openInvitationWithDoor() {
     doorOverlay.classList.add('show');
     doorOverlay.classList.remove('open');
     
-    // After a moment, start opening animation
+    // 🎯 SLOWLY OPEN THE DOOR - 1.8 seconds
     setTimeout(() => {
         doorOverlay.classList.add('open');
-    }, 500);
+    }, 600);
     
-    // Play door opening sound effect (simulated with heart pulse)
-    const doorHeart = document.querySelector('.door-heart');
-    if (doorHeart) {
-        doorHeart.style.animation = 'none';
-        setTimeout(() => {
-            doorHeart.style.animation = 'heartReveal 1s ease forwards';
-        }, 50);
-    }
-    
-    // Open invitation modal after animation completes
+    // 🎯 SLOWLY REVEAL THE INVITATION - 3.5 seconds
     setTimeout(() => {
         doorOverlay.classList.remove('show', 'open');
         openInvitation();
-    }, 3200);
+    }, 3800); // Slow open: 3.8 seconds total
 }
 
 // ================================================================
