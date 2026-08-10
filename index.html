@@ -48,7 +48,7 @@
 
         <div class="rings">💍</div>
         <h1 class="title">Lahiru <span class="amp">&</span> Salomi</h1>
-        <p class="subtitle">We Are Getting Married</p>
+        <p class="subtitle" id="mainSubtitle">We Are Getting Married</p>
 
         <div class="divider">
             <span class="divider-icon">🤍</span>
@@ -67,8 +67,16 @@
             <span>💜</span> View Invitation
         </button>
 
-        <button onclick="shareInvitation()" class="btn-whatsapp">
-            <span>📤</span> Share on WhatsApp
+        <!-- ===== SHARE WITH NAME INPUT ===== -->
+        <div class="share-name-input">
+            <input type="text" id="guestNameInput" placeholder="👤 ආරාධනාව ලබන්නාගේ නම..." />
+            <button onclick="shareWithCustomName()" class="btn-whatsapp">
+                <span>📤</span> Share with Name
+            </button>
+        </div>
+
+        <button onclick="shareInvitationSimple()" class="btn-whatsapp" style="margin-top:8px; background: linear-gradient(145deg, #25D366, #128C7E);">
+            <span>📤</span> Share (Without Name)
         </button>
 
         <p class="footer-quote">"Forever starts today..."</p>
@@ -113,7 +121,7 @@
 
             <div class="invitation-message">
                 <div class="msg-icon">💜</div>
-                <p class="invitation-text">
+                <p class="invitation-text" id="invitationText">
                     With hearts full of love and joy, we invite you to celebrate our wedding!
                 </p>
                 <p class="invitation-subtext">
