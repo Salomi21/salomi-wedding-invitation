@@ -126,7 +126,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 PROFESSIONAL DOOR OPENING ANIMATION
+// 🚪 EXTRA SLOW DOOR OPENING + SLOW INVITATION REVEAL
 // ================================================================
 
 function openInvitationWithDoor() {
@@ -136,30 +136,58 @@ function openInvitationWithDoor() {
     doorOverlay.classList.add('show');
     doorOverlay.classList.remove('open');
     
-    // Slowly open the door
+    // 🐌 EXTRA SLOW - Start opening door after 1 second
     setTimeout(() => {
         doorOverlay.classList.add('open');
-    }, 500);
+    }, 1000);
     
-    // Open invitation after animation
+    // 🐌 EXTRA SLOW - Door open duration: 3.5 seconds
+    // Total: 1s wait + 3.5s open = 4.5 seconds
+    
+    // 🐌 SLOW INVITATION REVEAL - After door fully opens, wait then show invitation slowly
     setTimeout(() => {
+        // Close door overlay
         doorOverlay.classList.remove('show', 'open');
-        openInvitation();
-    }, 3500);
+        
+        // Open invitation with SLOW fade in
+        openInvitationSlow();
+    }, 5500); // 1s wait + 3.5s open + 1s pause = 5.5 seconds total
 }
 
 // ================================================================
-// 🎯 OPEN INVITATION MODAL
+// 🎯 OPEN INVITATION WITH SLOW FADE IN
+// ================================================================
+
+function openInvitationSlow() {
+    const modal = document.getElementById('invitationModal');
+    if (modal) {
+        modal.classList.add('show');
+        // Make content fade in slowly
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+            content.style.animation = 'modalSlowFadeIn 2s ease forwards';
+        }
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// ================================================================
+// 🎯 OPEN INVITATION - Normal (for close/reopen)
 // ================================================================
 
 function openInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
         modal.classList.add('show');
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+            content.style.animation = 'fadeInModal 0.8s ease forwards';
+        }
         document.body.style.overflow = 'hidden';
     }
 }
 
+// ----- CLOSE INVITATION MODAL -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
