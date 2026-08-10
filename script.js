@@ -101,8 +101,6 @@ function displayGuestName() {
         if (invText) {
             invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
         }
-        
-        // ✅ AUTO OPEN එක ඉවත් කරලා - දැන් view invitation click කරනකම් modal එක නොපෙනේ
     }
 }
 
@@ -118,20 +116,71 @@ function checkAndHideButtons() {
     const shareContainer = document.getElementById('shareButtonContainer');
     if (shareContainer) {
         if (hasName) {
-            shareContainer.style.display = 'none';  // Recipient - NO share button
+            shareContainer.style.display = 'none';
         } else {
-            shareContainer.style.display = 'block'; // Sender - Show share button
+            shareContainer.style.display = 'block';
         }
     }
     
-    // 🔥 VIEW INVITATION BUTTON - Show for EVERYONE (both sender and recipient)
+    // 🔥 VIEW INVITATION BUTTON - Show for EVERYONE
     const viewContainer = document.getElementById('viewInvitationContainer');
     if (viewContainer) {
-        viewContainer.style.display = 'block'; // Always visible
+        viewContainer.style.display = 'block';
     }
 }
 
-// ----- 3. OPEN INVITATION MODAL -----
+// ================================================================
+// 🚪 DOOR OPENING ANIMATION
+// ================================================================
+
+function openInvitationWithDoor() {
+    const doorOverlay = document.getElementById('doorOverlay');
+    
+    // Show door overlay
+    doorOverlay.classList.add('show');
+    
+    // Open the door after a moment
+    setTimeout(() => {
+        doorOverlay.classList.add('open');
+    }, 400);
+    
+    // Open invitation modal after animation completes
+    setTimeout(() => {
+        // Close door overlay
+        doorOverlay.classList.remove('show', 'open');
+        // Open the modal
+        openInvitation();
+    }, 2200);
+}
+
+// ================================================================
+// 💜 HEART MERGE ANIMATION
+// ================================================================
+
+function openInvitationWithMerge() {
+    const mergeOverlay = document.getElementById('mergeOverlay');
+    
+    // Show merge overlay
+    mergeOverlay.classList.add('show');
+    
+    // Start merge animation after a moment
+    setTimeout(() => {
+        mergeOverlay.classList.add('merge');
+    }, 500);
+    
+    // Open invitation modal after animation completes
+    setTimeout(() => {
+        // Close merge overlay
+        mergeOverlay.classList.remove('show', 'merge');
+        // Open the modal
+        openInvitation();
+    }, 2800);
+}
+
+// ================================================================
+// 🎯 OPEN INVITATION MODAL
+// ================================================================
+
 function openInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -162,27 +211,36 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+// Close overlays if clicked on background
+document.addEventListener('click', function(event) {
+    const doorOverlay = document.getElementById('doorOverlay');
+    if (event.target === doorOverlay) {
+        doorOverlay.classList.remove('show', 'open');
+    }
+    const mergeOverlay = document.getElementById('mergeOverlay');
+    if (event.target === mergeOverlay) {
+        mergeOverlay.classList.remove('show', 'merge');
+    }
+});
+
 // ================================================================
 // 🎯 SHARE INVITATION - ONLY VISIBLE TO SENDER
 // ================================================================
 
 function shareInvitation() {
-    // Ask for name
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
-    if (guestName === null) return; // Cancel pressed
+    if (guestName === null) return;
     if (guestName.trim() === '') {
         alert('🙏 කරුණාකර නමක් ඇතුලත් කරන්න!');
         return;
     }
     guestName = guestName.trim();
     
-    // Get base URL without parameters
     const url = window.location.href.split('?')[0];
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${url}?name=${encodedName}`;
     
-    // WhatsApp message
     let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
     message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
@@ -351,13 +409,9 @@ function forceAutoPlay() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 🔥 Display guest name from URL
     displayGuestName();
-    
-    // 🔥 Hide share button if name exists (recipient)
     checkAndHideButtons();
     
-    // 🔥 Start music
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
     setTimeout(forceAutoPlay, 500);
