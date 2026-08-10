@@ -484,7 +484,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🚪 DOOR OPENING ANIMATION                                      */
+/* 🚪 ATTRACTIVE DOOR OPENING ANIMATION                           */
 /* ================================================================ */
 
 .door-overlay {
@@ -501,147 +501,247 @@ body::after {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    animation: doorFadeIn 0.5s ease;
 }
 
 .door-overlay.show {
     display: flex;
+    animation: doorOverlayFadeIn 0.8s ease;
 }
 
-@keyframes doorFadeIn {
-    from { opacity: 0; transform: scale(0.95); }
+@keyframes doorOverlayFadeIn {
+    from { opacity: 0; transform: scale(1.05); }
     to { opacity: 1; transform: scale(1); }
 }
 
 .door-container {
     position: relative;
-    width: 200px;
-    height: 300px;
-    perspective: 800px;
-    margin-bottom: 20px;
+    width: 260px;
+    height: 360px;
+    perspective: 900px;
+    margin-bottom: 25px;
 }
 
+/* Left Door */
 .door-left,
 .door-right {
     position: absolute;
     top: 0;
     width: 50%;
     height: 100%;
-    background: linear-gradient(145deg, #5b21b6, #7c3aed);
-    border: 3px solid #c084fc;
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
-    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
+    overflow: hidden;
 }
 
 .door-left {
     left: 0;
-    border-radius: 20px 0 0 20px;
+    border-radius: 24px 0 0 24px;
     transform-origin: left center;
+    background: linear-gradient(145deg, #4c1d95, #6d28d9);
+    border: 3px solid #c084fc;
+    border-right: none;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
 }
 
 .door-right {
     right: 0;
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 24px 24px 0;
     transform-origin: right center;
+    background: linear-gradient(145deg, #6d28d9, #4c1d95);
+    border: 3px solid #c084fc;
+    border-left: none;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
 }
 
-/* Door patterns */
-.door-left::before,
-.door-right::before {
+/* Door Panels */
+.door-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.door-design {
+    width: 70%;
+    height: 60%;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.door-design::before {
+    content: '✦';
+    position: absolute;
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 40px;
+}
+
+.door-design::after {
     content: '';
     position: absolute;
+    width: 60%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.04);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+}
+
+/* Door Handle - Gold */
+.door-handle {
+    position: absolute;
+    width: 14px;
+    height: 40px;
+    border-radius: 10px;
     background: radial-gradient(circle, #ffd700, #f9a825);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
 }
 
-.door-left::after {
-    content: '✦';
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ffd700;
-    font-size: 20px;
-    opacity: 0.5;
+.door-left .door-handle {
+    right: 12px;
 }
 
-.door-right::after {
-    content: '✦';
-    position: absolute;
-    top: 15px;
-    right: 50%;
-    transform: translateX(50%);
-    color: #ffd700;
-    font-size: 20px;
-    opacity: 0.5;
+.door-right .door-handle {
+    left: 12px;
 }
 
-/* Door handle */
-.door-left::before {
-    left: 70%;
-}
-
-.door-right::before {
-    left: 30%;
-}
-
-/* Door open state */
+/* Door Open State */
 .door-overlay.open .door-left {
-    transform: rotateY(-120deg);
+    transform: rotateY(-130deg);
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.3);
 }
 
 .door-overlay.open .door-right {
-    transform: rotateY(120deg);
+    transform: rotateY(130deg);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
 }
 
+/* Door Heart - Center */
 .door-heart {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 50px;
+    font-size: 60px;
     z-index: 10;
     opacity: 0;
     transition: all 0.8s ease;
-    animation: heartReveal 0.8s ease forwards;
-    animation-delay: 0.5s;
+    text-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
 }
 
 .door-overlay.open .door-heart {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.3);
+    animation: heartReveal 1s ease forwards;
 }
 
 @keyframes heartReveal {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-20deg); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.4) rotate(10deg); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(-30deg); }
+    60% { opacity: 1; transform: translate(-50%, -50%) scale(1.5) rotate(10deg); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
 }
 
+/* Door Ring - Decorative */
+.door-ring {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    border-radius: 28px;
+    border: 2px dashed rgba(192, 132, 252, 0.15);
+    animation: ringSpin 25s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ringSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Door Text */
 .door-text {
-    color: #d8b4fe;
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    letter-spacing: 3px;
+    text-align: center;
     opacity: 0;
-    animation: textFadeIn 1s ease forwards;
-    animation-delay: 0.8s;
-    text-shadow: 0 0 30px rgba(192, 132, 252, 0.2);
+    transform: translateY(20px);
+    transition: all 1s ease;
+    transition-delay: 0.5s;
 }
 
-@keyframes textFadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.door-overlay.open .door-text {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Door sparkles */
+.door-text-line {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: #ffd700;
+    text-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+    letter-spacing: 2px;
+}
+
+.door-text-sub {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #d8b4fe;
+    margin-top: 5px;
+    letter-spacing: 4px;
+    font-weight: 300;
+}
+
+/* Door Particles */
+.door-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.door-particles span {
+    position: absolute;
+    font-size: 16px;
+    opacity: 0;
+    animation: particleFloat 3s ease-in-out infinite;
+}
+
+.door-particles span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; color: #c084fc; }
+.door-particles span:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.5s; color: #ffd700; }
+.door-particles span:nth-child(3) { bottom: 30%; left: 10%; animation-delay: 1s; color: #ffffff; }
+.door-particles span:nth-child(4) { top: 40%; right: 10%; animation-delay: 1.5s; color: #c084fc; }
+.door-particles span:nth-child(5) { bottom: 15%; right: 25%; animation-delay: 2s; color: #ffd700; }
+.door-particles span:nth-child(6) { top: 60%; left: 20%; animation-delay: 2.5s; color: #ffffff; }
+.door-particles span:nth-child(7) { top: 5%; left: 50%; animation-delay: 0.8s; color: #c084fc; }
+.door-particles span:nth-child(8) { bottom: 5%; right: 50%; animation-delay: 1.8s; color: #ffd700; }
+
+.door-overlay.open .door-particles span {
+    opacity: 0.8;
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+    25% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+    50% { transform: translateY(-40px) scale(0.8); opacity: 0.6; }
+    75% { transform: translateY(-60px) scale(1.1); opacity: 0.9; }
+    100% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+}
+
+/* Door Overlay Background Glow */
 .door-overlay::before {
     content: '';
     position: absolute;
@@ -650,169 +750,37 @@ body::after {
     width: 200%;
     height: 200%;
     background: radial-gradient(circle at center, 
-        rgba(192, 132, 252, 0.05) 0%, 
+        rgba(192, 132, 252, 0.04) 0%, 
         transparent 60%
     );
-    animation: sparkleRotate 10s linear infinite;
+    animation: doorGlow 6s ease-in-out infinite;
     pointer-events: none;
 }
 
-@keyframes sparkleRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes doorGlow {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+    50% { transform: scale(1.2) rotate(5deg); opacity: 0.8; }
 }
 
-/* ================================================================ */
-/* 💜 HEART MERGE ANIMATION                                       */
-/* ================================================================ */
-
-.merge-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(26, 10, 46, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.merge-overlay.show {
-    display: flex;
-    animation: mergeFadeIn 0.5s ease;
-}
-
-@keyframes mergeFadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.merge-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    font-size: 60px;
-    padding: 40px;
-}
-
-.merge-left,
-.merge-right {
-    font-size: 60px;
-    animation: heartFloat 1.5s ease-in-out infinite;
-}
-
-.merge-left {
-    animation-delay: 0s;
-    color: #c084fc;
-}
-
-.merge-right {
-    animation-delay: 0.3s;
-    color: #c084fc;
-}
-
-@keyframes heartFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-15px) scale(1.1); }
-}
-
-.merge-center {
-    font-size: 30px;
-    color: #ffd700;
-    animation: plusPulse 1s ease-in-out infinite;
-}
-
-@keyframes plusPulse {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.3); opacity: 1; }
-}
-
-.merge-result {
-    position: absolute;
-    font-size: 80px;
-    opacity: 0;
-    transform: scale(0) rotate(-30deg);
-    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    color: #ffd700;
-    text-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
-}
-
-.merge-overlay.merge .merge-result {
-    opacity: 1;
-    transform: scale(1.2) rotate(0deg);
-}
-
-.merge-overlay.merge .merge-left,
-.merge-overlay.merge .merge-right,
-.merge-overlay.merge .merge-center {
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.8s ease;
-}
-
-.merge-sparkles {
-    position: absolute;
-    display: flex;
-    gap: 20px;
-    font-size: 24px;
-    opacity: 0;
-    transition: all 0.8s ease;
-    top: -40px;
-}
-
-.merge-overlay.merge .merge-sparkles {
-    opacity: 1;
-    animation: sparklesSpin 2s linear infinite;
-}
-
-@keyframes sparklesSpin {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.2); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-.merge-text {
-    color: #d8b4fe;
-    font-family: 'Great Vibes', cursive;
-    font-size: 28px;
-    margin-top: 20px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 1s ease;
-    text-shadow: 0 0 30px rgba(192, 132, 252, 0.2);
-}
-
-.merge-overlay.merge .merge-text {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Merge overlay background glow */
-.merge-overlay::before {
+/* Door Overlay Light Rays */
+.door-overlay::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, 
-        rgba(192, 132, 252, 0.03) 0%, 
-        transparent 60%
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 215, 0, 0.02) 0%, 
+        transparent 50%
     );
-    animation: mergeGlow 4s ease-in-out infinite;
+    animation: lightRays 8s ease-in-out infinite;
     pointer-events: none;
 }
 
-@keyframes mergeGlow {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.2); opacity: 1; }
+@keyframes lightRays {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
+    50% { transform: scale(1.1) rotate(10deg); opacity: 0.6; }
 }
 
 /* ================================================================ */
@@ -1909,38 +1877,30 @@ body::after {
     
     /* Door responsive */
     .door-container {
-        width: 150px;
-        height: 225px;
+        width: 180px;
+        height: 260px;
     }
     .door-heart {
-        font-size: 35px;
-    }
-    .door-text {
-        font-size: 14px;
-    }
-    
-    /* Merge responsive */
-    .merge-container {
-        font-size: 40px;
-        gap: 15px;
-        padding: 20px;
-    }
-    .merge-left, .merge-right {
         font-size: 40px;
     }
-    .merge-result {
-        font-size: 55px;
-    }
-    .merge-center {
-        font-size: 22px;
-    }
-    .merge-text {
+    .door-text-line {
         font-size: 20px;
     }
-    .merge-sparkles {
-        font-size: 16px;
-        gap: 12px;
-        top: -25px;
+    .door-text-sub {
+        font-size: 12px;
+    }
+    .door-particles span {
+        font-size: 12px;
+    }
+    .door-handle {
+        width: 10px;
+        height: 30px;
+    }
+    .door-left .door-handle {
+        right: 8px;
+    }
+    .door-right .door-handle {
+        left: 8px;
     }
     
     .modal-content {
@@ -2041,6 +2001,19 @@ body::after {
 }
 
 @media (max-width: 380px) {
+    .door-container {
+        width: 150px;
+        height: 220px;
+    }
+    .door-heart {
+        font-size: 30px;
+    }
+    .door-text-line {
+        font-size: 16px;
+    }
+    .door-text-sub {
+        font-size: 10px;
+    }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
     .schedule-time {
@@ -2060,20 +2033,6 @@ body::after {
     .rsvp-section {
         padding: 10px 8px 12px 8px;
     }
-    .door-container {
-        width: 120px;
-        height: 180px;
-    }
-    .merge-container {
-        font-size: 30px;
-        gap: 10px;
-    }
-    .merge-left, .merge-right {
-        font-size: 30px;
-    }
-    .merge-result {
-        font-size: 40px;
-    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -2085,6 +2044,10 @@ body::after {
     .highlight-date { font-size: 26px; }
     .highlight-venue { font-size: 18px; }
     .invitation-text { font-size: 18px; }
+    .door-container {
+        width: 220px;
+        height: 310px;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -2127,38 +2090,26 @@ body::after {
         margin-top: 6px;
     }
     
+    /* Door landscape */
     .door-container {
-        width: 120px;
-        height: 180px;
+        width: 160px;
+        height: 220px;
     }
     .door-heart {
         font-size: 30px;
     }
-    .door-text {
-        font-size: 12px;
-    }
-    
-    .merge-container {
-        font-size: 30px;
-        gap: 10px;
-        padding: 15px;
-    }
-    .merge-left, .merge-right {
-        font-size: 30px;
-    }
-    .merge-result {
-        font-size: 40px;
-    }
-    .merge-center {
-        font-size: 18px;
-    }
-    .merge-text {
+    .door-text-line {
         font-size: 16px;
     }
-    .merge-sparkles {
-        font-size: 14px;
-        gap: 10px;
-        top: -20px;
+    .door-text-sub {
+        font-size: 10px;
+    }
+    .door-particles span {
+        font-size: 10px;
+    }
+    .door-handle {
+        width: 8px;
+        height: 24px;
     }
     
     .rsvp-section {
