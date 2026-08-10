@@ -126,26 +126,26 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 DOOR OPENING ANIMATION - SLOWLY OPEN
+// 🚪 PROFESSIONAL DOOR OPENING ANIMATION
 // ================================================================
 
 function openInvitationWithDoor() {
     const doorOverlay = document.getElementById('doorOverlay');
     
-    // Show door overlay with fade in
+    // Show door overlay
     doorOverlay.classList.add('show');
     doorOverlay.classList.remove('open');
     
-    // 🎯 SLOWLY OPEN THE DOOR - 1.8 seconds
+    // Slowly open the door
     setTimeout(() => {
         doorOverlay.classList.add('open');
-    }, 600);
+    }, 500);
     
-    // 🎯 SLOWLY REVEAL THE INVITATION - 3.5 seconds
+    // Open invitation after animation
     setTimeout(() => {
         doorOverlay.classList.remove('show', 'open');
         openInvitation();
-    }, 3800); // Slow open: 3.8 seconds total
+    }, 3500);
 }
 
 // ================================================================
@@ -160,7 +160,6 @@ function openInvitation() {
     }
 }
 
-// ----- CLOSE INVITATION MODAL -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -191,7 +190,7 @@ document.addEventListener('click', function(event) {
 });
 
 // ================================================================
-// 🎯 SHARE INVITATION - ONLY VISIBLE TO SENDER
+// 🎯 SHARE INVITATION
 // ================================================================
 
 function shareInvitation() {
