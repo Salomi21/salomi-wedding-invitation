@@ -484,7 +484,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🚪 ATTRACTIVE DOOR OPENING ANIMATION                           */
+/* 🚪 DOOR OPENING ANIMATION WITH BACKGROUND IMAGE                */
 /* ================================================================ */
 
 .door-overlay {
@@ -513,12 +513,40 @@ body::after {
     to { opacity: 1; transform: scale(1); }
 }
 
+/* ================================================================ */
+/* 🖼️ BACKGROUND IMAGE INSIDE DOOR                                */
+/* ================================================================ */
+
+.door-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("bg.jpg") center/cover no-repeat;
+    opacity: 0.6;
+    z-index: 0;
+    filter: blur(3px) brightness(0.8);
+    transition: all 1.5s ease;
+}
+
+.door-overlay.open .door-bg-image {
+    opacity: 0.9;
+    filter: blur(0px) brightness(1);
+    transform: scale(1.05);
+}
+
+/* ================================================================ */
+/* 🚪 DOOR CONTAINER                                              */
+/* ================================================================ */
+
 .door-container {
     position: relative;
-    width: 260px;
-    height: 360px;
-    perspective: 900px;
+    width: 280px;
+    height: 380px;
+    perspective: 1000px;
     margin-bottom: 25px;
+    z-index: 1;
 }
 
 /* Left Door */
@@ -528,7 +556,7 @@ body::after {
     top: 0;
     width: 50%;
     height: 100%;
-    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
     overflow: hidden;
 }
@@ -558,7 +586,7 @@ body::after {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 20px 10px;
+    padding: 25px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -566,8 +594,8 @@ body::after {
 }
 
 .door-design {
-    width: 70%;
-    height: 60%;
+    width: 75%;
+    height: 65%;
     border: 2px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     position: relative;
@@ -580,13 +608,13 @@ body::after {
     content: '✦';
     position: absolute;
     color: rgba(255, 255, 255, 0.06);
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .door-design::after {
     content: '';
     position: absolute;
-    width: 60%;
+    width: 70%;
     height: 1px;
     background: rgba(255, 255, 255, 0.04);
     top: 50%;
@@ -598,32 +626,32 @@ body::after {
 .door-handle {
     position: absolute;
     width: 14px;
-    height: 40px;
+    height: 45px;
     border-radius: 10px;
     background: radial-gradient(circle, #ffd700, #f9a825);
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.3s ease;
 }
 
 .door-left .door-handle {
-    right: 12px;
+    right: 15px;
 }
 
 .door-right .door-handle {
-    left: 12px;
+    left: 15px;
 }
 
-/* Door Open State */
+/* Door Open State - SLOW */
 .door-overlay.open .door-left {
-    transform: rotateY(-130deg);
-    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.3);
+    transform: rotateY(-135deg);
+    box-shadow: -30px 0 60px rgba(0, 0, 0, 0.4);
 }
 
 .door-overlay.open .door-right {
-    transform: rotateY(130deg);
-    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
+    transform: rotateY(135deg);
+    box-shadow: 30px 0 60px rgba(0, 0, 0, 0.4);
 }
 
 /* Door Heart - Center */
@@ -632,35 +660,35 @@ body::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 60px;
+    font-size: 70px;
     z-index: 10;
     opacity: 0;
-    transition: all 0.8s ease;
-    text-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+    transition: all 1s ease;
+    text-shadow: 0 0 80px rgba(255, 215, 0, 0.3);
 }
 
 .door-overlay.open .door-heart {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.3);
-    animation: heartReveal 1s ease forwards;
+    animation: heartReveal 1.2s ease forwards;
 }
 
 @keyframes heartReveal {
     0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(-30deg); }
-    60% { opacity: 1; transform: translate(-50%, -50%) scale(1.5) rotate(10deg); }
+    60% { opacity: 1; transform: translate(-50%, -50%) scale(1.6) rotate(10deg); }
     100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
 }
 
 /* Door Ring - Decorative */
 .door-ring {
     position: absolute;
-    top: -8px;
-    left: -8px;
-    width: calc(100% + 16px);
-    height: calc(100% + 16px);
-    border-radius: 28px;
-    border: 2px dashed rgba(192, 132, 252, 0.15);
-    animation: ringSpin 25s linear infinite;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 30px;
+    border: 2px dashed rgba(192, 132, 252, 0.12);
+    animation: ringSpin 30s linear infinite;
     pointer-events: none;
 }
 
@@ -673,9 +701,11 @@ body::after {
 .door-text {
     text-align: center;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 1s ease;
-    transition-delay: 0.5s;
+    transform: translateY(30px);
+    transition: all 1.2s ease;
+    transition-delay: 0.8s;
+    z-index: 1;
+    position: relative;
 }
 
 .door-overlay.open .door-text {
@@ -686,19 +716,19 @@ body::after {
 .door-text-line {
     display: block;
     font-family: 'Great Vibes', cursive;
-    font-size: 28px;
+    font-size: 30px;
     color: #ffd700;
-    text-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+    text-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
     letter-spacing: 2px;
 }
 
 .door-text-sub {
     display: block;
     font-family: 'Lato', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     color: #d8b4fe;
-    margin-top: 5px;
-    letter-spacing: 4px;
+    margin-top: 8px;
+    letter-spacing: 5px;
     font-weight: 300;
 }
 
@@ -711,23 +741,24 @@ body::after {
     left: 0;
     pointer-events: none;
     overflow: hidden;
+    z-index: 0;
 }
 
 .door-particles span {
     position: absolute;
-    font-size: 16px;
+    font-size: 18px;
     opacity: 0;
-    animation: particleFloat 3s ease-in-out infinite;
+    animation: particleFloat 3.5s ease-in-out infinite;
 }
 
 .door-particles span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; color: #c084fc; }
-.door-particles span:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.5s; color: #ffd700; }
-.door-particles span:nth-child(3) { bottom: 30%; left: 10%; animation-delay: 1s; color: #ffffff; }
-.door-particles span:nth-child(4) { top: 40%; right: 10%; animation-delay: 1.5s; color: #c084fc; }
-.door-particles span:nth-child(5) { bottom: 15%; right: 25%; animation-delay: 2s; color: #ffd700; }
-.door-particles span:nth-child(6) { top: 60%; left: 20%; animation-delay: 2.5s; color: #ffffff; }
-.door-particles span:nth-child(7) { top: 5%; left: 50%; animation-delay: 0.8s; color: #c084fc; }
-.door-particles span:nth-child(8) { bottom: 5%; right: 50%; animation-delay: 1.8s; color: #ffd700; }
+.door-particles span:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.6s; color: #ffd700; }
+.door-particles span:nth-child(3) { bottom: 30%; left: 10%; animation-delay: 1.2s; color: #ffffff; }
+.door-particles span:nth-child(4) { top: 40%; right: 10%; animation-delay: 1.8s; color: #c084fc; }
+.door-particles span:nth-child(5) { bottom: 15%; right: 25%; animation-delay: 2.4s; color: #ffd700; }
+.door-particles span:nth-child(6) { top: 60%; left: 20%; animation-delay: 3.0s; color: #ffffff; }
+.door-particles span:nth-child(7) { top: 5%; left: 50%; animation-delay: 0.9s; color: #c084fc; }
+.door-particles span:nth-child(8) { bottom: 5%; right: 50%; animation-delay: 2.1s; color: #ffd700; }
 
 .door-overlay.open .door-particles span {
     opacity: 0.8;
@@ -735,10 +766,10 @@ body::after {
 
 @keyframes particleFloat {
     0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
-    25% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
-    50% { transform: translateY(-40px) scale(0.8); opacity: 0.6; }
-    75% { transform: translateY(-60px) scale(1.1); opacity: 0.9; }
-    100% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+    25% { transform: translateY(-30px) scale(1.3); opacity: 0.8; }
+    50% { transform: translateY(-60px) scale(0.8); opacity: 0.6; }
+    75% { transform: translateY(-90px) scale(1.1); opacity: 0.9; }
+    100% { transform: translateY(-120px) scale(0.5); opacity: 0; }
 }
 
 /* Door Overlay Background Glow */
@@ -753,8 +784,9 @@ body::after {
         rgba(192, 132, 252, 0.04) 0%, 
         transparent 60%
     );
-    animation: doorGlow 6s ease-in-out infinite;
+    animation: doorGlow 8s ease-in-out infinite;
     pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes doorGlow {
@@ -774,8 +806,9 @@ body::after {
         rgba(255, 215, 0, 0.02) 0%, 
         transparent 50%
     );
-    animation: lightRays 8s ease-in-out infinite;
+    animation: lightRays 10s ease-in-out infinite;
     pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes lightRays {
@@ -1877,30 +1910,36 @@ body::after {
     
     /* Door responsive */
     .door-container {
-        width: 180px;
-        height: 260px;
+        width: 200px;
+        height: 280px;
     }
     .door-heart {
-        font-size: 40px;
+        font-size: 45px;
     }
     .door-text-line {
-        font-size: 20px;
+        font-size: 22px;
     }
     .door-text-sub {
         font-size: 12px;
     }
     .door-particles span {
-        font-size: 12px;
+        font-size: 14px;
     }
     .door-handle {
         width: 10px;
-        height: 30px;
+        height: 35px;
     }
     .door-left .door-handle {
-        right: 8px;
+        right: 10px;
     }
     .door-right .door-handle {
-        left: 8px;
+        left: 10px;
+    }
+    .door-bg-image {
+        opacity: 0.4;
+    }
+    .door-overlay.open .door-bg-image {
+        opacity: 0.8;
     }
     
     .modal-content {
@@ -2002,17 +2041,20 @@ body::after {
 
 @media (max-width: 380px) {
     .door-container {
-        width: 150px;
-        height: 220px;
+        width: 160px;
+        height: 230px;
     }
     .door-heart {
-        font-size: 30px;
+        font-size: 35px;
     }
     .door-text-line {
-        font-size: 16px;
+        font-size: 18px;
     }
     .door-text-sub {
         font-size: 10px;
+    }
+    .door-particles span {
+        font-size: 12px;
     }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
@@ -2045,8 +2087,8 @@ body::after {
     .highlight-venue { font-size: 18px; }
     .invitation-text { font-size: 18px; }
     .door-container {
-        width: 220px;
-        height: 310px;
+        width: 240px;
+        height: 330px;
     }
 }
 
@@ -2092,24 +2134,30 @@ body::after {
     
     /* Door landscape */
     .door-container {
-        width: 160px;
-        height: 220px;
+        width: 180px;
+        height: 240px;
     }
     .door-heart {
-        font-size: 30px;
+        font-size: 35px;
     }
     .door-text-line {
-        font-size: 16px;
+        font-size: 18px;
     }
     .door-text-sub {
-        font-size: 10px;
+        font-size: 11px;
     }
     .door-particles span {
-        font-size: 10px;
+        font-size: 12px;
     }
     .door-handle {
         width: 8px;
-        height: 24px;
+        height: 28px;
+    }
+    .door-left .door-handle {
+        right: 8px;
+    }
+    .door-right .door-handle {
+        left: 8px;
     }
     
     .rsvp-section {
