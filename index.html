@@ -63,21 +63,19 @@
 
         <p class="sinhala-text">💜 සුභ විවාහයක් වේවා! 🤍</p>
 
-        <button onclick="openInvitation()" class="btn-primary">
-            <span>💜</span> View Invitation
-        </button>
-
-        <!-- ===== SHARE WITH NAME INPUT ===== -->
-        <div class="share-name-input">
-            <input type="text" id="guestNameInput" placeholder="👤 ආරාධනාව ලබන්නාගේ නම..." />
-            <button onclick="shareWithCustomName()" class="btn-whatsapp">
-                <span>📤</span> Share with Name
+        <!-- ===== VIEW INVITATION BUTTON - HIDDEN FOR RECIPIENTS ===== -->
+        <div id="viewInvitationContainer">
+            <button onclick="openInvitation()" class="btn-primary">
+                <span>💜</span> View Invitation
             </button>
         </div>
 
-        <button onclick="shareInvitationSimple()" class="btn-whatsapp" style="margin-top:8px; background: linear-gradient(145deg, #25D366, #128C7E);">
-            <span>📤</span> Share (Without Name)
-        </button>
+        <!-- ===== SHARE BUTTON - VISIBLE ONLY FOR SENDER ===== -->
+        <div id="shareButtonContainer" style="display: none;">
+            <button onclick="shareInvitation()" class="btn-whatsapp">
+                <span>📤</span> Share on WhatsApp
+            </button>
+        </div>
 
         <p class="footer-quote">"Forever starts today..."</p>
 
