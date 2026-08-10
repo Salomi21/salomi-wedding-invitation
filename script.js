@@ -87,7 +87,7 @@ function displayGuestName() {
     if (name) {
         const decodedName = decodeURIComponent(name);
         
-        // Update main subtitle
+        // Update main subtitle - PERSONALIZED
         const subtitle = document.getElementById('mainSubtitle');
         if (subtitle) {
             subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
@@ -96,7 +96,7 @@ function displayGuestName() {
             subtitle.style.letterSpacing = '2px';
         }
         
-        // Update invitation text in modal
+        // Update invitation text in modal - PERSONALIZED
         const invText = document.getElementById('invitationText');
         if (invText) {
             invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
@@ -106,6 +106,35 @@ function displayGuestName() {
         setTimeout(() => {
             openInvitation();
         }, 1000);
+    }
+}
+
+// ================================================================
+// 🎯 SHOW/HIDE BUTTONS BASED ON URL PARAMETER
+// ================================================================
+
+function checkAndHideButtons() {
+    const params = new URLSearchParams(window.location.search);
+    const hasName = params.get('name') || '';
+    
+    // 🔥 SHARE BUTTON - Hide if name exists (recipient)
+    const shareContainer = document.getElementById('shareButtonContainer');
+    if (shareContainer) {
+        if (hasName) {
+            shareContainer.style.display = 'none';
+        } else {
+            shareContainer.style.display = 'block';
+        }
+    }
+    
+    // 🔥 VIEW INVITATION BUTTON - Hide if name exists (recipient)
+    const viewContainer = document.getElementById('viewInvitationContainer');
+    if (viewContainer) {
+        if (hasName) {
+            viewContainer.style.display = 'none';
+        } else {
+            viewContainer.style.display = 'block';
+        }
     }
 }
 
@@ -139,6 +168,39 @@ document.addEventListener('keydown', function(event) {
         closeInvitation();
     }
 });
+
+// ================================================================
+// 🎯 SHARE INVITATION - ONLY VISIBLE TO SENDER
+// ================================================================
+
+function shareInvitation() {
+    // Ask for name
+    let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
+    
+    if (guestName === null) return; // Cancel pressed
+    if (guestName.trim() === '') {
+        alert('🙏 කරුණාකර නමක් ඇතුලත් කරන්න!');
+        return;
+    }
+    guestName = guestName.trim();
+    
+    // Get base URL without parameters
+    const url = window.location.href.split('?')[0];
+    const encodedName = encodeURIComponent(guestName);
+    const shareUrl = `${url}?name=${encodedName}`;
+    
+    // WhatsApp message
+    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
+    message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
+    message += `📅 *Date:* 14 September 2026\n`;
+    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
+    message += `✨ View your invitation:\n${shareUrl}\n\n`;
+    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+}
 
 // ----- 5. GET FORM DATA -----
 function getFormData() {
@@ -225,69 +287,7 @@ function sendEmail() {
     document.getElementById('rsvpForm').reset();
 }
 
-// ================================================================
-// 🎯 SHARE WITH CUSTOM NAME (NEW - WITH NAME INPUT)
-// ================================================================
-
-function shareWithCustomName() {
-    const nameInput = document.getElementById('guestNameInput');
-    const guestName = nameInput.value.trim();
-    
-    if (guestName === '') {
-        alert('🙏 කරුණාකර ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න!');
-        nameInput.focus();
-        return;
-    }
-    
-    // Get base URL without parameters
-    const url = window.location.href.split('?')[0];
-    const encodedName = encodeURIComponent(guestName);
-    const shareUrl = `${url}?name=${encodedName}`;
-    
-    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
-    message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
-    message += `📅 *Date:* 14 September 2026\n`;
-    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
-    message += `✨ View your invitation:\n${shareUrl}\n\n`;
-    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
-    
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
-    
-    // Reset input after sharing
-    nameInput.value = '';
-}
-
-// ================================================================
-// 🎯 SHARE WITHOUT NAME (Simple Share)
-// ================================================================
-
-function shareInvitationSimple() {
-    const url = window.location.href.split('?')[0];
-    
-    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
-    message += `🤍 We are getting married! 🎉\n\n`;
-    message += `📅 *Date:* 14 September 2026\n`;
-    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
-    message += `✨ View the full invitation:\n${url}\n\n`;
-    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
-    
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
-}
-
-// ================================================================
-// 🎯 OLD SHARE FUNCTION - Keep for backward compatibility
-// ================================================================
-
-function shareInvitation() {
-    // This now redirects to the new simple share
-    shareInvitationSimple();
-}
-
-// ----- 9. COUNTDOWN TIMER -----
+// ----- 8. COUNTDOWN TIMER -----
 var weddingDate = new Date("Sep 14, 2026 00:00:00").getTime();
 
 var countdownInterval = setInterval(function() {
@@ -358,10 +358,13 @@ function forceAutoPlay() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Display guest name from URL
+    // 🔥 Display guest name from URL
     displayGuestName();
     
-    // Start music
+    // 🔥 Hide buttons if name exists (recipient)
+    checkAndHideButtons();
+    
+    // 🔥 Start music
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
     setTimeout(forceAutoPlay, 500);
