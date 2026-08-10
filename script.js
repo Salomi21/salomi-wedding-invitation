@@ -121,14 +121,25 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🚪 OPEN DOOR ANIMATION - NO DELAY - CLICK KARAPU GAMAN
+// 🚪 OPEN DOOR ANIMATION - RESET AND PLAY EACH TIME
 // ================================================================
 
 function openDoorAnimation() {
     const doorOverlay = document.getElementById('doorOverlay');
     const mainCard = document.getElementById('mainCard');
     
-    // 🎯 1. Main Card එක Hide කරන්න (එක පාරට)
+    // 🎯 Reset door to initial state before playing
+    doorOverlay.classList.remove('open', 'hidden');
+    doorOverlay.style.display = 'none';
+    doorOverlay.style.opacity = '0';
+    
+    // Reset BG image
+    const bgImage = document.querySelector('.door-bg-image');
+    if (bgImage) {
+        bgImage.style.opacity = '0';
+    }
+    
+    // Hide main card
     mainCard.style.transition = 'opacity 0.3s ease';
     mainCard.style.opacity = '0';
     
@@ -136,32 +147,27 @@ function openDoorAnimation() {
         mainCard.style.display = 'none';
     }, 300);
     
-    // 🎯 2. Door Overlay එක Show කරන්න (එක පාරට)
-    doorOverlay.style.display = 'flex';
-    doorOverlay.style.opacity = '1';
-    doorOverlay.style.transition = 'opacity 0.3s ease';
+    // Show door overlay
+    setTimeout(() => {
+        doorOverlay.style.display = 'flex';
+        doorOverlay.style.opacity = '1';
+        doorOverlay.style.transition = 'opacity 0.3s ease';
+    }, 50);
     
-    // 🎯 3. BG Image එක reset කරන්න
-    const bgImage = document.querySelector('.door-bg-image');
-    if (bgImage) {
-        bgImage.style.opacity = '0';
-        bgImage.style.transition = 'opacity 3.5s ease';
-    }
-    
-    // 🎯 4. DOOR OPEN වෙන්න පටන් ගන්න - කිසිම delay එකක් නැතුව
+    // 🎯 DOOR OPEN - Start immediately
     setTimeout(() => {
         doorOverlay.classList.add('open');
         
-        // 🎯 5. BG Image පෙන්වන්න (Door open වෙන කොට)
+        // BG image appears when door opens
         setTimeout(() => {
             if (bgImage) {
                 bgImage.style.opacity = '0.85';
             }
         }, 100);
         
-    }, 100); // පොඩි delay එකක් (door overlay show වෙන්න)
+    }, 200);
     
-    // 🎯 6. Door සම්පූර්ණයෙන් open වෙලා ඉවර වෙනකොට Invitation පෙන්වන්න
+    // 🎯 Show invitation after door fully opens
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
@@ -213,6 +219,18 @@ function closeInvitationAndGoBack() {
         document.body.style.overflow = 'auto';
     }
     
+    // 🎯 Reset door for next time
+    const doorOverlay = document.getElementById('doorOverlay');
+    doorOverlay.classList.remove('open', 'hidden');
+    doorOverlay.style.display = 'none';
+    doorOverlay.style.opacity = '0';
+    
+    // Reset BG image
+    const bgImage = document.querySelector('.door-bg-image');
+    if (bgImage) {
+        bgImage.style.opacity = '0';
+    }
+    
     // Show main card
     setTimeout(() => {
         mainCard.style.display = 'block';
@@ -237,13 +255,13 @@ function closeInvitation() {
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('invitationModal');
     if (event.target === modal) {
-        closeInvitation();
+        closeInvitationAndGoBack();
     }
 });
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
-        closeInvitation();
+        closeInvitationAndGoBack();
     }
 });
 
