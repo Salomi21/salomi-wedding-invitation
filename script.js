@@ -110,7 +110,7 @@ function displayGuestName() {
 }
 
 // ================================================================
-// 🎯 SHOW/HIDE BUTTONS BASED ON URL PARAMETER
+// 🎯 SHOW/HIDE SHARE BUTTON BASED ON URL PARAMETER
 // ================================================================
 
 function checkAndHideButtons() {
@@ -121,20 +121,16 @@ function checkAndHideButtons() {
     const shareContainer = document.getElementById('shareButtonContainer');
     if (shareContainer) {
         if (hasName) {
-            shareContainer.style.display = 'none';
+            shareContainer.style.display = 'none';  // Recipient - NO share button
         } else {
-            shareContainer.style.display = 'block';
+            shareContainer.style.display = 'block'; // Sender - Show share button
         }
     }
     
-    // 🔥 VIEW INVITATION BUTTON - Hide if name exists (recipient)
+    // 🔥 VIEW INVITATION BUTTON - Show for EVERYONE (both sender and recipient)
     const viewContainer = document.getElementById('viewInvitationContainer');
     if (viewContainer) {
-        if (hasName) {
-            viewContainer.style.display = 'none';
-        } else {
-            viewContainer.style.display = 'block';
-        }
+        viewContainer.style.display = 'block'; // Always visible
     }
 }
 
@@ -361,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 🔥 Display guest name from URL
     displayGuestName();
     
-    // 🔥 Hide buttons if name exists (recipient)
+    // 🔥 Hide share button if name exists (recipient)
     checkAndHideButtons();
     
     // 🔥 Start music
