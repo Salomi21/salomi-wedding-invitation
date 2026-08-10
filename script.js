@@ -87,14 +87,6 @@ function displayGuestName() {
     if (name) {
         const decodedName = decodeURIComponent(name);
         
-        const subtitle = document.getElementById('mainSubtitle');
-        if (subtitle) {
-            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
-            subtitle.style.color = '#f5edff';
-            subtitle.style.fontSize = '16px';
-            subtitle.style.letterSpacing = '2px';
-        }
-        
         const invText = document.getElementById('invitationText');
         if (invText) {
             invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
@@ -103,56 +95,39 @@ function displayGuestName() {
 }
 
 // ================================================================
-// 🎯 SHOW/HIDE SHARE BUTTON BASED ON URL PARAMETER
+// 🚪 FULL PAGE DOOR - CLICK TO OPEN
 // ================================================================
 
-function checkAndHideButtons() {
-    const params = new URLSearchParams(window.location.search);
-    const hasName = params.get('name') || '';
+// Auto-open door when page loads (with delay)
+document.addEventListener('DOMContentLoaded', function() {
+    displayGuestName();
     
-    const shareContainer = document.getElementById('shareButtonContainer');
-    if (shareContainer) {
-        if (hasName) {
-            shareContainer.style.display = 'none';
-        } else {
-            shareContainer.style.display = 'block';
-        }
-    }
-    
-    const viewContainer = document.getElementById('viewInvitationContainer');
-    if (viewContainer) {
-        viewContainer.style.display = 'block';
-    }
-}
+    // Auto open door after 1.5 seconds
+    setTimeout(() => {
+        openDoor();
+    }, 1500);
+});
 
-// ================================================================
-// 🚪 EXTRA SLOW DOOR OPENING + SLOW INVITATION REVEAL
-// ================================================================
-
-function openInvitationWithDoor() {
+function openDoor() {
     const doorOverlay = document.getElementById('doorOverlay');
     
-    // Show door overlay
-    doorOverlay.classList.add('show');
-    doorOverlay.classList.remove('open');
+    // Start opening animation
+    doorOverlay.classList.add('open');
     
-    // 🐌 EXTRA SLOW - Start opening door after 1 second
+    // Show invitation after door opens
     setTimeout(() => {
-        doorOverlay.classList.add('open');
-    }, 1000);
-    
-    // 🐌 EXTRA SLOW - Door open duration: 3.5 seconds
-    // Total: 1s wait + 3.5s open = 4.5 seconds
-    
-    // 🐌 SLOW INVITATION REVEAL - After door fully opens, wait then show invitation slowly
-    setTimeout(() => {
-        // Close door overlay
-        doorOverlay.classList.remove('show', 'open');
-        
-        // Open invitation with SLOW fade in
+        doorOverlay.classList.add('hidden');
         openInvitationSlow();
-    }, 5500); // 1s wait + 3.5s open + 1s pause = 5.5 seconds total
+    }, 4500);
 }
+
+// Click anywhere on door to open (if not already opened)
+document.addEventListener('click', function(event) {
+    const doorOverlay = document.getElementById('doorOverlay');
+    if (doorOverlay && !doorOverlay.classList.contains('open') && !doorOverlay.classList.contains('hidden')) {
+        openDoor();
+    }
+});
 
 // ================================================================
 // 🎯 OPEN INVITATION WITH SLOW FADE IN
@@ -162,7 +137,6 @@ function openInvitationSlow() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
         modal.classList.add('show');
-        // Make content fade in slowly
         const content = modal.querySelector('.modal-content');
         if (content) {
             content.style.animation = 'modalSlowFadeIn 2s ease forwards';
@@ -170,10 +144,6 @@ function openInvitationSlow() {
         document.body.style.overflow = 'hidden';
     }
 }
-
-// ================================================================
-// 🎯 OPEN INVITATION - Normal (for close/reopen)
-// ================================================================
 
 function openInvitation() {
     const modal = document.getElementById('invitationModal');
@@ -206,14 +176,6 @@ window.addEventListener('click', function(event) {
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeInvitation();
-    }
-});
-
-// Close door overlay if clicked on background
-document.addEventListener('click', function(event) {
-    const doorOverlay = document.getElementById('doorOverlay');
-    if (event.target === doorOverlay) {
-        doorOverlay.classList.remove('show', 'open');
     }
 });
 
@@ -403,9 +365,6 @@ function forceAutoPlay() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    displayGuestName();
-    checkAndHideButtons();
-    
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
     setTimeout(forceAutoPlay, 500);
