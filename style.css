@@ -472,7 +472,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🚪 FULL PAGE DOOR                                              */
+/* 🚪 FULL PAGE DOOR - PURPLE THEME                               */
 /* ================================================================ */
 
 .door-overlay {
@@ -514,14 +514,12 @@ body::after {
     transition: opacity 4s ease, filter 4s ease, transform 4s ease;
 }
 
-/* 🐌 SLOW BG IMAGE - Door open වෙද්දී විතරක් පෙනෙන්නේ */
 .door-overlay.open .door-bg-image {
     opacity: 0.85;
     filter: blur(0px) brightness(1);
     transform: scale(1.05);
 }
 
-/* Door hidden state */
 .door-overlay.hidden {
     opacity: 0 !important;
     pointer-events: none;
@@ -620,7 +618,6 @@ body::after {
     50% { background-position: 100% 50%; }
 }
 
-/* 🐌 SLOW DOOR OPEN - 4 seconds */
 .door-overlay.open .door-left {
     transform: rotateY(-150deg);
     box-shadow: -50px 0 100px rgba(0, 0, 0, 0.6);
@@ -659,7 +656,6 @@ body::after {
     overflow: hidden;
 }
 
-/* Door Pattern */
 .door-pattern {
     position: absolute;
     width: 100%;
@@ -714,7 +710,6 @@ body::after {
     transform: translate(-50%, -50%);
 }
 
-/* Door Ornament */
 .door-ornament {
     position: absolute;
     bottom: 20px;
@@ -798,52 +793,72 @@ body::after {
     100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
 }
 
-/* Center Text */
+/* ================================================================ */
+/* 🎯 DOOR CENTER TEXT - LARGER SIZE (WEDDING)                    */
+/* ================================================================ */
+
 .door-center-text {
     position: absolute;
-    bottom: 15%;
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     z-index: 10;
     opacity: 0;
-    transition: all 1.5s ease;
+    transition: all 1.8s ease;
     transition-delay: 0.5s;
-    width: 80%;
+    width: 92%;
 }
 
 .door-overlay.open .door-center-text {
     opacity: 1;
+    animation: textReveal 1.5s ease forwards;
+}
+
+@keyframes textReveal {
+    0% { opacity: 0; transform: translateX(-50%) scale(0.8) translateY(20px); }
+    50% { opacity: 0.7; transform: translateX(-50%) scale(1.1) translateY(-5px); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
 }
 
 .center-title {
     display: block;
     font-family: 'Great Vibes', cursive;
-    font-size: 32px;
+    font-size: 52px;
     color: #ffd700;
-    text-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
-    letter-spacing: 2px;
+    text-shadow: 
+        0 0 60px rgba(255, 215, 0, 0.3),
+        0 0 120px rgba(255, 215, 0, 0.12),
+        0 0 200px rgba(255, 215, 0, 0.06);
+    letter-spacing: 4px;
     animation: textGlow 3s ease-in-out infinite;
+    line-height: 1.15;
 }
 
 .center-sub {
     display: block;
     font-family: 'Playfair Display', serif;
-    font-size: 16px;
+    font-size: 22px;
     color: #d8b4fe;
-    margin-top: 5px;
-    letter-spacing: 4px;
+    margin-top: 8px;
+    letter-spacing: 8px;
     font-weight: 300;
-    text-shadow: 0 0 30px rgba(192, 132, 252, 0.1);
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.2);
 }
 
 @keyframes textGlow {
-    0%, 100% { text-shadow: 0 0 40px rgba(255, 215, 0, 0.1); }
-    50% { text-shadow: 0 0 80px rgba(255, 215, 0, 0.25); }
+    0%, 100% { 
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.15); 
+    }
+    50% { 
+        text-shadow: 
+            0 0 60px rgba(255, 215, 0, 0.3),
+            0 0 120px rgba(255, 215, 0, 0.1); 
+    }
 }
 
 /* ================================================================ */
-/* 🔒 DOOR LOCK - DECORATIVE                                      */
+/* 🔒 DOOR LOCK - WITH OPEN ANIMATION (WEDDING)                   */
 /* ================================================================ */
 
 .door-lock {
@@ -851,12 +866,14 @@ body::after {
     bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent);
-    border: 2px solid rgba(255, 215, 0, 0.05);
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.06), transparent);
+    border: 2px solid rgba(255, 215, 0, 0.08);
     z-index: 5;
+    transition: all 1.5s ease;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.02);
 }
 
 .door-lock::before {
@@ -865,13 +882,45 @@ body::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 16px;
-    opacity: 0.3;
+    font-size: 22px;
+    opacity: 0.4;
+    transition: all 1.5s ease;
+    filter: grayscale(0.3);
+}
+
+/* 🎯 Door open වෙද්දී Lock එක Open වෙනවා */
+.door-overlay.open .door-lock {
+    border-color: rgba(255, 215, 0, 0.25);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.12), 0 0 80px rgba(255, 215, 0, 0.04);
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.08), transparent);
 }
 
 .door-overlay.open .door-lock::before {
     content: '🔓';
-    opacity: 0.6;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: grayscale(0);
+    animation: lockOpen 1.2s ease forwards;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+/* 🔓 Lock Open Animation */
+@keyframes lockOpen {
+    0% { 
+        transform: translate(-50%, -50%) scale(0.6) rotate(-30deg); 
+        opacity: 0.3;
+    }
+    40% { 
+        transform: translate(-50%, -50%) scale(1.5) rotate(25deg); 
+        opacity: 1;
+    }
+    70% { 
+        transform: translate(-50%, -50%) scale(1.1) rotate(-10deg); 
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1.2) rotate(0deg); 
+        opacity: 1;
+    }
 }
 
 /* ================================================================ */
@@ -1044,8 +1093,31 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL - VERY SLOW FADE IN (2.5s)                           */
+/* 🎯 MODAL - VERY SLOW FADE IN (3 seconds)                       */
 /* ================================================================ */
+
+@keyframes modalVerySlowFadeIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.90) translateY(60px); 
+    }
+    25% { 
+        opacity: 0.2; 
+        transform: scale(0.93) translateY(45px); 
+    }
+    50% { 
+        opacity: 0.5; 
+        transform: scale(0.96) translateY(30px); 
+    }
+    75% { 
+        opacity: 0.75; 
+        transform: scale(0.99) translateY(15px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
 
 .modal {
     display: none;
@@ -1067,41 +1139,6 @@ body::after {
     display: flex;
 }
 
-/* 🐌 VERY SLOW FADE IN - 2.5 seconds */
-@keyframes modalVerySlowFadeIn {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.92) translateY(50px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
-}
-
-/* Slow fade in - 2 seconds */
-@keyframes modalSlowFadeIn {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.95) translateY(40px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
-}
-
-@keyframes fadeInModal {
-    from { 
-        opacity: 0; 
-        transform: scale(0.95) translateY(30px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
-}
-
 .modal-content {
     background: linear-gradient(145deg, 
         rgba(255, 255, 255, 0.06),
@@ -1121,7 +1158,7 @@ body::after {
     position: relative;
     color: #f0e6f6;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: modalFloat 4s ease-in-out infinite;
+    animation: modalVerySlowFadeIn 3s ease forwards;
 }
 
 @keyframes modalFloat {
@@ -1294,7 +1331,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 INVITATION MESSAGE - Beautiful Styling (NO ITALIC)           */
+/* 🎯 INVITATION MESSAGE - Beautiful Styling                       */
 /* ================================================================ */
 .invitation-message {
     background: rgba(139, 92, 246, 0.06);
@@ -1349,6 +1386,113 @@ body::after {
     line-height: 1.7;
     font-weight: 300;
     font-family: 'Lato', sans-serif;
+}
+
+/* ================================================================ */
+/* 🎯 HERO PHOTO                                                  */
+/* ================================================================ */
+.hero-photo-section {
+    margin: 6px 0 12px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-photo-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    transition: transform 0.3s ease;
+}
+
+.hero-photo-section img:hover {
+    transform: scale(1.01);
+}
+
+/* ================================================================ */
+/* 🎯 PHOTO GALLERY                                               */
+/* ================================================================ */
+.gallery-section {
+    margin: 10px 0 15px 0;
+}
+
+.gallery-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c084fc;
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+
+.gallery-sub {
+    font-size: 11px;
+    color: #a78bba;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-icon {
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* ================================================================ */
@@ -1949,113 +2093,6 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 BIG HERO PHOTO (inside modal)                                */
-/* ================================================================ */
-.hero-photo-section {
-    margin: 6px 0 12px 0;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.hero-photo-section img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 18px;
-    transition: transform 0.3s ease;
-}
-
-.hero-photo-section img:hover {
-    transform: scale(1.01);
-}
-
-/* ================================================================ */
-/* 🎯 PHOTO GALLERY                                               */
-/* ================================================================ */
-.gallery-section {
-    margin: 10px 0 15px 0;
-}
-
-.gallery-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #c084fc;
-    text-align: center;
-    margin-bottom: 2px;
-    letter-spacing: 1px;
-}
-
-.gallery-sub {
-    font-size: 11px;
-    color: #a78bba;
-    text-align: center;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.gallery-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 1;
-    border: 2px solid rgba(255, 255, 255, 0.04);
-    transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.03);
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-.gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(2px);
-}
-
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
-}
-
-.gallery-icon {
-    font-size: 24px;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* ================================================================ */
 /* 🎯 LIGHTBOX - Full Screen Image Viewer                         */
 /* ================================================================ */
 .lightbox {
@@ -2122,7 +2159,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📱 MOBILE RESPONSIVE */
+/* 📱 MOBILE RESPONSIVE - DOOR TEXT & LOCK                        */
 /* ================================================================ */
 
 @media (max-width: 480px) {
@@ -2157,8 +2194,8 @@ body::after {
         max-height: 380px;
     }
     .door-heart { font-size: 50px; }
-    .center-title { font-size: 20px; }
-    .center-sub { font-size: 12px; }
+    .center-title { font-size: 36px; letter-spacing: 2px; }
+    .center-sub { font-size: 16px; letter-spacing: 5px; }
     .bottom-line { font-size: 18px; }
     .bottom-sub { font-size: 11px; }
     .door-top-deco { font-size: 14px; letter-spacing: 10px; top: 10px; }
@@ -2169,8 +2206,8 @@ body::after {
     .door-ornament { font-size: 10px; letter-spacing: 6px; }
     .door-left { border-radius: 20px 0 0 20px; }
     .door-right { border-radius: 0 20px 20px 0; }
-    .door-lock { width: 30px; height: 30px; }
-    .door-lock::before { font-size: 12px; }
+    .door-lock { width: 34px; height: 34px; bottom: 10%; }
+    .door-lock::before { font-size: 16px; }
     
     .modal-content {
         padding: 22px 16px 22px 16px;
@@ -2217,14 +2254,16 @@ body::after {
         max-height: 300px;
     }
     .door-heart { font-size: 35px; }
-    .center-title { font-size: 16px; }
-    .center-sub { font-size: 10px; }
+    .center-title { font-size: 28px; letter-spacing: 1px; }
+    .center-sub { font-size: 13px; letter-spacing: 4px; }
     .bottom-line { font-size: 14px; }
     .bottom-sub { font-size: 9px; }
     .door-particles span { font-size: 12px; }
     .door-handle { width: 10px; height: 30px; }
     .door-left .door-handle { right: 8px; }
     .door-right .door-handle { left: 8px; }
+    .door-lock { width: 30px; height: 30px; bottom: 8%; }
+    .door-lock::before { font-size: 14px; }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
     .schedule-time { font-size: 10px; min-width: 45px; }
@@ -2245,7 +2284,8 @@ body::after {
     .highlight-venue { font-size: 18px; }
     .invitation-text { font-size: 18px; }
     .door-container { width: 75vw; height: 60vh; max-height: 420px; }
-    .center-title { font-size: 26px; }
+    .center-title { font-size: 42px; }
+    .center-sub { font-size: 18px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -2253,6 +2293,8 @@ body::after {
     .title { font-size: 44px; }
     .highlight-date { font-size: 27px; }
     .door-container { width: 65vw; height: 65vh; max-height: 500px; }
+    .center-title { font-size: 48px; }
+    .center-sub { font-size: 20px; }
 }
 
 @media (min-width: 1025px) {
@@ -2262,6 +2304,8 @@ body::after {
     .highlight-date { font-size: 28px; }
     .highlight-venue { font-size: 20px; }
     .door-container { width: 70vw; max-width: 750px; height: 70vh; max-height: 600px; }
+    .center-title { font-size: 52px; }
+    .center-sub { font-size: 22px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -2285,15 +2329,19 @@ body::after {
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
     .invitation-text { font-size: 16px; }
     #shareButtonContainer { max-width: 100%; margin-top: 6px; }
+    
     .door-container { width: 60vw; height: 70vh; max-height: 350px; }
     .door-heart { font-size: 40px; }
-    .center-title { font-size: 18px; }
-    .center-sub { font-size: 11px; }
+    .center-title { font-size: 30px; }
+    .center-sub { font-size: 14px; }
     .bottom-line { font-size: 16px; }
     .bottom-sub { font-size: 10px; }
     .door-top-deco { font-size: 12px; letter-spacing: 8px; top: 5px; }
     .door-particles span { font-size: 12px; }
     .door-handle { width: 10px; height: 32px; }
+    .door-lock { width: 30px; height: 30px; bottom: 8%; }
+    .door-lock::before { font-size: 14px; }
+    
     .rsvp-section { padding: 10px 8px 12px 8px; }
     .form-buttons { flex-direction: row; }
     .form-buttons button { font-size: 11px; padding: 10px; }
