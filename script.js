@@ -340,11 +340,39 @@ function validateForm() {
     return true;
 }
 
+// ================================================================
+// 📤 SEND RSVP DATA TO GOOGLE SHEETS
+// ================================================================
+
+function saveToGoogleSheets(formData) {
+    // ✅ Your new deployed Web App URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzOeRm05mbqpkqEQlvL7-ed9UOdh6tKh7Fu-1_zuzFwCGwUU9V91x5x8_X_q8DNhL25/exec";
+    
+    fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',  // This is important to avoid CORS errors
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(() => {
+        console.log('✅ Data sent to Google Sheets!');
+    })
+    .catch(error => {
+        console.error('❌ Error sending data:', error);
+    });
+}
+
 // ----- SEND VIA WHATSAPP (RSVP) -----
 function sendWhatsApp() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
+    
+    // ✅ Save to Google Sheets first
+    saveToGoogleSheets({ name, phone, attendance, notes });
+    
     const whatsappNumber = '94716521119';
     
     let message = `🎉 *Wedding RSVP Confirmation* 🎉\n\n`;
@@ -370,6 +398,10 @@ function sendEmail() {
     if (!validateForm()) return;
     
     const { name, phone, attendance, notes } = getFormData();
+    
+    // ✅ Save to Google Sheets first
+    saveToGoogleSheets({ name, phone, attendance, notes });
+    
     const emailAddress = 'salomirechali9999@gmail.com';
     const subject = `Wedding RSVP - ${name}`;
     
