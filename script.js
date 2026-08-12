@@ -173,14 +173,14 @@ function openDoorAnimation() {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
-            // 🐌 SLOW INVITATION FADE IN - 2.5 seconds
+            // 🐌 SLOW INVITATION FADE IN - 3 seconds
             openInvitationVerySlow();
         }, 400);
     }, 5000);
 }
 
 // ================================================================
-// 🎯 OPEN INVITATION WITH VERY SLOW FADE IN (2.5s)
+// 🎯 OPEN INVITATION WITH VERY SLOW FADE IN (3s)
 // ================================================================
 
 function openInvitationVerySlow() {
@@ -189,7 +189,7 @@ function openInvitationVerySlow() {
         modal.classList.add('show');
         const content = modal.querySelector('.modal-content');
         if (content) {
-            content.style.animation = 'modalVerySlowFadeIn 2.5s ease forwards';
+            content.style.animation = 'modalVerySlowFadeIn 3s ease forwards';
         }
         document.body.style.overflow = 'hidden';
     }
@@ -345,12 +345,12 @@ function validateForm() {
 // ================================================================
 
 function saveToGoogleSheets(formData) {
-    // ✅ Your new deployed Web App URL
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzOeRm05mbqpkqEQlvL7-ed9UOdh6tKh7Fu-1_zuzFwCGwUU9V91x5x8_X_q8DNhL25/exec";
+    // ⚠️ මෙතනට ඔයාගේ Web App URL එක දාන්න
+    const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
     
     fetch(WEB_APP_URL, {
         method: 'POST',
-        mode: 'no-cors',  // This is important to avoid CORS errors
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -360,7 +360,7 @@ function saveToGoogleSheets(formData) {
         console.log('✅ Data sent to Google Sheets!');
     })
     .catch(error => {
-        console.error('❌ Error sending data:', error);
+        console.error('❌ Error:', error);
     });
 }
 
@@ -370,7 +370,7 @@ function sendWhatsApp() {
     
     const { name, phone, attendance, notes } = getFormData();
     
-    // ✅ Save to Google Sheets first
+    // Save to Google Sheets first
     saveToGoogleSheets({ name, phone, attendance, notes });
     
     const whatsappNumber = '94716521119';
@@ -399,7 +399,7 @@ function sendEmail() {
     
     const { name, phone, attendance, notes } = getFormData();
     
-    // ✅ Save to Google Sheets first
+    // Save to Google Sheets first
     saveToGoogleSheets({ name, phone, attendance, notes });
     
     const emailAddress = 'salomirechali9999@gmail.com';
