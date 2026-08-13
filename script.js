@@ -142,6 +142,17 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
+    // Message එක හදන්න
+    let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
+    message += `📅 *Date:* 14 September 2026\n`;
+    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
+    message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
+    message += `─────────────────────\n`;
+    message += `💜 කරුණාකර ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
+    message += `💜 Please confirm your presence by September 5th.\n\n`;
+    message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
+    
     // Mobile Share API try කරන්න
     if (navigator.share) {
         try {
@@ -151,7 +162,7 @@ async function shareInvitationWithImage() {
             
             const shareData = {
                 title: "Lahiru & Salomi - Wedding Invitation",
-                text: `💜 ${guestName}, ඔබට ආරාධනාවක්!\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView invitation: ${shareUrl}`,
+                text: message,
                 files: [file]
             };
             
@@ -164,14 +175,6 @@ async function shareInvitationWithImage() {
     }
     
     // Fallback: WhatsApp Web
-    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
-    message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
-    message += `📸 *Invitation:*\n${imageUrl}\n\n`;
-    message += `📅 *Date:* 14 September 2026\n`;
-    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
-    message += `✨ *View Full Invitation:*\n${shareUrl}\n\n`;
-    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
-    
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
@@ -352,12 +355,15 @@ function shareInvitation() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${url}?name=${encodedName}`;
     
-    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
-    message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
+    let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
-    message += `✨ View your invitation:\n${shareUrl}\n\n`;
-    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
+    message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
+    message += `─────────────────────\n`;
+    message += `💜 කරුණාකර ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
+    message += `💜 Please confirm your presence by September 5th.\n\n`;
+    message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
