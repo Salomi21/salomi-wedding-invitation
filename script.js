@@ -109,10 +109,11 @@ function displayGuestName() {
 function checkAndHideButtons() {
     const params = new URLSearchParams(window.location.search);
     const hasName = params.get('name') || '';
+    const isQR = params.get('qr') === 'true';
     
     const shareContainer = document.getElementById('shareButtonContainer');
     if (shareContainer) {
-        if (hasName) {
+        if (hasName || isQR) {
             shareContainer.style.display = 'none';
         } else {
             shareContainer.style.display = 'block';
@@ -121,23 +122,58 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE (WhatsApp)
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp)
 // ================================================================
 
-function shareInvitationWithImage() {
+async function shareInvitationWithImage() {
     const imageUrl = "https://i.ibb.co/Q78bqW2y/sticker.webp";
-    const inviteLink = "https://salomi-wedding-invitation.vercel.app/?qr=true";
     
+    // Name එක අහනවා
+    let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
+    
+    if (guestName === null) return;
+    if (guestName.trim() === '') {
+        alert('🙏 කරුණාකර නමක් ඇතුලත් කරන්න!');
+        return;
+    }
+    guestName = guestName.trim();
+    
+    const baseUrl = window.location.href.split('?')[0];
+    const encodedName = encodeURIComponent(guestName);
+    const shareUrl = `${baseUrl}?name=${encodedName}`;
+    
+    // Mobile Share API try කරන්න
+    if (navigator.share) {
+        try {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            const file = new File([blob], "invitation.jpg", { type: "image/jpeg" });
+            
+            const shareData = {
+                title: "Lahiru & Salomi - Wedding Invitation",
+                text: `💜 ${guestName}, ඔබට ආරාධනාවක්!\n📅 14 September 2026\n📍 Hotel Thisunya, Anamaduwa\n\nView invitation: ${shareUrl}`,
+                files: [file]
+            };
+            
+            await navigator.share(shareData);
+            return;
+        } catch (err) {
+            console.log("Share cancelled:", err);
+            return;
+        }
+    }
+    
+    // Fallback: WhatsApp Web
     let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
+    message += `🤍 *${guestName}*, ඔබට ආරාධනාවක්!\n\n`;
     message += `📸 *Invitation:*\n${imageUrl}\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
-    message += `✨ *View Full Invitation:*\n${inviteLink}\n\n`;
+    message += `✨ *View Full Invitation:*\n${shareUrl}\n\n`;
     message += `💜 සුභ විවාහයක් වේවා! 🤍`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
-    
     window.open(whatsappURL, '_blank');
 }
 
@@ -233,30 +269,6 @@ function openInvitationVerySlow() {
         const content = modal.querySelector('.modal-content');
         if (content) {
             content.style.animation = 'modalVerySlowFadeIn 3s ease forwards';
-        }
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function openInvitationSlow() {
-    const modal = document.getElementById('invitationModal');
-    if (modal) {
-        modal.classList.add('show');
-        const content = modal.querySelector('.modal-content');
-        if (content) {
-            content.style.animation = 'modalSlowFadeIn 2s ease forwards';
-        }
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function openInvitation() {
-    const modal = document.getElementById('invitationModal');
-    if (modal) {
-        modal.classList.add('show');
-        const content = modal.querySelector('.modal-content');
-        if (content) {
-            content.style.animation = 'fadeInModal 0.8s ease forwards';
         }
         document.body.style.overflow = 'hidden';
     }
