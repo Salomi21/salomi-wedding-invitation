@@ -66,15 +66,15 @@
 
         <p class="sinhala-text">💜 සුභ විවාහයක් වේවා! 🤍</p>
 
-        <!-- ===== VIEW INVITATION BUTTON - NEW STYLE ===== -->
+        <!-- ===== VIEW INVITATION BUTTON ===== -->
         <button onclick="openDoorAnimation()" class="btn-primary" id="viewInviteBtn">
             <span>💜</span> View Invitation
         </button>
 
-        <!-- ===== SHARE BUTTON - VISIBLE ONLY FOR SENDER ===== -->
+        <!-- ===== SHARE BUTTON - WITH IMAGE ===== -->
         <div id="shareButtonContainer" style="display: none;">
-            <button onclick="shareInvitation()" class="btn-whatsapp">
-                <span>📤</span> Share on WhatsApp
+            <button onclick="shareInvitationWithImage()" class="btn-whatsapp">
+                <span>📤</span> Share Invitation
             </button>
         </div>
 
@@ -98,10 +98,7 @@
     <!-- 🚪 FULL PAGE DOOR - HIDDEN INITIALLY          -->
     <!-- ============================================== -->
     <div id="doorOverlay" class="door-overlay">
-        <!-- 🖼️ BACKGROUND IMAGE -->
         <div class="door-bg-image"></div>
-        
-        <!-- Decorative top border -->
         <div class="door-top-deco">
             <span>✦</span>
             <span>💜</span>
@@ -111,62 +108,37 @@
             <span>💜</span>
             <span>✦</span>
         </div>
-        
-        <!-- Door Container - Full Page -->
         <div class="door-container">
-            <!-- Left Door -->
             <div class="door-left">
                 <div class="door-panel">
-                    <div class="door-design">
-                        <div class="door-pattern"></div>
-                    </div>
+                    <div class="door-design"><div class="door-pattern"></div></div>
                     <div class="door-handle"></div>
                     <div class="door-ornament">✦ ✦ ✦</div>
                 </div>
             </div>
-            <!-- Right Door -->
             <div class="door-right">
                 <div class="door-panel">
-                    <div class="door-design">
-                        <div class="door-pattern"></div>
-                    </div>
+                    <div class="door-design"><div class="door-pattern"></div></div>
                     <div class="door-handle"></div>
                     <div class="door-ornament">✦ ✦ ✦</div>
                 </div>
             </div>
-            <!-- Center Heart -->
             <div class="door-heart">💜</div>
-            <!-- Center Text -->
             <div class="door-center-text">
                 <span class="center-title">Lahiru &amp; Salomi</span>
                 <span class="center-sub">14 September 2026</span>
             </div>
-            <!-- Door Ring -->
             <div class="door-ring"></div>
-            <!-- Door Lock -->
             <div class="door-lock"></div>
         </div>
-        
-        <!-- Bottom Text -->
         <div class="door-bottom-text">
             <span class="bottom-line">"The Beginning of Forever"</span>
             <span class="bottom-sub">✨ Opening Invitation ✨</span>
         </div>
-        
-        <!-- Floating particles -->
         <div class="door-particles">
-            <span>✦</span>
-            <span>💜</span>
-            <span>✦</span>
-            <span>🤍</span>
-            <span>✦</span>
-            <span>💜</span>
-            <span>✦</span>
-            <span>🤍</span>
-            <span>✦</span>
-            <span>💜</span>
-            <span>✦</span>
-            <span>🤍</span>
+            <span>✦</span><span>💜</span><span>✦</span><span>🤍</span>
+            <span>✦</span><span>💜</span><span>✦</span><span>🤍</span>
+            <span>✦</span><span>💜</span><span>✦</span><span>🤍</span>
         </div>
     </div>
 
@@ -176,7 +148,6 @@
     <div id="invitationModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeInvitationAndGoBack()">&times;</span>
-
             <div class="modal-top-deco">
                 <span class="deco-icon">✦</span>
                 <span class="deco-icon">💜</span>
@@ -184,7 +155,6 @@
                 <span class="deco-icon">🤍</span>
                 <span class="deco-icon">✦</span>
             </div>
-
             <div class="modal-header">
                 <div class="modal-rings">💍</div>
                 <h1 class="modal-title">Lahiru <span class="modal-amp">&</span> Salomi</h1>
@@ -193,7 +163,6 @@
                     <span>✦</span> <span>🤍</span> <span>💜</span> <span>🤍</span> <span>✦</span>
                 </div>
             </div>
-
             <div class="invitation-message">
                 <div class="msg-icon">💜</div>
                 <p class="invitation-text" id="invitationText">
@@ -203,11 +172,9 @@
                     Your presence will make our day even more special. Please join us as we begin our journey together.
                 </p>
             </div>
-
             <div class="hero-photo-section">
                 <img src="wedding-photo.webp" alt="Lahiru & Salomi - Together" onerror="this.src='https://via.placeholder.com/800x400/8b5cf6/ffffff?text=💜+Lahiru+%26+Salomi'" />
             </div>
-
             <div class="gallery-section">
                 <h3 class="gallery-title">📸 අපගේ ඡායාරූප</h3>
                 <p class="gallery-sub">Our Memories</p>
@@ -238,7 +205,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="schedule-card">
                 <div class="schedule-card-header">
                     <div class="schedule-icon">⏰</div>
@@ -280,14 +246,12 @@
                     </div>
                 </div>
             </div>
-
             <div class="location-section">
                 <h3>📍 ස්ථානය / Location</h3>
                 <p class="location-name"><strong>Hotel Thisunya, Anamaduwa</strong></p>
                 <p class="location-desc">ආණමඩුව, පුත්තලම ප්‍රධාන මාර්ගයේ පිහිටා ඇත.</p>
                 <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Thisunya+Anamaduwa" target="_blank" class="map-btn">🗺️ මාර්ගය බලන්න (View on Map)</a>
             </div>
-
             <div class="rsvp-section">
                 <h3>💌 RSVP</h3>
                 <p class="rsvp-sub">කරුණාකර ඔබගේ පැමිණීම WhatsApp හෝ Email මගින් දන්වන්න</p>
@@ -307,7 +271,6 @@
                     <p class="form-footer">ඔබගේ ප්‍රියතම ක්‍රමය තෝරන්න</p>
                 </form>
             </div>
-
             <div class="modal-footer">
                 <div class="footer-deco"><span>✦</span> <span>💜</span> <span>🤍</span> <span>💜</span> <span>✦</span></div>
                 <p class="modal-footer-quote">"Forever starts today..."</p>
