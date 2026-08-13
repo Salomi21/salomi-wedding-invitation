@@ -121,6 +121,49 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
+// 🎯 SHARE INVITATION WITH IMAGE (WhatsApp)
+// ================================================================
+
+function shareInvitationWithImage() {
+    const imageUrl = "https://i.ibb.co/Q78bqW2y/sticker.webp";
+    const inviteLink = "https://salomi-wedding-invitation.vercel.app/?qr=true";
+    
+    let message = `💜 *Lahiru & Salomi - Wedding Invitation* 💜\n\n`;
+    message += `📸 *Invitation:*\n${imageUrl}\n\n`;
+    message += `📅 *Date:* 14 September 2026\n`;
+    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
+    message += `✨ *View Full Invitation:*\n${inviteLink}\n\n`;
+    message += `💜 සුභ විවාහයක් වේවා! 🤍`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+}
+
+// ================================================================
+// 🎯 CHECK IF VIEWED VIA QR CODE
+// ================================================================
+
+function checkQRCode() {
+    const params = new URLSearchParams(window.location.search);
+    const isQR = params.get('qr');
+    
+    if (isQR === 'true') {
+        // Hide share button
+        const shareContainer = document.getElementById('shareButtonContainer');
+        if (shareContainer) {
+            shareContainer.style.display = 'none';
+        }
+        
+        // Auto open invitation after 1.5 seconds
+        setTimeout(function() {
+            openDoorAnimation();
+        }, 1500);
+    }
+}
+
+// ================================================================
 // 🚪 SLOW DOOR OPEN ANIMATION - 5 SECONDS TOTAL
 // ================================================================
 
@@ -280,7 +323,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 // ================================================================
-// 🎯 SHARE INVITATION
+// 🎯 SHARE INVITATION (Normal - without image)
 // ================================================================
 
 function shareInvitation() {
@@ -499,6 +542,7 @@ function forceAutoPlay() {
 document.addEventListener('DOMContentLoaded', function() {
     displayGuestName();
     checkAndHideButtons();
+    checkQRCode();  // QR code check එක
     
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
