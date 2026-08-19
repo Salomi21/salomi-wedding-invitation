@@ -511,7 +511,7 @@ body::after {
     opacity: 0;
     z-index: 0;
     filter: blur(10px) brightness(0.3);
-    transition: opacity 30s ease, filter 30s ease, transform 30s ease;
+    transition: opacity 20s ease, filter 20s ease, transform 20s ease;
 }
 
 .door-overlay.open .door-bg-image {
@@ -1150,7 +1150,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL - VERY SLOW FADE IN (8 seconds)                       */
+/* 🎯 MODAL - VERY SLOW FADE IN (5 seconds)                       */
 /* ================================================================ */
 
 @keyframes modalVerySlowFadeIn {
@@ -1158,33 +1158,21 @@ body::after {
         opacity: 0; 
         transform: scale(0.80) translateY(100px); 
     }
-    12% { 
-        opacity: 0.05; 
-        transform: scale(0.82) translateY(85px); 
+    20% { 
+        opacity: 0.1; 
+        transform: scale(0.85) translateY(80px); 
     }
-    25% { 
-        opacity: 0.15; 
-        transform: scale(0.85) translateY(70px); 
+    40% { 
+        opacity: 0.25; 
+        transform: scale(0.90) translateY(55px); 
     }
-    37% { 
-        opacity: 0.30; 
-        transform: scale(0.89) translateY(55px); 
+    60% { 
+        opacity: 0.5; 
+        transform: scale(0.95) translateY(30px); 
     }
-    50% { 
-        opacity: 0.45; 
-        transform: scale(0.93) translateY(38px); 
-    }
-    62% { 
-        opacity: 0.60; 
-        transform: scale(0.96) translateY(25px); 
-    }
-    75% { 
+    80% { 
         opacity: 0.75; 
         transform: scale(0.98) translateY(12px); 
-    }
-    87% { 
-        opacity: 0.88; 
-        transform: scale(0.99) translateY(5px); 
     }
     100% { 
         opacity: 1; 
@@ -1231,7 +1219,7 @@ body::after {
     position: relative;
     color: #f0e6f6;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: modalVerySlowFadeIn 8s ease forwards;
+    animation: modalVerySlowFadeIn 5s ease forwards;
 }
 
 .modal-content::before {
