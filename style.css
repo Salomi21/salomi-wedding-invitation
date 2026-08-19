@@ -511,7 +511,7 @@ body::after {
     opacity: 0;
     z-index: 0;
     filter: blur(10px) brightness(0.3);
-    transition: opacity 6s ease, filter 6s ease, transform 6s ease;
+    transition: opacity 8s ease, filter 8s ease, transform 8s ease;
 }
 
 .door-overlay.open .door-bg-image {
@@ -579,7 +579,7 @@ body::after {
     top: 0;
     width: 50%;
     height: 100%;
-    transition: transform 6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 8s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
     overflow: hidden;
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.4);
@@ -777,7 +777,7 @@ body::after {
     font-size: 100px;
     z-index: 10;
     opacity: 0;
-    transition: all 2s ease;
+    transition: all 3s ease;
     text-shadow: 
         0 0 60px rgba(192, 132, 252, 0.3),
         0 0 120px rgba(192, 132, 252, 0.15),
@@ -788,7 +788,7 @@ body::after {
 .door-overlay.open .door-heart {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    animation: heartReveal 2.5s ease forwards;
+    animation: heartReveal 3.5s ease forwards;
 }
 
 @keyframes heartReveal {
@@ -821,14 +821,14 @@ body::after {
     text-align: center;
     z-index: 10;
     opacity: 0;
-    transition: all 2.5s ease;
-    transition-delay: 0.5s;
+    transition: all 3.5s ease;
+    transition-delay: 0.8s;
     width: 92%;
 }
 
 .door-overlay.open .door-center-text {
     opacity: 1;
-    animation: textReveal 2s ease forwards;
+    animation: textReveal 3s ease forwards;
 }
 
 @keyframes textReveal {
@@ -897,7 +897,7 @@ body::after {
     background: radial-gradient(circle, rgba(255, 215, 0, 0.06), transparent);
     border: 2px solid rgba(255, 215, 0, 0.08);
     z-index: 5;
-    transition: all 2s ease;
+    transition: all 3s ease;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.02);
 }
 
@@ -909,7 +909,7 @@ body::after {
     transform: translate(-50%, -50%);
     font-size: 26px;
     opacity: 0.4;
-    transition: all 2s ease;
+    transition: all 3s ease;
     filter: grayscale(0.3);
 }
 
@@ -924,7 +924,7 @@ body::after {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.2);
     filter: grayscale(0);
-    animation: lockOpen 1.8s ease forwards;
+    animation: lockOpen 2.5s ease forwards;
     text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
@@ -991,14 +991,14 @@ body::after {
     text-align: center;
     z-index: 2;
     opacity: 0;
-    transition: all 2.5s ease;
-    transition-delay: 1s;
+    transition: all 3.5s ease;
+    transition-delay: 1.5s;
     width: 90%;
 }
 
 .door-overlay.open .door-bottom-text {
     opacity: 1;
-    animation: bottomTextReveal 2s ease forwards;
+    animation: bottomTextReveal 3s ease forwards;
 }
 
 @keyframes bottomTextReveal {
@@ -1150,29 +1150,41 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL - VERY SLOW FADE IN (5 seconds)                       */
+/* 🎯 MODAL - VERY SLOW FADE IN (8 seconds)                       */
 /* ================================================================ */
 
 @keyframes modalVerySlowFadeIn {
     0% { 
         opacity: 0; 
-        transform: scale(0.85) translateY(80px); 
+        transform: scale(0.80) translateY(100px); 
     }
-    20% { 
-        opacity: 0.1; 
-        transform: scale(0.88) translateY(65px); 
+    12% { 
+        opacity: 0.05; 
+        transform: scale(0.82) translateY(85px); 
     }
-    40% { 
-        opacity: 0.25; 
-        transform: scale(0.92) translateY(50px); 
+    25% { 
+        opacity: 0.15; 
+        transform: scale(0.85) translateY(70px); 
     }
-    60% { 
-        opacity: 0.5; 
-        transform: scale(0.96) translateY(30px); 
+    37% { 
+        opacity: 0.30; 
+        transform: scale(0.89) translateY(55px); 
     }
-    80% { 
+    50% { 
+        opacity: 0.45; 
+        transform: scale(0.93) translateY(38px); 
+    }
+    62% { 
+        opacity: 0.60; 
+        transform: scale(0.96) translateY(25px); 
+    }
+    75% { 
         opacity: 0.75; 
-        transform: scale(0.99) translateY(12px); 
+        transform: scale(0.98) translateY(12px); 
+    }
+    87% { 
+        opacity: 0.88; 
+        transform: scale(0.99) translateY(5px); 
     }
     100% { 
         opacity: 1; 
@@ -1219,7 +1231,7 @@ body::after {
     position: relative;
     color: #f0e6f6;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: modalVerySlowFadeIn 5s ease forwards;
+    animation: modalVerySlowFadeIn 8s ease forwards;
 }
 
 .modal-content::before {
