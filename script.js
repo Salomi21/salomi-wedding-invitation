@@ -152,14 +152,28 @@ async function shareInvitationWithImage() {
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
     const encodedMessage = encodeURIComponent(message);
-    
-    // ✅ නිවැරදි WhatsApp URL - mobile එකට හොඳට වැඩ කරනවා
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     
-    // ✅ Mobile Share API - share menu එක open කරනවා (මේක ඉවත් කරමු)
-    // ඒ වෙනුවට සෘජුවම WhatsApp open කරමු
+    if (navigator.share) {
+        try {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            const file = new File([blob], "invitation.jpg", { type: "image/jpeg" });
+            
+            const shareData = {
+                title: "Lahiru & Salomi - Wedding Invitation",
+                text: message,
+                files: [file]
+            };
+            
+            await navigator.share(shareData);
+            return;
+        } catch (err) {
+            console.log("Share cancelled:", err);
+            return;
+        }
+    }
     
-    // ✅ අලුත් tab එකක WhatsApp open කරන්න
     window.open(whatsappURL, '_blank');
 }
 
@@ -184,7 +198,7 @@ function checkQRCode() {
 }
 
 // ================================================================
-// 🚪 SLOW DOOR OPEN ANIMATION - 5 SECONDS TOTAL
+// 🚪 SLOW DOOR OPEN ANIMATION - 30 SECONDS TOTAL
 // ================================================================
 
 function openDoorAnimation() {
@@ -198,7 +212,7 @@ function openDoorAnimation() {
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
-        bgImage.style.transition = 'opacity 3.5s ease';
+        bgImage.style.transition = 'opacity 30s ease';
     }
     
     mainCard.style.transition = 'opacity 0.5s ease';
@@ -225,17 +239,18 @@ function openDoorAnimation() {
         
     }, 500);
     
+    // ✅ 30s = 30000ms
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
             openInvitationVerySlow();
         }, 400);
-    }, 5000);
+    }, 30000);  // ← තත්පර 30
 }
 
 // ================================================================
-// 🎯 OPEN INVITATION WITH VERY SLOW FADE IN (3s)
+// 🎯 OPEN INVITATION WITH VERY SLOW FADE IN (5s)
 // ================================================================
 
 function openInvitationVerySlow() {
@@ -244,7 +259,7 @@ function openInvitationVerySlow() {
         modal.classList.add('show');
         const content = modal.querySelector('.modal-content');
         if (content) {
-            content.style.animation = 'modalVerySlowFadeIn 3s ease forwards';
+            content.style.animation = 'modalVerySlowFadeIn 5s ease forwards';
         }
         document.body.style.overflow = 'hidden';
     }
