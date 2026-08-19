@@ -17,7 +17,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ----- BACKGROUND IMAGE - photo1.jpeg (Main Background) ----- */
+/* ----- BACKGROUND IMAGE - photo14.jpeg (Main Background) ----- */
 body::before {
     content: "";
     position: fixed;
@@ -25,7 +25,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("photo1.jpeg") center/cover fixed no-repeat;
+    background: url("photo14.jpeg") center/cover fixed no-repeat;
     filter: blur(2px) brightness(0.75) saturate(1.1);
     transform: scale(1.02);
     z-index: 0;
@@ -498,7 +498,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🖼️ BACKGROUND IMAGE - photo4.jpeg (Door Background)           */
+/* 🖼️ BACKGROUND IMAGE - photo1.jpeg (Door Background)           */
 /* ================================================================ */
 
 .door-bg-image {
@@ -507,7 +507,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("photo4.jpeg") center/cover no-repeat;
+    background: url("photo1.jpeg") center/cover no-repeat;
     opacity: 0;
     z-index: 0;
     filter: blur(10px) brightness(0.3);
