@@ -883,12 +883,12 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🔒 DOOR LOCK - WITH OPEN ANIMATION                             */
+/* 🔒 DOOR LOCK - MOVED UP (උඩට ගෙනිහින්)                       */
 /* ================================================================ */
 
 .door-lock {
     position: absolute;
-    bottom: 5%;
+    bottom: 18%;
     left: 50%;
     transform: translateX(-50%);
     width: 50px;
@@ -980,10 +980,80 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📝 BOTTOM TEXT - REMOVED (යටින් තියෙන text එක අයින් කරලා)  */
+/* 📝 "The Beginning of Forever" - ATTRACTIVE TEXT                */
 /* ================================================================ */
 
-/* door-bottom-text සම්පූර්ණයෙන්ම ඉවත් කර ඇත */
+.door-bottom-text {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    transition: all 1.8s ease;
+    transition-delay: 0.8s;
+    width: 90%;
+}
+
+.door-overlay.open .door-bottom-text {
+    opacity: 1;
+    animation: bottomTextReveal 1.5s ease forwards;
+}
+
+@keyframes bottomTextReveal {
+    0% { 
+        opacity: 0; 
+        transform: translateX(-50%) scale(0.8) translateY(20px); 
+    }
+    50% { 
+        opacity: 0.6; 
+        transform: translateX(-50%) scale(1.05) translateY(-5px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateX(-50%) scale(1) translateY(0); 
+    }
+}
+
+.bottom-line {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: #ffd700;
+    text-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.2),
+        0 0 60px rgba(255, 215, 0, 0.08),
+        0 0 100px rgba(192, 132, 252, 0.05);
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ffd700, #ffe082, #ffd700, #c084fc, #ffd700);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: goldShineText 4s ease-in-out infinite;
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255, 215, 0, 0.06);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.06);
+    display: inline-block;
+}
+
+@keyframes goldShineText {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.bottom-sub {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #c084fc;
+    margin-top: 8px;
+    letter-spacing: 6px;
+    font-weight: 300;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.1);
+    opacity: 0.7;
+}
 
 /* ================================================================ */
 /* ✨ DOOR PARTICLES                                              */
@@ -2190,9 +2260,16 @@ body::after {
     .door-ornament { font-size: 10px; letter-spacing: 6px; }
     .door-left { border-radius: 20px 0 0 20px; }
     .door-right { border-radius: 0 20px 20px 0; }
-    .door-lock { width: 34px; height: 34px; bottom: 5%; }
+    .door-lock { 
+        width: 34px; 
+        height: 34px; 
+        bottom: 15%;
+    }
     .door-lock::before { font-size: 16px; }
     .door-center-text { top: 30%; }
+    .bottom-line { font-size: 18px; }
+    .bottom-sub { font-size: 11px; }
+    .door-bottom-text { bottom: 3%; }
     
     .modal-content {
         padding: 22px 16px 22px 16px;
@@ -2245,9 +2322,16 @@ body::after {
     .door-handle { width: 10px; height: 30px; }
     .door-left .door-handle { right: 8px; }
     .door-right .door-handle { left: 8px; }
-    .door-lock { width: 30px; height: 30px; bottom: 5%; }
+    .door-lock { 
+        width: 30px; 
+        height: 30px; 
+        bottom: 12%;
+    }
     .door-lock::before { font-size: 14px; }
     .door-center-text { top: 28%; }
+    .bottom-line { font-size: 15px; }
+    .bottom-sub { font-size: 10px; }
+    .door-bottom-text { bottom: 2%; }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
     .schedule-time { font-size: 10px; min-width: 45px; }
@@ -2272,6 +2356,9 @@ body::after {
     .center-title { font-size: 42px; }
     .center-sub { font-size: 20px; }
     .door-center-text { top: 33%; }
+    .door-lock { bottom: 16%; }
+    .bottom-line { font-size: 22px; }
+    .door-bottom-text { bottom: 4%; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -2282,6 +2369,8 @@ body::after {
     .door-heart { font-size: 90px; }
     .center-title { font-size: 48px; }
     .center-sub { font-size: 22px; }
+    .door-lock { bottom: 17%; }
+    .bottom-line { font-size: 26px; }
 }
 
 @media (min-width: 1025px) {
@@ -2294,6 +2383,8 @@ body::after {
     .door-heart { font-size: 100px; }
     .center-title { font-size: 56px; }
     .center-sub { font-size: 26px; }
+    .door-lock { bottom: 18%; }
+    .bottom-line { font-size: 28px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -2326,8 +2417,15 @@ body::after {
     .door-top-deco { font-size: 12px; letter-spacing: 8px; top: 5px; }
     .door-particles span { font-size: 12px; }
     .door-handle { width: 10px; height: 32px; }
-    .door-lock { width: 30px; height: 30px; bottom: 5%; }
+    .door-lock { 
+        width: 30px; 
+        height: 30px; 
+        bottom: 10%;
+    }
     .door-lock::before { font-size: 14px; }
+    .bottom-line { font-size: 16px; }
+    .bottom-sub { font-size: 10px; }
+    .door-bottom-text { bottom: 2%; }
     
     .rsvp-section { padding: 10px 8px 12px 8px; }
     .form-buttons { flex-direction: row; }
