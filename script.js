@@ -128,7 +128,6 @@ function checkAndHideButtons() {
 async function shareInvitationWithImage() {
     const imageUrl = "https://i.ibb.co/Q78bqW2y/sticker.webp";
     
-    // Name එක අහනවා
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
     if (guestName === null) return;
@@ -142,7 +141,6 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
-    // Message එක හදන්න
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
@@ -153,7 +151,9 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // Mobile Share API try කරන්න
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
@@ -174,9 +174,6 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // Fallback: WhatsApp Web
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 }
 
@@ -189,13 +186,11 @@ function checkQRCode() {
     const isQR = params.get('qr');
     
     if (isQR === 'true') {
-        // Hide share button
         const shareContainer = document.getElementById('shareButtonContainer');
         if (shareContainer) {
             shareContainer.style.display = 'none';
         }
         
-        // Auto open invitation after 1.5 seconds
         setTimeout(function() {
             openDoorAnimation();
         }, 1500);
@@ -210,19 +205,16 @@ function openDoorAnimation() {
     const doorOverlay = document.getElementById('doorOverlay');
     const mainCard = document.getElementById('mainCard');
     
-    // Reset door
     doorOverlay.classList.remove('open', 'hidden');
     doorOverlay.style.display = 'none';
     doorOverlay.style.opacity = '0';
     
-    // Reset BG image
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
         bgImage.style.transition = 'opacity 3.5s ease';
     }
     
-    // Hide main card
     mainCard.style.transition = 'opacity 0.5s ease';
     mainCard.style.opacity = '0';
     
@@ -230,18 +222,15 @@ function openDoorAnimation() {
         mainCard.style.display = 'none';
     }, 500);
     
-    // Show door overlay with fade in
     setTimeout(() => {
         doorOverlay.style.display = 'flex';
         doorOverlay.style.opacity = '1';
         doorOverlay.style.transition = 'opacity 0.6s ease';
     }, 50);
     
-    // 🐌 SLOW DOOR OPEN - starts after 0.5s, takes 3.5s
     setTimeout(() => {
         doorOverlay.classList.add('open');
         
-        // 🐌 SLOW BG IMAGE - appears slowly over 3.5s
         setTimeout(() => {
             if (bgImage) {
                 bgImage.style.opacity = '0.85';
@@ -250,12 +239,10 @@ function openDoorAnimation() {
         
     }, 500);
     
-    // 🐌 SLOW INVITATION - shown after door fully opens (5s total)
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
-            // 🐌 SLOW INVITATION FADE IN - 3 seconds
             openInvitationVerySlow();
         }, 400);
     }, 5000);
@@ -285,25 +272,21 @@ function closeInvitationAndGoBack() {
     const modal = document.getElementById('invitationModal');
     const mainCard = document.getElementById('mainCard');
     
-    // Close modal
     if (modal) {
         modal.classList.remove('show');
         document.body.style.overflow = 'auto';
     }
     
-    // Reset door for next time
     const doorOverlay = document.getElementById('doorOverlay');
     doorOverlay.classList.remove('open', 'hidden');
     doorOverlay.style.display = 'none';
     doorOverlay.style.opacity = '0';
     
-    // Reset BG image
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
     }
     
-    // Show main card with fade in
     setTimeout(() => {
         mainCard.style.display = 'block';
         mainCard.style.opacity = '0';
@@ -351,9 +334,9 @@ function shareInvitation() {
     }
     guestName = guestName.trim();
     
-    const url = window.location.href.split('?')[0];
+    const baseUrl = window.location.href.split('?')[0];
     const encodedName = encodeURIComponent(guestName);
-    const shareUrl = `${url}?name=${encodedName}`;
+    const shareUrl = `${baseUrl}?name=${encodedName}`;
     
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
@@ -367,6 +350,7 @@ function shareInvitation() {
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    
     window.open(whatsappURL, '_blank');
 }
 
@@ -406,7 +390,6 @@ function validateForm() {
 // ================================================================
 
 function saveToGoogleSheets(formData) {
-    // ⚠️ මෙතනට ඔයාගේ Web App URL එක දාන්න
     const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
     
     fetch(WEB_APP_URL, {
@@ -431,7 +414,6 @@ function sendWhatsApp() {
     
     const { name, phone, attendance, notes } = getFormData();
     
-    // Save to Google Sheets first
     saveToGoogleSheets({ name, phone, attendance, notes });
     
     const whatsappNumber = '94716521119';
@@ -460,7 +442,6 @@ function sendEmail() {
     
     const { name, phone, attendance, notes } = getFormData();
     
-    // Save to Google Sheets first
     saveToGoogleSheets({ name, phone, attendance, notes });
     
     const emailAddress = 'salomirechali9999@gmail.com';
@@ -560,7 +541,7 @@ function forceAutoPlay() {
 document.addEventListener('DOMContentLoaded', function() {
     displayGuestName();
     checkAndHideButtons();
-    checkQRCode();  // QR code check එක
+    checkQRCode();
     
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
