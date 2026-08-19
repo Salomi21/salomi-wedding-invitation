@@ -511,7 +511,7 @@ body::after {
     opacity: 0;
     z-index: 0;
     filter: blur(10px) brightness(0.3);
-    transition: opacity 120s ease, filter 120s ease, transform 120s ease;
+    transition: opacity 30s ease, filter 30s ease, transform 30s ease;
 }
 
 .door-overlay.open .door-bg-image {
