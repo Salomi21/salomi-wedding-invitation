@@ -89,7 +89,7 @@ function displayGuestName() {
         
         const subtitle = document.getElementById('mainSubtitle');
         if (subtitle) {
-            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
+            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
             subtitle.style.color = '#f5edff';
             subtitle.style.fontSize = '16px';
             subtitle.style.letterSpacing = '2px';
@@ -149,7 +149,7 @@ async function shareInvitationWithImage() {
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
     message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
     message += `─────────────────────\n`;
-    message += `💜 කරුණාකර ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
+    message += `💜 ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
@@ -361,7 +361,7 @@ function shareInvitation() {
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
     message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
     message += `─────────────────────\n`;
-    message += `💜 කරුණාකර ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
+    message += `💜 ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
