@@ -150,20 +150,18 @@ body::after {
     margin: 30px auto;
     padding: 40px 25px 50px 25px;
     background: linear-gradient(145deg, 
-        rgba(255, 255, 255, 0.08),
-        rgba(139, 92, 246, 0.06),
-        rgba(255, 215, 0, 0.02)
+        rgba(255, 255, 255, 0.06),
+        rgba(139, 92, 246, 0.04)
     );
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 28px;
     text-align: center;
-    border: 1px solid rgba(255, 215, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.35),
         0 0 40px rgba(139, 92, 246, 0.04),
-        0 0 60px rgba(255, 215, 0, 0.02),
-        inset 0 1px 0 rgba(255, 215, 0, 0.06);
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
 }
 
@@ -171,8 +169,7 @@ body::after {
     transform: translateY(-3px);
     box-shadow: 
         0 25px 70px rgba(0, 0, 0, 0.4),
-        0 0 50px rgba(139, 92, 246, 0.06),
-        0 0 80px rgba(255, 215, 0, 0.03);
+        0 0 50px rgba(139, 92, 246, 0.06);
 }
 
 .container::before {
@@ -184,25 +181,16 @@ body::after {
     bottom: -1px;
     background: linear-gradient(45deg, 
         #8b5cf6, 
-        #ffd700,
         #c084fc, 
         #ffffff,
-        #ffd700,
         #a855f7,
-        #ffd700,
+        #ffffff,
         #c084fc,
         #8b5cf6
     );
-    background-size: 300% 300%;
     border-radius: 29px;
     z-index: -1;
-    opacity: 0.12;
-    animation: borderShine 6s ease-in-out infinite;
-}
-
-@keyframes borderShine {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    opacity: 0.15;
 }
 
 /* ----- RINGS - Light Pulse ----- */
@@ -222,13 +210,13 @@ body::after {
 .decorative-line {
     font-size: 12px;
     letter-spacing: 10px;
-    color: #ffd700;
+    color: #c084fc;
     margin-bottom: 5px;
     opacity: 0.5;
 }
 
 /* ================================================================ */
-/* 🎯 TITLE - GOLD & PURPLE MATCHING BACKGROUND COLORS           */
+/* 🎯 TITLE - MORE GOLD & LESS PURPLE - PERFECT MATCH            */
 /* ================================================================ */
 .title {
     font-family: 'Great Vibes', cursive;
@@ -274,10 +262,9 @@ body::after {
     font-size: 14px;
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: #ffd700;
+    color: #e8d5ff;
     margin-bottom: 12px;
-    opacity: 0.7;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    opacity: 0.8;
 }
 
 /* ----- DIVIDER ----- */
@@ -296,16 +283,16 @@ body::after {
     content: "";
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    background: linear-gradient(90deg, transparent, #c084fc, transparent);
 }
 
 .divider-icon {
     font-size: 16px;
 }
 
-.divider-icon:nth-child(1) { color: #ffd700; }
+.divider-icon:nth-child(1) { color: #ffffff; }
 .divider-icon:nth-child(2) { color: #c084fc; }
-.divider-icon:nth-child(3) { color: #ffd700; }
+.divider-icon:nth-child(3) { color: #ffffff; }
 
 /* ================================================================ */
 /* 🎯 DATE - GOLD GRADIENT HIGHLIGHT                              */
@@ -338,15 +325,15 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 VENUE - GOLD & WHITE HIGHLIGHT                             */
+/* 🎯 VENUE - WHITE BOLD HIGHLIGHT                                */
 /* ================================================================ */
 .highlight-venue {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 20px;
-    color: #ffd700;
+    color: #ffffff;
     display: inline-block;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.15), 0 0 60px rgba(255, 215, 0, 0.05);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     letter-spacing: 1px;
 }
 
@@ -369,17 +356,16 @@ body::after {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 24px;
-    background: rgba(255, 215, 0, 0.06);
+    background: rgba(139, 92, 246, 0.08);
     padding: 10px 20px;
     border-radius: 50px;
     display: inline-block;
-    border: 1px solid rgba(255, 215, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     margin: 8px 0 12px 0;
     letter-spacing: 2px;
-    color: #ffd700;
+    color: #f5edff;
     width: auto;
     min-width: 200px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
 }
 
 /* ----- SINHALA TEXT ----- */
@@ -387,8 +373,8 @@ body::after {
     font-family: 'Lato', sans-serif;
     font-size: 13px;
     letter-spacing: 2px;
-    color: #ffd700;
-    opacity: 0.5;
+    color: #e8d5ff;
+    opacity: 0.6;
     margin: 8px 0 5px 0;
     text-transform: uppercase;
     font-weight: 600;
@@ -480,14 +466,13 @@ body::after {
     margin-top: 25px;
     font-family: 'Great Vibes', cursive;
     font-size: 20px;
-    color: #ffd700;
-    border-top: 1px solid rgba(255, 215, 0, 0.06);
+    color: #d8b4fe;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     padding-top: 15px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
 }
 
 /* ================================================================ */
-/* 🚪 FULL PAGE DOOR - GOLD & PURPLE THEME                       */
+/* 🚪 FULL PAGE DOOR - PURPLE THEME                               */
 /* ================================================================ */
 
 .door-overlay {
@@ -555,7 +540,7 @@ body::after {
     letter-spacing: 15px;
     z-index: 2;
     opacity: 0.6;
-    color: #ffd700;
+    color: #c084fc;
 }
 
 .door-top-deco span {
@@ -563,9 +548,9 @@ body::after {
     animation: decoFloat 3s ease-in-out infinite;
 }
 
-.door-top-deco span:nth-child(2) { animation-delay: 0.3s; color: #c084fc; }
+.door-top-deco span:nth-child(2) { animation-delay: 0.3s; color: #ffd700; }
 .door-top-deco span:nth-child(4) { animation-delay: 0.6s; color: #ffffff; }
-.door-top-deco span:nth-child(6) { animation-delay: 0.9s; color: #c084fc; }
+.door-top-deco span:nth-child(6) { animation-delay: 0.9s; color: #ffd700; }
 
 @keyframes decoFloat {
     0%, 100% { transform: translateY(0) scale(1); }
@@ -667,7 +652,7 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 215, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     overflow: hidden;
 }
 
@@ -854,12 +839,11 @@ body::after {
     display: block;
     font-family: 'Playfair Display', serif;
     font-size: 22px;
-    color: #ffd700;
+    color: #d8b4fe;
     margin-top: 8px;
     letter-spacing: 8px;
     font-weight: 300;
-    text-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
-    opacity: 0.8;
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.2);
 }
 
 @keyframes textGlow {
@@ -950,7 +934,7 @@ body::after {
     width: calc(100% + 40px);
     height: calc(100% + 40px);
     border-radius: 40px;
-    border: 2px dashed rgba(255, 215, 0, 0.06);
+    border: 2px dashed rgba(192, 132, 252, 0.06);
     animation: ringSpin 30s linear infinite;
     pointer-events: none;
     z-index: 0;
@@ -988,8 +972,8 @@ body::after {
     display: block;
     font-family: 'Great Vibes', cursive;
     font-size: 24px;
-    color: #ffd700;
-    text-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
+    color: #d8b4fe;
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.1);
     letter-spacing: 2px;
 }
 
@@ -997,7 +981,7 @@ body::after {
     display: block;
     font-family: 'Lato', sans-serif;
     font-size: 13px;
-    color: #c084fc;
+    color: #a78bba;
     margin-top: 5px;
     letter-spacing: 6px;
     font-weight: 300;
@@ -1073,7 +1057,7 @@ body::after {
     width: 200%;
     height: 200%;
     background: radial-gradient(circle at center, 
-        rgba(255, 215, 0, 0.04) 0%, 
+        rgba(192, 132, 252, 0.04) 0%, 
         rgba(139, 92, 246, 0.02) 30%,
         transparent 60%
     );
@@ -1157,9 +1141,8 @@ body::after {
 
 .modal-content {
     background: linear-gradient(145deg, 
-        rgba(255, 215, 0, 0.04),
-        rgba(139, 92, 246, 0.04),
-        rgba(255, 215, 0, 0.02)
+        rgba(255, 255, 255, 0.06),
+        rgba(139, 92, 246, 0.04)
     );
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -1171,10 +1154,10 @@ body::after {
     border-radius: 28px;
     box-shadow: 
         0 30px 80px rgba(0, 0, 0, 0.5),
-        0 0 60px rgba(255, 215, 0, 0.03);
+        0 0 60px rgba(139, 92, 246, 0.05);
     position: relative;
     color: #f0e6f6;
-    border: 1px solid rgba(255, 215, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     animation: modalVerySlowFadeIn 3s ease forwards;
 }
 
@@ -1192,12 +1175,10 @@ body::after {
     bottom: -2px;
     background: linear-gradient(45deg, 
         #8b5cf6, 
-        #ffd700,
         #c084fc, 
         #ffffff,
-        #ffd700,
         #a855f7,
-        #ffd700,
+        #ffffff,
         #c084fc,
         #8b5cf6
     );
@@ -1205,7 +1186,7 @@ body::after {
     border-radius: 30px;
     z-index: -1;
     animation: borderGlow 6s ease-in-out infinite;
-    opacity: 0.15;
+    opacity: 0.2;
 }
 
 @keyframes borderGlow {
@@ -1214,8 +1195,8 @@ body::after {
 }
 
 .modal-content::-webkit-scrollbar { width: 4px; }
-.modal-content::-webkit-scrollbar-track { background: rgba(255, 215, 0, 0.03); border-radius: 10px; }
-.modal-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8b5cf6, #ffd700); border-radius: 10px; }
+.modal-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
+.modal-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8b5cf6, #c084fc); border-radius: 10px; }
 
 /* ----- MODAL TOP DECORATION ----- */
 .modal-top-deco {
@@ -1226,7 +1207,7 @@ body::after {
 
 .modal-top-deco .deco-icon {
     font-size: 12px;
-    color: #ffd700;
+    color: #c084fc;
     opacity: 0.3;
     animation: decoPulse 3s ease-in-out infinite;
 }
@@ -1258,7 +1239,7 @@ body::after {
 }
 
 .close-btn:hover {
-    color: #ffd700;
+    color: #c084fc;
     transform: rotate(90deg);
 }
 
@@ -1284,7 +1265,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL TITLE - GOLD & PURPLE MATCHING                       */
+/* 🎯 MODAL TITLE - MORE GOLD & LESS PURPLE                      */
 /* ================================================================ */
 .modal-title {
     font-family: 'Great Vibes', cursive;
@@ -1320,11 +1301,10 @@ body::after {
 .modal-subtitle {
     font-family: 'Playfair Display', serif;
     font-size: 14px;
-    color: #ffd700;
+    color: #d8b4fe;
     letter-spacing: 5px;
     text-transform: uppercase;
-    opacity: 0.7;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+    opacity: 0.8;
 }
 
 .modal-divider {
@@ -1334,7 +1314,7 @@ body::after {
     gap: 8px;
     margin: 8px auto;
     font-size: 12px;
-    color: #ffd700;
+    color: #c084fc;
     opacity: 0.4;
 }
 
@@ -1342,8 +1322,8 @@ body::after {
     animation: dividerPulse 3s ease-in-out infinite;
 }
 
-.modal-divider span:nth-child(2) { animation-delay: 0.5s; color: #c084fc; }
-.modal-divider span:nth-child(4) { animation-delay: 1.5s; color: #c084fc; }
+.modal-divider span:nth-child(2) { animation-delay: 0.5s; color: #ffffff; }
+.modal-divider span:nth-child(4) { animation-delay: 1.5s; color: #ffffff; }
 
 @keyframes dividerPulse {
     0%, 100% { opacity: 0.4; transform: scale(1); }
@@ -1354,11 +1334,11 @@ body::after {
 /* 🎯 INVITATION MESSAGE - Beautiful Styling                       */
 /* ================================================================ */
 .invitation-message {
-    background: rgba(255, 215, 0, 0.04);
+    background: rgba(139, 92, 246, 0.06);
     padding: 20px 22px;
     border-radius: 16px;
     margin-bottom: 20px;
-    border-left: 3px solid #ffd700;
+    border-left: 3px solid #8b5cf6;
     position: relative;
     overflow: hidden;
 }
@@ -1370,7 +1350,7 @@ body::after {
     right: -50%;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.03), transparent 70%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.03), transparent 70%);
     pointer-events: none;
 }
 
@@ -1390,12 +1370,12 @@ body::after {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
     font-style: normal;
-    color: #ffd700;
+    color: #e8d5ff;
     text-align: center;
     margin-bottom: 8px;
     line-height: 1.5;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.08);
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.08);
     font-weight: 400;
 }
 
@@ -1409,14 +1389,14 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 HERO PHOTO - NO OVERLAY                                     */
+/* 🎯 HERO PHOTO - NO OVERLAY (සම්පූර්ණයෙන්ම පැහැදිලියි)      */
 /* ================================================================ */
 
 .hero-photo-section {
     margin: 6px 0 12px 0;
     border-radius: 20px;
     overflow: hidden;
-    border: 2px solid rgba(255, 215, 0, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.06);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -1432,6 +1412,9 @@ body::after {
     transform: scale(1.01);
 }
 
+/* ❌ Overlay එක සම්පූර්ණයෙන්ම ඉවත් කර ඇත */
+/* උඩින් හෝ යටින් කිසිදු overlay effect එකක් නැත */
+
 /* ================================================================ */
 /* 🎯 PHOTO GALLERY                                               */
 /* ================================================================ */
@@ -1442,11 +1425,10 @@ body::after {
 .gallery-title {
     font-size: 17px;
     font-weight: 700;
-    color: #ffd700;
+    color: #c084fc;
     text-align: center;
     margin-bottom: 2px;
     letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
 }
 
 .gallery-sub {
@@ -1470,14 +1452,14 @@ body::after {
     overflow: hidden;
     cursor: pointer;
     aspect-ratio: 1;
-    border: 2px solid rgba(255, 215, 0, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.04);
     transition: all 0.3s ease;
 }
 
 .gallery-item:hover {
     transform: scale(1.03);
-    border-color: rgba(255, 215, 0, 0.3);
-    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
 }
 
 .gallery-item img {
@@ -1513,26 +1495,26 @@ body::after {
 
 .gallery-icon {
     font-size: 24px;
-    color: #ffd700;
+    color: #fff;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* ================================================================ */
-/* 🎯 SCHEDULE CARD                                               */
+/* 🎯 SCHEDULE CARD - NO EFFECTS (Simple)                         */
 /* ================================================================ */
 .schedule-card {
-    background: rgba(255, 215, 0, 0.03);
+    background: rgba(255, 255, 255, 0.04);
     border-radius: 16px;
     padding: 16px 16px 14px 16px;
     margin: 8px 0 14px 0;
-    border: 1px solid rgba(255, 215, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .schedule-card-header {
     text-align: center;
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .schedule-icon {
@@ -1544,10 +1526,9 @@ body::after {
 .schedule-title {
     font-size: 17px;
     font-weight: 700;
-    color: #ffd700;
+    color: #c084fc;
     margin-bottom: 2px;
     letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
 }
 
 .schedule-sub {
@@ -1570,7 +1551,7 @@ body::after {
     top: 5px;
     bottom: 5px;
     width: 2px;
-    background: rgba(255, 215, 0, 0.15);
+    background: rgba(139, 92, 246, 0.15);
     border-radius: 10px;
 }
 
@@ -1591,7 +1572,7 @@ body::after {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 13px;
-    color: #ffd700;
+    color: #c084fc;
     min-width: 68px;
     padding-top: 2px;
 }
@@ -1602,11 +1583,10 @@ body::after {
     min-width: 10px;
     margin-top: 4px;
     border-radius: 50%;
-    background: #ffd700;
-    border: 2px solid rgba(255, 215, 0, 0.2);
+    background: #8b5cf6;
+    border: 2px solid rgba(255, 255, 255, 0.06);
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
 }
 
 .schedule-content {
@@ -1628,24 +1608,23 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 LOCATION SECTION                                             */
+/* 🎯 LOCATION SECTION - With Effects                              */
 /* ================================================================ */
 .location-section {
     margin: 5px 0 15px 0;
-    background: rgba(255, 215, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: 16px;
     padding: 12px 16px 16px 16px;
-    border: 1px solid rgba(255, 215, 0, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .location-section h3 {
     font-size: 17px;
-    color: #ffd700;
-    border-bottom: 2px solid rgba(255, 215, 0, 0.08);
+    color: #c084fc;
+    border-bottom: 2px solid rgba(192, 132, 252, 0.08);
     padding-bottom: 10px;
     margin: 0 0 12px 0;
     font-weight: 700;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
 }
 
 .location-section p {
@@ -1666,38 +1645,38 @@ body::after {
 .map-btn {
     display: inline-block;
     margin-top: 10px;
-    background: linear-gradient(145deg, #ffd700, #f9a825);
-    color: #1a0a2e;
+    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+    color: #fff;
     padding: 10px 25px;
     border-radius: 30px;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
 }
 
 .map-btn:hover {
     transform: scale(1.03);
-    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.25);
-    background: linear-gradient(145deg, #f9a825, #f57f17);
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.25);
+    background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
 /* ================================================================ */
-/* 🎯 RSVP SECTION                                                 */
+/* 🎯 RSVP SECTION - WITH BRIGHTNESS/GLOW EFFECT                   */
 /* ================================================================ */
 .rsvp-section {
     margin: 5px 0 15px 0;
-    background: rgba(255, 215, 0, 0.03);
+    background: rgba(139, 92, 246, 0.04);
     border-radius: 16px;
     padding: 18px 18px 20px 18px;
-    border: 1px solid rgba(255, 215, 0, 0.06);
+    border: 1px solid rgba(139, 92, 246, 0.08);
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 
-        0 0 20px rgba(255, 215, 0, 0.02),
-        inset 0 0 30px rgba(255, 215, 0, 0.01);
+        0 0 20px rgba(139, 92, 246, 0.03),
+        inset 0 0 30px rgba(139, 92, 246, 0.02);
 }
 
 .rsvp-section::before {
@@ -1708,7 +1687,7 @@ body::after {
     width: 200%;
     height: 200%;
     background: radial-gradient(ellipse at center, 
-        rgba(255, 215, 0, 0.04) 0%, 
+        rgba(192, 132, 252, 0.04) 0%, 
         transparent 60%
     );
     animation: rsvpGlow 4s ease-in-out infinite;
@@ -1735,9 +1714,9 @@ body::after {
     bottom: -2px;
     background: linear-gradient(45deg, 
         transparent, 
-        rgba(255, 215, 0, 0.05), 
-        rgba(139, 92, 246, 0.05),
+        rgba(192, 132, 252, 0.05), 
         rgba(255, 215, 0, 0.05),
+        rgba(192, 132, 252, 0.05),
         transparent
     );
     border-radius: 18px;
@@ -1752,21 +1731,21 @@ body::after {
 
 .rsvp-section:hover {
     box-shadow: 
-        0 0 30px rgba(255, 215, 0, 0.06),
-        0 0 60px rgba(255, 215, 0, 0.03),
-        inset 0 0 40px rgba(255, 215, 0, 0.02);
-    border-color: rgba(255, 215, 0, 0.12);
+        0 0 30px rgba(139, 92, 246, 0.08),
+        0 0 60px rgba(139, 92, 246, 0.04),
+        inset 0 0 40px rgba(139, 92, 246, 0.03);
+    border-color: rgba(192, 132, 252, 0.15);
     transform: translateY(-1px);
 }
 
 .rsvp-section h3 {
     font-size: 17px;
-    color: #ffd700;
-    border-bottom: 2px solid rgba(255, 215, 0, 0.12);
+    color: #c084fc;
+    border-bottom: 2px solid rgba(192, 132, 252, 0.15);
     padding-bottom: 10px;
     margin: 0 0 12px 0;
     font-weight: 700;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.15);
     position: relative;
     z-index: 1;
 }
@@ -1788,14 +1767,14 @@ body::after {
     width: 100%;
     padding: 13px 16px;
     margin-bottom: 12px;
-    border: 1.5px solid rgba(255, 215, 0, 0.06);
+    border: 1.5px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
     font-family: 'Lato', sans-serif;
     font-size: 14px;
     transition: all 0.3s ease;
     box-sizing: border-box;
     color: #f0e6f6;
-    background: rgba(255, 215, 0, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     position: relative;
     z-index: 1;
 }
@@ -1809,10 +1788,10 @@ body::after {
 .rsvp-section input:focus,
 .rsvp-section select:focus,
 .rsvp-section textarea:focus {
-    border-color: #ffd700;
+    border-color: #8b5cf6;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.06), 0 0 20px rgba(255, 215, 0, 0.04);
-    background: rgba(255, 215, 0, 0.04);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08), 0 0 20px rgba(139, 92, 246, 0.05);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .rsvp-section select option {
@@ -1862,7 +1841,7 @@ body::after {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
     animation: buttonShine 3s ease-in-out infinite;
 }
 
@@ -1916,19 +1895,19 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 MODAL FOOTER                                                 */
+/* 🎯 MODAL FOOTER - With Effects                                  */
 /* ================================================================ */
 .modal-footer {
     text-align: center;
     margin-top: 20px;
     padding-top: 16px;
-    border-top: 1px solid rgba(255, 215, 0, 0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .footer-deco {
     font-size: 11px;
     letter-spacing: 10px;
-    color: #ffd700;
+    color: #c084fc;
     opacity: 0.3;
     margin-bottom: 8px;
 }
@@ -1936,8 +1915,7 @@ body::after {
 .modal-footer-quote {
     font-family: 'Great Vibes', cursive;
     font-size: 20px;
-    color: #ffd700;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+    color: #a78bba;
 }
 
 .modal-footer-love {
@@ -1957,10 +1935,10 @@ body::after {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(255, 215, 0, 0.15);
+    background: rgba(139, 92, 246, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 215, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1969,15 +1947,15 @@ body::after {
     z-index: 1000;
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    color: #ffd700;
+    color: #fff;
     user-select: none;
 }
 
 .sound-icon:hover {
     transform: scale(1.1);
-    background: rgba(255, 215, 0, 0.25);
-    border-color: rgba(255, 215, 0, 0.3);
-    box-shadow: 0 4px 30px rgba(255, 215, 0, 0.2);
+    background: rgba(139, 92, 246, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.3);
 }
 
 .sound-icon:active {
@@ -1995,18 +1973,17 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 PHOTO FRAME WITH STICKER - Matching Colors                  */
+/* 🎯 PHOTO FRAME WITH STICKER - Light Effects                    */
 /* ================================================================ */
 .photo-frame {
     width: 130px;
     height: 130px;
     margin: -45px auto 12px auto;
     border-radius: 50%;
-    border: 3px solid #ffd700;
+    border: 3px solid #c084fc;
     box-shadow: 
-        0 0 0 5px rgba(255, 215, 0, 0.08),
-        0 10px 30px rgba(0, 0, 0, 0.2),
-        0 0 40px rgba(255, 215, 0, 0.05);
+        0 0 0 5px rgba(139, 92, 246, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: visible;
     position: relative;
     background: rgba(20, 10, 30, 0.8);
@@ -2027,7 +2004,7 @@ body::after {
     width: calc(100% + 10px);
     height: calc(100% + 10px);
     border-radius: 50%;
-    border: 1.5px dashed rgba(255, 215, 0, 0.15);
+    border: 1.5px dashed rgba(255, 255, 255, 0.1);
     animation: spin 20s linear infinite;
     pointer-events: none;
 }
@@ -2040,7 +2017,7 @@ body::after {
     height: calc(100% + 20px);
     border-radius: 50%;
     background: radial-gradient(circle, 
-        rgba(255, 215, 0, 0.05), 
+        rgba(192, 132, 252, 0.05), 
         transparent 70%
     );
     animation: glowPulse 4s ease-in-out infinite;
@@ -2066,7 +2043,7 @@ body::after {
     height: 55px;
     z-index: 5;
     animation: stickerFloat 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 4px 15px rgba(255, 215, 0, 0.3));
+    filter: drop-shadow(0 4px 15px rgba(192, 132, 252, 0.3));
 }
 
 .sticker-emoji {
@@ -2075,10 +2052,10 @@ body::after {
     animation: heartPulse 2s ease-in-out infinite;
     text-align: center;
     line-height: 1;
-    background: rgba(255, 215, 0, 0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     padding: 4px;
-    border: 2px solid rgba(255, 215, 0, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.08);
 }
 
 @keyframes stickerFloat {
@@ -2108,11 +2085,11 @@ body::after {
     display: inline-block;
 }
 
-.icon-item:nth-child(1) { animation-delay: 0s; color: #ffd700; }
+.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
 .icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(3) { animation-delay: 1.2s; color: #ffd700; }
+.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
 .icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(5) { animation-delay: 2.4s; color: #ffd700; }
+.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
 
 @keyframes lightFloat {
     0%, 100% { transform: translateY(0) scale(1); }
@@ -2159,7 +2136,7 @@ body::after {
 }
 
 .lightbox-close:hover {
-    color: #ffd700;
+    color: #c084fc;
     transform: rotate(90deg);
 }
 
@@ -2168,7 +2145,7 @@ body::after {
     max-height: 80%;
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 215, 0, 0.06);
+    border: 2px solid rgba(255, 255, 255, 0.06);
 }
 
 .lightbox-caption {
@@ -2176,17 +2153,17 @@ body::after {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    color: #ffd700;
+    color: #d8b4fe;
     font-size: 14px;
     background: rgba(0, 0, 0, 0.5);
     padding: 8px 20px;
     border-radius: 30px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 215, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* ================================================================ */
-/* 📱 MOBILE RESPONSIVE                                           */
+/* 📱 MOBILE RESPONSIVE - DOOR TEXT & LOCK                        */
 /* ================================================================ */
 
 @media (max-width: 480px) {
