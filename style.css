@@ -140,7 +140,7 @@ body::after {
 }
 
 /* =========================================== */
-/* 🎯 MAIN CARD - LIGHT EFFECTS               */
+/* 🏠 MAIN CARD - 1st VIEW                    */
 /* =========================================== */
 .container {
     position: relative;
@@ -162,7 +162,7 @@ body::after {
         0 20px 60px rgba(0, 0, 0, 0.35),
         0 0 40px rgba(139, 92, 246, 0.04),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
 }
 
 .container:hover {
@@ -172,7 +172,6 @@ body::after {
         0 0 50px rgba(139, 92, 246, 0.06);
 }
 
-/* Card Border - Light Glow */
 .container::before {
     content: "";
     position: absolute;
@@ -296,7 +295,7 @@ body::after {
 .divider-icon:nth-child(3) { color: #ffffff; }
 
 /* ================================================================ */
-/* 🎯 DATE - GOLD GRADIENT HIGHLIGHT (Reduced size)              */
+/* 🎯 DATE - GOLD GRADIENT HIGHLIGHT                              */
 /* ================================================================ */
 .highlight-date {
     font-family: 'Playfair Display', serif;
@@ -381,9 +380,24 @@ body::after {
     font-weight: 600;
 }
 
-/* ----- BUTTONS ----- */
+/* ================================================================ */
+/* 🎯 BUTTONS                                                     */
+/* ================================================================ */
+
+#shareButtonContainer {
+    display: none;
+    margin-top: 12px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#shareButtonContainer .btn-whatsapp {
+    margin-top: 0;
+}
+
 .btn-primary {
-    margin-top: 18px;
     padding: 14px 35px;
     border: none;
     background: linear-gradient(145deg, #8b5cf6, #6d28d9);
@@ -416,7 +430,6 @@ body::after {
 .btn-primary span { font-size: 18px; }
 
 .btn-whatsapp {
-    margin-top: 10px;
     padding: 12px 30px;
     border: none;
     background: linear-gradient(145deg, #25D366, #128C7E);
@@ -459,305 +472,653 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 PHOTO FRAME WITH STICKER - Light Effects                    */
+/* 🚪 FULL PAGE DOOR - PURPLE THEME                               */
 /* ================================================================ */
-.photo-frame {
-    width: 130px;
-    height: 130px;
-    margin: -45px auto 12px auto;
-    border-radius: 50%;
-    border: 3px solid #c084fc;
-    box-shadow: 
-        0 0 0 5px rgba(139, 92, 246, 0.08),
-        0 10px 30px rgba(0, 0, 0, 0.2);
-    overflow: visible;
-    position: relative;
-    background: rgba(20, 10, 30, 0.8);
-}
 
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 50%;
-}
-
-.photo-frame .frame-ring {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    border-radius: 50%;
-    border: 1.5px dashed rgba(255, 255, 255, 0.1);
-    animation: spin 20s linear infinite;
-    pointer-events: none;
-}
-
-.photo-frame .frame-glow {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    border-radius: 50%;
-    background: radial-gradient(circle, 
-        rgba(192, 132, 252, 0.05), 
-        transparent 70%
-    );
-    animation: glowPulse 4s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes glowPulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.04); }
-}
-
-/* ----- STICKER OVERLAY ----- */
-.sticker-overlay {
-    position: absolute;
-    bottom: -8px;
-    right: -8px;
-    width: 55px;
-    height: 55px;
-    z-index: 5;
-    animation: stickerFloat 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 4px 15px rgba(192, 132, 252, 0.3));
-}
-
-.sticker-emoji {
-    font-size: 42px;
-    display: block;
-    animation: heartPulse 2s ease-in-out infinite;
-    text-align: center;
-    line-height: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    padding: 4px;
-    border: 2px solid rgba(255, 255, 255, 0.08);
-}
-
-@keyframes stickerFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-    25% { transform: translateY(-8px) rotate(3deg) scale(1.03); }
-    50% { transform: translateY(-4px) rotate(-3deg) scale(1.01); }
-    75% { transform: translateY(-6px) rotate(2deg) scale(1.05); }
-}
-
-@keyframes heartPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-/* ----- TRADITIONAL ICONS ----- */
-.traditional-icons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 5px 0 10px 0;
-    flex-wrap: wrap;
-}
-
-.icon-item {
-    font-size: 20px;
-    animation: lightFloat 3.5s ease-in-out infinite;
-    display: inline-block;
-}
-
-.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
-.icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
-.icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
-.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
-
-@keyframes lightFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-5px) scale(1.05); }
-}
-
-/* ================================================================ */
-/* 🎯 BIG HERO PHOTO (inside modal)                                */
-/* ================================================================ */
-.hero-photo-section {
-    margin: 6px 0 12px 0;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.hero-photo-section img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 18px;
-    transition: transform 0.3s ease;
-}
-
-.hero-photo-section img:hover {
-    transform: scale(1.01);
-}
-
-/* ================================================================ */
-/* 🎯 PHOTO GALLERY                                               */
-/* ================================================================ */
-.gallery-section {
-    margin: 10px 0 15px 0;
-}
-
-.gallery-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #c084fc;
-    text-align: center;
-    margin-bottom: 2px;
-    letter-spacing: 1px;
-}
-
-.gallery-sub {
-    font-size: 11px;
-    color: #a78bba;
-    text-align: center;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.gallery-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 1;
-    border: 2px solid rgba(255, 255, 255, 0.04);
-    transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.03);
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-.gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(2px);
-}
-
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
-}
-
-.gallery-icon {
-    font-size: 24px;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* ================================================================ */
-/* 🎯 LIGHTBOX - Full Screen Image Viewer                         */
-/* ================================================================ */
-.lightbox {
-    display: none;
+.door-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.92);
     z-index: 9999;
+    display: none;
     align-items: center;
     justify-content: center;
-    padding: 30px;
-    animation: lightboxFade 0.3s ease;
+    flex-direction: column;
+    background: linear-gradient(160deg, #0d0520, #1a0a2e, #2d1b4e);
+    overflow: hidden;
+    cursor: default;
+    opacity: 0;
+    transition: opacity 0.6s ease;
 }
 
-.lightbox.show {
-    display: flex;
+.door-overlay.open {
+    cursor: pointer;
 }
 
-@keyframes lightboxFade {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+/* ================================================================ */
+/* 🖼️ BACKGROUND IMAGE - SLOW APPEAR                             */
+/* ================================================================ */
+
+.door-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("bg.jpg") center/cover no-repeat;
+    opacity: 0;
+    z-index: 0;
+    filter: blur(10px) brightness(0.3);
+    transition: opacity 4s ease, filter 4s ease, transform 4s ease;
 }
 
-.lightbox-close {
+.door-overlay.open .door-bg-image {
+    opacity: 0.85;
+    filter: blur(0px) brightness(1);
+    transform: scale(1.05);
+}
+
+.door-overlay.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: opacity 0.6s ease 0.4s;
+}
+
+/* ================================================================ */
+/* 🎨 DOOR TOP DECORATION                                         */
+/* ================================================================ */
+
+.door-top-deco {
     position: absolute;
     top: 20px;
-    right: 30px;
-    font-size: 40px;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: 300;
-    z-index: 10;
-}
-
-.lightbox-close:hover {
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 15px;
+    z-index: 2;
+    opacity: 0.6;
     color: #c084fc;
-    transform: rotate(90deg);
 }
 
-.lightbox-content {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.06);
+.door-top-deco span {
+    display: inline-block;
+    animation: decoFloat 3s ease-in-out infinite;
 }
 
-.lightbox-caption {
+.door-top-deco span:nth-child(2) { animation-delay: 0.3s; color: #ffd700; }
+.door-top-deco span:nth-child(4) { animation-delay: 0.6s; color: #ffffff; }
+.door-top-deco span:nth-child(6) { animation-delay: 0.9s; color: #ffd700; }
+
+@keyframes decoFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.1); }
+}
+
+/* ================================================================ */
+/* 🚪 DOOR CONTAINER - FULL PAGE                                  */
+/* ================================================================ */
+
+.door-container {
+    position: relative;
+    width: 80vw;
+    max-width: 800px;
+    height: 75vh;
+    max-height: 650px;
+    perspective: 1500px;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+/* Left Door - Royal Purple & Gold Gradient */
+.door-left,
+.door-right {
     position: absolute;
-    bottom: 30px;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.4);
+}
+
+.door-left {
+    left: 0;
+    border-radius: 30px 0 0 30px;
+    transform-origin: left center;
+    background: linear-gradient(160deg, #4a1a7a, #2d1b4e, #1a0a2e, #4a1a7a);
+    background-size: 300% 300%;
+    border: 3px solid rgba(255, 215, 0, 0.15);
+    border-right: none;
+    box-shadow: 
+        0 0 60px rgba(139, 92, 246, 0.2),
+        inset -30px 0 60px rgba(0, 0, 0, 0.3);
+    animation: doorShine 6s ease-in-out infinite;
+}
+
+.door-right {
+    right: 0;
+    border-radius: 0 30px 30px 0;
+    transform-origin: right center;
+    background: linear-gradient(200deg, #4a1a7a, #2d1b4e, #1a0a2e, #4a1a7a);
+    background-size: 300% 300%;
+    border: 3px solid rgba(255, 215, 0, 0.15);
+    border-left: none;
+    box-shadow: 
+        0 0 60px rgba(139, 92, 246, 0.2),
+        inset 30px 0 60px rgba(0, 0, 0, 0.3);
+    animation: doorShine 6s ease-in-out infinite 3s;
+}
+
+@keyframes doorShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.door-overlay.open .door-left {
+    transform: rotateY(-150deg);
+    box-shadow: -50px 0 100px rgba(0, 0, 0, 0.6);
+}
+
+.door-overlay.open .door-right {
+    transform: rotateY(150deg);
+    box-shadow: 50px 0 100px rgba(0, 0, 0, 0.6);
+}
+
+/* ================================================================ */
+/* 🎨 DOOR DESIGN - ATTRACTIVE PATTERNS                           */
+/* ================================================================ */
+
+.door-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.door-design {
+    width: 85%;
+    height: 75%;
+    border: 2px solid rgba(255, 215, 0, 0.08);
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+}
+
+.door-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+}
+
+.door-pattern::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border: 1px solid rgba(255, 215, 0, 0.05);
+    border-radius: 50%;
+    animation: patternSpin 20s linear infinite;
+}
+
+.door-pattern::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    border: 1px solid rgba(255, 215, 0, 0.03);
+    border-radius: 50%;
+    animation: patternSpin 15s linear infinite reverse;
+}
+
+@keyframes patternSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.door-design::before {
+    content: '✦';
+    position: absolute;
+    color: rgba(255, 215, 0, 0.03);
+    font-size: 80px;
+}
+
+.door-design::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.03), transparent);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.door-ornament {
+    position: absolute;
+    bottom: 20px;
+    font-size: 12px;
+    color: rgba(255, 215, 0, 0.06);
+    letter-spacing: 10px;
+}
+
+/* ================================================================ */
+/* 🎯 DOOR HANDLE - ATTRACTIVE GOLD                               */
+/* ================================================================ */
+
+.door-handle {
+    position: absolute;
+    width: 18px;
+    height: 60px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffd700, #f9a825, #ffd700, #f9a825);
+    background-size: 100% 300%;
+    box-shadow: 
+        0 0 50px rgba(255, 215, 0, 0.2),
+        inset 0 2px 6px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    animation: handleGlow 3s ease-in-out infinite;
+}
+
+.door-left .door-handle {
+    right: 25px;
+}
+
+.door-right .door-handle {
+    left: 25px;
+}
+
+@keyframes handleGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
+    50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.3); }
+}
+
+.door-handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 35px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
+    border-radius: 50%;
+}
+
+/* ================================================================ */
+/* 💜 DOOR HEART & CENTER TEXT                                    */
+/* ================================================================ */
+
+.door-heart {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 90px;
+    z-index: 10;
+    opacity: 0;
+    transition: all 1.5s ease;
+    text-shadow: 0 0 100px rgba(255, 215, 0, 0.2);
+}
+
+.door-overlay.open .door-heart {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.3);
+    animation: heartReveal 1.5s ease forwards;
+}
+
+@keyframes heartReveal {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(-40deg); }
+    60% { opacity: 1; transform: translate(-50%, -50%) scale(1.7) rotate(15deg); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
+}
+
+/* ================================================================ */
+/* 🎯 DOOR CENTER TEXT - LARGER SIZE (WEDDING)                    */
+/* ================================================================ */
+
+.door-center-text {
+    position: absolute;
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    transition: all 1.8s ease;
+    transition-delay: 0.5s;
+    width: 92%;
+}
+
+.door-overlay.open .door-center-text {
+    opacity: 1;
+    animation: textReveal 1.5s ease forwards;
+}
+
+@keyframes textReveal {
+    0% { opacity: 0; transform: translateX(-50%) scale(0.8) translateY(20px); }
+    50% { opacity: 0.7; transform: translateX(-50%) scale(1.1) translateY(-5px); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
+}
+
+.center-title {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    font-size: 52px;
+    color: #ffd700;
+    text-shadow: 
+        0 0 60px rgba(255, 215, 0, 0.3),
+        0 0 120px rgba(255, 215, 0, 0.12),
+        0 0 200px rgba(255, 215, 0, 0.06);
+    letter-spacing: 4px;
+    animation: textGlow 3s ease-in-out infinite;
+    line-height: 1.15;
+}
+
+.center-sub {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
     color: #d8b4fe;
-    font-size: 14px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 8px 20px;
-    border-radius: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 8px;
+    letter-spacing: 8px;
+    font-weight: 300;
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.2);
+}
+
+@keyframes textGlow {
+    0%, 100% { 
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.15); 
+    }
+    50% { 
+        text-shadow: 
+            0 0 60px rgba(255, 215, 0, 0.3),
+            0 0 120px rgba(255, 215, 0, 0.1); 
+    }
 }
 
 /* ================================================================ */
-/* 🎯 MODAL - EFFECTS FOR TOP SECTION ONLY                         */
+/* 🔒 DOOR LOCK - WITH OPEN ANIMATION (WEDDING)                   */
 /* ================================================================ */
+
+.door-lock {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.06), transparent);
+    border: 2px solid rgba(255, 215, 0, 0.08);
+    z-index: 5;
+    transition: all 1.5s ease;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.02);
+}
+
+.door-lock::before {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    opacity: 0.4;
+    transition: all 1.5s ease;
+    filter: grayscale(0.3);
+}
+
+/* 🎯 Door open වෙද්දී Lock එක Open වෙනවා */
+.door-overlay.open .door-lock {
+    border-color: rgba(255, 215, 0, 0.25);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.12), 0 0 80px rgba(255, 215, 0, 0.04);
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.08), transparent);
+}
+
+.door-overlay.open .door-lock::before {
+    content: '🔓';
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: grayscale(0);
+    animation: lockOpen 1.2s ease forwards;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+/* 🔓 Lock Open Animation */
+@keyframes lockOpen {
+    0% { 
+        transform: translate(-50%, -50%) scale(0.6) rotate(-30deg); 
+        opacity: 0.3;
+    }
+    40% { 
+        transform: translate(-50%, -50%) scale(1.5) rotate(25deg); 
+        opacity: 1;
+    }
+    70% { 
+        transform: translate(-50%, -50%) scale(1.1) rotate(-10deg); 
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1.2) rotate(0deg); 
+        opacity: 1;
+    }
+}
+
+/* ================================================================ */
+/* 🌀 DOOR RING - DECORATIVE                                      */
+/* ================================================================ */
+
+.door-ring {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    border-radius: 40px;
+    border: 2px dashed rgba(192, 132, 252, 0.06);
+    animation: ringSpin 30s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.door-ring::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border-radius: 35px;
+    border: 1px solid rgba(255, 215, 0, 0.03);
+}
+
+@keyframes ringSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ================================================================ */
+/* 📝 BOTTOM TEXT                                                 */
+/* ================================================================ */
+
+.door-bottom-text {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    opacity: 0.7;
+    transition: all 0.5s ease;
+}
+
+.bottom-line {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    font-size: 24px;
+    color: #d8b4fe;
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.1);
+    letter-spacing: 2px;
+}
+
+.bottom-sub {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: #a78bba;
+    margin-top: 5px;
+    letter-spacing: 6px;
+    font-weight: 300;
+    animation: blinkText 2s ease-in-out infinite;
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+.door-overlay.open .bottom-sub {
+    animation: none;
+    opacity: 0;
+}
+
+/* ================================================================ */
+/* ✨ DOOR PARTICLES                                              */
+/* ================================================================ */
+
+.door-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.door-particles span {
+    position: absolute;
+    font-size: 22px;
+    opacity: 0;
+    animation: particleFloat 4.5s ease-in-out infinite;
+}
+
+.door-particles span:nth-child(1) { top: 5%; left: 8%; animation-delay: 0s; color: #c084fc; }
+.door-particles span:nth-child(2) { top: 10%; right: 10%; animation-delay: 0.4s; color: #ffd700; }
+.door-particles span:nth-child(3) { bottom: 20%; left: 5%; animation-delay: 0.8s; color: #ffffff; }
+.door-particles span:nth-child(4) { top: 30%; right: 5%; animation-delay: 1.2s; color: #c084fc; }
+.door-particles span:nth-child(5) { bottom: 10%; right: 15%; animation-delay: 1.6s; color: #ffd700; }
+.door-particles span:nth-child(6) { top: 50%; left: 10%; animation-delay: 2s; color: #ffffff; }
+.door-particles span:nth-child(7) { top: 2%; left: 40%; animation-delay: 0.6s; color: #c084fc; }
+.door-particles span:nth-child(8) { bottom: 2%; right: 40%; animation-delay: 1.4s; color: #ffd700; }
+.door-particles span:nth-child(9) { top: 40%; left: 3%; animation-delay: 2.2s; color: #ffd700; }
+.door-particles span:nth-child(10) { bottom: 40%; right: 3%; animation-delay: 0.2s; color: #c084fc; }
+.door-particles span:nth-child(11) { top: 60%; left: 5%; animation-delay: 1.8s; color: #ffffff; }
+.door-particles span:nth-child(12) { bottom: 60%; right: 5%; animation-delay: 2.6s; color: #c084fc; }
+
+.door-overlay.open .door-particles span {
+    opacity: 0.8;
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+    25% { transform: translateY(-30px) scale(1.4); opacity: 0.8; }
+    50% { transform: translateY(-60px) scale(0.8); opacity: 0.5; }
+    75% { transform: translateY(-90px) scale(1.2); opacity: 0.9; }
+    100% { transform: translateY(-130px) scale(0.5); opacity: 0; }
+}
+
+/* ================================================================ */
+/* 🌟 BACKGROUND EFFECTS                                          */
+/* ================================================================ */
+
+.door-overlay::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+        rgba(192, 132, 252, 0.04) 0%, 
+        rgba(139, 92, 246, 0.02) 30%,
+        transparent 60%
+    );
+    animation: doorGlow 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes doorGlow {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+    50% { transform: scale(1.3) rotate(5deg); opacity: 0.9; }
+}
+
+.door-overlay::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 215, 0, 0.02) 0%, 
+        transparent 50%
+    );
+    animation: lightRays 12s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes lightRays {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
+    50% { transform: scale(1.15) rotate(10deg); opacity: 0.7; }
+}
+
+/* ================================================================ */
+/* 🎯 MODAL - VERY SLOW FADE IN (3 seconds)                       */
+/* ================================================================ */
+
+@keyframes modalVerySlowFadeIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.90) translateY(60px); 
+    }
+    25% { 
+        opacity: 0.2; 
+        transform: scale(0.93) translateY(45px); 
+    }
+    50% { 
+        opacity: 0.5; 
+        transform: scale(0.96) translateY(30px); 
+    }
+    75% { 
+        opacity: 0.75; 
+        transform: scale(0.99) translateY(15px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -776,18 +1137,6 @@ body::after {
 
 .modal.show {
     display: flex;
-    animation: fadeInModal 0.5s ease;
-}
-
-@keyframes fadeInModal {
-    from { 
-        opacity: 0; 
-        transform: scale(0.95) translateY(30px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
 }
 
 .modal-content {
@@ -809,7 +1158,7 @@ body::after {
     position: relative;
     color: #f0e6f6;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: modalFloat 4s ease-in-out infinite;
+    animation: modalVerySlowFadeIn 3s ease forwards;
 }
 
 @keyframes modalFloat {
@@ -817,7 +1166,6 @@ body::after {
     50% { transform: translateY(-3px); }
 }
 
-/* Modal Border */
 .modal-content::before {
     content: "";
     position: absolute;
@@ -982,7 +1330,9 @@ body::after {
     50% { opacity: 0.8; transform: scale(1.3); }
 }
 
-/* ----- INVITATION MESSAGE ----- */
+/* ================================================================ */
+/* 🎯 INVITATION MESSAGE - Beautiful Styling                       */
+/* ================================================================ */
 .invitation-message {
     background: rgba(139, 92, 246, 0.06);
     padding: 20px 22px;
@@ -1017,19 +1367,136 @@ body::after {
 }
 
 .invitation-text {
-    font-family: 'Great Vibes', cursive;
-    font-size: 22px;
-    color: #f5edff;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: normal;
+    color: #e8d5ff;
     text-align: center;
-    margin-bottom: 6px;
-    line-height: 1.3;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 20px rgba(192, 132, 252, 0.08);
+    font-weight: 400;
 }
 
 .invitation-subtext {
     text-align: center;
-    color: #d8b4fe;
-    font-size: 14px;
+    color: #a78bba;
+    font-size: 13px;
     line-height: 1.7;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+}
+
+/* ================================================================ */
+/* 🎯 HERO PHOTO - NO OVERLAY (සම්පූර්ණයෙන්ම පැහැදිලියි)      */
+/* ================================================================ */
+
+.hero-photo-section {
+    margin: 6px 0 12px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-photo-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    transition: transform 0.3s ease;
+}
+
+.hero-photo-section img:hover {
+    transform: scale(1.01);
+}
+
+/* ❌ Overlay එක සම්පූර්ණයෙන්ම ඉවත් කර ඇත */
+/* උඩින් හෝ යටින් කිසිදු overlay effect එකක් නැත */
+
+/* ================================================================ */
+/* 🎯 PHOTO GALLERY                                               */
+/* ================================================================ */
+.gallery-section {
+    margin: 10px 0 15px 0;
+}
+
+.gallery-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c084fc;
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+}
+
+.gallery-sub {
+    font-size: 11px;
+    color: #a78bba;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-icon {
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* ================================================================ */
@@ -1141,14 +1608,17 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 LOCATION, RSVP, MODAL FOOTER - With Effects                 */
+/* 🎯 LOCATION SECTION - With Effects                              */
 /* ================================================================ */
 .location-section {
     margin: 5px 0 15px 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 12px 16px 16px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.location-section h3,
-.rsvp-section h3 {
+.location-section h3 {
     font-size: 17px;
     color: #c084fc;
     border-bottom: 2px solid rgba(192, 132, 252, 0.08);
@@ -1192,8 +1662,92 @@ body::after {
     background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
+/* ================================================================ */
+/* 🎯 RSVP SECTION - WITH BRIGHTNESS/GLOW EFFECT                   */
+/* ================================================================ */
 .rsvp-section {
     margin: 5px 0 15px 0;
+    background: rgba(139, 92, 246, 0.04);
+    border-radius: 16px;
+    padding: 18px 18px 20px 18px;
+    border: 1px solid rgba(139, 92, 246, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 20px rgba(139, 92, 246, 0.03),
+        inset 0 0 30px rgba(139, 92, 246, 0.02);
+}
+
+.rsvp-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, 
+        rgba(192, 132, 252, 0.04) 0%, 
+        transparent 60%
+    );
+    animation: rsvpGlow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes rsvpGlow {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(1) rotate(0deg);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+.rsvp-section::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(192, 132, 252, 0.05), 
+        rgba(255, 215, 0, 0.05),
+        rgba(192, 132, 252, 0.05),
+        transparent
+    );
+    border-radius: 18px;
+    z-index: -1;
+    animation: borderGlowPulse 5s ease-in-out infinite;
+}
+
+@keyframes borderGlowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+.rsvp-section:hover {
+    box-shadow: 
+        0 0 30px rgba(139, 92, 246, 0.08),
+        0 0 60px rgba(139, 92, 246, 0.04),
+        inset 0 0 40px rgba(139, 92, 246, 0.03);
+    border-color: rgba(192, 132, 252, 0.15);
+    transform: translateY(-1px);
+}
+
+.rsvp-section h3 {
+    font-size: 17px;
+    color: #c084fc;
+    border-bottom: 2px solid rgba(192, 132, 252, 0.15);
+    padding-bottom: 10px;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(192, 132, 252, 0.15);
+    position: relative;
+    z-index: 1;
 }
 
 .rsvp-sub {
@@ -1201,6 +1755,10 @@ body::after {
     color: #a78bba;
     margin-bottom: 14px;
     text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
 }
 
 .rsvp-section input,
@@ -1217,6 +1775,8 @@ body::after {
     box-sizing: border-box;
     color: #f0e6f6;
     background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    z-index: 1;
 }
 
 .rsvp-section input::placeholder,
@@ -1230,7 +1790,7 @@ body::after {
 .rsvp-section textarea:focus {
     border-color: #8b5cf6;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.05);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08), 0 0 20px rgba(139, 92, 246, 0.05);
     background: rgba(255, 255, 255, 0.05);
 }
 
@@ -1248,6 +1808,8 @@ body::after {
     display: flex;
     gap: 12px;
     margin-top: 6px;
+    position: relative;
+    z-index: 1;
 }
 
 .form-buttons button {
@@ -1263,26 +1825,59 @@ body::after {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-rsvp-whatsapp {
-    background: #25D366;
+    background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.25);
+}
+
+.btn-rsvp-whatsapp::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
+    animation: buttonShine 3s ease-in-out infinite;
+}
+
+@keyframes buttonShine {
+    0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+    50% { transform: scale(1.2) rotate(10deg); opacity: 0.8; }
 }
 
 .btn-rsvp-whatsapp:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.3);
-    background: #128C7E;
+    box-shadow: 0 6px 30px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(145deg, #7c3aed, #5b21b6);
 }
 
 .btn-rsvp-email {
-    background: #EA4335;
+    background: linear-gradient(145deg, #ffd700, #f9a825);
+    color: #1a0a2e;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+.btn-rsvp-email::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 70%);
+    animation: buttonShine 3.5s ease-in-out infinite;
 }
 
 .btn-rsvp-email:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(234, 67, 53, 0.3);
-    background: #C5221F;
+    box-shadow: 0 6px 30px rgba(255, 215, 0, 0.35);
+    background: linear-gradient(145deg, #f9a825, #f57f17);
+    color: #1a0a2e;
 }
 
 .form-buttons button:active {
@@ -1294,8 +1889,14 @@ body::after {
     color: #6a4a6a;
     margin-top: 12px;
     text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
 }
 
+/* ================================================================ */
+/* 🎯 MODAL FOOTER - With Effects                                  */
+/* ================================================================ */
 .modal-footer {
     text-align: center;
     margin-top: 20px;
@@ -1324,26 +1925,260 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📱 MOBILE RESPONSIVE */
+/* 🎵 SOUND ICON - Floating Sound Control                          */
+/* ================================================================ */
+
+.sound-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    user-select: none;
+}
+
+.sound-icon:hover {
+    transform: scale(1.1);
+    background: rgba(139, 92, 246, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.3);
+}
+
+.sound-icon:active {
+    transform: scale(0.9);
+}
+
+.sound-icon #musicIcon {
+    line-height: 1;
+    animation: soundPulse 2s ease-in-out infinite;
+}
+
+@keyframes soundPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ================================================================ */
+/* 🎯 PHOTO FRAME WITH STICKER - Light Effects                    */
+/* ================================================================ */
+.photo-frame {
+    width: 130px;
+    height: 130px;
+    margin: -45px auto 12px auto;
+    border-radius: 50%;
+    border: 3px solid #c084fc;
+    box-shadow: 
+        0 0 0 5px rgba(139, 92, 246, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: visible;
+    position: relative;
+    background: rgba(20, 10, 30, 0.8);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.photo-frame .frame-ring {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.1);
+    animation: spin 20s linear infinite;
+    pointer-events: none;
+}
+
+.photo-frame .frame-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(192, 132, 252, 0.05), 
+        transparent 70%
+    );
+    animation: glowPulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+/* ----- STICKER OVERLAY ----- */
+.sticker-overlay {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 55px;
+    height: 55px;
+    z-index: 5;
+    animation: stickerFloat 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 15px rgba(192, 132, 252, 0.3));
+}
+
+.sticker-emoji {
+    font-size: 42px;
+    display: block;
+    animation: heartPulse 2s ease-in-out infinite;
+    text-align: center;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    padding: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes stickerFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateY(-8px) rotate(3deg) scale(1.03); }
+    50% { transform: translateY(-4px) rotate(-3deg) scale(1.01); }
+    75% { transform: translateY(-6px) rotate(2deg) scale(1.05); }
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ----- TRADITIONAL ICONS ----- */
+.traditional-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 5px 0 10px 0;
+    flex-wrap: wrap;
+}
+
+.icon-item {
+    font-size: 20px;
+    animation: lightFloat 3.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+.icon-item:nth-child(1) { animation-delay: 0s; color: #c084fc; }
+.icon-item:nth-child(2) { animation-delay: 0.6s; color: #ffffff; opacity: 0.7; }
+.icon-item:nth-child(3) { animation-delay: 1.2s; color: #c084fc; }
+.icon-item:nth-child(4) { animation-delay: 1.8s; color: #ffffff; opacity: 0.7; }
+.icon-item:nth-child(5) { animation-delay: 2.4s; color: #c084fc; }
+
+@keyframes lightFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.05); }
+}
+
+/* ================================================================ */
+/* 🎯 LIGHTBOX - Full Screen Image Viewer                         */
+/* ================================================================ */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    animation: lightboxFade 0.3s ease;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+@keyframes lightboxFade {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 300;
+    z-index: 10;
+}
+
+.lightbox-close:hover {
+    color: #c084fc;
+    transform: rotate(90deg);
+}
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d8b4fe;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ================================================================ */
+/* 📱 MOBILE RESPONSIVE - DOOR TEXT & LOCK                        */
 /* ================================================================ */
 
 @media (max-width: 480px) {
     body { padding: 10px; }
-    
     .container {
         padding: 30px 18px 40px 18px;
         border-radius: 20px;
         margin: 20px auto;
     }
-    
     .title { font-size: 34px; }
     .title .amp { font-size: 26px; }
     .subtitle { font-size: 11px; letter-spacing: 4px; }
     #countdown { font-size: 20px; padding: 8px 14px; min-width: 170px; }
-    
     .highlight-date { font-size: 22px; }
     .highlight-venue { font-size: 17px; }
-    
     .venue { font-size: 14px; }
     .btn-primary, .btn-whatsapp { font-size: 13px; padding: 12px 20px; max-width: 100%; }
     .footer-quote { font-size: 16px; }
@@ -1355,6 +2190,28 @@ body::after {
     .icon-item { font-size: 16px; }
     .sinhala-text { font-size: 10px; }
     .top-decoration { font-size: 12px; letter-spacing: 10px; top: 5px; }
+    #shareButtonContainer { max-width: 100%; padding: 0 5px; }
+    
+    .door-container {
+        width: 85vw;
+        height: 55vh;
+        max-height: 380px;
+    }
+    .door-heart { font-size: 50px; }
+    .center-title { font-size: 36px; letter-spacing: 2px; }
+    .center-sub { font-size: 16px; letter-spacing: 5px; }
+    .bottom-line { font-size: 18px; }
+    .bottom-sub { font-size: 11px; }
+    .door-top-deco { font-size: 14px; letter-spacing: 10px; top: 10px; }
+    .door-particles span { font-size: 14px; }
+    .door-handle { width: 12px; height: 40px; }
+    .door-left .door-handle { right: 12px; }
+    .door-right .door-handle { left: 12px; }
+    .door-ornament { font-size: 10px; letter-spacing: 6px; }
+    .door-left { border-radius: 20px 0 0 20px; }
+    .door-right { border-radius: 0 20px 20px 0; }
+    .door-lock { width: 34px; height: 34px; bottom: 10%; }
+    .door-lock::before { font-size: 16px; }
     
     .modal-content {
         padding: 22px 16px 22px 16px;
@@ -1364,99 +2221,61 @@ body::after {
     .modal-title { font-size: 30px; }
     .modal-title .modal-amp { font-size: 24px; }
     .modal-subtitle { font-size: 12px; letter-spacing: 3px; }
-    .invitation-text { font-size: 18px; }
-    .invitation-subtext { font-size: 13px; }
+    .invitation-text { font-size: 17px; }
+    .invitation-subtext { font-size: 12px; }
     .modal-content h3 { font-size: 15px; }
+    .rsvp-section { padding: 14px 12px 16px 12px; }
     .form-buttons { flex-direction: column; gap: 8px; }
     .form-buttons button { font-size: 13px; padding: 13px; }
     .close-btn { font-size: 28px; }
     .modal-rings { font-size: 24px; }
     .map-btn { font-size: 12px; padding: 8px 18px; }
     .modal-footer-quote { font-size: 17px; }
-    
-    .gallery-grid {
-        gap: 6px;
-    }
-    .gallery-title {
-        font-size: 15px;
-    }
-    .gallery-item {
-        border-radius: 8px;
-    }
-    .gallery-icon {
-        font-size: 18px;
-    }
-    
-    .lightbox-content {
-        max-width: 95%;
-        max-height: 70%;
-    }
-    .lightbox-close {
-        font-size: 30px;
-        top: 15px;
-        right: 20px;
-    }
-    .lightbox-caption {
-        font-size: 12px;
-        padding: 6px 16px;
-        bottom: 20px;
-    }
-    
-    .schedule-card {
-        padding: 14px 12px 12px 12px;
-        border-radius: 14px;
-        margin: 6px 0 12px 0;
-    }
-    .schedule-title {
-        font-size: 15px;
-    }
-    .schedule-sub {
-        font-size: 10px;
-    }
-    .schedule-icon {
-        font-size: 20px;
-    }
-    .schedule-timeline::before {
-        left: 60px;
-    }
-    .schedule-time {
-        font-size: 11px;
-        min-width: 52px;
-    }
-    .schedule-dot {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        margin-top: 3px;
-    }
-    .schedule-event {
-        font-size: 13px;
-    }
-    .schedule-desc {
-        font-size: 10px;
-    }
-    .schedule-item {
-        gap: 10px;
-        margin-bottom: 10px;
-    }
+    .gallery-grid { gap: 6px; }
+    .gallery-title { font-size: 15px; }
+    .gallery-item { border-radius: 8px; }
+    .gallery-icon { font-size: 18px; }
+    .lightbox-content { max-width: 95%; max-height: 70%; }
+    .lightbox-close { font-size: 30px; top: 15px; right: 20px; }
+    .lightbox-caption { font-size: 12px; padding: 6px 16px; bottom: 20px; }
+    .schedule-card { padding: 14px 12px 12px 12px; border-radius: 14px; margin: 6px 0 12px 0; }
+    .schedule-title { font-size: 15px; }
+    .schedule-sub { font-size: 10px; }
+    .schedule-icon { font-size: 20px; }
+    .schedule-timeline::before { left: 60px; }
+    .schedule-time { font-size: 11px; min-width: 52px; }
+    .schedule-dot { width: 8px; height: 8px; min-width: 8px; margin-top: 3px; }
+    .schedule-event { font-size: 13px; }
+    .schedule-desc { font-size: 10px; }
+    .schedule-item { gap: 10px; margin-bottom: 10px; }
+    .sound-icon { width: 42px; height: 42px; font-size: 18px; bottom: 15px; right: 15px; }
 }
 
 @media (max-width: 380px) {
+    .door-container {
+        width: 90vw;
+        height: 45vh;
+        max-height: 300px;
+    }
+    .door-heart { font-size: 35px; }
+    .center-title { font-size: 28px; letter-spacing: 1px; }
+    .center-sub { font-size: 13px; letter-spacing: 4px; }
+    .bottom-line { font-size: 14px; }
+    .bottom-sub { font-size: 9px; }
+    .door-particles span { font-size: 12px; }
+    .door-handle { width: 10px; height: 30px; }
+    .door-left .door-handle { right: 8px; }
+    .door-right .door-handle { left: 8px; }
+    .door-lock { width: 30px; height: 30px; bottom: 8%; }
+    .door-lock::before { font-size: 14px; }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
-    .schedule-time {
-        font-size: 10px;
-        min-width: 45px;
-    }
-    .schedule-timeline::before {
-        left: 50px;
-    }
-    .schedule-event {
-        font-size: 12px;
-    }
-    .gallery-grid {
-        gap: 4px;
-    }
+    .schedule-time { font-size: 10px; min-width: 45px; }
+    .schedule-timeline::before { left: 50px; }
+    .schedule-event { font-size: 12px; }
+    .gallery-grid { gap: 4px; }
+    .invitation-text { font-size: 15px; }
+    .rsvp-section { padding: 10px 8px 12px 8px; }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1467,12 +2286,19 @@ body::after {
     .form-buttons { flex-direction: row; }
     .highlight-date { font-size: 26px; }
     .highlight-venue { font-size: 18px; }
+    .invitation-text { font-size: 18px; }
+    .door-container { width: 75vw; height: 60vh; max-height: 420px; }
+    .center-title { font-size: 42px; }
+    .center-sub { font-size: 18px; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .container { max-width: 460px; padding: 45px 30px 55px 30px; }
     .title { font-size: 44px; }
     .highlight-date { font-size: 27px; }
+    .door-container { width: 65vw; height: 65vh; max-height: 500px; }
+    .center-title { font-size: 48px; }
+    .center-sub { font-size: 20px; }
 }
 
 @media (min-width: 1025px) {
@@ -1481,6 +2307,9 @@ body::after {
     #countdown { font-size: 26px; min-width: 220px; }
     .highlight-date { font-size: 28px; }
     .highlight-venue { font-size: 20px; }
+    .door-container { width: 70vw; max-width: 750px; height: 70vh; max-height: 600px; }
+    .center-title { font-size: 52px; }
+    .center-sub { font-size: 22px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -1502,54 +2331,37 @@ body::after {
     .sticker-emoji { font-size: 28px; }
     .divider { margin: 6px auto 10px auto; }
     .modal-content { max-height: 80vh; padding: 15px 12px 15px 12px; }
+    .invitation-text { font-size: 16px; }
+    #shareButtonContainer { max-width: 100%; margin-top: 6px; }
     
-    .gallery-grid {
-        gap: 4px;
-    }
-    .gallery-title {
-        font-size: 13px;
-    }
-    .gallery-sub {
-        font-size: 9px;
-    }
-    .gallery-item {
-        border-radius: 6px;
-    }
-    .gallery-icon {
-        font-size: 14px;
-    }
+    .door-container { width: 60vw; height: 70vh; max-height: 350px; }
+    .door-heart { font-size: 40px; }
+    .center-title { font-size: 30px; }
+    .center-sub { font-size: 14px; }
+    .bottom-line { font-size: 16px; }
+    .bottom-sub { font-size: 10px; }
+    .door-top-deco { font-size: 12px; letter-spacing: 8px; top: 5px; }
+    .door-particles span { font-size: 12px; }
+    .door-handle { width: 10px; height: 32px; }
+    .door-lock { width: 30px; height: 30px; bottom: 8%; }
+    .door-lock::before { font-size: 14px; }
     
-    .schedule-card {
-        padding: 10px 8px 8px 8px;
-        margin: 4px 0 8px 0;
-    }
-    .schedule-title {
-        font-size: 13px;
-    }
-    .schedule-icon {
-        font-size: 16px;
-    }
-    .schedule-timeline::before {
-        left: 55px;
-    }
-    .schedule-time {
-        font-size: 10px;
-        min-width: 48px;
-    }
-    .schedule-event {
-        font-size: 12px;
-    }
-    .schedule-desc {
-        font-size: 9px;
-    }
-    .schedule-item {
-        gap: 8px;
-        margin-bottom: 8px;
-    }
-    .schedule-dot {
-        width: 7px;
-        height: 7px;
-        min-width: 7px;
-        margin-top: 2px;
-    }
+    .rsvp-section { padding: 10px 8px 12px 8px; }
+    .form-buttons { flex-direction: row; }
+    .form-buttons button { font-size: 11px; padding: 10px; }
+    .gallery-grid { gap: 4px; }
+    .gallery-title { font-size: 13px; }
+    .gallery-sub { font-size: 9px; }
+    .gallery-item { border-radius: 6px; }
+    .gallery-icon { font-size: 14px; }
+    .schedule-card { padding: 10px 8px 8px 8px; margin: 4px 0 8px 0; }
+    .schedule-title { font-size: 13px; }
+    .schedule-icon { font-size: 16px; }
+    .schedule-timeline::before { left: 55px; }
+    .schedule-time { font-size: 10px; min-width: 48px; }
+    .schedule-event { font-size: 12px; }
+    .schedule-desc { font-size: 9px; }
+    .schedule-item { gap: 8px; margin-bottom: 8px; }
+    .schedule-dot { width: 7px; height: 7px; min-width: 7px; margin-top: 2px; }
+    .sound-icon { width: 36px; height: 36px; font-size: 16px; bottom: 10px; right: 10px; }
 }
