@@ -152,28 +152,14 @@ async function shareInvitationWithImage() {
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
     const encodedMessage = encodeURIComponent(message);
+    
+    // ✅ නිවැරදි WhatsApp URL - mobile එකට හොඳට වැඩ කරනවා
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     
-    if (navigator.share) {
-        try {
-            const response = await fetch(imageUrl);
-            const blob = await response.blob();
-            const file = new File([blob], "invitation.jpg", { type: "image/jpeg" });
-            
-            const shareData = {
-                title: "Lahiru & Salomi - Wedding Invitation",
-                text: message,
-                files: [file]
-            };
-            
-            await navigator.share(shareData);
-            return;
-        } catch (err) {
-            console.log("Share cancelled:", err);
-            return;
-        }
-    }
+    // ✅ Mobile Share API - share menu එක open කරනවා (මේක ඉවත් කරමු)
+    // ඒ වෙනුවට සෘජුවම WhatsApp open කරමු
     
+    // ✅ අලුත් tab එකක WhatsApp open කරන්න
     window.open(whatsappURL, '_blank');
 }
 
