@@ -152,9 +152,8 @@ async function shareInvitationWithImage() {
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     
-    // Mobile Share API try කරන්න
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
@@ -175,7 +174,6 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // WhatsApp Web open කරන්න
     window.open(whatsappURL, '_blank');
 }
 
@@ -300,7 +298,6 @@ function closeInvitationAndGoBack() {
     }, 300);
 }
 
-// ----- CLOSE INVITATION MODAL (Normal close) -----
 function closeInvitation() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
@@ -351,7 +348,7 @@ function shareInvitation() {
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     
     window.open(whatsappURL, '_blank');
 }
@@ -432,7 +429,7 @@ function sendWhatsApp() {
     message += `\n💒 *Lahiru & Salomi - 14 September 2026*`;
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
     
     window.open(whatsappURL, '_blank');
     document.getElementById('rsvpForm').reset();
