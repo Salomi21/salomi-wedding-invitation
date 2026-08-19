@@ -154,6 +154,7 @@ async function shareInvitationWithImage() {
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
     
+    // Mobile Share API try කරන්න
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
@@ -174,6 +175,7 @@ async function shareInvitationWithImage() {
         }
     }
     
+    // WhatsApp Web open කරන්න
     window.open(whatsappURL, '_blank');
 }
 
