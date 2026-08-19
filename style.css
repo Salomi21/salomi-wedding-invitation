@@ -766,47 +766,63 @@ body::after {
 }
 
 /* ================================================================ */
-/* 💜 DOOR HEART & CENTER TEXT                                    */
+/* 💜 DOOR HEART - BIG ATTRACTIVE HEART AT TOP                    */
 /* ================================================================ */
 
 .door-heart {
     position: absolute;
-    top: 42%;
+    top: 8%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 90px;
+    font-size: 100px;
     z-index: 10;
     opacity: 0;
     transition: all 1.5s ease;
-    text-shadow: 0 0 100px rgba(255, 215, 0, 0.2);
+    text-shadow: 
+        0 0 60px rgba(192, 132, 252, 0.3),
+        0 0 120px rgba(192, 132, 252, 0.15),
+        0 0 200px rgba(192, 132, 252, 0.08);
+    animation: none;
 }
 
 .door-overlay.open .door-heart {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.3);
-    animation: heartReveal 1.5s ease forwards;
+    transform: translate(-50%, -50%) scale(1);
+    animation: heartReveal 1.8s ease forwards;
 }
 
 @keyframes heartReveal {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(-40deg); }
-    60% { opacity: 1; transform: translate(-50%, -50%) scale(1.7) rotate(15deg); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
+    0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.2) rotate(-40deg); 
+    }
+    40% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.6) rotate(15deg); 
+    }
+    70% { 
+        transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.1) rotate(0deg); 
+    }
 }
 
 /* ================================================================ */
-/* 🎯 DOOR CENTER TEXT - LARGER SIZE (WEDDING)                    */
+/* 🎯 DOOR CENTER TEXT - LARGER SIZE AT MIDDLE                    */
 /* ================================================================ */
 
 .door-center-text {
     position: absolute;
-    bottom: 12%;
+    top: 35%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     z-index: 10;
     opacity: 0;
     transition: all 1.8s ease;
-    transition-delay: 0.5s;
+    transition-delay: 0.3s;
     width: 92%;
 }
 
@@ -816,15 +832,24 @@ body::after {
 }
 
 @keyframes textReveal {
-    0% { opacity: 0; transform: translateX(-50%) scale(0.8) translateY(20px); }
-    50% { opacity: 0.7; transform: translateX(-50%) scale(1.1) translateY(-5px); }
-    100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
+    0% { 
+        opacity: 0; 
+        transform: translateX(-50%) scale(0.7) translateY(30px); 
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: translateX(-50%) scale(1.1) translateY(-5px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateX(-50%) scale(1) translateY(0); 
+    }
 }
 
 .center-title {
     display: block;
     font-family: 'Great Vibes', cursive;
-    font-size: 52px;
+    font-size: 56px;
     color: #ffd700;
     text-shadow: 
         0 0 60px rgba(255, 215, 0, 0.3),
@@ -838,9 +863,9 @@ body::after {
 .center-sub {
     display: block;
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 26px;
     color: #d8b4fe;
-    margin-top: 8px;
+    margin-top: 10px;
     letter-spacing: 8px;
     font-weight: 300;
     text-shadow: 0 0 40px rgba(192, 132, 252, 0.2);
@@ -858,16 +883,16 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🔒 DOOR LOCK - WITH OPEN ANIMATION (WEDDING)                   */
+/* 🔒 DOOR LOCK - WITH OPEN ANIMATION                             */
 /* ================================================================ */
 
 .door-lock {
     position: absolute;
-    bottom: 12%;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255, 215, 0, 0.06), transparent);
     border: 2px solid rgba(255, 215, 0, 0.08);
@@ -882,13 +907,12 @@ body::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 22px;
+    font-size: 26px;
     opacity: 0.4;
     transition: all 1.5s ease;
     filter: grayscale(0.3);
 }
 
-/* 🎯 Door open වෙද්දී Lock එක Open වෙනවා */
 .door-overlay.open .door-lock {
     border-color: rgba(255, 215, 0, 0.25);
     box-shadow: 0 0 40px rgba(255, 215, 0, 0.12), 0 0 80px rgba(255, 215, 0, 0.04);
@@ -904,7 +928,6 @@ body::after {
     text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
-/* 🔓 Lock Open Animation */
 @keyframes lockOpen {
     0% { 
         transform: translate(-50%, -50%) scale(0.6) rotate(-30deg); 
@@ -957,46 +980,10 @@ body::after {
 }
 
 /* ================================================================ */
-/* 📝 BOTTOM TEXT                                                 */
+/* 📝 BOTTOM TEXT - REMOVED (යටින් තියෙන text එක අයින් කරලා)  */
 /* ================================================================ */
 
-.door-bottom-text {
-    text-align: center;
-    z-index: 2;
-    position: relative;
-    opacity: 0.7;
-    transition: all 0.5s ease;
-}
-
-.bottom-line {
-    display: block;
-    font-family: 'Great Vibes', cursive;
-    font-size: 24px;
-    color: #d8b4fe;
-    text-shadow: 0 0 40px rgba(192, 132, 252, 0.1);
-    letter-spacing: 2px;
-}
-
-.bottom-sub {
-    display: block;
-    font-family: 'Lato', sans-serif;
-    font-size: 13px;
-    color: #a78bba;
-    margin-top: 5px;
-    letter-spacing: 6px;
-    font-weight: 300;
-    animation: blinkText 2s ease-in-out infinite;
-}
-
-@keyframes blinkText {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-}
-
-.door-overlay.open .bottom-sub {
-    animation: none;
-    opacity: 0;
-}
+/* door-bottom-text සම්පූර්ණයෙන්ම ඉවත් කර ඇත */
 
 /* ================================================================ */
 /* ✨ DOOR PARTICLES                                              */
@@ -1159,11 +1146,6 @@ body::after {
     color: #f0e6f6;
     border: 1px solid rgba(255, 255, 255, 0.08);
     animation: modalVerySlowFadeIn 3s ease forwards;
-}
-
-@keyframes modalFloat {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-3px); }
 }
 
 .modal-content::before {
@@ -1389,7 +1371,7 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🎯 HERO PHOTO - NO OVERLAY (සම්පූර්ණයෙන්ම පැහැදිලියි)      */
+/* 🎯 HERO PHOTO - NO OVERLAY                                     */
 /* ================================================================ */
 
 .hero-photo-section {
@@ -1411,9 +1393,6 @@ body::after {
 .hero-photo-section img:hover {
     transform: scale(1.01);
 }
-
-/* ❌ Overlay එක සම්පූර්ණයෙන්ම ඉවත් කර ඇත */
-/* උඩින් හෝ යටින් කිසිදු overlay effect එකක් නැත */
 
 /* ================================================================ */
 /* 🎯 PHOTO GALLERY                                               */
@@ -2197,11 +2176,12 @@ body::after {
         height: 55vh;
         max-height: 380px;
     }
-    .door-heart { font-size: 50px; }
-    .center-title { font-size: 36px; letter-spacing: 2px; }
+    .door-heart { 
+        font-size: 65px; 
+        top: 6%;
+    }
+    .center-title { font-size: 32px; letter-spacing: 2px; }
     .center-sub { font-size: 16px; letter-spacing: 5px; }
-    .bottom-line { font-size: 18px; }
-    .bottom-sub { font-size: 11px; }
     .door-top-deco { font-size: 14px; letter-spacing: 10px; top: 10px; }
     .door-particles span { font-size: 14px; }
     .door-handle { width: 12px; height: 40px; }
@@ -2210,8 +2190,9 @@ body::after {
     .door-ornament { font-size: 10px; letter-spacing: 6px; }
     .door-left { border-radius: 20px 0 0 20px; }
     .door-right { border-radius: 0 20px 20px 0; }
-    .door-lock { width: 34px; height: 34px; bottom: 10%; }
+    .door-lock { width: 34px; height: 34px; bottom: 5%; }
     .door-lock::before { font-size: 16px; }
+    .door-center-text { top: 30%; }
     
     .modal-content {
         padding: 22px 16px 22px 16px;
@@ -2257,17 +2238,16 @@ body::after {
         height: 45vh;
         max-height: 300px;
     }
-    .door-heart { font-size: 35px; }
-    .center-title { font-size: 28px; letter-spacing: 1px; }
-    .center-sub { font-size: 13px; letter-spacing: 4px; }
-    .bottom-line { font-size: 14px; }
-    .bottom-sub { font-size: 9px; }
+    .door-heart { font-size: 50px; top: 5%; }
+    .center-title { font-size: 26px; letter-spacing: 1px; }
+    .center-sub { font-size: 14px; letter-spacing: 4px; }
     .door-particles span { font-size: 12px; }
     .door-handle { width: 10px; height: 30px; }
     .door-left .door-handle { right: 8px; }
     .door-right .door-handle { left: 8px; }
-    .door-lock { width: 30px; height: 30px; bottom: 8%; }
+    .door-lock { width: 30px; height: 30px; bottom: 5%; }
     .door-lock::before { font-size: 14px; }
+    .door-center-text { top: 28%; }
     .highlight-date { font-size: 20px; }
     .highlight-venue { font-size: 15px; }
     .schedule-time { font-size: 10px; min-width: 45px; }
@@ -2288,8 +2268,10 @@ body::after {
     .highlight-venue { font-size: 18px; }
     .invitation-text { font-size: 18px; }
     .door-container { width: 75vw; height: 60vh; max-height: 420px; }
+    .door-heart { font-size: 80px; }
     .center-title { font-size: 42px; }
-    .center-sub { font-size: 18px; }
+    .center-sub { font-size: 20px; }
+    .door-center-text { top: 33%; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -2297,8 +2279,9 @@ body::after {
     .title { font-size: 44px; }
     .highlight-date { font-size: 27px; }
     .door-container { width: 65vw; height: 65vh; max-height: 500px; }
+    .door-heart { font-size: 90px; }
     .center-title { font-size: 48px; }
-    .center-sub { font-size: 20px; }
+    .center-sub { font-size: 22px; }
 }
 
 @media (min-width: 1025px) {
@@ -2308,8 +2291,9 @@ body::after {
     .highlight-date { font-size: 28px; }
     .highlight-venue { font-size: 20px; }
     .door-container { width: 70vw; max-width: 750px; height: 70vh; max-height: 600px; }
-    .center-title { font-size: 52px; }
-    .center-sub { font-size: 22px; }
+    .door-heart { font-size: 100px; }
+    .center-title { font-size: 56px; }
+    .center-sub { font-size: 26px; }
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -2335,15 +2319,14 @@ body::after {
     #shareButtonContainer { max-width: 100%; margin-top: 6px; }
     
     .door-container { width: 60vw; height: 70vh; max-height: 350px; }
-    .door-heart { font-size: 40px; }
+    .door-heart { font-size: 50px; top: 5%; }
     .center-title { font-size: 30px; }
-    .center-sub { font-size: 14px; }
-    .bottom-line { font-size: 16px; }
-    .bottom-sub { font-size: 10px; }
+    .center-sub { font-size: 16px; }
+    .door-center-text { top: 30%; }
     .door-top-deco { font-size: 12px; letter-spacing: 8px; top: 5px; }
     .door-particles span { font-size: 12px; }
     .door-handle { width: 10px; height: 32px; }
-    .door-lock { width: 30px; height: 30px; bottom: 8%; }
+    .door-lock { width: 30px; height: 30px; bottom: 5%; }
     .door-lock::before { font-size: 14px; }
     
     .rsvp-section { padding: 10px 8px 12px 8px; }
