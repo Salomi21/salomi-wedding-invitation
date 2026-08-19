@@ -883,12 +883,12 @@ body::after {
 }
 
 /* ================================================================ */
-/* 🔒 DOOR LOCK - MOVED UP (DATE එකට යටින්)                      */
+/* 🔒 DOOR LOCK - MOVED MORE UP (තව උඩට)                         */
 /* ================================================================ */
 
 .door-lock {
     position: absolute;
-    bottom: 22%;
+    bottom: 28%;
     left: 50%;
     transform: translateX(-50%);
     width: 50px;
@@ -2263,7 +2263,7 @@ body::after {
     .door-lock { 
         width: 34px; 
         height: 34px; 
-        bottom: 18%;
+        bottom: 24%;
     }
     .door-lock::before { font-size: 16px; }
     .door-center-text { top: 30%; }
@@ -2325,7 +2325,7 @@ body::after {
     .door-lock { 
         width: 30px; 
         height: 30px; 
-        bottom: 15%;
+        bottom: 20%;
     }
     .door-lock::before { font-size: 14px; }
     .door-center-text { top: 28%; }
@@ -2356,7 +2356,7 @@ body::after {
     .center-title { font-size: 42px; }
     .center-sub { font-size: 20px; }
     .door-center-text { top: 33%; }
-    .door-lock { bottom: 20%; }
+    .door-lock { bottom: 26%; }
     .bottom-line { font-size: 22px; }
     .door-bottom-text { bottom: 4%; }
 }
@@ -2369,7 +2369,7 @@ body::after {
     .door-heart { font-size: 90px; }
     .center-title { font-size: 48px; }
     .center-sub { font-size: 22px; }
-    .door-lock { bottom: 21%; }
+    .door-lock { bottom: 27%; }
     .bottom-line { font-size: 26px; }
 }
 
@@ -2383,7 +2383,7 @@ body::after {
     .door-heart { font-size: 100px; }
     .center-title { font-size: 56px; }
     .center-sub { font-size: 26px; }
-    .door-lock { bottom: 22%; }
+    .door-lock { bottom: 28%; }
     .bottom-line { font-size: 28px; }
 }
 
@@ -2420,7 +2420,7 @@ body::after {
     .door-lock { 
         width: 30px; 
         height: 30px; 
-        bottom: 15%;
+        bottom: 20%;
     }
     .door-lock::before { font-size: 14px; }
     .bottom-line { font-size: 16px; }
