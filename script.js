@@ -74,7 +74,31 @@ window.addEventListener('load', () => {
 });
 
 // ================================================================
-// 🎯 GET NAME FROM URL AND DISPLAY PERSONALIZED MESSAGE (Base64)
+// 🎯 UTF-8 Base64 Encode/Decode Functions
+// ================================================================
+
+function utf8ToBase64(str) {
+    try {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode(parseInt(p1, 16));
+        }));
+    } catch (e) {
+        return encodeURIComponent(str);
+    }
+}
+
+function base64ToUtf8(str) {
+    try {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    } catch (e) {
+        return decodeURIComponent(str);
+    }
+}
+
+// ================================================================
+// 🎯 GET NAME AND TITLE FROM URL AND DISPLAY PERSONALIZED MESSAGE
 // ================================================================
 
 function getGuestNameFromURL() {
@@ -82,16 +106,29 @@ function getGuestNameFromURL() {
     return params.get('name') || '';
 }
 
+function getGuestTitleFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('title') || '';
+}
+
 function displayGuestName() {
     const name = getGuestNameFromURL();
+    const title = getGuestTitleFromURL();
+    
     if (name) {
         try {
-            // ✅ Base64 decode කරනවා
-            const decodedName = decodeURIComponent(escape(atob(name)));
+            const decodedName = base64ToUtf8(name);
+            let displayName = decodedName;
+            
+            // Title එක තියෙනවා නම් එකතු කරනවා
+            if (title) {
+                const decodedTitle = base64ToUtf8(title);
+                displayName = `${decodedTitle} ${decodedName}`;
+            }
             
             const subtitle = document.getElementById('mainSubtitle');
             if (subtitle) {
-                subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
+                subtitle.innerHTML = `💜 ${displayName} ඔබට ආරාධනා කරනවා! 💜`;
                 subtitle.style.color = '#f5edff';
                 subtitle.style.fontSize = '16px';
                 subtitle.style.letterSpacing = '2px';
@@ -99,14 +136,20 @@ function displayGuestName() {
             
             const invText = document.getElementById('invitationText');
             if (invText) {
-                invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
+                invText.innerHTML = `💜 ${displayName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
             }
         } catch (e) {
-            // Base64 decode fail උනොත් normal decode කරනවා
             const decodedName = decodeURIComponent(name);
+            let displayName = decodedName;
+            
+            if (title) {
+                const decodedTitle = decodeURIComponent(title);
+                displayName = `${decodedTitle} ${decodedName}`;
+            }
+            
             const subtitle = document.getElementById('mainSubtitle');
             if (subtitle) {
-                subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
+                subtitle.innerHTML = `💜 ${displayName} ඔබට ආරාධනා කරනවා! 💜`;
                 subtitle.style.color = '#f5edff';
                 subtitle.style.fontSize = '16px';
                 subtitle.style.letterSpacing = '2px';
@@ -114,7 +157,7 @@ function displayGuestName() {
             
             const invText = document.getElementById('invitationText');
             if (invText) {
-                invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
+                invText.innerHTML = `💜 ${displayName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
             }
         }
     }
@@ -140,13 +183,37 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - Base64
+// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp)
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg ImgBB Direct Link එක
     const imageUrl = "https://i.ibb.co/p6S5Tc8N/photo18.jpg";
     
+    // ✅ පළමුව Title එක තෝරන්න
+    let titleChoice = prompt(
+        '👤 Title එක තෝරන්න / Select Title:\n\n' +
+        '1. Mr.\n' +
+        '2. Miss.\n' +
+        '3. Ms.\n' +
+        '4. Mrs.\n\n' +
+        'අංකය ඇතුලත් කරන්න (1, 2, 3, හෝ 4):',
+        '1'
+    );
+    
+    let title = '';
+    if (titleChoice === '1' || titleChoice === 'Mr.' || titleChoice === 'mr') {
+        title = 'Mr.';
+    } else if (titleChoice === '2' || titleChoice === 'Miss.' || titleChoice === 'miss') {
+        title = 'Miss.';
+    } else if (titleChoice === '3' || titleChoice === 'Ms.' || titleChoice === 'ms') {
+        title = 'Ms.';
+    } else if (titleChoice === '4' || titleChoice === 'Mrs.' || titleChoice === 'mrs') {
+        title = 'Mrs.';
+    } else {
+        title = 'Mr.'; // Default
+    }
+    
+    // ✅ ඊට පස්සේ Name එක අහනවා
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
     if (guestName === null) return;
@@ -156,16 +223,20 @@ async function shareInvitationWithImage() {
     }
     guestName = guestName.trim();
     
+    // ✅ Full name එක display සඳහා
+    const fullName = `${title} ${guestName}`;
+    
     const baseUrl = window.location.href.split('?')[0];
     
-    // ✅ Base64 encode කරනවා
-    const encodedName = btoa(unescape(encodeURIComponent(guestName)));
-    const shareUrl = `${baseUrl}?name=${encodedName}`;
+    // ✅ Title එක වෙනම, Name එක වෙනම Base64 encode කරනවා
+    const encodedTitle = utf8ToBase64(title);
+    const encodedName = utf8ToBase64(guestName);
+    const shareUrl = `${baseUrl}?name=${encodedName}&title=${encodedTitle}`;
     
     // ✅ WhatsApp Message එක
     let message = `${imageUrl}\n\n`;
     message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
-    message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
+    message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
     message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
@@ -350,6 +421,29 @@ document.addEventListener('keydown', function(event) {
 // ================================================================
 
 function shareInvitation() {
+    let titleChoice = prompt(
+        '👤 Title එක තෝරන්න / Select Title:\n\n' +
+        '1. Mr.\n' +
+        '2. Miss.\n' +
+        '3. Ms.\n' +
+        '4. Mrs.\n\n' +
+        'අංකය ඇතුලත් කරන්න (1, 2, 3, හෝ 4):',
+        '1'
+    );
+    
+    let title = '';
+    if (titleChoice === '1' || titleChoice === 'Mr.' || titleChoice === 'mr') {
+        title = 'Mr.';
+    } else if (titleChoice === '2' || titleChoice === 'Miss.' || titleChoice === 'miss') {
+        title = 'Miss.';
+    } else if (titleChoice === '3' || titleChoice === 'Ms.' || titleChoice === 'ms') {
+        title = 'Ms.';
+    } else if (titleChoice === '4' || titleChoice === 'Mrs.' || titleChoice === 'mrs') {
+        title = 'Mrs.';
+    } else {
+        title = 'Mr.';
+    }
+    
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
     if (guestName === null) return;
@@ -359,12 +453,15 @@ function shareInvitation() {
     }
     guestName = guestName.trim();
     
+    const fullName = `${title} ${guestName}`;
+    
     const baseUrl = window.location.href.split('?')[0];
-    const encodedName = btoa(unescape(encodeURIComponent(guestName)));
-    const shareUrl = `${baseUrl}?name=${encodedName}`;
+    const encodedTitle = utf8ToBase64(title);
+    const encodedName = utf8ToBase64(guestName);
+    const shareUrl = `${baseUrl}?name=${encodedName}&title=${encodedTitle}`;
     
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
-    message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
+    message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
     message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
