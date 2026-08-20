@@ -353,7 +353,76 @@ function shareInvitation() {
     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
 
-// ----- GET FORM DATA -----
+// ================================================================
+// 📤 SEND RSVP DATA TO GOOGLE SHEETS
+// ================================================================
+
+// ⚠️ ඔබගේ Web App URL එක මෙතන දමන්න
+const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_ACTUAL_SCRIPT_ID/exec";
+
+function saveToGoogleSheets(formData) {
+    console.log('📤 Sending data to Google Sheets:', formData);
+    
+    fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(() => {
+        console.log('✅ Data sent successfully!');
+        showNotification('✅ ඔබගේ RSVP සාර්ථකව ලැබුණා! 💜', 'success');
+    })
+    .catch(error => {
+        console.error('❌ Error:', error);
+        showNotification('❌ දත්ත සුරැකීම අසාර්ථකයි. කරුණාකර නැවත උත්සාහ කරන්න.', 'error');
+    });
+}
+
+// ✅ Notification function
+function showNotification(message, type) {
+    const colors = {
+        success: '#22c55e',
+        error: '#ef4444',
+        info: '#8b5cf6'
+    };
+    
+    const div = document.createElement('div');
+    div.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: ${colors[type] || colors.info};
+        color: white;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-family: 'Lato', sans-serif;
+        z-index: 99999;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        animation: slideDown 0.4s ease;
+        max-width: 90%;
+        text-align: center;
+        font-weight: 500;
+    `;
+    div.textContent = message;
+    document.body.appendChild(div);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        div.style.opacity = '0';
+        div.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => div.remove(), 500);
+    }, 4000);
+}
+
+// ================================================================
+// 📝 GET FORM DATA
+// ================================================================
+
 function getFormData() {
     const name = document.getElementById('rsvpName').value.trim();
     const phone = document.getElementById('rsvpPhone').value.trim();
@@ -367,44 +436,30 @@ function validateForm() {
     const { name, phone, attendance } = getFormData();
     
     if (name === '') {
-        alert('🙏 කරුණාකර ඔබගේ නම ඇතුලත් කරන්න.');
+        showNotification('🙏 කරුණාකර ඔබගේ නම ඇතුලත් කරන්න.', 'error');
+        document.getElementById('rsvpName').focus();
         return false;
     }
     
     if (phone === '') {
-        alert('📱 කරුණාකර දුරකථන අංකය ඇතුලත් කරන්න.');
+        showNotification('📱 කරුණාකර දුරකථන අංකය ඇතුලත් කරන්න.', 'error');
+        document.getElementById('rsvpPhone').focus();
+        return false;
+    }
+    
+    if (phone.length < 10) {
+        showNotification('📱 කරුණාකර නිවැරදි දුරකථන අංකයක් ඇතුලත් කරන්න.', 'error');
+        document.getElementById('rsvpPhone').focus();
         return false;
     }
     
     if (attendance === '') {
-        alert('📌 කරුණාකර පැමිණීම තෝරන්න.');
+        showNotification('📌 කරුණාකර පැමිණීම තෝරන්න.', 'error');
+        document.getElementById('rsvpAttendance').focus();
         return false;
     }
     
     return true;
-}
-
-// ================================================================
-// 📤 SEND RSVP DATA TO GOOGLE SHEETS
-// ================================================================
-
-function saveToGoogleSheets(formData) {
-    const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
-    
-    fetch(WEB_APP_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(() => {
-        console.log('✅ Data sent to Google Sheets!');
-    })
-    .catch(error => {
-        console.error('❌ Error:', error);
-    });
 }
 
 // ----- SEND VIA WHATSAPP (RSVP) -----
@@ -413,6 +468,7 @@ function sendWhatsApp() {
     
     const { name, phone, attendance, notes } = getFormData();
     
+    // ✅ Google Sheets වෙත save කරන්න
     saveToGoogleSheets({ name, phone, attendance, notes });
     
     const whatsappNumber = '94716521119';
@@ -439,6 +495,7 @@ function sendEmail() {
     
     const { name, phone, attendance, notes } = getFormData();
     
+    // ✅ Google Sheets වෙත save කරන්න
     saveToGoogleSheets({ name, phone, attendance, notes });
     
     const emailAddress = 'salomirechali9999@gmail.com';
@@ -538,7 +595,6 @@ function forceAutoPlay() {
 document.addEventListener('DOMContentLoaded', function() {
     displayGuestName();
     checkAndHideButtons();
-    checkQRCode();
     
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
@@ -614,3 +670,19 @@ document.addEventListener('keydown', function(event) {
         closeLightbox();
     }
 });
+
+// ================================================================
+// 🎯 QR CODE CHECK FUNCTION
+// ================================================================
+
+function checkQRCode() {
+    const params = new URLSearchParams(window.location.search);
+    const isQR = params.get('qr') === 'true';
+    
+    if (isQR) {
+        // QR code එකෙන් ආවොත් ගේට් එක auto open කරන්න
+        setTimeout(() => {
+            openDoorAnimation();
+        }, 1500);
+    }
+}
