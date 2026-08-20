@@ -126,9 +126,9 @@ function checkAndHideButtons() {
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo19.jpeg ImgBB Direct Link එක
-    // ⚠️ ඔබගේ Direct Link එක මෙතනට දාන්න
-    const imageUrl = "https://i.ibb.co/S4NnMTmb/photo19.jpg";
+    // ✅ ⚠️ මෙතනට ඔබගේ ImgBB Direct Link එක දාන්න
+    // Direct Link එක මෙවැනි විය යුතුය: https://i.ibb.co/xxxxxxx/photo19.jpg
+    const imageUrl = "https://i.ibb.co/your-direct-link/photo19.jpg";  // ← මෙතන change කරන්න
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
@@ -143,8 +143,8 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
-    // ✅ WhatsApp Message එක - photo19 link එක උඩින්
-    let message = `${imageUrl}\n\n`;
+    // ✅ WhatsApp Message එක - photo19 Direct Link එක උඩින්
+    let message = `${imageUrl}\n\n`;  // ← මෙය WhatsApp එකේ thumbnail එක පෙන්වයි
     message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
@@ -155,7 +155,7 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - Image එකත් එක්ක Share කරනවා
+    // ✅ Mobile Share API - Image file එකත් එක්ක Share කරනවා
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
@@ -165,7 +165,7 @@ async function shareInvitationWithImage() {
             const shareData = {
                 title: "Lahiru & Salomi - Wedding Invitation",
                 text: message,
-                files: [file]
+                files: [file]  // ← photo19.jpeg thumbnail එක උඩින්
             };
             
             await navigator.share(shareData);
@@ -175,7 +175,7 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // ✅ Fallback: WhatsApp Web - photo19 link එක උඩින්
+    // ✅ Fallback: WhatsApp Web - image link එක preview එක විදියට
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
