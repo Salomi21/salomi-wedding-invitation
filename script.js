@@ -215,7 +215,6 @@ function openDoorAnimation() {
         bgImage.style.transition = 'opacity 11s ease';
     }
     
-    // ✅ main card එක හරියට hide කරනවා
     mainCard.style.transition = 'opacity 0.5s ease';
     mainCard.style.opacity = '0';
     
@@ -240,18 +239,16 @@ function openDoorAnimation() {
         
     }, 500);
     
-    // ✅ 11s = 11000ms - background සම්පූර්ණයෙන් පෙනිලා ඉවර වෙනකම් invitation එනවා
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
-            // ✅ invitation එක open කරන්න කලින් background image එක හරියට reset කරනවා
             if (bgImage) {
                 bgImage.style.opacity = '0';
             }
             openInvitationVerySlow();
         }, 400);
-    }, 11000);  // ← තත්පර 11
+    }, 11000);
 }
 
 // ================================================================
@@ -271,18 +268,20 @@ function openInvitationVerySlow() {
 }
 
 // ================================================================
-// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE
+// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE - photo19 1s පෙනෙන
 // ================================================================
 
 function closeInvitationAndGoBack() {
     const modal = document.getElementById('invitationModal');
     const mainCard = document.getElementById('mainCard');
     
+    // Modal එක close කරනවා
     if (modal) {
         modal.classList.remove('show');
         document.body.style.overflow = 'auto';
     }
     
+    // Door overlay reset කරනවා
     const doorOverlay = document.getElementById('doorOverlay');
     doorOverlay.classList.remove('open', 'hidden');
     doorOverlay.style.display = 'none';
@@ -293,15 +292,17 @@ function closeInvitationAndGoBack() {
         bgImage.style.opacity = '0';
     }
     
+    // ✅ photo19 තත්පර 1ක් පෙනෙනවා - main card එනකම්
     setTimeout(() => {
         mainCard.style.display = 'block';
         mainCard.style.opacity = '0';
-        mainCard.style.transition = 'opacity 0.8s ease';
-        
-        setTimeout(() => {
-            mainCard.style.opacity = '1';
-        }, 100);
-    }, 300);
+        mainCard.style.transition = 'opacity 1s ease';  // ← තත්පර 1ක්
+    }, 100);
+    
+    // තත්පර 1කට පසු main card එක පෙනෙන්න පටන් ගන්නවා
+    setTimeout(() => {
+        mainCard.style.opacity = '1';
+    }, 1100);  // 100ms + 1000ms = 1100ms (තත්පර 1.1)
 }
 
 function closeInvitation() {
