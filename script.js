@@ -122,12 +122,10 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION - Mobile Photo Share (Desktop link පෙනෙනවා)
+// 🎯 SHARE INVITATION - Honor X7c WhatsApp Intent
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ ImgBB Direct Link (Desktop වලදී මෙය පෙනෙනවා)
-    const imageUrl = "https://i.ibb.co/p6S5Tc8N/photo18.jpg";
     const imageFile = "photo18.jpeg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
@@ -153,9 +151,7 @@ async function shareInvitationWithImage() {
     const baseUrl = window.location.href.split('?')[0];
     const shareUrl = `${baseUrl}?name=${encodeURIComponent(fullName)}`;
     
-    // ✅ Message එක - Image link එක උඩින්
-    let message = `${imageUrl}\n\n`;
-    message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
@@ -165,26 +161,36 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile: navigator.share() - photo file එක උඩින්
-    if (navigator.share) {
-        try {
-            const response = await fetch(imageFile);
-            const blob = await response.blob();
-            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
+    // ✅ Android: WhatsApp Intent URL - Honor X7c එකට හරියට වැඩ කරනවා
+    try {
+        // Image එක fetch කරලා base64 කරන්න
+        const response = await fetch(imageFile);
+        const blob = await response.blob();
+        
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        
+        reader.onload = function() {
+            const base64Image = reader.result;
             
-            // ✅ Mobile එකේදී photo file එක share වෙනවා (ImgBB link එක නොපෙනෙනවා)
-            await navigator.share({
-                title: "Lahiru & Salomi - Wedding Invitation",
-                text: message.replace(`${imageUrl}\n\n`, ''),  // Mobile එකේ link එක අයින් කරනවා
-                files: [file]
-            });
-            return;
-        } catch (err) {
-            console.log("Share failed:", err);
-        }
+            // ✅ Honor X7c WhatsApp Intent - කෙලින්ම WhatsApp app එකට
+            const intentUrl = `intent://send?text=${encodeURIComponent(message)}#Intent;package=com.whatsapp;action=android.intent.action.SEND;type=image/jpeg;S.android.intent.extra.STREAM=${base64Image};end`;
+            
+            // WhatsApp app එක open කරනවා
+            window.location.href = intentUrl;
+            
+            // Fallback (intent fail උනොත්)
+            setTimeout(() => {
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+            }, 3000);
+        };
+        
+        return;
+    } catch (err) {
+        console.log("Intent failed:", err);
     }
     
-    // ✅ Desktop: WhatsApp Web - link එක preview එක විදියට
+    // ✅ Fallback: WhatsApp Web
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
