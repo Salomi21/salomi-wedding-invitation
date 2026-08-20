@@ -687,3 +687,9 @@ function checkQRCode() {
         }, 1500);
     }
 }
+
+// ================================================================
+// 📝 COPYRIGHT - SalomiRechali
+// ================================================================
+
+console.log('© SalomiRechali. All Rights Reserved.');
