@@ -126,9 +126,8 @@ function checkAndHideButtons() {
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg Direct Link එක මෙතනට දාන්න
-    // ⚠️ ඔබගේ ImgBB link එක මෙතනට change කරන්න
-    const imageUrl = "https://i.ibb.co/your-image-id/photo18.jpg";  // ← මෙතන change කරන්න
+    // ✅ photo18.jpeg ImgBB Direct Link එක
+    const imageUrl = "https://i.ibb.co/p6S5Tc8N/photo18.jpg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
@@ -144,7 +143,7 @@ async function shareInvitationWithImage() {
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
     // ✅ WhatsApp Message එක - Image link එක උඩින්
-    let message = `${imageUrl}\n\n`;  // ← මෙය WhatsApp එකේ thumbnail එක පෙන්වයි
+    let message = `${imageUrl}\n\n`;
     message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
@@ -165,7 +164,7 @@ async function shareInvitationWithImage() {
             const shareData = {
                 title: "Lahiru & Salomi - Wedding Invitation",
                 text: message,
-                files: [file]  // ← photo18.jpeg උඩින්
+                files: [file]
             };
             
             await navigator.share(shareData);
