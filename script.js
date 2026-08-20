@@ -122,13 +122,13 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo19 උඩින්
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo18 උඩින්
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ ImgBB Direct Link එක මෙතනට දාන්න
+    // ✅ photo18.jpeg Direct Link එක මෙතනට දාන්න
     // ⚠️ ඔබගේ ImgBB link එක මෙතනට change කරන්න
-    const imageUrl = "https://i.ibb.co/your-image-id/photo19.jpg";  // ← මෙතන change කරන්න
+    const imageUrl = "https://i.ibb.co/your-image-id/photo18.jpg";  // ← මෙතන change කරන්න
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
@@ -165,7 +165,7 @@ async function shareInvitationWithImage() {
             const shareData = {
                 title: "Lahiru & Salomi - Wedding Invitation",
                 text: message,
-                files: [file]  // ← photo19.jpeg උඩින්
+                files: [file]  // ← photo18.jpeg උඩින්
             };
             
             await navigator.share(shareData);
