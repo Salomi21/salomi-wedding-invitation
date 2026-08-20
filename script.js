@@ -198,7 +198,7 @@ function checkQRCode() {
 }
 
 // ================================================================
-// 🚪 SLOW DOOR OPEN ANIMATION - 13 SECONDS TOTAL
+// 🚪 SLOW DOOR OPEN ANIMATION - 11 SECONDS TOTAL
 // ================================================================
 
 function openDoorAnimation() {
@@ -212,7 +212,7 @@ function openDoorAnimation() {
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
-        bgImage.style.transition = 'opacity 13s ease';
+        bgImage.style.transition = 'opacity 11s ease';
     }
     
     mainCard.style.transition = 'opacity 0.5s ease';
@@ -239,14 +239,14 @@ function openDoorAnimation() {
         
     }, 500);
     
-    // ✅ 13s = 13000ms - background සම්පූර්ණයෙන් පෙනිලා ඉවර වෙනකම් invitation එනවා
+    // ✅ 11s = 11000ms - background සම්පූර්ණයෙන් පෙනිලා ඉවර වෙනකම් invitation එනවා
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
             openInvitationVerySlow();
         }, 400);
-    }, 13000);  // ← තත්පර 13
+    }, 11000);  // ← තත්පර 11
 }
 
 // ================================================================
