@@ -122,7 +122,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp)
+// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp) - Mobile Photo
 // ================================================================
 
 async function shareInvitationWithImage() {
@@ -177,27 +177,29 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - Image එකත් එක්ක
-    if (navigator.share) {
-        try {
-            const response = await fetch(imageFile);
-            const blob = await response.blob();
-            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
-            
-            const shareData = {
-                title: "Lahiru & Salomi - Wedding Invitation",
-                text: message,
-                files: [file]  // ← photo18.jpeg උඩින්
-            };
-            
+    // ✅ Mobile Share API - Image file එක උඩින්
+    try {
+        // Image file එක fetch කරනවා
+        const response = await fetch(imageFile);
+        const blob = await response.blob();
+        const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
+        
+        const shareData = {
+            title: "Lahiru & Salomi - Wedding Invitation",
+            text: message,
+            files: [file]  // ← photo18.jpeg ලොකුවට උඩින්
+        };
+        
+        // ✅ navigator.share() එක use කරනවා
+        if (navigator.share) {
             await navigator.share(shareData);
             return;
-        } catch (err) {
-            console.log("Share cancelled:", err);
         }
+    } catch (err) {
+        console.log("Share failed or cancelled:", err);
     }
     
-    // ✅ Fallback: WhatsApp Web
+    // ✅ Fallback: WhatsApp Web (Desktop)
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
