@@ -122,11 +122,11 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo18.jpeg
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo18 උඩින්
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg එක URL එකට convert කරනවා
+    // ✅ photo18.jpeg එක URL එක
     const imageUrl = "photo18.jpeg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
@@ -142,7 +142,7 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
-    // ✅ WhatsApp Message එක - photo18 link එක අයින් කරලා
+    // ✅ WhatsApp Message එක
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
@@ -153,7 +153,7 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - Image එකත් එක්ක Share කරනවා
+    // ✅ Mobile Share API - Image එක thumbnail එකක් විදියට share කරනවා
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
@@ -163,7 +163,7 @@ async function shareInvitationWithImage() {
             const shareData = {
                 title: "Lahiru & Salomi - Wedding Invitation",
                 text: message,
-                files: [file]
+                files: [file]  // ← photo18.jpeg thumbnail එක උඩින්
             };
             
             await navigator.share(shareData);
@@ -173,8 +173,10 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // ✅ Fallback: WhatsApp Web - Message එක විතරක්
-    const encodedMessage = encodeURIComponent(message);
+    // ✅ Fallback: WhatsApp Web - photo18 link එක උඩින්
+    // WhatsApp Web එක auto preview කරනවා image link එක
+    const imageLinkMessage = `${imageUrl}\n\n${message}`;
+    const encodedMessage = encodeURIComponent(imageLinkMessage);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 }
