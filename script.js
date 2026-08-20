@@ -89,7 +89,7 @@ function displayGuestName() {
         
         const subtitle = document.getElementById('mainSubtitle');
         if (subtitle) {
-            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
+            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනාවක්! 💜`;
             subtitle.style.color = '#f5edff';
             subtitle.style.fontSize = '16px';
             subtitle.style.letterSpacing = '2px';
