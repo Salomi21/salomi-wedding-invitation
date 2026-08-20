@@ -122,7 +122,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - Desktop + Mobile
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo19 උඩින්
 // ================================================================
 
 async function shareInvitationWithImage() {
@@ -155,7 +155,7 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - Image file එකත් එක්ක
+    // ✅ Mobile Share API - Image එකත් එක්ක
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
@@ -175,7 +175,7 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // ✅ Desktop: WhatsApp Web - Image link එක preview එක විදියට
+    // ✅ Fallback: WhatsApp Web - Image link එක preview එක විදියට
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
