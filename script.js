@@ -74,7 +74,7 @@ window.addEventListener('load', () => {
 });
 
 // ================================================================
-// 🎯 GET NAME FROM URL AND DISPLAY PERSONALIZED MESSAGE
+// 🎯 GET NAME FROM URL AND DISPLAY PERSONALIZED MESSAGE (Base64 Decode)
 // ================================================================
 
 function getGuestNameFromURL() {
@@ -85,19 +85,37 @@ function getGuestNameFromURL() {
 function displayGuestName() {
     const name = getGuestNameFromURL();
     if (name) {
-        const decodedName = decodeURIComponent(name);
-        
-        const subtitle = document.getElementById('mainSubtitle');
-        if (subtitle) {
-            subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
-            subtitle.style.color = '#f5edff';
-            subtitle.style.fontSize = '16px';
-            subtitle.style.letterSpacing = '2px';
-        }
-        
-        const invText = document.getElementById('invitationText');
-        if (invText) {
-            invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
+        try {
+            // ✅ Base64 decode කරනවා
+            const decodedName = decodeURIComponent(escape(atob(name)));
+            
+            const subtitle = document.getElementById('mainSubtitle');
+            if (subtitle) {
+                subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
+                subtitle.style.color = '#f5edff';
+                subtitle.style.fontSize = '16px';
+                subtitle.style.letterSpacing = '2px';
+            }
+            
+            const invText = document.getElementById('invitationText');
+            if (invText) {
+                invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
+            }
+        } catch (e) {
+            // Base64 decode fail උනොත් normal decode කරනවා
+            const decodedName = decodeURIComponent(name);
+            const subtitle = document.getElementById('mainSubtitle');
+            if (subtitle) {
+                subtitle.innerHTML = `💜 ${decodedName} ඔබට ආරාධනා කරනවා! 💜`;
+                subtitle.style.color = '#f5edff';
+                subtitle.style.fontSize = '16px';
+                subtitle.style.letterSpacing = '2px';
+            }
+            
+            const invText = document.getElementById('invitationText');
+            if (invText) {
+                invText.innerHTML = `💜 ${decodedName}, අපගේ විවාහ උත්සවයට ඔබට ආරාධනා කරනවා!<br>With hearts full of love and joy, we invite you to celebrate our wedding!`;
+            }
         }
     }
 }
@@ -122,7 +140,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo18 උඩින්
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - Base64 Encoding
 // ================================================================
 
 async function shareInvitationWithImage() {
@@ -139,7 +157,9 @@ async function shareInvitationWithImage() {
     guestName = guestName.trim();
     
     const baseUrl = window.location.href.split('?')[0];
-    const encodedName = encodeURIComponent(guestName);
+    
+    // ✅ Base64 encode කරනවා (Capital/Small/Sinhala හැම එකම හරියට වැඩ කරනවා)
+    const encodedName = btoa(unescape(encodeURIComponent(guestName)));
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
     // ✅ WhatsApp Message එක - Image link එක උඩින්
@@ -340,7 +360,9 @@ function shareInvitation() {
     guestName = guestName.trim();
     
     const baseUrl = window.location.href.split('?')[0];
-    const encodedName = encodeURIComponent(guestName);
+    
+    // ✅ Base64 encode කරනවා
+    const encodedName = btoa(unescape(encodeURIComponent(guestName)));
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
