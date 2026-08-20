@@ -127,7 +127,6 @@ function checkAndHideButtons() {
 
 async function shareInvitationWithImage() {
     // ✅ photo18.jpeg එක URL එකට convert කරනවා
-    // ⚠️ මෙතන ඔබගේ photo18.jpeg එකේ URL එක දාන්න
     const imageUrl = "photo18.jpeg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
@@ -143,9 +142,8 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
-    // ✅ WhatsApp Message එක - photo18 එකේ link එකත් එක්ක
+    // ✅ WhatsApp Message එක - photo18 link එක අයින් කරලා
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
-    message += `📸 *Our Wedding Photo:*\n${imageUrl}\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
@@ -175,7 +173,7 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // ✅ Fallback: WhatsApp Web - Message එක විතරක් (image link එක ඇතුළුව)
+    // ✅ Fallback: WhatsApp Web - Message එක විතරක්
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
@@ -272,7 +270,7 @@ function openInvitationVerySlow() {
 }
 
 // ================================================================
-// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE - photo19 1s පෙනෙන
+// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE
 // ================================================================
 
 function closeInvitationAndGoBack() {
