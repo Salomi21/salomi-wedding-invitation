@@ -122,7 +122,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp) - Mobile Photo
+// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp) - Mobile
 // ================================================================
 
 async function shareInvitationWithImage() {
@@ -177,7 +177,7 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - Image file එක උඩින්
+    // ✅ Mobile Share API - Image file එක normal photo එකක් විදියට
     try {
         // Image file එක fetch කරනවා
         const response = await fetch(imageFile);
@@ -187,7 +187,7 @@ async function shareInvitationWithImage() {
         const shareData = {
             title: "Lahiru & Salomi - Wedding Invitation",
             text: message,
-            files: [file]  // ← photo18.jpeg ලොකුවට උඩින්
+            files: [file]  // ← photo18.jpeg normal photo එකක් විදියට ඉහළින්
         };
         
         // ✅ navigator.share() එක use කරනවා
