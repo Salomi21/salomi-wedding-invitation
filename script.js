@@ -122,7 +122,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp) - ALL Mobile
+// 🎯 SHARE INVITATION WITH IMAGE (WhatsApp) - Mobile Photo Share
 // ================================================================
 
 async function shareInvitationWithImage() {
@@ -161,62 +161,27 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Detect device type
-    const isAndroid = /android/i.test(navigator.userAgent);
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    
-    // ✅ ANDROID: WhatsApp Intent URL (direct photo share)
-    if (isAndroid) {
-        try {
-            // Base64 encode image for Android intent
-            const response = await fetch(imageFile);
-            const blob = await response.blob();
-            
-            // Convert to base64
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            
-            reader.onload = function() {
-                const base64Image = reader.result;
-                
-                // Android WhatsApp intent with base64 image
-                const intentUrl = `intent://send?text=${encodeURIComponent(message)}#Intent;package=com.whatsapp;action=android.intent.action.SEND;type=image/jpeg;S.android.intent.extra.STREAM=${base64Image};end`;
-                
-                // Try to open WhatsApp with intent
-                window.location.href = intentUrl;
-                
-                // Fallback if intent fails
-                setTimeout(() => {
-                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
-                }, 3000);
-            };
-            
+    // ✅ Mobile Share API - Image file එක ලොකුවට share කරනවා
+    try {
+        const response = await fetch(imageFile);
+        const blob = await response.blob();
+        const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
+        
+        const shareData = {
+            title: "Lahiru & Salomi - Wedding Invitation",
+            text: message,
+            files: [file]  // ← photo18.jpeg ලොකුවට
+        };
+        
+        if (navigator.share) {
+            await navigator.share(shareData);
             return;
-        } catch (err) {
-            console.log("Android intent failed:", err);
-            // Fallback to normal share
         }
+    } catch (err) {
+        console.log("Share cancelled:", err);
     }
     
-    // ✅ iOS / OTHER: navigator.share()
-    if (navigator.share) {
-        try {
-            const response = await fetch(imageFile);
-            const blob = await response.blob();
-            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
-            
-            await navigator.share({
-                title: "Lahiru & Salomi - Wedding Invitation",
-                text: message,
-                files: [file]
-            });
-            return;
-        } catch (err) {
-            console.log("Share cancelled:", err);
-        }
-    }
-    
-    // ✅ Fallback: WhatsApp Web (Desktop / Last resort)
+    // ✅ Desktop: WhatsApp Web
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
