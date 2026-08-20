@@ -85,7 +85,6 @@ function getGuestNameFromURL() {
 function displayGuestName() {
     const name = getGuestNameFromURL();
     if (name) {
-        // ✅ හරියට decode කරනවා
         const decodedName = decodeURIComponent(name);
         
         const subtitle = document.getElementById('mainSubtitle');
@@ -127,10 +126,9 @@ function checkAndHideButtons() {
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg ImgBB Direct Link එක
-    const imageUrl = "https://i.ibb.co/p6S5Tc8N/photo18.jpg";
+    // ✅ photo18.jpeg Local File එක
+    const imageFile = "photo18.jpeg";
     
-    // ✅ පළමුව Name එක අහනවා
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
     if (guestName === null) return;
@@ -140,7 +138,6 @@ async function shareInvitationWithImage() {
     }
     guestName = guestName.trim();
     
-    // ✅ ඊට පස්සේ Title එක තෝරන්න
     let titleChoice = prompt(
         '👤 Title එක තෝරන්න / Select Title:\n\n' +
         '1. Mr.\n' +
@@ -161,19 +158,16 @@ async function shareInvitationWithImage() {
     } else if (titleChoice === '4' || titleChoice === 'Mrs.' || titleChoice === 'mrs') {
         title = 'Mrs.';
     } else {
-        title = 'Mr.'; // Default
+        title = 'Mr.';
     }
     
-    // ✅ Full name එක හදනවා (Title + Name)
     const fullName = `${title} ${guestName}`;
     
     const baseUrl = window.location.href.split('?')[0];
     const encodedName = encodeURIComponent(fullName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
-    // ✅ WhatsApp Message එක - Image link එක උඩින්
-    let message = `${imageUrl}\n\n`;
-    message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
@@ -186,7 +180,7 @@ async function shareInvitationWithImage() {
     // ✅ Mobile Share API - Image එකත් එක්ක
     if (navigator.share) {
         try {
-            const response = await fetch(imageUrl);
+            const response = await fetch(imageFile);
             const blob = await response.blob();
             const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
             
@@ -368,7 +362,6 @@ function shareInvitation() {
     }
     guestName = guestName.trim();
     
-    // ✅ Title එක තෝරන්න
     let titleChoice = prompt(
         '👤 Title එක තෝරන්න / Select Title:\n\n' +
         '1. Mr.\n' +
