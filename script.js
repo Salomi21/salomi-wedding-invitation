@@ -215,6 +215,7 @@ function openDoorAnimation() {
         bgImage.style.transition = 'opacity 11s ease';
     }
     
+    // ✅ main card එක හරියට hide කරනවා
     mainCard.style.transition = 'opacity 0.5s ease';
     mainCard.style.opacity = '0';
     
@@ -244,6 +245,10 @@ function openDoorAnimation() {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
             doorOverlay.style.display = 'none';
+            // ✅ invitation එක open කරන්න කලින් background image එක හරියට reset කරනවා
+            if (bgImage) {
+                bgImage.style.opacity = '0';
+            }
             openInvitationVerySlow();
         }, 400);
     }, 11000);  // ← තත්පර 11
