@@ -357,8 +357,8 @@ function shareInvitation() {
 // 📤 SEND RSVP DATA TO GOOGLE SHEETS
 // ================================================================
 
-// ✅ ඔබගේ Web App URL එක
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzjcI5TP9qUgmAFExuHyJCe7WV-HEu6T6uqEHveC7QSgXQSikwwD0usXv5eSBxCBzHe/exec";
+// ✅ ඔබගේ Web App URL එක (යාවත්කාලීන කළ)
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbydx43EHHX-qTEwio60eeZQkjahWmf9Jw4FIxMYCspmOTQdDNURNts3K9L9ot-NMnbb/exec";
 
 function saveToGoogleSheets(formData) {
     console.log('📤 Sending data to Google Sheets:', formData);
