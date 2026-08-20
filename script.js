@@ -186,7 +186,7 @@ async function shareInvitationWithImage() {
 }
 
 // ================================================================
-// 🚪 SLOW DOOR OPEN ANIMATION - 11 SECONDS TOTAL
+// 🚪 SLOW DOOR OPEN ANIMATION - 10 SECONDS TOTAL
 // ================================================================
 
 function openDoorAnimation() {
@@ -200,7 +200,7 @@ function openDoorAnimation() {
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
-        bgImage.style.transition = 'opacity 11s ease';
+        bgImage.style.transition = 'opacity 10s ease';
     }
     
     mainCard.style.transition = 'opacity 0.5s ease';
@@ -236,7 +236,7 @@ function openDoorAnimation() {
             }
             openInvitationVerySlow();
         }, 400);
-    }, 11000);
+    }, 10000);
 }
 
 // ================================================================
@@ -282,12 +282,12 @@ function closeInvitationAndGoBack() {
     setTimeout(() => {
         mainCard.style.display = 'block';
         mainCard.style.opacity = '0';
-        mainCard.style.transition = 'opacity 1s ease';  // ← තත්පර 1ක්
+        mainCard.style.transition = 'opacity 1s ease';
     }, 100);
     
     setTimeout(() => {
         mainCard.style.opacity = '1';
-    }, 1100);  // 100ms + 1000ms = 1100ms (තත්පර 1.1)
+    }, 1100);
 }
 
 function closeInvitation() {
