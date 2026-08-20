@@ -186,7 +186,7 @@ async function shareInvitationWithImage() {
 }
 
 // ================================================================
-// 🚪 SLOW DOOR OPEN ANIMATION - 10 SECONDS TOTAL
+// 🚪 SLOW DOOR OPEN ANIMATION - 9 SECONDS TOTAL
 // ================================================================
 
 function openDoorAnimation() {
@@ -200,7 +200,7 @@ function openDoorAnimation() {
     const bgImage = document.querySelector('.door-bg-image');
     if (bgImage) {
         bgImage.style.opacity = '0';
-        bgImage.style.transition = 'opacity 10s ease';
+        bgImage.style.transition = 'opacity 9s ease';
     }
     
     mainCard.style.transition = 'opacity 0.5s ease';
@@ -236,7 +236,7 @@ function openDoorAnimation() {
             }
             openInvitationVerySlow();
         }, 400);
-    }, 10000);
+    }, 9000);
 }
 
 // ================================================================
