@@ -122,11 +122,12 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION - Mobile WhatsApp (Photo උඩින් - Canvas නැතුව)
+// 🎯 SHARE INVITATION - Mobile Photo Share (Desktop link පෙනෙනවා)
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg Local File එක
+    // ✅ ImgBB Direct Link (Desktop වලදී මෙය පෙනෙනවා)
+    const imageUrl = "https://i.ibb.co/p6S5Tc8N/photo18.jpg";
     const imageFile = "photo18.jpeg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
@@ -152,7 +153,9 @@ async function shareInvitationWithImage() {
     const baseUrl = window.location.href.split('?')[0];
     const shareUrl = `${baseUrl}?name=${encodeURIComponent(fullName)}`;
     
-    let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    // ✅ Message එක - Image link එක උඩින්
+    let message = `${imageUrl}\n\n`;
+    message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
@@ -162,27 +165,26 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - photo18.jpeg උඩින්
-    try {
-        const response = await fetch(imageFile);
-        const blob = await response.blob();
-        const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
-        
-        const shareData = {
-            title: "Lahiru & Salomi - Wedding Invitation",
-            text: message,
-            files: [file]  // ← photo18.jpeg උඩින්
-        };
-        
-        if (navigator.share) {
-            await navigator.share(shareData);
+    // ✅ Mobile: navigator.share() - photo file එක උඩින්
+    if (navigator.share) {
+        try {
+            const response = await fetch(imageFile);
+            const blob = await response.blob();
+            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
+            
+            // ✅ Mobile එකේදී photo file එක share වෙනවා (ImgBB link එක නොපෙනෙනවා)
+            await navigator.share({
+                title: "Lahiru & Salomi - Wedding Invitation",
+                text: message.replace(`${imageUrl}\n\n`, ''),  // Mobile එකේ link එක අයින් කරනවා
+                files: [file]
+            });
             return;
+        } catch (err) {
+            console.log("Share failed:", err);
         }
-    } catch (err) {
-        console.log("Share failed:", err);
     }
     
-    // ✅ Fallback: WhatsApp Web (Desktop)
+    // ✅ Desktop: WhatsApp Web - link එක preview එක විදියට
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
