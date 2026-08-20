@@ -122,7 +122,7 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION - Mobile WhatsApp (Photo උඩින් - URL නැතුව)
+// 🎯 SHARE INVITATION - Gallery එකෙන් Photo යවන විදියට (URL නැතුව)
 // ================================================================
 
 async function shareInvitationWithImage() {
@@ -152,6 +152,7 @@ async function shareInvitationWithImage() {
     const baseUrl = window.location.href.split('?')[0];
     const shareUrl = `${baseUrl}?name=${encodeURIComponent(fullName)}`;
     
+    // ✅ Message එක - URL එකක් නැතුව
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
@@ -162,6 +163,7 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
+    // ✅ Mobile: Gallery එකෙන් Photo යවන විදියට
     try {
         const response = await fetch(imageFile);
         const blob = await response.blob();
@@ -170,7 +172,7 @@ async function shareInvitationWithImage() {
         const shareData = {
             title: "Lahiru & Salomi - Wedding Invitation",
             text: message,
-            files: [file]
+            files: [file]  // ← photo18.jpeg උඩින් (URL නැතුව)
         };
         
         if (navigator.share) {
@@ -181,12 +183,33 @@ async function shareInvitationWithImage() {
         console.log("Share failed:", err);
     }
     
+    // ✅ Desktop Fallback: WhatsApp Web
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
 
 // ================================================================
-// 🚪 SLOW DOOR OPEN ANIMATION - photo1 පෙනුනාට පස්සේ invitation
+// 🎯 CHECK IF VIEWED VIA QR CODE
+// ================================================================
+
+function checkQRCode() {
+    const params = new URLSearchParams(window.location.search);
+    const isQR = params.get('qr');
+    
+    if (isQR === 'true') {
+        const shareContainer = document.getElementById('shareButtonContainer');
+        if (shareContainer) {
+            shareContainer.style.display = 'none';
+        }
+        
+        setTimeout(function() {
+            openDoorAnimation();
+        }, 1500);
+    }
+}
+
+// ================================================================
+// 🚪 SLOW DOOR OPEN ANIMATION - 11 SECONDS TOTAL
 // ================================================================
 
 function openDoorAnimation() {
@@ -227,7 +250,6 @@ function openDoorAnimation() {
         
     }, 500);
     
-    // ✅ photo1 සම්පූර්ණයෙන් පෙනුනාට පස්සේ (11s) invitation එනවා
     setTimeout(() => {
         doorOverlay.classList.add('hidden');
         setTimeout(() => {
@@ -235,16 +257,16 @@ function openDoorAnimation() {
             if (bgImage) {
                 bgImage.style.opacity = '0';
             }
-            openInvitationDirect();
+            openInvitationVerySlow();
         }, 400);
     }, 11000);
 }
 
 // ================================================================
-// 🎯 OPEN INVITATION DIRECT - photo19 නොපෙනෙන
+// 🎯 OPEN INVITATION WITH VERY SLOW FADE IN (5s)
 // ================================================================
 
-function openInvitationDirect() {
+function openInvitationVerySlow() {
     const modal = document.getElementById('invitationModal');
     if (modal) {
         modal.classList.add('show');
@@ -257,7 +279,7 @@ function openInvitationDirect() {
 }
 
 // ================================================================
-// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE - photo19 නොපෙනෙන
+// 🎯 CLOSE INVITATION AND GO BACK TO MAIN PAGE
 // ================================================================
 
 function closeInvitationAndGoBack() {
@@ -279,10 +301,15 @@ function closeInvitationAndGoBack() {
         bgImage.style.opacity = '0';
     }
     
-    // ✅ photo19 කිසිම වේලාවක නොපෙනෙන
-    mainCard.style.display = 'block';
-    mainCard.style.opacity = '1';
-    mainCard.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => {
+        mainCard.style.display = 'block';
+        mainCard.style.opacity = '0';
+        mainCard.style.transition = 'opacity 1s ease';
+    }, 100);
+    
+    setTimeout(() => {
+        mainCard.style.opacity = '1';
+    }, 1100);
 }
 
 function closeInvitation() {
