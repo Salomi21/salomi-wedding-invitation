@@ -122,11 +122,10 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp) - Mobile
+// 🎯 SHARE INVITATION WITH IMAGE + TITLE + NAME (WhatsApp) - ALL Mobile
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg Local File එක
     const imageFile = "photo18.jpeg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
@@ -139,33 +138,18 @@ async function shareInvitationWithImage() {
     guestName = guestName.trim();
     
     let titleChoice = prompt(
-        '👤 Title එක තෝරන්න / Select Title:\n\n' +
-        '1. Mr.\n' +
-        '2. Miss.\n' +
-        '3. Ms.\n' +
-        '4. Mrs.\n\n' +
-        'අංකය ඇතුලත් කරන්න (1, 2, 3, හෝ 4):',
+        '👤 Title එක තෝරන්න:\n\n1. Mr.\n2. Miss.\n3. Ms.\n4. Mrs.\n\nඅංකය (1-4):',
         '1'
     );
     
-    let title = '';
-    if (titleChoice === '1' || titleChoice === 'Mr.' || titleChoice === 'mr') {
-        title = 'Mr.';
-    } else if (titleChoice === '2' || titleChoice === 'Miss.' || titleChoice === 'miss') {
-        title = 'Miss.';
-    } else if (titleChoice === '3' || titleChoice === 'Ms.' || titleChoice === 'ms') {
-        title = 'Ms.';
-    } else if (titleChoice === '4' || titleChoice === 'Mrs.' || titleChoice === 'mrs') {
-        title = 'Mrs.';
-    } else {
-        title = 'Mr.';
-    }
+    let title = 'Mr.';
+    if (titleChoice === '2') title = 'Miss.';
+    else if (titleChoice === '3') title = 'Ms.';
+    else if (titleChoice === '4') title = 'Mrs.';
     
     const fullName = `${title} ${guestName}`;
-    
     const baseUrl = window.location.href.split('?')[0];
-    const encodedName = encodeURIComponent(fullName);
-    const shareUrl = `${baseUrl}?name=${encodedName}`;
+    const shareUrl = `${baseUrl}?name=${encodeURIComponent(fullName)}`;
     
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
@@ -177,32 +161,64 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    // ✅ Mobile Share API - Image file එක normal photo එකක් විදියට
-    try {
-        // Image file එක fetch කරනවා
-        const response = await fetch(imageFile);
-        const blob = await response.blob();
-        const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
-        
-        const shareData = {
-            title: "Lahiru & Salomi - Wedding Invitation",
-            text: message,
-            files: [file]  // ← photo18.jpeg normal photo එකක් විදියට ඉහළින්
-        };
-        
-        // ✅ navigator.share() එක use කරනවා
-        if (navigator.share) {
-            await navigator.share(shareData);
+    // ✅ Detect device type
+    const isAndroid = /android/i.test(navigator.userAgent);
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    
+    // ✅ ANDROID: WhatsApp Intent URL (direct photo share)
+    if (isAndroid) {
+        try {
+            // Base64 encode image for Android intent
+            const response = await fetch(imageFile);
+            const blob = await response.blob();
+            
+            // Convert to base64
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            
+            reader.onload = function() {
+                const base64Image = reader.result;
+                
+                // Android WhatsApp intent with base64 image
+                const intentUrl = `intent://send?text=${encodeURIComponent(message)}#Intent;package=com.whatsapp;action=android.intent.action.SEND;type=image/jpeg;S.android.intent.extra.STREAM=${base64Image};end`;
+                
+                // Try to open WhatsApp with intent
+                window.location.href = intentUrl;
+                
+                // Fallback if intent fails
+                setTimeout(() => {
+                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+                }, 3000);
+            };
+            
             return;
+        } catch (err) {
+            console.log("Android intent failed:", err);
+            // Fallback to normal share
         }
-    } catch (err) {
-        console.log("Share failed or cancelled:", err);
     }
     
-    // ✅ Fallback: WhatsApp Web (Desktop)
+    // ✅ iOS / OTHER: navigator.share()
+    if (navigator.share) {
+        try {
+            const response = await fetch(imageFile);
+            const blob = await response.blob();
+            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
+            
+            await navigator.share({
+                title: "Lahiru & Salomi - Wedding Invitation",
+                text: message,
+                files: [file]
+            });
+            return;
+        } catch (err) {
+            console.log("Share cancelled:", err);
+        }
+    }
+    
+    // ✅ Fallback: WhatsApp Web (Desktop / Last resort)
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
+    window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
 
 // ================================================================
@@ -365,33 +381,18 @@ function shareInvitation() {
     guestName = guestName.trim();
     
     let titleChoice = prompt(
-        '👤 Title එක තෝරන්න / Select Title:\n\n' +
-        '1. Mr.\n' +
-        '2. Miss.\n' +
-        '3. Ms.\n' +
-        '4. Mrs.\n\n' +
-        'අංකය ඇතුලත් කරන්න (1, 2, 3, හෝ 4):',
+        '👤 Title එක තෝරන්න:\n\n1. Mr.\n2. Miss.\n3. Ms.\n4. Mrs.\n\nඅංකය (1-4):',
         '1'
     );
     
-    let title = '';
-    if (titleChoice === '1' || titleChoice === 'Mr.' || titleChoice === 'mr') {
-        title = 'Mr.';
-    } else if (titleChoice === '2' || titleChoice === 'Miss.' || titleChoice === 'miss') {
-        title = 'Miss.';
-    } else if (titleChoice === '3' || titleChoice === 'Ms.' || titleChoice === 'ms') {
-        title = 'Ms.';
-    } else if (titleChoice === '4' || titleChoice === 'Mrs.' || titleChoice === 'mrs') {
-        title = 'Mrs.';
-    } else {
-        title = 'Mr.';
-    }
+    let title = 'Mr.';
+    if (titleChoice === '2') title = 'Miss.';
+    else if (titleChoice === '3') title = 'Ms.';
+    else if (titleChoice === '4') title = 'Mrs.';
     
     const fullName = `${title} ${guestName}`;
-    
     const baseUrl = window.location.href.split('?')[0];
-    const encodedName = encodeURIComponent(fullName);
-    const shareUrl = `${baseUrl}?name=${encodedName}`;
+    const shareUrl = `${baseUrl}?name=${encodeURIComponent(fullName)}`;
     
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
@@ -404,9 +405,7 @@ function shareInvitation() {
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-    
-    window.open(whatsappURL, '_blank');
+    window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
 
 // ----- GET FORM DATA -----
@@ -485,9 +484,7 @@ function sendWhatsApp() {
     message += `\n💒 *Lahiru & Salomi - 14 September 2026*`;
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
-    
-    window.open(whatsappURL, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`, '_blank');
     document.getElementById('rsvpForm').reset();
 }
 
