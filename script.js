@@ -357,8 +357,8 @@ function shareInvitation() {
 // 📤 SEND RSVP DATA TO GOOGLE SHEETS
 // ================================================================
 
-// ⚠️ ඔබගේ Web App URL එක මෙතන දමන්න
-const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_ACTUAL_SCRIPT_ID/exec";
+// ✅ ඔබගේ Web App URL එක
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzjcI5TP9qUgmAFExuHyJCe7WV-HEu6T6uqEHveC7QSgXQSikwwD0usXv5eSBxCBzHe/exec";
 
 function saveToGoogleSheets(formData) {
     console.log('📤 Sending data to Google Sheets:', formData);
@@ -595,6 +595,7 @@ function forceAutoPlay() {
 document.addEventListener('DOMContentLoaded', function() {
     displayGuestName();
     checkAndHideButtons();
+    checkQRCode();
     
     setTimeout(forceAutoPlay, 100);
     setTimeout(forceAutoPlay, 300);
