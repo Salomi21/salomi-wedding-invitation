@@ -122,11 +122,13 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp)
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo18.jpeg
 // ================================================================
 
 async function shareInvitationWithImage() {
-    const imageUrl = "https://i.ibb.co/Q78bqW2y/sticker.webp";
+    // ✅ photo18.jpeg එක URL එකට convert කරනවා
+    // ⚠️ මෙතන ඔබගේ photo18.jpeg එකේ URL එක දාන්න
+    const imageUrl = "photo18.jpeg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
@@ -141,7 +143,9 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
+    // ✅ WhatsApp Message එක - photo18 එකේ link එකත් එක්ක
     let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    message += `📸 *Our Wedding Photo:*\n${imageUrl}\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
@@ -151,14 +155,12 @@ async function shareInvitationWithImage() {
     message += `💜 Please confirm your presence by September 5th.\n\n`;
     message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
     
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-    
+    // ✅ Mobile Share API - Image එකත් එක්ක Share කරනවා
     if (navigator.share) {
         try {
             const response = await fetch(imageUrl);
             const blob = await response.blob();
-            const file = new File([blob], "invitation.jpg", { type: "image/jpeg" });
+            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
             
             const shareData = {
                 title: "Lahiru & Salomi - Wedding Invitation",
@@ -170,10 +172,12 @@ async function shareInvitationWithImage() {
             return;
         } catch (err) {
             console.log("Share cancelled:", err);
-            return;
         }
     }
     
+    // ✅ Fallback: WhatsApp Web - Message එක විතරක් (image link එක ඇතුළුව)
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 }
 
@@ -275,13 +279,11 @@ function closeInvitationAndGoBack() {
     const modal = document.getElementById('invitationModal');
     const mainCard = document.getElementById('mainCard');
     
-    // Modal එක close කරනවා
     if (modal) {
         modal.classList.remove('show');
         document.body.style.overflow = 'auto';
     }
     
-    // Door overlay reset කරනවා
     const doorOverlay = document.getElementById('doorOverlay');
     doorOverlay.classList.remove('open', 'hidden');
     doorOverlay.style.display = 'none';
@@ -292,17 +294,15 @@ function closeInvitationAndGoBack() {
         bgImage.style.opacity = '0';
     }
     
-    // ✅ photo19 තත්පර 1ක් පෙනෙනවා - main card එනකම්
     setTimeout(() => {
         mainCard.style.display = 'block';
         mainCard.style.opacity = '0';
-        mainCard.style.transition = 'opacity 1s ease';  // ← තත්පර 1ක්
+        mainCard.style.transition = 'opacity 1s ease';
     }, 100);
     
-    // තත්පර 1කට පසු main card එක පෙනෙන්න පටන් ගන්නවා
     setTimeout(() => {
         mainCard.style.opacity = '1';
-    }, 1100);  // 100ms + 1000ms = 1100ms (තත්පර 1.1)
+    }, 1100);
 }
 
 function closeInvitation() {
