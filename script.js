@@ -122,12 +122,13 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo18.jpeg
+// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp) - photo19 උඩින්
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ photo18.jpeg එක URL එකට convert කරනවා
-    const imageUrl = "photo18.jpeg";
+    // ✅ photo19.jpeg ImgBB Direct Link එක
+    // ⚠️ ඔබගේ Direct Link එක මෙතනට දාන්න
+    const imageUrl = "https://i.ibb.co/S4NnMTmb/photo19.jpg";
     
     let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
     
@@ -142,8 +143,9 @@ async function shareInvitationWithImage() {
     const encodedName = encodeURIComponent(guestName);
     const shareUrl = `${baseUrl}?name=${encodedName}`;
     
-    // ✅ WhatsApp Message එක - photo18 link එක අයින් කරලා
-    let message = `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    // ✅ WhatsApp Message එක - photo19 link එක උඩින්
+    let message = `${imageUrl}\n\n`;
+    message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
     message += `✨✨ *A Special Invitation for ${guestName}* ✨✨\n\n`;
     message += `📅 *Date:* 14 September 2026\n`;
     message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
@@ -173,7 +175,7 @@ async function shareInvitationWithImage() {
         }
     }
     
-    // ✅ Fallback: WhatsApp Web - Message එක විතරක්
+    // ✅ Fallback: WhatsApp Web - photo19 link එක උඩින්
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
