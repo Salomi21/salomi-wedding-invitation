@@ -122,202 +122,70 @@ function checkAndHideButtons() {
 }
 
 // ================================================================
-// 🎯 CREATE AND SHARE INVITATION IMAGE (Canvas)
-// ================================================================
-
-function createAndShareImage() {
-    // Canvas එකක් හදන්න
-    const canvas = document.createElement('canvas');
-    canvas.width = 1080;
-    canvas.height = 1920;
-    const ctx = canvas.getContext('2d');
-    
-    // Background එක - Gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, '#1a0a2e');
-    gradient.addColorStop(0.3, '#2d1b4e');
-    gradient.addColorStop(0.7, '#4a1a7a');
-    gradient.addColorStop(1, '#1a0a2e');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Decorative Border
-    ctx.strokeStyle = 'rgba(255, 215, 0, 0.15)';
-    ctx.lineWidth = 4;
-    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
-    
-    // Title - Lahiru & Salomi
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    
-    // Gold Glow Effect
-    ctx.shadowColor = 'rgba(255, 215, 0, 0.3)';
-    ctx.shadowBlur = 30;
-    ctx.fillStyle = '#ffd700';
-    ctx.font = 'bold 80px "Great Vibes", cursive';
-    ctx.fillText('Lahiru & Salomi', canvas.width / 2, 180);
-    
-    // Subtitle
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
-    ctx.font = '30px "Playfair Display", serif';
-    ctx.fillText('💜 We Are Getting Married 💜', canvas.width / 2, 280);
-    
-    // Divider Line
-    ctx.strokeStyle = 'rgba(255, 215, 0, 0.2)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(canvas.width / 2 - 200, 320);
-    ctx.lineTo(canvas.width / 2 + 200, 320);
-    ctx.stroke();
-    
-    // ----- Photo එක add කරන්න -----
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = 'photo18.jpeg';
-    
-    img.onload = function() {
-        // Round photo
-        const centerX = canvas.width / 2;
-        const centerY = 600;
-        const radius = 300;
-        
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.clip();
-        
-        // Draw photo
-        ctx.drawImage(img, centerX - radius, centerY - radius, radius * 2, radius * 2);
-        ctx.restore();
-        
-        // Photo border - Gold ring
-        ctx.shadowBlur = 0;
-        ctx.strokeStyle = 'rgba(255, 215, 0, 0.4)';
-        ctx.lineWidth = 8;
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius + 6, 0, Math.PI * 2);
-        ctx.stroke();
-        
-        // Small gold ring
-        ctx.strokeStyle = 'rgba(255, 215, 0, 0.15)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([10, 15]);
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius + 20, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-        
-        // ----- Date -----
-        ctx.shadowColor = 'rgba(255, 215, 0, 0.1)';
-        ctx.shadowBlur = 20;
-        ctx.fillStyle = '#ffd700';
-        ctx.font = 'bold 50px "Playfair Display", serif';
-        ctx.fillText('14 September 2026', canvas.width / 2, 1050);
-        
-        // ----- Venue -----
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-        ctx.font = '32px "Lato", sans-serif';
-        ctx.fillText('📍 Hotel Thisunya, Anamaduwa', canvas.width / 2, 1130);
-        
-        // ----- Decorative hearts -----
-        ctx.font = '40px sans-serif';
-        ctx.fillText('💜', canvas.width / 2 - 100, 1220);
-        ctx.fillText('🤍', canvas.width / 2, 1220);
-        ctx.fillText('💜', canvas.width / 2 + 100, 1220);
-        
-        // ----- Footer -----
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.3)';
-        ctx.font = '24px "Great Vibes", cursive';
-        ctx.fillText('"Forever starts today..."', canvas.width / 2, 1350);
-        
-        // ----- Small decorative stars -----
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
-        ctx.font = '20px sans-serif';
-        for (let i = 0; i < 8; i++) {
-            const x = 80 + i * 130;
-            const y = 1480 + Math.sin(i * 0.8) * 30;
-            ctx.fillText('✦', x, y);
-        }
-        
-        // ----- Border corners -----
-        ctx.strokeStyle = 'rgba(255, 215, 0, 0.08)';
-        ctx.lineWidth = 2;
-        const cornerSize = 40;
-        const margin = 50;
-        
-        // Top-left
-        ctx.beginPath();
-        ctx.moveTo(margin, margin + cornerSize);
-        ctx.lineTo(margin, margin);
-        ctx.lineTo(margin + cornerSize, margin);
-        ctx.stroke();
-        
-        // Top-right
-        ctx.beginPath();
-        ctx.moveTo(canvas.width - margin - cornerSize, margin);
-        ctx.lineTo(canvas.width - margin, margin);
-        ctx.lineTo(canvas.width - margin, margin + cornerSize);
-        ctx.stroke();
-        
-        // Bottom-left
-        ctx.beginPath();
-        ctx.moveTo(margin, canvas.height - margin - cornerSize);
-        ctx.lineTo(margin, canvas.height - margin);
-        ctx.lineTo(margin + cornerSize, canvas.height - margin);
-        ctx.stroke();
-        
-        // Bottom-right
-        ctx.beginPath();
-        ctx.moveTo(canvas.width - margin - cornerSize, canvas.height - margin);
-        ctx.lineTo(canvas.width - margin, canvas.height - margin);
-        ctx.lineTo(canvas.width - margin, canvas.height - margin - cornerSize);
-        ctx.stroke();
-        
-        // ----- Share the image -----
-        canvas.toBlob(function(blob) {
-            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: "Lahiru & Salomi - Wedding Invitation",
-                    text: "💜 Lahiru & Salomi - 14 September 2026 💜",
-                    files: [file]
-                }).catch(err => {
-                    console.log("Share cancelled:", err);
-                    // Fallback: Download image
-                    downloadImage(canvas);
-                });
-            } else {
-                // Desktop Fallback: Download image
-                downloadImage(canvas);
-            }
-        }, 'image/jpeg', 0.95);
-    };
-    
-    img.onerror = function() {
-        alert('⚠️ photo18.jpeg file එක හොයාගන්න බැරුවා! කරුණාකර file එක project folder එකේ තියෙනවාද කියලා බලන්න.');
-    };
-}
-
-// ----- Download Image (Desktop Fallback) -----
-function downloadImage(canvas) {
-    const link = document.createElement('a');
-    link.download = 'wedding-invitation.jpg';
-    link.href = canvas.toDataURL('image/jpeg', 0.95);
-    link.click();
-    alert('✅ Image එක download වුනා! ඔබට එය WhatsApp එකට යවන්න පුළුවන්.');
-}
-
-// ================================================================
-// 🎯 SHARE INVITATION WITH IMAGE + NAME (WhatsApp)
+// 🎯 SHARE INVITATION - ImgBB Link Share (Desktop + Mobile)
 // ================================================================
 
 async function shareInvitationWithImage() {
-    // ✅ Canvas image share කරනවා
-    createAndShareImage();
+    // ✅ ImgBB Direct Link එක
+    const imageUrl = "https://i.ibb.co/p6S5Tc8N/photo18.jpg";
+    
+    let guestName = prompt('👤 ආරාධනාව ලබන පුද්ගලයාගේ නම ඇතුලත් කරන්න:', '');
+    
+    if (guestName === null) return;
+    if (guestName.trim() === '') {
+        alert('🙏 කරුණාකර නමක් ඇතුලත් කරන්න!');
+        return;
+    }
+    guestName = guestName.trim();
+    
+    let titleChoice = prompt(
+        '👤 Title එක තෝරන්න:\n\n1. Mr.\n2. Miss.\n3. Ms.\n4. Mrs.\n\nඅංකය (1-4):',
+        '1'
+    );
+    
+    let title = 'Mr.';
+    if (titleChoice === '2') title = 'Miss.';
+    else if (titleChoice === '3') title = 'Ms.';
+    else if (titleChoice === '4') title = 'Mrs.';
+    
+    const fullName = `${title} ${guestName}`;
+    const baseUrl = window.location.href.split('?')[0];
+    const shareUrl = `${baseUrl}?name=${encodeURIComponent(fullName)}`;
+    
+    // ✅ Message එක - Image link එක උඩින්
+    let message = `${imageUrl}\n\n`;
+    message += `💜💜 *Lahiru & Salomi Wedding Invitation* 💜💜\n\n`;
+    message += `✨✨ *A Special Invitation for ${fullName}* ✨✨\n\n`;
+    message += `📅 *Date:* 14 September 2026\n`;
+    message += `📍 *Venue:* Hotel Thisunya, Anamaduwa\n\n`;
+    message += `👁️ *View Your Invitation:*\n${shareUrl}\n\n`;
+    message += `─────────────────────\n`;
+    message += `💜 ඔබගේ පැමිණීම සැප්තැම්බර් 05 දිනට පෙර තහවුරු කරන්න\n`;
+    message += `💜 Please confirm your presence by September 5th.\n\n`;
+    message += `💗💗 අපගේ ආදර කතාවේ සොඳුරුම පරිච්ඡේදයට ඔබත් සෙනෙහසින් එක්වෙන්නයි සාදරයෙන් ඇරයුම් කරමු! 💗💗`;
+    
+    // ✅ Mobile Share
+    if (navigator.share) {
+        try {
+            // Image එක download කරලා share කරනවා
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            const file = new File([blob], "wedding-invitation.jpg", { type: "image/jpeg" });
+            
+            await navigator.share({
+                title: "Lahiru & Salomi - Wedding Invitation",
+                text: message,
+                files: [file]
+            });
+            return;
+        } catch (err) {
+            console.log("Share failed:", err);
+        }
+    }
+    
+    // ✅ Fallback: WhatsApp Web
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
 }
 
 // ================================================================
